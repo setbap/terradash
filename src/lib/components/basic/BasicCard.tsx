@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 interface StatsCardProps {
 	title: string;
-	stat: string;
+	stat: number;
 	status?: 'inc' | 'dec' | 'unchanged';
 }
 export const StatsCard = (props: StatsCardProps) => {

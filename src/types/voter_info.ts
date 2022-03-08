@@ -1,0 +1,12 @@
+export interface VoterInfo {
+  NUMBER_NOT_WHALE_VOTER: number;
+  NUMBER_OF_ANCHOR_VOTER: number;
+  NUMBER_OF_MIR_VOTER: number;
+  NUMBER_OF_NOT_VOTED_WHALES: number;
+  NUMBER_OF_TERRA_VOTER: number;
+  NUMBER_OF_UNIQUE_VOTER: number;
+  NUMBER_OF_VOTER_WHALES: number;
+  NUMBER_OF_WHALES: number;
+  PERCENTAGE_OF_VOTED_WHALES: number;
+  PERCETAGE_OF_VOTER_VOTERS: number;
+}
