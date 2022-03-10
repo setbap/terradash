@@ -15,6 +15,7 @@ import {
     BoxProps,
     FlexProps,
 } from '@chakra-ui/react';
+import NextLink from 'next/link'
 import {
     FiHome,
     FiTrendingUp,
@@ -31,13 +32,14 @@ import ConnectWallet from '../basic/ConnectWallet';
 interface LinkItemProps {
     name: string;
     icon: IconType;
+    path: string;
 }
 const LinkItems: Array<LinkItemProps> = [
-    { name: 'Home', icon: FiHome },
-    { name: 'Trending', icon: FiTrendingUp },
-    { name: 'Explore', icon: FiCompass },
-    { name: 'Favourites', icon: FiStar },
-    { name: 'Settings', icon: FiSettings },
+    { name: 'Home', path: '/', icon: FiHome },
+    { name: 'Trending', path: '/trending', icon: FiTrendingUp },
+    { name: 'Explore', path: '/explore', icon: FiCompass },
+    { name: 'Anchor', path: '/anchor', icon: FiStar },
+    { name: 'Settings', path: '/settings', icon: FiSettings },
 ];
 
 export default function SidebarWithHeader({
@@ -95,7 +97,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
             </Flex>
             {LinkItems.map((link) => (
-                <NavItem key={link.name} icon={link.icon}>
+                <NavItem path={link.path} key={link.name} icon={link.icon}>
                     {link.name}
                 </NavItem>
             ))}
@@ -105,36 +107,39 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
 interface NavItemProps extends FlexProps {
     icon: IconType;
+    path: string;
     children: ReactText;
 }
-const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
+const NavItem = ({ icon, path, children, ...rest }: NavItemProps) => {
     return (
-        <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
-            <Flex
-                align="center"
-                p="4"
-                mx="4"
-                borderRadius="lg"
-                role="group"
-                cursor="pointer"
-                _hover={{
-                    bg: 'cyan.400',
-                    color: 'white',
-                }}
-                {...rest}>
-                {icon && (
-                    <Icon
-                        mr="4"
-                        fontSize="16"
-                        _groupHover={{
-                            color: 'white',
-                        }}
-                        as={icon}
-                    />
-                )}
-                {children}
-            </Flex>
-        </Link>
+        <NextLink href={path} passHref>
+            <Link style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+                <Flex
+                    align="center"
+                    p="4"
+                    mx="4"
+                    borderRadius="lg"
+                    role="group"
+                    cursor="pointer"
+                    _hover={{
+                        bg: 'cyan.400',
+                        color: 'white',
+                    }}
+                    {...rest}>
+                    {icon && (
+                        <Icon
+                            mr="4"
+                            fontSize="16"
+                            _groupHover={{
+                                color: 'white',
+                            }}
+                            as={icon}
+                        />
+                    )}
+                    {children}
+                </Flex>
+            </Link>
+        </NextLink>
     );
 };
 
