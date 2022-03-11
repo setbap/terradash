@@ -4,6 +4,7 @@ import {
 	StatNumber,
 	useColorModeValue,
 } from "@chakra-ui/react";
+import millify from 'millify'
 import { useEffect, useState } from "react";
 
 interface StatsCardProps {
@@ -12,6 +13,7 @@ interface StatsCardProps {
 	status?: 'inc' | 'dec' | 'unchanged';
 }
 export const StatsCard = (props: StatsCardProps) => {
+	const bgCard = useColorModeValue('white', '#191919');
 	const { title, stat, status = 'unchanged' } = props;
 	const defaultColor = useColorModeValue("gray.800", "gray.500")
 	const incColor = useColorModeValue("green.800", "green.500")
@@ -34,7 +36,10 @@ export const StatsCard = (props: StatsCardProps) => {
 		<Stat
 			px={{ base: 4, md: 8 }}
 			py="5"
-			shadow="xl"
+			shadow="base"
+			transition={'box-shadow 0.4s'}
+			_hover={{ boxShadow: 'var(--chakra-shadows-xl)' }}
+			backgroundColor={bgCard}
 			border="1px solid"
 			borderColor={statusColor}
 			rounded="lg"
@@ -43,7 +48,10 @@ export const StatsCard = (props: StatsCardProps) => {
 				{title}
 			</StatLabel>
 			<StatNumber color={statusColor} fontSize="2xl" fontWeight="medium">
-				{stat}
+				{millify(stat, {
+					precision: 3,
+					decimalSeparator: ","
+				})}
 			</StatNumber>
 		</Stat>
 	);

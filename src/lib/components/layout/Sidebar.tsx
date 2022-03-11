@@ -49,7 +49,7 @@ export default function SidebarWithHeader({
 }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <Box minH="calc( 100vh - 64px )" bg={useColorModeValue('gray.200', 'gray.900')}>
+        <Box minH="calc( 100vh - 14px )" bg={useColorModeValue('gray.200', 'gray.900')}>
             <SidebarContent
                 onClose={() => onClose}
                 display={{ base: 'none', md: 'block' }}
@@ -83,7 +83,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
     return (
         <Box
             transition="0.7s ease"
-            bg={useColorModeValue('white', 'gray.900')}
+            bg={useColorModeValue('white', '#191919')}
             borderRight="1px"
             borderRightColor={useColorModeValue('gray.200', 'gray.700')}
             w={{ base: 'full', md: 60 }}
@@ -91,9 +91,11 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             h="full"
             {...rest}>
             <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-                <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-                    Terradash
-                </Text>
+                <NextLink href={'/'} passHref>
+                    <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+                        Terradash
+                    </Text>
+                </NextLink>
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
             </Flex>
             {LinkItems.map((link) => (
@@ -151,9 +153,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         <Flex
             ml={{ base: 0, md: 60 }}
             px={{ base: 4, md: 4 }}
-            height="20"
+            height="16"
             alignItems="center"
-            bg={useColorModeValue('white', 'gray.900')}
+            bg={useColorModeValue('white', '#191919')}
             borderBottomWidth="1px"
             borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
             justifyContent={{ base: 'space-between', md: 'flex-end' }}
@@ -174,10 +176,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                 fontWeight="bold">
                 Terradash
             </Text>
-
             <Box marginLeft="auto" />
-
-
             <HStack gap={'2'} spacing={{ base: '0', md: '6' }}>
                 <ConnectWallet />
                 <ThemeToggle />

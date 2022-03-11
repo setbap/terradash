@@ -30,3 +30,33 @@ export interface SumAnchorDeposite {
   PAST_30_DEPOSIT_AMOUNT_USD: number;
   PAST_7_DEPOSIT_AMOUNT_USD: number;
 }
+
+export interface AnchorBorrows {
+  BLOCK_TIMESTAMP: string;
+  BORROWS_USD: number;
+}
+
+export interface SumAnchorBorrows {
+  ALL_SUM_BORROWS_USD: number;
+  PAST_30_SUM_BORROWS_USD: number;
+  PAST_7_SUM_BORROWS_USD: number;
+}
+
+export interface AnchorBorrowAndDeposit {
+  DAY: string;
+  "daily borrows": number;
+  "daily deposits": number;
+  "diffrent borrows and deposits": number;
+  "sum diffrent borrows and deposits": number;
+}
+
+export interface AnchorUserBorrowAndDeposit {
+  "unique user borrows": number;
+  "unique user deposits": number;
+}
+
+export interface AnchorDailyUserBorrowAndDeposit {
+  day: string;
+  "number of wallet borrows": number;
+  "number of wallet deposits": number;
+}
