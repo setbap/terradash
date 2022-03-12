@@ -1,18 +1,20 @@
 import Home from "lib/pages/home";
-import { getAnchorDeposite } from "lib/requests/anchor_deposite";
 import { getDailyNewUser } from "lib/requests/daily_new_user";
-import { getSumAnchorDeposite } from "lib/requests/sum_anchor_deposite";
-import { getVoteInfo } from "lib/requests/vote_info";
+import { getCirculationSupplyLuna } from "lib/requests/overview/circulation_supply_luna";
+import { getCirculationSupplyUST } from "lib/requests/overview/circulation_supply_ust";
+import { getCurrentLunaPrice } from "lib/requests/overview/current_terra_price";
+import { getTerraDailyAvgMinMaxPrice } from "lib/requests/overview/terra_avg_min_max_price";
 export async function getStaticProps() {
-    const [voterInfo, dailyNewUser, anchorDeposite, sumAnchorDeposite] = await Promise.all(
-        [getVoteInfo(), getDailyNewUser(), getAnchorDeposite(), getSumAnchorDeposite()]
+    const [dailyNewUser, curentLunaPrice, circulationSupplyLuna, circulationSupplyUST, terraDailyAvgMinMaxPrice] = await Promise.all(
+        [getDailyNewUser(), getCurrentLunaPrice(), getCirculationSupplyLuna(), getCirculationSupplyUST(), getTerraDailyAvgMinMaxPrice()]
     );
     return {
         props: {
-            voterInfo,
             dailyNewUser,
-            anchorDeposite,
-            sumAnchorDeposite
+            curentLunaPrice,
+            circulationSupplyLuna,
+            circulationSupplyUST,
+            terraDailyAvgMinMaxPrice
         },
     }
 }

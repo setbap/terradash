@@ -28,6 +28,7 @@ import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 import ThemeToggle from './ThemeToggle';
 import ConnectWallet from '../basic/ConnectWallet';
+import { useRouter } from 'next/router';
 
 interface LinkItemProps {
     name: string;
@@ -35,11 +36,12 @@ interface LinkItemProps {
     path: string;
 }
 const LinkItems: Array<LinkItemProps> = [
-    { name: 'Home', path: '/', icon: FiHome },
-    { name: 'Trending', path: '/trending', icon: FiTrendingUp },
-    { name: 'Explore', path: '/explore', icon: FiCompass },
+    { name: 'Overview', path: '/', icon: FiHome },
+    { name: 'Tx and Fee', path: '/tx-and-fee', icon: FiTrendingUp },
+    { name: 'Governance ', path: '/validator-and-stacke', icon: FiCompass },
+    { name: 'Dapp and NFT', path: '/dapps-and-nft', icon: FiSettings },
+    { name: 'Terra VS Others', path: '/terra-vs-others', icon: FiSettings },
     { name: 'Anchor', path: '/anchor', icon: FiStar },
-    { name: 'Settings', path: '/settings', icon: FiSettings },
 ];
 
 export default function SidebarWithHeader({
@@ -80,6 +82,7 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+    const router = useRouter()
     return (
         <Box
             transition="0.7s ease"
@@ -91,15 +94,15 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             h="full"
             {...rest}>
             <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-                <NextLink href={'/'} passHref>
-                    <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+                <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+                    <NextLink href={'/'} passHref>
                         Terradash
-                    </Text>
-                </NextLink>
+                    </NextLink>
+                </Text>
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
             </Flex>
             {LinkItems.map((link) => (
-                <NavItem path={link.path} key={link.name} icon={link.icon}>
+                <NavItem isActive={router.pathname === link.path} path={link.path} key={link.name} icon={link.icon}>
                     {link.name}
                 </NavItem>
             ))}
@@ -111,8 +114,10 @@ interface NavItemProps extends FlexProps {
     icon: IconType;
     path: string;
     children: ReactText;
+    isActive: boolean
 }
-const NavItem = ({ icon, path, children, ...rest }: NavItemProps) => {
+const NavItem = ({ icon, isActive, path, children, ...rest }: NavItemProps) => {
+    const activeBgColor = useColorModeValue('gray.200', '#232323')
     return (
         <NextLink href={path} passHref>
             <Link style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
@@ -123,6 +128,8 @@ const NavItem = ({ icon, path, children, ...rest }: NavItemProps) => {
                     borderRadius="lg"
                     role="group"
                     cursor="pointer"
+                    bg={isActive ? activeBgColor : 'transparent'}
+                    border={isActive ? '1px' : 'none'}
                     _hover={{
                         bg: 'cyan.400',
                         color: 'white',

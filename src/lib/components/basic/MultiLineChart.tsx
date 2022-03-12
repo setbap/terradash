@@ -3,8 +3,8 @@ import { useState } from "react";
 import millify from "millify";
 import { AiOutlineDownload, AiOutlineInfoCircle } from "react-icons/ai";
 import {
-    AreaChart,
-    Area,
+    LineChart,
+    Line,
     Legend,
     XAxis,
     YAxis,
@@ -20,9 +20,11 @@ interface Props {
     title: string;
     tooltipTitle: string[];
     data: any[];
+    chartColors?: string[];
+    multiOff?: boolean;
 }
 
-const MultiChartBox = ({ areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTitle }: Props) => {
+const MultiChartBox = ({ multiOff = false, areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTitle, chartColors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"] }: Props) => {
 
     const OverlayOne = () => (
         <ModalOverlay
@@ -42,10 +44,10 @@ const MultiChartBox = ({ areaDataKey, xAxisDataKey, data, title, modelInfo, tool
         <Box color={textColor} bgColor={bgCard} shadow='base'
             transition={'all 0.5s '} _hover={{ transform: 'scale(1.01)', boxShadow: 'var(--chakra-shadows-lg)' }} borderRadius={'2xl'}
             width="100%"
-
         >
             <Box
-                px='6'
+                ps='3'
+                pe={multiOff ? 7 : 1}
                 pt='4'
                 pb={'2'}
                 _hover={{ boxShadow: `0px 0px 4px ${bgTooltip}` }}
@@ -55,7 +57,7 @@ const MultiChartBox = ({ areaDataKey, xAxisDataKey, data, title, modelInfo, tool
                 height={'350px'}
                 id={title}
             >
-                <Box width={'100%'} display={'flex'} alignItems='center' justifyContent={'space-between'}>
+                <Box pe={1} width={'100%'} display={'flex'} alignItems='center' justifyContent={'space-between'}>
                     <IconButton size={'sm'} aria-label="download chart" variant="outline" icon={<AiOutlineDownload />}
                         onClick={async () => { console.log("save"); }}
                     />
@@ -90,7 +92,7 @@ const MultiChartBox = ({ areaDataKey, xAxisDataKey, data, title, modelInfo, tool
                 <Box p={'1'} />
 
                 <ResponsiveContainer width={"100%"}>
-                    <AreaChart
+                    <LineChart
                         data={data}
                         syncId={`${areaDataKey}-${xAxisDataKey}`}
                         className="mt-1 mb-2"
@@ -148,10 +150,11 @@ const MultiChartBox = ({ areaDataKey, xAxisDataKey, data, title, modelInfo, tool
                             }}
                             dataKey={xAxisDataKey}
                         />
-                        <YAxis tickFormatter={(value) => millify(value, {
-                            precision: 0,
-                            decimalSeparator: ","
-                        })} width={40} fontSize="12" tickSize={8} />
+                        {multiOff ? (<YAxis width={40} fontSize="12" tickSize={8} />) : areaDataKey.map((key, index) => (
+                            <YAxis orientation={(index + 1) % 2 === 0 ? "left" : "right"} key={index} width={40} fontSize="12" yAxisId={key} tickSize={8} />
+                        ))}
+
+
 
                         <Tooltip
                             labelFormatter={(value: string) => new Date(value).toDateString()}
@@ -164,18 +167,24 @@ const MultiChartBox = ({ areaDataKey, xAxisDataKey, data, title, modelInfo, tool
                                 })
                             }} />
                         {
-                            areaDataKey.map((item, index) => (<Area
+                            areaDataKey.map((item, index) => multiOff ? (<Line
                                 key={item}
                                 type="natural"
                                 dataKey={item}
-                                strokeLinecap={'round'}
-                                style={{ stroke: `url(#fillcolor${index + 1})` }}
-                                fill={`url(#color${index + 1})`}
+                                dot={false}
+                                stroke={chartColors[index]}
+                            />) : (<Line
+                                key={item}
+                                type="natural"
+                                yAxisId={item}
+                                dataKey={item}
+                                dot={false}
+                                stroke={chartColors[index]}
                             />))
                         }
 
                         <Legend verticalAlign="bottom" height={12} />
-                    </AreaChart>
+                    </LineChart>
                 </ResponsiveContainer>
             </Box>
         </Box >

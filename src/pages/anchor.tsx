@@ -1,6 +1,4 @@
 import Anchor from "lib/pages/anchor";
-import { getAnchorBorrow } from "lib/requests/anchor_borrows";
-import { getAnchorDeposite } from "lib/requests/anchor_deposite";
 import { getAnchorBorrowAndDeposit } from "lib/requests/borrow_and_deposit";
 import { getAnchorBorrowAndDepositUser } from "lib/requests/borrow_and_deposit copy";
 import { getSumAnchorBorrow } from "lib/requests/sum_anchor_borrow";

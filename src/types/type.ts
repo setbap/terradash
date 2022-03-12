@@ -60,3 +60,48 @@ export interface AnchorDailyUserBorrowAndDeposit {
   "number of wallet borrows": number;
   "number of wallet deposits": number;
 }
+
+export interface LunaVsEthPrice {
+  day: string;
+  eth: number;
+  "eth change"?: number;
+  luna: number;
+  "luna change"?: number;
+}
+
+export interface LunaVsBtcPrice {
+  btc: number;
+  "btc change"?: number;
+  day: string;
+  luna: number;
+  "luna change"?: number;
+}
+
+export interface DailyTx {
+  "daily TX": number;
+  day: string;
+}
+
+export interface TotalTx {
+  TOTAL_TX: number;
+}
+
+export interface CurentLunaPrice {
+  PRICE_USD: number;
+}
+export interface TerraDailyAvgMinMaxPrice {
+  "avg price": number;
+  day: string;
+  "max price": number;
+  "min price": number;
+}
+
+export interface CirculationSupplyLuna {
+  "Luna Circulating Supply": number;
+  day: string;
+}
+
+export interface CirculationSupplyUST {
+  "UST Circulating Supply": number;
+  day: string;
+}
