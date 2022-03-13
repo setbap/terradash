@@ -105,3 +105,17 @@ export interface CirculationSupplyUST {
   "UST Circulating Supply": number;
   day: string;
 }
+
+export interface BurnLuna {
+  amount: number;
+  day: string;
+}
+
+export interface TotalBurnLuna {
+  burnt_luna: number;
+}
+
+export interface AvgUSTPrice {
+  "avg price": number;
+  day: string;
+}

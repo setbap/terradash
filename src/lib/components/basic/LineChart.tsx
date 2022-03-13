@@ -20,9 +20,11 @@ interface Props {
     title: string;
     tooltipTitle: string;
     data: any[];
+    extraDecimal?: number
+    domain?: [number, number]
 }
 
-const ChartBox = ({ areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTitle }: Props) => {
+const ChartBox = ({ extraDecimal = 2, domain, areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTitle }: Props) => {
 
     const OverlayOne = () => (
         <ModalOverlay
@@ -68,7 +70,6 @@ const ChartBox = ({ areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTi
         <Box color={textColor} bgColor={bgCard} shadow='base'
             transition={'all 0.5s '} _hover={{ transform: 'scale(1.01)', boxShadow: 'var(--chakra-shadows-lg)' }} borderRadius={'2xl'}
             width="100%"
-
         >
             <Box
                 px='6'
@@ -120,6 +121,7 @@ const ChartBox = ({ areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTi
                         data={data}
                         syncId={`${areaDataKey}-${xAxisDataKey}`}
                         className="mt-1 mb-2"
+
                     >
                         <defs>
                             <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
@@ -149,10 +151,12 @@ const ChartBox = ({ areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTi
                             }}
                             dataKey={xAxisDataKey}
                         />
-                        <YAxis tickFormatter={(value) => millify(value, {
-                            precision: 0,
-                            decimalSeparator: ","
-                        })} width={40} fontSize="12" tickSize={8} />
+                        <YAxis
+                            domain={domain}
+                            tickFormatter={(value) => millify(value, {
+                                precision: extraDecimal,
+                                decimalSeparator: ","
+                            })} width={40} fontSize="12" tickSize={8} />
 
 
                         <Tooltip
@@ -161,7 +165,8 @@ const ChartBox = ({ areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTi
                             contentStyle={{ backgroundColor: 'black', borderRadius: '5px' }}
                             formatter={(a: any) => {
                                 return millify(a, {
-                                    precision: 2,
+                                    precision: extraDecimal,
+
                                     decimalSeparator: ","
                                 })
                             }} />
@@ -171,6 +176,7 @@ const ChartBox = ({ areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTi
                             strokeLinecap={'round'}
                             style={{ stroke: "#0953fe50" }}
                             fill="url(#color)"
+
                         />
                         <Legend
                             fontSize={"8px"}
