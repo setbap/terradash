@@ -137,5 +137,18 @@ export interface TotalLunaStakedInUSD {
 }
 
 export interface TotalWalletStaked {
+  "Number of wallets they have ever staked": number;
+}
+
+export interface TotalWalletAlreadyStaked {
   "Number of wallets they have already staked": number;
+}
+
+export interface DailyUniqueUserStaked {
+  "daily unique user staked": number;
+  day: string;
+}
+export interface AmoutOfStakedInUSD {
+  "daily staked amount in USD": number;
+  day: string;
 }
