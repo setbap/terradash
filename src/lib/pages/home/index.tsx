@@ -40,6 +40,7 @@ const Home = ({
   avgUSTPrice,
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
+
   return (
     <>
       <Box mx={"auto"} px={{ base: 6, sm: 2, md: 8 }}>
@@ -84,10 +85,12 @@ const Home = ({
           />
         </SimpleGrid>
         <SimpleGrid
+          transition={'all 0.9s ease-in-out'}
           my={"8"}
           columns={{ base: 1, md: 1, lg: 2, "2xl": 3 }}
           spacing={{ base: 2, md: 4, lg: 8 }}
         >
+
           <ChartBox
             data={dailyNewUser}
             tooltipTitle="New wallet count"
@@ -96,6 +99,7 @@ const Home = ({
             areaDataKey="NUMBER_OF_UNIQUE_USER_PER_DAY"
             xAxisDataKey="DATE"
           />
+
           <ChartBox
             data={circulationSupplyLuna}
             tooltipTitle="circulation supply luna"

@@ -175,20 +175,6 @@ const Home = ({
             ]}
             xAxisDataKey="day"
           />
-
-          {/* <BarGraph
-            values={borrowAndDeposit}
-            title="DayAhead Predicted Consumption"
-            dataKey="DAY"
-            oyLabel="KWh"
-            oxLabel="hours"
-            yLimit={[-80_000_000, 80_000_000]}
-            labels={[
-              { key: "sum diffrent borrows and deposits", color: "#8884d8" },
-              { key: "daily deposits", color: "#82ca9d" },
-              { key: "daily borrows", color: "#81cc2d" }
-            ]}
-          /> */}
         </SimpleGrid>
       </Box>
     </>

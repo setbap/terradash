@@ -2,6 +2,7 @@ import { Box, Text, chakra, SimpleGrid, useColorModeValue } from "@chakra-ui/rea
 import { LunaVsBtcPrice, LunaVsEthPrice } from "types/type";
 
 import MultiChartBox from "lib/components/basic/MultiLineChart";
+import BarGraph from "lib/components/basic/BarGraph";
 interface Props {
   lunaVsETHPrice: LunaVsEthPrice[];
   lunaVsBtcPrice: LunaVsBtcPrice[]
@@ -32,10 +33,25 @@ const Home = ({ lunaVsETHPrice, lunaVsBtcPrice }: Props) => {
           <MultiChartBox data={lunaVsETHPrice}
             chartColors={['#0953fe', '#5D638A']}
             tooltipTitle={["luna price", "eth price"]}
-            modelInfo="Daily New User"
-            title="Terra daily new user"
+            modelInfo="Luna Price vs ETH price"
+            title="Luna Price vs ETH price"
             areaDataKey={["luna", "eth"]}
             xAxisDataKey="day" />
+          <BarGraph
+            modelInfo="Luna Price vs ETH price in %"
+            values={lunaVsETHPrice}
+            title=" ETH price change% vs Luna  "
+            dataKey="day"
+            oyLabel="change in %"
+            oxLabel="day"
+            yLimit={[-50, 50]}
+            labels={[
+              { key: "luna change", color: "#0953fe" },
+              { key: "eth change", color: "#5D638A" },
+            ]}
+          />
+
+
 
           <MultiChartBox data={lunaVsBtcPrice}
             chartColors={['#0953fe', '#f2a900']}
@@ -44,6 +60,21 @@ const Home = ({ lunaVsETHPrice, lunaVsBtcPrice }: Props) => {
             title="Terra daily new user"
             areaDataKey={["luna", "btc"]}
             xAxisDataKey="day" />
+
+
+          <BarGraph
+            modelInfo="Luna Price vs BTC price in %"
+            values={lunaVsBtcPrice}
+            title=" BTC price change% vs Luna  "
+            dataKey="day"
+            oyLabel="change in %"
+            oxLabel="day"
+            yLimit={[-50, 50]}
+            labels={[
+              { key: "luna change", color: "#0953fe" },
+              { key: "btc change", color: "#f2a900" },
+            ]}
+          />
         </SimpleGrid>
       </Box>
     </>
