@@ -14,6 +14,8 @@ import {
   DailyNewUser,
   TerraDailyAvgMinMaxPrice,
   TotalBurnLuna,
+  TotalLunaSupply,
+  TotalUSTSupply,
 } from "types/type";
 import ChartBox from "lib/components/basic/LineChart";
 import { StatsCard } from "lib/components/basic/BasicCard";
@@ -27,6 +29,8 @@ interface Props {
   burnLuna: BurnLuna[];
   totalBurnLuna: TotalBurnLuna;
   avgUSTPrice: AvgUSTPrice[]
+  totalLunaSupply: TotalLunaSupply,
+  totalUSTSupply: TotalUSTSupply,
 }
 
 const Home = ({
@@ -38,6 +42,8 @@ const Home = ({
   burnLuna,
   totalBurnLuna,
   avgUSTPrice,
+  totalLunaSupply,
+  totalUSTSupply
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
 
@@ -76,6 +82,17 @@ const Home = ({
             status="inc"
             title={"Current Luna Price(USD)"}
             stat={curentLunaPrice["PRICE_USD"]}
+          />
+
+          <StatsCard
+            status="unchanged"
+            title={"LUNA total Supply"}
+            stat={totalLunaSupply["LUNA total Supply"]}
+          />
+          <StatsCard
+            status="unchanged"
+            title={"UST total Supply"}
+            stat={totalUSTSupply["UST total Supply"]}
           />
 
           <StatsCard

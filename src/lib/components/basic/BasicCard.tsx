@@ -15,22 +15,22 @@ interface StatsCardProps {
 export const StatsCard = (props: StatsCardProps) => {
 	const bgCard = useColorModeValue('white', '#191919');
 	const { title, stat, status = 'unchanged' } = props;
-	const defaultColor = useColorModeValue("gray.800", "gray.500")
-	const incColor = useColorModeValue("green.800", "green.500")
+	const defaultColor = useColorModeValue("gray.600", "gray.400")
+	const incColor = useColorModeValue("green.800", "green.300")
 	const decColor = useColorModeValue("red.800", "red.500")
-	const [statusColor, setStatusColor] = useState(defaultColor)
+	const [statusColor, setStatusColor] = useState<any>();
 	useEffect(() => {
-		if (status === 'inc') {
+		if (status === 'inc' && statusColor !== incColor) {
 			setStatusColor(incColor)
-			return
 		}
-		if (status === 'dec') {
+		if (status === 'dec' && statusColor !== decColor) {
 			setStatusColor(decColor)
-			return
 		}
-		setStatusColor(defaultColor)
-		return () => { }
-	}, [status])
+
+		if (status === 'unchanged' && statusColor !== defaultColor) {
+			setStatusColor(defaultColor)
+		}
+	}, [])
 
 	return (
 		<Stat

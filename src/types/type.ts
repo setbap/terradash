@@ -77,6 +77,14 @@ export interface LunaVsBtcPrice {
   "luna change"?: number;
 }
 
+export interface TotalLunaSupply {
+  "LUNA total Supply": number;
+}
+
+export interface TotalUSTSupply {
+  "UST total Supply": number;
+}
+
 export interface DailyTx {
   "daily TX": number;
   day: string;
@@ -118,4 +126,16 @@ export interface TotalBurnLuna {
 export interface AvgUSTPrice {
   "avg price": number;
   day: string;
+}
+
+export interface TotalLunaStaked {
+  "LUNA total staked": number;
+}
+
+export interface TotalLunaStakedInUSD {
+  "total staked in usd": number;
+}
+
+export interface TotalWalletStaked {
+  "Number of wallets they have already staked": number;
 }
