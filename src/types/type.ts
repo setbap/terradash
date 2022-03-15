@@ -152,3 +152,8 @@ export interface AmoutOfStakedInUSD {
   "daily staked amount in USD": number;
   day: string;
 }
+
+export interface TotalFeeEachCoin {
+  coin: string;
+  "total fee in USD": number;
+}
