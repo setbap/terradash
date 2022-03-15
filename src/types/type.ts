@@ -171,3 +171,31 @@ export interface DailyBlockCount {
 export interface AvgTxCountPerBlock {
   avg_tx_count_per_block: number;
 }
+
+export interface ProposalCountOverTime {
+  "community poolproposals so far": number;
+  day: string;
+  "param proposals so far": number;
+  "text proposals so far": number;
+  "reward weight proposals so far": number;
+}
+
+export interface TotalVotesCountForProposal {
+  "total votes count for proposal": number;
+}
+
+export interface TotalProposalCount {
+  "total proposal count": number;
+}
+
+export interface ProposalsCountMonthlyVsLUNAPrice {
+  "No of proposal": number;
+  "avg price": number;
+  month: string;
+}
+
+export interface ProposalsCountMonthlyVsMonthlyVotes {
+  month: string;
+  "monthly votes": number;
+  "number of proposal": number;
+}

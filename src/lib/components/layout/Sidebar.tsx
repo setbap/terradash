@@ -38,7 +38,7 @@ interface LinkItemProps {
 const LinkItems: Array<LinkItemProps> = [
     { name: 'Overview', path: '/', icon: FiHome },
     { name: 'Tx and Fee', path: '/tx-and-fee', icon: FiTrendingUp },
-    { name: 'Governance ', path: '/validator-and-stacke', icon: FiCompass },
+    { name: 'Governance ', path: '/governance', icon: FiCompass },
     { name: 'Dapp and NFT', path: '/dapps-and-nft', icon: FiSettings },
     { name: 'Terra VS Others', path: '/terra-vs-others', icon: FiSettings },
     { name: 'Anchor', path: '/anchor', icon: FiStar },

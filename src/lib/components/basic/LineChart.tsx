@@ -192,6 +192,7 @@ const ChartBox = ({ extraDecimal = 2, domain, areaDataKey, xAxisDataKey, data, t
 
                             />
                             <Legend
+                                verticalAlign="top"
                                 fontSize={"8px"}
                                 style={{ fontSize: '7px' }}
                                 onClick={selectBar}

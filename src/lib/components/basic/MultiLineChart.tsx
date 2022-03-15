@@ -14,6 +14,7 @@ import {
 } from "recharts";
 
 interface Props {
+    baseSpan?: number
     modelInfo: string
     xAxisDataKey: string;
     areaDataKey: string[];
@@ -22,10 +23,11 @@ interface Props {
     data: any[];
     chartColors?: string[];
     multiOff?: boolean;
+    isNotDate?: boolean
 }
 
-const MultiChartBox = ({ multiOff = false, areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTitle, chartColors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"] }: Props) => {
-    const [spanItem, setSpanItem] = useState(1)
+const MultiChartBox = ({ isNotDate = false, baseSpan = 1, multiOff = false, areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTitle, chartColors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"] }: Props) => {
+    const [spanItem, setSpanItem] = useState(baseSpan)
     const OverlayOne = () => (
         <ModalOverlay
             bg='blackAlpha.700'
@@ -71,7 +73,7 @@ const MultiChartBox = ({ multiOff = false, areaDataKey, xAxisDataKey, data, titl
                                 variant={'outline'}
                                 aria-label='expand chart row'
                                 onClick={() => {
-                                    setSpanItem(value => value === 3 ? 1 : 3)
+                                    setSpanItem(value => value === 3 ? baseSpan : 3)
                                 }}
                                 icon={<AiOutlineExpand />} />
 
@@ -158,8 +160,8 @@ const MultiChartBox = ({ multiOff = false, areaDataKey, xAxisDataKey, data, titl
                                 fontSize={12}
                                 color={'var(--textColor)'}
                                 tickFormatter={(value) => {
-                                    const date = new Date(value);
-                                    return date.toLocaleDateString();
+
+                                    return isNotDate ? value : new Date(value).toLocaleDateString();
                                 }}
                                 dataKey={xAxisDataKey}
                             />
@@ -170,7 +172,7 @@ const MultiChartBox = ({ multiOff = false, areaDataKey, xAxisDataKey, data, titl
 
 
                             <Tooltip
-                                labelFormatter={(value: string) => new Date(value).toDateString()}
+                                labelFormatter={(value: string) => isNotDate ? value : new Date(value).toDateString()}
                                 labelStyle={{ color: 'white' }}
                                 contentStyle={{ backgroundColor: 'black', borderRadius: '5px' }}
                                 formatter={(a: any) => {
@@ -196,7 +198,7 @@ const MultiChartBox = ({ multiOff = false, areaDataKey, xAxisDataKey, data, titl
                                 />))
                             }
 
-                            <Legend verticalAlign="bottom" height={12} />
+                            <Legend fontSize={'8px'} verticalAlign="top" height={12} />
                         </LineChart>
                     </ResponsiveContainer>
                 </Box>
