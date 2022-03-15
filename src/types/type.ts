@@ -157,3 +157,17 @@ export interface TotalFeeEachCoin {
   coin: string;
   "total fee in USD": number;
 }
+
+export interface AvgFeeEachCoin {
+  "avg fee in USD": number;
+  coin: string;
+}
+
+export interface DailyBlockCount {
+  "daily block count": number;
+  day: string;
+}
+
+export interface AvgTxCountPerBlock {
+  avg_tx_count_per_block: number;
+}

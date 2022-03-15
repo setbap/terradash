@@ -15,12 +15,14 @@ const BarGraph = ({
     values,
     yLimit,
     labels,
-    modelInfo
+    modelInfo,
+    isNotDate = false
 }: {
     title: string,
     dataKey: string,
     oxLabel: string,
     oyLabel: string,
+    isNotDate?: boolean
     values: any[],
     modelInfo: string,
     yLimit?: number[],
@@ -141,7 +143,7 @@ const BarGraph = ({
                                 style={{ stroke: "rgba(10,10,10,0.1)", opacity: 0.25 }}
                                 strokeDasharray="3 3"
                             />
-                            <XAxis fontSize={"12px"} tickFormatter={(value) => new Date(value).toLocaleDateString()} dataKey={dataKey}>
+                            <XAxis fontSize={"12px"} tickFormatter={(value) => isNotDate ? value : new Date(value).toLocaleDateString()} dataKey={dataKey}>
                                 {/* <Label value={oxLabel} position="center" dy={10} dx={20} /> */}
                             </XAxis>
                             <YAxis fontSize={"12px"} type="number" tickFormatter={(value) => millify(value, {
@@ -159,7 +161,7 @@ const BarGraph = ({
                                 />
                             </YAxis>
                             <Tooltip
-                                labelFormatter={(value: string) => new Date(value).toDateString()}
+                                labelFormatter={(value: string) => isNotDate ? value : new Date(value).toDateString()}
                                 labelStyle={{ color: 'white' }}
                                 contentStyle={{ backgroundColor: 'black', borderRadius: '5px' }}
                                 formatter={(a: any) => {
