@@ -119,6 +119,10 @@ export interface BurnLuna {
   day: string;
 }
 
+export interface TotalNumberOfWallets {
+  "total number of user": number;
+}
+
 export interface TotalBurnLuna {
   burnt_luna: number;
 }

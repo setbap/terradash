@@ -15,6 +15,7 @@ import {
   TerraDailyAvgMinMaxPrice,
   TotalBurnLuna,
   TotalLunaSupply,
+  TotalNumberOfWallets,
   TotalUSTSupply,
 } from "types/type";
 import ChartBox from "lib/components/basic/LineChart";
@@ -31,6 +32,7 @@ interface Props {
   avgUSTPrice: AvgUSTPrice[]
   totalLunaSupply: TotalLunaSupply,
   totalUSTSupply: TotalUSTSupply,
+  totalNumberOfWallets: TotalNumberOfWallets,
 }
 
 const Home = ({
@@ -43,7 +45,8 @@ const Home = ({
   totalBurnLuna,
   avgUSTPrice,
   totalLunaSupply,
-  totalUSTSupply
+  totalUSTSupply,
+  totalNumberOfWallets
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
 
@@ -99,6 +102,12 @@ const Home = ({
             status="inc"
             title={"Total burn Luna from Col5"}
             stat={totalBurnLuna["burnt_luna"]}
+          />
+
+          <StatsCard
+            status="inc"
+            title={"Total Number of Unique Wallet"}
+            stat={totalNumberOfWallets["total number of user"]}
           />
         </SimpleGrid>
         <SimpleGrid
