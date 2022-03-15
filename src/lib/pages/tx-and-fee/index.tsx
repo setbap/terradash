@@ -1,10 +1,11 @@
 import { Box, Text, chakra, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
-import { DailyTx, TotalTx } from "types/type";
+import { DailyTx, TotalFeeEachCoin, TotalTx } from "types/type";
 import ChartBox from 'lib/components/basic/LineChart';
 import { StatsCard } from "lib/components/basic/BasicCard";
 interface Props {
   dailyTx: DailyTx[];
   totalTx: TotalTx
+  totalFeeEachCoin: TotalFeeEachCoin[]
 }
 
 const Home = ({ dailyTx, totalTx }: Props) => {
