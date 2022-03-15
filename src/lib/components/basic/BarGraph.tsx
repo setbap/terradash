@@ -157,6 +157,9 @@ const BarGraph = ({
                                     fontSize={'16px'}
                                     angle={-90}
                                     dy={-20}
+                                    style={{
+                                        color: textColor
+                                    }}
                                     dx={10}
                                 />
                             </YAxis>

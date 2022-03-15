@@ -1,11 +1,14 @@
 import { Box, Text, chakra, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
-import { DailyNewUser } from "types/type";
+import { DailyNewUser, DailySwapCount, DailySwapVolume, TopNativeSwapPair } from "types/type";
 import ChartBox from 'lib/components/basic/LineChart';
+import BarGraph from "lib/components/basic/BarGraph";
 interface Props {
-  dailyNewUser: DailyNewUser[];
+  topNativeSwapPair: TopNativeSwapPair[];
+  dailySwapCount: DailySwapCount[];
+  dailySwapVolume: DailySwapVolume[];
 }
 
-const Home = ({ dailyNewUser }: Props) => {
+const Home = ({ topNativeSwapPair, dailySwapCount, dailySwapVolume }: Props) => {
   const bgCard = useColorModeValue('white', '#191919');
   return (
     <>
@@ -27,12 +30,39 @@ const Home = ({ dailyNewUser }: Props) => {
 
         </SimpleGrid>
         <SimpleGrid my={'8'} columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 2, md: 4, lg: 8 }}>
-          <ChartBox data={dailyNewUser}
-            tooltipTitle="New wallet count"
-            modelInfo="Daily New User"
-            title="Terra daily new user"
-            areaDataKey="NUMBER_OF_UNIQUE_USER_PER_DAY"
-            xAxisDataKey="DATE" />
+          <BarGraph
+            modelInfo="Top native swap pairs in Terra"
+            values={topNativeSwapPair}
+            title="Top native swap pairs in Terra"
+            dataKey="swap pair"
+            oyLabel="number of swaps"
+            oxLabel="pair"
+            isNotDate
+            labels={[
+              { key: "number of swap", color: "#0953fe" },
+            ]}
+          />
+          <ChartBox
+            baseSpan={2}
+            data={dailySwapCount}
+            tooltipTitle="daily native swap count"
+            modelInfo="show daily native swap count"
+            title="daily native swap count"
+            areaDataKey="daily swap count"
+            xAxisDataKey="day"
+          />
+          <ChartBox
+            baseSpan={2}
+            data={dailySwapVolume}
+            tooltipTitle="daily native swap volume"
+            modelInfo="show daily native swap volume"
+            title="daily native swap volume"
+            areaDataKey="daily swap volume"
+            xAxisDataKey="day"
+          />
+
+
+
         </SimpleGrid>
       </Box>
     </>

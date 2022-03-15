@@ -199,3 +199,18 @@ export interface ProposalsCountMonthlyVsMonthlyVotes {
   "monthly votes": number;
   "number of proposal": number;
 }
+
+export interface TopNativeSwapPair {
+  "number of swap": number;
+  "swap pair": string;
+}
+
+export interface DailySwapCount {
+  "daily swap count": number;
+  day: string;
+}
+
+export interface DailySwapVolume {
+  "daily swap volume": number;
+  day: string;
+}

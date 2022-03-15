@@ -1,12 +1,15 @@
 import DappsAndNft from "lib/pages/dapps-and-nft";
-import { getDailyNewUser } from "lib/requests/daily_new_user";
+import { getDailySwapCount } from "lib/requests/dapps_nft_swap/daily_swap_count";
+import { getDailySwapVolume } from "lib/requests/dapps_nft_swap/daily_swap_volume";
+
+import { getTopNativeSwapPair } from "lib/requests/dapps_nft_swap/top_most_swap_pair";
 export async function getStaticProps() {
-    const [dailyNewUser,] = await Promise.all(
-        [getDailyNewUser()]
+    const [topNativeSwapPair, dailySwapCount, dailySwapVolume] = await Promise.all(
+        [getTopNativeSwapPair(), getDailySwapCount(), getDailySwapVolume()]
     );
     return {
         props: {
-            dailyNewUser,
+            topNativeSwapPair, dailySwapCount, dailySwapVolume
         },
     }
 }

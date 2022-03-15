@@ -21,11 +21,13 @@ interface Props {
     tooltipTitle: string;
     data: any[];
     extraDecimal?: number
+    isNotDate?: boolean;
     domain?: [number, number]
+    baseSpan?: number;
 }
 
-const ChartBox = ({ extraDecimal = 2, domain, areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTitle }: Props) => {
-    const [spanItem, setSpanItem] = useState(1)
+const ChartBox = ({ baseSpan = 1, isNotDate = false, extraDecimal = 2, domain, areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTitle }: Props) => {
+    const [spanItem, setSpanItem] = useState(baseSpan)
     const OverlayOne = () => (
         <ModalOverlay
             bg='blackAlpha.700'
@@ -96,7 +98,7 @@ const ChartBox = ({ extraDecimal = 2, domain, areaDataKey, xAxisDataKey, data, t
                                 variant={'outline'}
                                 aria-label='expand chart row'
                                 onClick={() => {
-                                    setSpanItem(value => value === 3 ? 1 : 3)
+                                    setSpanItem(value => value === 3 ? baseSpan : 3)
                                 }}
                                 icon={<AiOutlineExpand />} />
 
@@ -159,8 +161,8 @@ const ChartBox = ({ extraDecimal = 2, domain, areaDataKey, xAxisDataKey, data, t
                                 fontSize={12}
                                 color={'var(--textColor)'}
                                 tickFormatter={(value) => {
-                                    const date = new Date(value);
-                                    return date.toLocaleDateString();
+
+                                    return isNotDate ? value : new Date(value).toLocaleDateString();
                                 }}
                                 dataKey={xAxisDataKey}
                             />
@@ -173,7 +175,7 @@ const ChartBox = ({ extraDecimal = 2, domain, areaDataKey, xAxisDataKey, data, t
 
 
                             <Tooltip
-                                labelFormatter={(value: string) => new Date(value).toDateString()}
+                                labelFormatter={(value: string) => isNotDate ? value : new Date(value).toDateString()}
                                 labelStyle={{ color: 'white' }}
                                 contentStyle={{ backgroundColor: 'black', borderRadius: '5px' }}
                                 formatter={(a: any) => {
