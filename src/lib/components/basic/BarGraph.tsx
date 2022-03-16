@@ -5,7 +5,8 @@ import {
     Box, IconButton, chakra, Modal, ModalContent, ModalHeader, ModalCloseButton,
     Text, ModalBody, ModalFooter, Button, ModalOverlay, useColorModeValue, useDisclosure, GridItem
 } from "@chakra-ui/react";
-import { AiOutlineDownload, AiOutlineExpand, AiOutlineInfoCircle } from "react-icons/ai";
+import { AiOutlineExpand, AiOutlineInfoCircle } from "react-icons/ai";
+import ReactMarkdown from 'react-markdown'
 
 const BarGraph = ({
     title,
@@ -117,7 +118,7 @@ const BarGraph = ({
                                 <ModalHeader>Info</ModalHeader>
                                 <ModalCloseButton />
                                 <ModalBody>
-                                    <Text>{modelInfo}</Text>
+                                    <ReactMarkdown>{modelInfo}</ReactMarkdown>
                                 </ModalBody>
                                 <ModalFooter>
 

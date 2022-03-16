@@ -1,7 +1,9 @@
 import { chakra, Box, Button, Text, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useColorModeValue, GridItem } from "@chakra-ui/react";
 import { useState } from "react";
 import millify from "millify";
-import { AiOutlineDownload, AiOutlineExpand, AiOutlineInfoCircle } from "react-icons/ai";
+import ReactMarkdown from 'react-markdown'
+
+import { AiOutlineExpand, AiOutlineInfoCircle } from "react-icons/ai";
 import {
     AreaChart,
     Legend,
@@ -116,7 +118,7 @@ const ChartBox = ({ baseSpan = 1, isNotDate = false, extraDecimal = 2, domain, a
                                 <ModalHeader>Info</ModalHeader>
                                 <ModalCloseButton />
                                 <ModalBody>
-                                    <Text>{modelInfo}</Text>
+                                    <ReactMarkdown>{modelInfo}</ReactMarkdown>
                                 </ModalBody>
                                 <ModalFooter>
 

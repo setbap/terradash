@@ -1,15 +1,13 @@
 import {
   Box,
-  Text,
   chakra,
   SimpleGrid,
   useColorModeValue,
 } from "@chakra-ui/react";
+import ReactMarkdown from 'react-markdown'
 import {
   AmoutOfStakedInUSD,
-
   DailyStakingRewards,
-
   DailyUniqueUserStaked,
   ProposalCountOverTime,
   ProposalsCountMonthlyVsLUNAPrice,
@@ -29,6 +27,37 @@ import { StatsCard } from "lib/components/basic/BasicCard";
 import MultiChartBox from "lib/components/basic/MultiLineChart";
 import BarGraph from "lib/components/basic/BarGraph";
 import DonutChart from "lib/components/basic/DonutChart";
+
+
+
+const pageInfo = `
+ ### [__Proposals__](https://docs.terra.money/docs/learn/protocol.html#proposals "Permalink to this headline")
+
+  Proposals start as ideas within the community. A community member drafts and submits a proposal alongside an initial deposit.
+
+  The most common proposal types include:
+
+      - Parameter Change Proposal: To change the parameters defined in each module.
+      - Community PoolSpend Proposal: To spend funds in the community pool.
+      - Text Proposal : To handle other issues like large directional changes or any decision requiring manual implementation.
+
+  ## [__Staking__](https://docs.terra.money/docs/learn/glossary.html#staking "Permalink to this headline")
+
+  When a user delegates or bonds their Luna to an active validator to receive rewards. Bonded Luna adds to a validator’s stake. Validators provide their stakes as collateral to participate in the consensus process. Validators with larger stakes are chosen to participate more often. Validators receive staking rewards for their participation. A validator’s stake can be slashed if the validator misbehaves. Validators never have ownership of a delegator’s Luna, even when staking.
+  For more information on staking, visit the  [concepts page](https://docs.terra.money/docs/learn/protocol.html#staking).
+  
+  ## [__Validator__](https://docs.terra.money/docs/learn/glossary.html#validator "Permalink to this headline")
+
+  A Terra blockchain miner responsible for verifying transactions on the blockchain. Validators run programs called full nodes that allow them to participate in consensus, verify blocks, participate in governance, and receive rewards. The top 130 validators with the highest total stake can participate in consensus.
+
+For more information on validators, visit the  [concepts page](https://docs.terra.money/docs/learn/protocol.html#validators).
+
+## [__Weight__](https://docs.terra.money/docs/learn/glossary.html#weight "Permalink to this headline")
+
+The measure of a  [validator’s](https://docs.terra.money/docs/learn/glossary.html#validator)  total stake. Validators with higher weights get selected more often to propose blocks. A validator’s weight is also a measure of their voting power in  [governance](https://docs.terra.money/docs/learn/glossary.html#governance).
+`
+
+
 interface Props {
   dailyUniqueUserStaked: DailyUniqueUserStaked[];
   totalLunaStaked: TotalLunaStaked;
@@ -85,12 +114,11 @@ const Home = ({
             pb={2}
             fontWeight={"bold"}
           >
-            Terra Overview
+            Page Data Overview
           </chakra.h1>
-          <Text>
-            Terra is a blockchain project that aims to build a decentralized
-            network that will allow anyone to create a
-          </Text>
+          <ReactMarkdown>
+            {pageInfo}
+          </ReactMarkdown>
         </Box>
         <SimpleGrid
           columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
@@ -144,7 +172,7 @@ const Home = ({
           <ChartBox
             data={dailyUniqueUserStaked}
             tooltipTitle="daily unique user staked"
-            modelInfo="Terra daily unique user staked"
+            modelInfo="This modal shows number of users daily staking in Terra"
             title="daily unique user staked"
             areaDataKey="daily unique user staked"
             xAxisDataKey="day"
@@ -157,7 +185,7 @@ const Home = ({
               "text proposals so far",
               "reward weight proposals so far",
             ]}
-            modelInfo="Number Proposal in Terra"
+            modelInfo={''}
             title="Terra Proposal Count Over Time"
             multiOff
             baseSpan={2}

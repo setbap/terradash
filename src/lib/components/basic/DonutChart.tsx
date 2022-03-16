@@ -15,6 +15,8 @@ import {
     useColorModeValue,
     GridItem,
 } from "@chakra-ui/react";
+import ReactMarkdown from 'react-markdown'
+
 import { useState } from "react";
 import {
     AiOutlineDownload,
@@ -211,7 +213,7 @@ const DonutChart = ({
                                 <ModalHeader>Info</ModalHeader>
                                 <ModalCloseButton />
                                 <ModalBody>
-                                    <Text>{modelInfo}</Text>
+                                    <ReactMarkdown>{modelInfo}</ReactMarkdown>
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button onClick={onClose}>Close</Button>

@@ -1,7 +1,10 @@
 import { chakra, Box, Button, Text, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useColorModeValue, GridItem } from "@chakra-ui/react";
 import { useState } from "react";
 import millify from "millify";
-import { AiOutlineDownload, AiOutlineExpand, AiOutlineInfoCircle } from "react-icons/ai";
+import ReactMarkdown from 'react-markdown'
+import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
+
+import { AiOutlineExpand, AiOutlineInfoCircle } from "react-icons/ai";
 import {
     LineChart,
     Line,
@@ -83,13 +86,15 @@ const MultiChartBox = ({ isNotDate = false, baseSpan = 1, multiOff = false, area
                                 }}
                                 icon={<AiOutlineExpand />} />
                         </Box>
-                        <Modal isCentered isOpen={isOpen} onClose={onClose}>
+                        <Modal size={'xl'} isCentered isOpen={isOpen} onClose={onClose}>
                             {overlay}
                             <ModalContent>
                                 <ModalHeader>Info</ModalHeader>
                                 <ModalCloseButton />
-                                <ModalBody>
-                                    <Text>{modelInfo}</Text>
+                                <ModalBody >
+                                    <Box mx={'3'}>
+                                        <ReactMarkdown components={ChakraUIRenderer()} children={modelInfo} />
+                                    </Box>
                                 </ModalBody>
                                 <ModalFooter>
 
