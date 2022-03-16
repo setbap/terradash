@@ -38,7 +38,7 @@ const Home = ({ lunaVsETHPrice, lunaVsBtcPrice }: Props) => {
             fontSize={'4xl'}
             pb={2}
             fontWeight={'bold'}>
-            Terra Overview
+            Glossary
           </chakra.h1>
 
           <ReactMarkdown components={Renderer()}>
@@ -49,7 +49,7 @@ const Home = ({ lunaVsETHPrice, lunaVsBtcPrice }: Props) => {
 
 
         </SimpleGrid>
-        <SimpleGrid my={'8'} columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 2, md: 4, lg: 8 }}>
+        <SimpleGrid py={'8'} columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 2, md: 4, lg: 8 }}>
           <MultiChartBox data={lunaVsETHPrice}
             baseSpan={3}
             chartColors={['#0953fe', '#5D638A']}

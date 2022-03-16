@@ -14,6 +14,15 @@ import {
 } from "types/type";
 import ChartBox from "lib/components/basic/LineChart";
 import MultiChartBox from "lib/components/basic/MultiLineChart";
+import ReactMarkdown from 'react-markdown'
+import Renderer from 'chakra-ui-markdown-renderer'
+const glossary = `
+### [__Anchor__](https://docs.anchorprotocol.com/ "Permalink to this headline")
+
+Anchor is a decentralized savings protocol offering low-volatile yields on Terra stablecoin deposits. The Anchor rate is powered by a diversified stream of staking rewards from major proof-of-stake blockchains, and therefore can be expected to be much more stable than money market interest rates.
+
+> for this page I  choose Anchor project as example for Terra network projects.
+`
 interface Props {
   totalUserBorrowDeposit: AnchorUserBorrowAndDeposit;
   sumAnchorDeposite: SumAnchorDeposite;
@@ -49,17 +58,11 @@ const Home = ({
             pb={2}
             fontWeight={"bold"}
           >
-            What is Going on in Anchor?
+            Glossary
           </chakra.h1>
-          <Text>
-            Anchor is a decentralized savings protocol offering low-volatile
-            yields on Terra stablecoin deposits. The Anchor rate is powered by a
-            diversified stream of staking rewards from major proof-of-stake
-            blockchains, and therefore can be expected to be much more stable
-            than money market interest rates. The Anchor community believes that
-            a stable, reliable source of yield in Anchor has the opportunity to
-            become the reference interest rate in crypto.
-          </Text>
+          <ReactMarkdown components={Renderer()}>
+            {glossary}
+          </ReactMarkdown>
         </Box>
         <SimpleGrid
           columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
@@ -121,15 +124,15 @@ const Home = ({
           />
         </SimpleGrid>
         <SimpleGrid
-          my={"8"}
+          py={"8"}
           columns={{ base: 1, md: 1, lg: 2, "2xl": 3 }}
           spacing={{ base: 2, md: 4, lg: 8 }}
         >
           <ChartBox
             data={borrowAndDeposit}
-            tooltipTitle="Daily Anchor Deposite(USD)"
-            modelInfo="Daily Anchor Deposite"
-            title="Anchor Deposite"
+            tooltipTitle="Daily Anchor Deposit(USD)"
+            modelInfo="This chart shows how much deposit to anchor in USD each day in the Terra blockchain. "
+            title="Anchor Deposit(USD)"
             areaDataKey="daily deposits"
             xAxisDataKey="DAY"
           />
@@ -137,7 +140,7 @@ const Home = ({
           <ChartBox
             data={borrowAndDeposit}
             tooltipTitle="Daily Anchor Borrows(USD)"
-            modelInfo="Daily Anchor Borrows"
+            modelInfo="This chart shows how much borrow from anchor in USD each day in the Terra blockchain."
             title="Anchor Borrow(USD)"
             areaDataKey="daily borrows"
             xAxisDataKey="DAY"
@@ -145,18 +148,18 @@ const Home = ({
 
           <ChartBox
             data={borrowAndDeposit}
-            tooltipTitle={"diffrent borrows and deposits(USD)"}
-            modelInfo="diffrent borrows and deposits"
-            title="diffrent borrows and deposits(USD)"
+            tooltipTitle={"difference between borrow and deposit (USD)"}
+            modelInfo="This chart shows the difference between depositing and borrowing in USD on anchor per day. zero line means deposit and borrow are equal. below zero means deposit is more than borrow and above zero means borrow is more than deposit."
+            title="difference between borrow and deposit (USD)"
             areaDataKey={"diffrent borrows and deposits"}
             xAxisDataKey="DAY"
           />
 
           <ChartBox
             data={borrowAndDeposit}
-            tooltipTitle={"Acumulative diffrent borrows and deposits(USD)"}
-            modelInfo="Acumulative diffrent borrows and deposits"
-            title="Acumulative diffrent borrows and deposits(USD)"
+            tooltipTitle={"cumulative difference between borrow and deposit (USD)"}
+            modelInfo="This chart shows cumulative differences between borrow and deposit on anchor. If the chart is a constant line, this is means deposit and borrow are equal. If it is ascending, this is means borrow is more than deposit and If it is descending means deposit is more than borrow."
+            title="cumulative difference between borrow and deposit (USD)"
             areaDataKey={"sum diffrent borrows and deposits"}
             xAxisDataKey="DAY"
           />
@@ -167,8 +170,8 @@ const Home = ({
               "number of wallet borrows",
               "number of wallet deposits",
             ]}
-            modelInfo="Acumulative diffrent borrows and deposits"
-            title="Acumulative diffrent borrows and deposits(USD)"
+            modelInfo="this chart shows how many user borrow from anchor and deposit to it per day."
+            title="The number of wallets they borrowed/deposited"
             areaDataKey={[
               "number of wallet borrows",
               "number of wallet deposits",

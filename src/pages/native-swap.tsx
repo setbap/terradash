@@ -1,4 +1,4 @@
-import DappsAndNft from "lib/pages/dapps-and-nft";
+import DappsAndNft from "lib/pages/native-swap";
 import { getDailySwapCount } from "lib/requests/dapps_nft_swap/daily_swap_count";
 import { getDailySwapVolume } from "lib/requests/dapps_nft_swap/daily_swap_volume";
 

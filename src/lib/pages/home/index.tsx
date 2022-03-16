@@ -26,8 +26,13 @@ import Renderer from 'chakra-ui-markdown-renderer'
 
 
 const glossary = `
+## [Terra](https://docs.terra.money/docs/learn/glossary.html#terra-core "Permalink to this headline")
 Created by start-up **Terraform** Labs and its co-founders [Do Kwon](https://twitter.com/stablekwon) and [Daniel Shin](https://www.linkedin.com/in/danielshin) in 2018, the Terra blockchain underpins a **decentralized finance** (DeFi) ecosystem that creates \`algorithmic stablecoins\`.
 In this section, you can get an overview of this blockchain.
+
+## [Luna](https://docs.terra.money/docs/learn/glossary.html#luna "Permalink to this headline")
+
+The native staking token of the Terra protocol. Luna supply expands and contracts in order to maintain the prices of  [Terra stablecoins](https://docs.terra.money/docs/learn/glossary.html#terra-stablecoins). Luna is also used as a governance token.  [Delegators](https://docs.terra.money/docs/learn/glossary.html#delegator)  can stake Luna to receive rewards.
 `
 interface Props {
   dailyNewUser: DailyNewUser[];
@@ -78,7 +83,7 @@ const Home = ({
             pb={2}
             fontWeight={"bold"}
           >
-            Terra Overview
+            Glossary
           </chakra.h1>
           <ReactMarkdown components={Renderer()}>
             {glossary}
@@ -127,8 +132,8 @@ const Home = ({
           <ChartBox
             data={dailyNewUser}
             tooltipTitle="New wallet count"
-            modelInfo="Daily New User"
-            title="Terra daily new user"
+            modelInfo={`see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community.`}
+            title="daily unique user"
             areaDataKey="NUMBER_OF_UNIQUE_USER_PER_DAY"
             xAxisDataKey="DATE"
           />
@@ -136,16 +141,16 @@ const Home = ({
           <ChartBox
             data={circulationSupplyLuna}
             tooltipTitle="circulation supply luna"
-            modelInfo="show circulation supply luna"
+            modelInfo={`Circulating supply is the total LUNA that normal users have (not dex, cex, smart contract, etc)`}
             title="Luna circulation supply"
             areaDataKey="Luna Circulating Supply"
             xAxisDataKey="day"
           />
           <ChartBox
             data={avgUSTPrice}
-            tooltipTitle="Avg UST price on Ethereum "
-            modelInfo="Avg UST price on Ethereum "
-            title="Avg Daily UST price on Ethereum "
+            tooltipTitle="Avg UST price  "
+            modelInfo="UST is an algorithmic stablecoin on Terra blockchain but that does not mean the price is always $1. In this chart, you can see the fluctuations of the UST on different days."
+            title="Avg Daily UST price "
             areaDataKey="avg price"
             extraDecimal={5}
             domain={[0.9, 1.1]}
@@ -154,7 +159,7 @@ const Home = ({
           <ChartBox
             data={circulationSupplyUST}
             tooltipTitle="circulation supply UST"
-            modelInfo="show circulation supply UST"
+            modelInfo="Circulating supply is the total UST that normal users have."
             title="UST circulation supply"
             areaDataKey="UST Circulating Supply"
             xAxisDataKey="day"
@@ -163,7 +168,7 @@ const Home = ({
           <MultiChartBox
             data={terraDailyAvgMinMaxPrice}
             tooltipTitle={["min price", "avg price", "max price"]}
-            modelInfo="Show daily Luna price"
+            modelInfo="This chart shows daily price of LUNA. the red line is minimum price and the blue line is maximum price of each day."
             title="Daily Luna Price"
             multiOff
             chartColors={["#F44", "#4F4", "#55f"]}
@@ -174,7 +179,7 @@ const Home = ({
           <ChartBox
             data={burnLuna}
             tooltipTitle={"amount"}
-            modelInfo="burn luna from columbus 5 update"
+            modelInfo="In terra blockchain we have burn event. that means some amount of LUNA burnt daily.amount of burn increase after Columbus-5 update"
             title="Daily Burned Luna"
             areaDataKey={"amount"}
             xAxisDataKey="day"

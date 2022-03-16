@@ -170,7 +170,7 @@ const Home = ({
           />
         </SimpleGrid>
         <SimpleGrid
-          my={"8"}
+          py={"8"}
           columns={{ base: 1, md: 1, lg: 2, "2xl": 3 }}
           spacing={{ base: 1, md: 2, lg: 8 }}
         >

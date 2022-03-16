@@ -1,7 +1,14 @@
 import { Box, Text, chakra, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
-import { DailyNewUser, DailySwapCount, DailySwapVolume, TopNativeSwapPair } from "types/type";
+import { DailySwapCount, DailySwapVolume, TopNativeSwapPair } from "types/type";
 import ChartBox from 'lib/components/basic/LineChart';
 import BarGraph from "lib/components/basic/BarGraph";
+import ReactMarkdown from 'react-markdown'
+import Renderer from 'chakra-ui-markdown-renderer'
+const glossary = `
+A swap in Terra Station that uses the Terra protocol’s market function. Market swaps occur between Terra stablecoin denominations or between Terra and Luna.
+In this section, you can get some interesting points from terra blockchain and swaps that happen on it.
+`
+
 interface Props {
   topNativeSwapPair: TopNativeSwapPair[];
   dailySwapCount: DailySwapCount[];
@@ -19,19 +26,17 @@ const Home = ({ topNativeSwapPair, dailySwapCount, dailySwapVolume }: Props) => 
             fontSize={'4xl'}
             pb={2}
             fontWeight={'bold'}>
-            Terra Overview
+            Glossary
           </chakra.h1>
-          <Text>
-            Terra is a blockchain project that aims to build a decentralized network that will allow anyone to create a
-          </Text>
+          <ReactMarkdown components={Renderer()}>
+            {glossary}
+          </ReactMarkdown>
         </Box>
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 4 }} spacing={{ base: 5, lg: 8 }}>
-
-
         </SimpleGrid>
-        <SimpleGrid my={'8'} columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 2, md: 4, lg: 8 }}>
+        <SimpleGrid py={'8'} columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 2, md: 4, lg: 8 }}>
           <BarGraph
-            modelInfo="Top native swap pairs in Terra"
+            modelInfo="this chart shows the 10 most popular native swap that occurs in the terra blockchain. LUNA to UST is the most used and after that is UST to LUNA."
             values={topNativeSwapPair}
             title="Top native swap pairs in Terra"
             dataKey="swap pair"
@@ -46,7 +51,7 @@ const Home = ({ topNativeSwapPair, dailySwapCount, dailySwapVolume }: Props) => 
             baseSpan={2}
             data={dailySwapCount}
             tooltipTitle="daily native swap count"
-            modelInfo="show daily native swap count"
+            modelInfo="This chart shows how many native swaps occur each day on the Terra blockchain."
             title="daily native swap count"
             areaDataKey="daily swap count"
             xAxisDataKey="day"
@@ -55,7 +60,7 @@ const Home = ({ topNativeSwapPair, dailySwapCount, dailySwapVolume }: Props) => 
             baseSpan={2}
             data={dailySwapVolume}
             tooltipTitle="daily native swap volume"
-            modelInfo="show daily native swap volume"
+            modelInfo="This chart shows the total daily volume of native swaps in the Terra blockchain. To make sense, all volumes are considered in USD."
             title="daily native swap volume"
             areaDataKey="daily swap volume in usd"
             xAxisDataKey="day"
