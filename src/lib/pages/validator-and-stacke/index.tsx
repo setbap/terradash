@@ -37,9 +37,9 @@ const pageInfo = `
 
   The most common proposal types include:
 
-      - Parameter Change Proposal: To change the parameters defined in each module.
-      - Community PoolSpend Proposal: To spend funds in the community pool.
-      - Text Proposal : To handle other issues like large directional changes or any decision requiring manual implementation.
+  - Parameter Change Proposal: To change the parameters defined in each module.
+  - Community PoolSpend Proposal: To spend funds in the community pool.
+  - Text Proposal : To handle other issues like large directional changes or any decision requiring manual implementation.
 
   ## [__Staking__](https://docs.terra.money/docs/learn/glossary.html#staking "Permalink to this headline")
 
@@ -167,12 +167,12 @@ const Home = ({
         <SimpleGrid
           my={"8"}
           columns={{ base: 1, md: 1, lg: 2, "2xl": 3 }}
-          spacing={{ base: 2, md: 4, lg: 8 }}
+          spacing={{ base: 1, md: 2, lg: 8 }}
         >
           <ChartBox
             data={dailyUniqueUserStaked}
             tooltipTitle="daily unique user staked"
-            modelInfo="This modal shows number of users daily staking in Terra"
+            modelInfo="Number of unique wallets thats stake Terra in One of validators"
             title="daily unique user staked"
             areaDataKey="daily unique user staked"
             xAxisDataKey="day"
@@ -186,7 +186,7 @@ const Home = ({
               "reward weight proposals so far",
             ]}
             modelInfo={''}
-            title="Terra Proposal Count Over Time"
+            title="number of proposals from over time "
             multiOff
             baseSpan={2}
             chartColors={["#F44", "#4F4", "#55f", "#f5e"]}

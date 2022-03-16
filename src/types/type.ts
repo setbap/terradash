@@ -215,7 +215,7 @@ export interface DailySwapCount {
 }
 
 export interface DailySwapVolume {
-  "daily swap volume": number;
+  "daily swap volume in usd": number;
   day: string;
 }
 

@@ -57,7 +57,7 @@ const Home = ({ topNativeSwapPair, dailySwapCount, dailySwapVolume }: Props) => 
             tooltipTitle="daily native swap volume"
             modelInfo="show daily native swap volume"
             title="daily native swap volume"
-            areaDataKey="daily swap volume"
+            areaDataKey="daily swap volume in usd"
             xAxisDataKey="day"
           />
 

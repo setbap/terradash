@@ -51,11 +51,12 @@ export default function SidebarWithHeader({
 }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <Box minH="calc( 100vh - 14px )" bg={
-            useColorModeValue(
+        <Box minH="calc( 100vh - 14px )"
+            bg={useColorModeValue(
                 ' linear-gradient(to top, #e2ebf0 0% , #cfd9df  100%)',
                 'linear-gradient(to top, #434343),#000000'
-            )}>
+            )}
+        >
             <SidebarContent
                 onClose={() => onClose}
                 display={{ base: 'none', md: 'block' }}
@@ -77,7 +78,7 @@ export default function SidebarWithHeader({
             </Drawer>
 
             <MobileNav onOpen={onOpen} />
-            <Box ml={{ base: 0, md: 60 }} p="4">
+            <Box ml={{ base: 0, md: 60 }} >
                 {children}
             </Box>
         </Box>
