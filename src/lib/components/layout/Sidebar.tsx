@@ -51,7 +51,11 @@ export default function SidebarWithHeader({
 }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <Box minH="calc( 100vh - 14px )" bg={useColorModeValue('gray.200', 'gray.900')}>
+        <Box minH="calc( 100vh - 14px )" bg={
+            useColorModeValue(
+                ' linear-gradient(to top, #e2ebf0 0% , #cfd9df  100%)',
+                'linear-gradient(to top, #434343),#000000'
+            )}>
             <SidebarContent
                 onClose={() => onClose}
                 display={{ base: 'none', md: 'block' }}
@@ -61,6 +65,9 @@ export default function SidebarWithHeader({
                 isOpen={isOpen}
                 placement="left"
                 onClose={onClose}
+                closeOnOverlayClick
+
+                closeOnEsc
                 returnFocusOnClose={false}
                 onOverlayClick={onClose}
                 size="full">
@@ -85,27 +92,34 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
     const router = useRouter()
     return (
         <Box
+
+            overflowX={'hidden'}
             transition="0.7s ease"
-            bg={useColorModeValue('white', '#191919')}
+            // bg={useColorModeValue('white', '#191919')}
             borderRight="1px"
             borderRightColor={useColorModeValue('gray.200', 'gray.700')}
             w={{ base: 'full', md: 60 }}
             pos="fixed"
             h="full"
             {...rest}>
+            <Box zIndex={'-1'} className='backi' bgColor={useColorModeValue('#ebebeb', '#191919')} style={{ filter: 'blur(5px)' }} position={'absolute'} left={'0'} top={'0'} bottom={'0'} right={'0'} />
+
             <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
+
                 <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
                     <NextLink href={'/'} passHref>
                         Terradash
                     </NextLink>
                 </Text>
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
+
             </Flex>
             {LinkItems.map((link) => (
                 <NavItem isActive={router.pathname === link.path} path={link.path} key={link.name} icon={link.icon}>
                     {link.name}
                 </NavItem>
             ))}
+
         </Box>
     );
 };

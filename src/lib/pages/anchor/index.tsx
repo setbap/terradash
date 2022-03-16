@@ -67,33 +67,33 @@ const Home = ({
         >
           <StatsCard
             status="inc"
-            title={"amount deposite in anchor past 7days"}
+            title={"Total UST Deposited [past 7 days]"}
             stat={sumAnchorDeposite.PAST_7_DEPOSIT_AMOUNT_USD}
           />
           <StatsCard
             status="inc"
-            title={"amount deposite in anchor past 30days"}
+            title={"Total UST Deposited [past 30 days]"}
             stat={sumAnchorDeposite.PAST_30_DEPOSIT_AMOUNT_USD}
           />
           <StatsCard
             status="inc"
-            title={"all amount deposite in anchor "}
+            title={"Total UST Deposited [overall]"}
             stat={sumAnchorDeposite.ALL_DEPOSIT_AMOUNT_USD}
           />
 
           <StatsCard
             status="inc"
-            title={"amount borrow in anchor past 7days"}
+            title={"Total UST borrowed [past 7 days]"}
             stat={sumAnchorBorrow.PAST_7_SUM_BORROWS_USD}
           />
           <StatsCard
             status="inc"
-            title={"amount borrow in anchor past 30days"}
+            title={"Total UST borrowed [past 30 days]"}
             stat={sumAnchorBorrow.PAST_30_SUM_BORROWS_USD}
           />
           <StatsCard
             status="inc"
-            title={"all amount borrow in anchor "}
+            title={"Total UST borrowed [overall]"}
             stat={sumAnchorBorrow.ALL_SUM_BORROWS_USD}
           />
 
@@ -111,12 +111,12 @@ const Home = ({
 
           <StatsCard
             status="inc"
-            title={"Number of unique user borrow"}
+            title={"Number of unique users that borrowed"}
             stat={totalUserBorrowDeposit["unique user borrows"]}
           />
           <StatsCard
             status="inc"
-            title={"Number of unique user deposit"}
+            title={"Number of unique users that deposited"}
             stat={totalUserBorrowDeposit["unique user deposits"]}
           />
         </SimpleGrid>
