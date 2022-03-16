@@ -86,51 +86,47 @@ const ChartBox = ({ baseSpan = 1, isNotDate = false, extraDecimal = 2, domain, a
                     id={title}
                 >
                     <Box width={'100%'} display={'flex'} alignItems='center' justifyContent={'space-between'}>
-                        <IconButton size={'sm'} aria-label="download chart" variant="outline" icon={<AiOutlineDownload />}
-                            onClick={async () => { console.log("save"); }}
-                        />
-                        <Box />
+                        <IconButton
+                            size={'sm'}
+                            variant={'outline'}
+                            aria-label='open info about chart'
+                            onClick={() => {
+                                setOverlay(<OverlayOne />)
+                                onOpen()
+                            }}
+                            icon={<AiOutlineInfoCircle />} />
+
                         <chakra.h6 textAlign={'center'} noOfLines={1} textOverflow='ellipsis'>{title}</chakra.h6>
-                        <Box>
-                            <IconButton
-                                me={2}
-                                size={'sm'}
-                                variant={'outline'}
-                                aria-label='expand chart row'
-                                onClick={() => {
-                                    setSpanItem(value => value === 3 ? baseSpan : 3)
-                                }}
-                                icon={<AiOutlineExpand />} />
 
-                            <IconButton
+                        <IconButton
 
-                                size={'sm'}
-                                variant={'outline'}
-                                aria-label='open info about chart'
-                                onClick={() => {
-                                    setOverlay(<OverlayOne />)
-                                    onOpen()
-                                }}
-                                icon={<AiOutlineInfoCircle />} />
-                            <Modal isCentered isOpen={isOpen} onClose={onClose}>
-                                {overlay}
-                                <ModalContent>
-                                    <ModalHeader>Info</ModalHeader>
-                                    <ModalCloseButton />
-                                    <ModalBody>
-                                        <Text>{modelInfo}</Text>
-                                    </ModalBody>
-                                    <ModalFooter>
+                            size={'sm'}
+                            variant={'outline'}
+                            aria-label='expand chart row'
+                            onClick={() => {
+                                setSpanItem(value => value === 3 ? baseSpan : 3)
+                            }}
+                            icon={<AiOutlineExpand />} />
 
-                                        <Button onClick={onClose}>Close</Button>
-                                    </ModalFooter>
-                                </ModalContent>
-                            </Modal>
-                        </Box>
+
+
+                        <Modal isCentered isOpen={isOpen} onClose={onClose}>
+                            {overlay}
+                            <ModalContent>
+                                <ModalHeader>Info</ModalHeader>
+                                <ModalCloseButton />
+                                <ModalBody>
+                                    <Text>{modelInfo}</Text>
+                                </ModalBody>
+                                <ModalFooter>
+
+                                    <Button onClick={onClose}>Close</Button>
+                                </ModalFooter>
+                            </ModalContent>
+                        </Modal>
 
                     </Box>
                     <Box p={'1'} />
-
                     <ResponsiveContainer width={"100%"}>
                         <AreaChart
                             data={data}

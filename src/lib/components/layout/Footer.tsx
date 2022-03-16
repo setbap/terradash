@@ -47,7 +47,7 @@ export default function Footer() {
   const baseColor = useColorModeValue('gray.700', 'whiteAlpha.700')
   return (
     <Box
-      bg={useColorModeValue('white.50', 'gray.900')}
+      bg={useColorModeValue('white', '#191919')}
       color={baseColor}>
       <Container
         as={Stack}

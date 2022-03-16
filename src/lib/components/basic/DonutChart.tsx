@@ -179,14 +179,14 @@ const DonutChart = ({
                     >
                         <IconButton
                             size={"sm"}
-                            aria-label="download chart"
-                            variant="outline"
-                            icon={<AiOutlineDownload />}
-                            onClick={async () => {
-                                console.log("save");
+                            variant={"outline"}
+                            aria-label="open info about chart"
+                            onClick={() => {
+                                setOverlay(<OverlayOne />);
+                                onOpen();
                             }}
+                            icon={<AiOutlineInfoCircle />}
                         />
-                        <Box />
                         <chakra.h6
                             textAlign={"center"}
                             noOfLines={1}
@@ -194,42 +194,31 @@ const DonutChart = ({
                         >
                             {title}
                         </chakra.h6>
-                        <Box>
-                            <IconButton
-                                me={2}
-                                size={"sm"}
-                                variant={"outline"}
-                                aria-label="expand chart row"
-                                onClick={() => {
-                                    setSpanItem((value) => (value === 3 ? 1 : 3));
-                                }}
-                                icon={<AiOutlineExpand />}
-                            />
 
-                            <IconButton
-                                size={"sm"}
-                                variant={"outline"}
-                                aria-label="open info about chart"
-                                onClick={() => {
-                                    setOverlay(<OverlayOne />);
-                                    onOpen();
-                                }}
-                                icon={<AiOutlineInfoCircle />}
-                            />
-                            <Modal isCentered isOpen={isOpen} onClose={onClose}>
-                                {overlay}
-                                <ModalContent>
-                                    <ModalHeader>Info</ModalHeader>
-                                    <ModalCloseButton />
-                                    <ModalBody>
-                                        <Text>{modelInfo}</Text>
-                                    </ModalBody>
-                                    <ModalFooter>
-                                        <Button onClick={onClose}>Close</Button>
-                                    </ModalFooter>
-                                </ModalContent>
-                            </Modal>
-                        </Box>
+                        <IconButton
+
+                            size={"sm"}
+                            variant={"outline"}
+                            aria-label="expand chart row"
+                            onClick={() => {
+                                setSpanItem((value) => (value === 3 ? 1 : 3));
+                            }}
+                            icon={<AiOutlineExpand />}
+                        />
+                        <Modal isCentered isOpen={isOpen} onClose={onClose}>
+                            {overlay}
+                            <ModalContent>
+                                <ModalHeader>Info</ModalHeader>
+                                <ModalCloseButton />
+                                <ModalBody>
+                                    <Text>{modelInfo}</Text>
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button onClick={onClose}>Close</Button>
+                                </ModalFooter>
+                            </ModalContent>
+                        </Modal>
+
                     </Box>
                     <Box p={"1"} />
 
