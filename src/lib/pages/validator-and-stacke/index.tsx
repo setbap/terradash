@@ -7,13 +7,18 @@ import {
 } from "@chakra-ui/react";
 import {
   AmoutOfStakedInUSD,
-  DailyNewUser,
+
+  DailyStakingRewards,
+
   DailyUniqueUserStaked,
   ProposalCountOverTime,
   ProposalsCountMonthlyVsLUNAPrice,
   ProposalsCountMonthlyVsMonthlyVotes,
+  Top10Validators,
+  Top10ValidatorsAccordingStake,
   TotalLunaStaked,
   TotalLunaStakedInUSD,
+  TotalNumberOfValidators,
   TotalProposalCount,
   TotalVotesCountForProposal,
   TotalWalletAlreadyStaked,
@@ -22,6 +27,8 @@ import {
 import ChartBox from "lib/components/basic/LineChart";
 import { StatsCard } from "lib/components/basic/BasicCard";
 import MultiChartBox from "lib/components/basic/MultiLineChart";
+import BarGraph from "lib/components/basic/BarGraph";
+import DonutChart from "lib/components/basic/DonutChart";
 interface Props {
   dailyUniqueUserStaked: DailyUniqueUserStaked[];
   totalLunaStaked: TotalLunaStaked;
@@ -34,6 +41,10 @@ interface Props {
   proposalCountOverTime: ProposalCountOverTime[];
   proposalsCountMonthlyVsLUNAPrice: ProposalsCountMonthlyVsLUNAPrice[]
   proposalsCountMonthlyVsMonthlyVotes: ProposalsCountMonthlyVsMonthlyVotes[]
+  top10Validators: Top10Validators[]
+  totalNumberOfValidators: TotalNumberOfValidators;
+  dailyStakingRewards: DailyStakingRewards[];
+  top10ValidatorsAccordingStake: Top10ValidatorsAccordingStake[]
 }
 
 const Home = ({
@@ -47,7 +58,11 @@ const Home = ({
   totalWalletStaked,
   totalWalletAlreadyStaked,
   proposalsCountMonthlyVsLUNAPrice,
-  proposalsCountMonthlyVsMonthlyVotes
+  top10Validators,
+  proposalsCountMonthlyVsMonthlyVotes,
+  totalNumberOfValidators,
+  dailyStakingRewards,
+  top10ValidatorsAccordingStake
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
   return (
@@ -105,6 +120,11 @@ const Home = ({
             title="Total Proposal Count"
             status="inc"
             stat={totalProposalCount["total proposal count"]}
+          />
+          <StatsCard
+            title="Total number of Validator"
+            status="inc"
+            stat={totalNumberOfValidators["total_number_of_validator"]}
           />
           <StatsCard
             title="Number of wallets they have already staked"
@@ -174,6 +194,50 @@ const Home = ({
             title="votes vs proposal"
             areaDataKey={["number of proposal", "monthly votes"]}
             xAxisDataKey="month" />
+          <BarGraph
+            modelInfo="Top 10 Validators according to their power"
+            values={top10Validators}
+            title="Top 10 Validators according to their power"
+            dataKey="label"
+            oyLabel="voting power"
+            oxLabel="name"
+            isNotDate
+            yLimit={[]}
+            labels={[
+              { key: "voting power", color: "#0953fe" },
+            ]}
+          />
+          <ChartBox
+            data={dailyStakingRewards}
+            tooltipTitle="daily staking reward in USD"
+            modelInfo="daily staking reward in USD"
+            title="daily staking reward in USD"
+            areaDataKey="daily amount usd"
+            xAxisDataKey="day"
+          />
+
+          <ChartBox
+            data={dailyStakingRewards}
+            tooltipTitle="daily staking reward in Luna"
+            modelInfo="daily staking reward in Luna"
+            title="daily staking reward in Luna"
+            areaDataKey="daily amount luna"
+            xAxisDataKey="day"
+          />
+          <DonutChart data={top10ValidatorsAccordingStake}
+            tooltipTitle="top ten validator according amount of staked Luna"
+            modelInfo="top ten validator according amount of staked Luna"
+            title="top ten validator according amount of staked Luna"
+            dataKey="total staked in LUNA"
+            nameKey="label"
+          />
+          <DonutChart data={top10ValidatorsAccordingStake}
+            tooltipTitle="top validators according amount of staked Luna(as USD)"
+            modelInfo="top validator according amount of staked Luna(as USD)"
+            title="top validator according amount of staked Luna(as USD)"
+            dataKey="total staked in USD"
+            nameKey="label"
+          />
         </SimpleGrid>
       </Box>
     </>

@@ -79,6 +79,7 @@ const DonutChart = ({
             payload,
             percent,
             value,
+            name
         } = props;
         const sin = Math.sin(-RADIAN * midAngle);
         const cos = Math.cos(-RADIAN * midAngle);
@@ -125,7 +126,7 @@ const DonutChart = ({
                     y={ey}
                     textAnchor={textAnchor}
                     fill="#333"
-                >{`${payload.coin} ${millify(value, {
+                >{`${name}  ${millify(value, {
                     precision: 2,
                     decimalSeparator: ",",
                 })} `}</text>

@@ -11,6 +11,10 @@ import { getTotalWalletStaked } from "lib/requests/validator-and-stake/total_wal
 import { getTotalProposalCount } from "lib/requests/validator-and-stake/total_proposal_count";
 import { getProposalsCountMonthlyVsLUNAPrice } from "lib/requests/validator-and-stake/monthly_proposal_vs_luna_price";
 import { getProposalsCountMonthlyVsMonthlyVotes } from "lib/requests/validator-and-stake/monthly_proposal_vs_monthly_votes";
+import { getTotalNumberOfValidators } from "lib/requests/validator-and-stake/total_number_of_validators";
+import { getTop10Validators } from "lib/requests/validator-and-stake/top_10_validators";
+import { getDailyStakingRewards } from "lib/requests/validator-and-stake/daily_staking_rewards";
+import { getTop10ValidatorsAccordingStake } from "lib/requests/validator-and-stake/top_10_validators_according_stake";
 export async function getStaticProps() {
     const [
         totalLunaStaked,
@@ -23,7 +27,11 @@ export async function getStaticProps() {
         totalVotesCountForProposal,
         totalProposalCount,
         proposalsCountMonthlyVsLUNAPrice,
-        proposalsCountMonthlyVsMonthlyVotes
+        proposalsCountMonthlyVsMonthlyVotes,
+        totalNumberOfValidators,
+        top10Validators,
+        dailyStakingRewards,
+        top10ValidatorsAccordingStake
     ] = await Promise.all([
         getTotalLunaStaked(),
         getTotalLunaStakedInUSD(),
@@ -35,7 +43,11 @@ export async function getStaticProps() {
         getTotalVotesCountForProposal(),
         getTotalProposalCount(),
         getProposalsCountMonthlyVsLUNAPrice(),
-        getProposalsCountMonthlyVsMonthlyVotes()
+        getProposalsCountMonthlyVsMonthlyVotes(),
+        getTotalNumberOfValidators(),
+        getTop10Validators(),
+        getDailyStakingRewards(),
+        getTop10ValidatorsAccordingStake(),
     ]);
     return {
         props: {
@@ -49,7 +61,11 @@ export async function getStaticProps() {
             totalVotesCountForProposal,
             totalProposalCount,
             proposalsCountMonthlyVsLUNAPrice,
-            proposalsCountMonthlyVsMonthlyVotes
+            proposalsCountMonthlyVsMonthlyVotes,
+            totalNumberOfValidators,
+            top10Validators,
+            dailyStakingRewards,
+            top10ValidatorsAccordingStake
         },
     };
 }

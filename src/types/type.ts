@@ -218,3 +218,24 @@ export interface DailySwapVolume {
   "daily swap volume": number;
   day: string;
 }
+
+export interface TotalNumberOfValidators {
+  total_number_of_validator: number;
+}
+
+export interface Top10Validators {
+  label: string;
+  "voting power": number;
+}
+
+export interface Top10ValidatorsAccordingStake {
+  label: string;
+  "total staked in LUNA": number;
+  "total staked in USD": number;
+}
+
+export interface DailyStakingRewards {
+  "daily amount luna": number;
+  "daily amount usd": number;
+  day: string;
+}
