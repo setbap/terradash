@@ -14,7 +14,7 @@ const BarGraph = ({
     oxLabel,
     oyLabel,
     values,
-    yLimit,
+    baseSpan = 1,
     labels,
     modelInfo,
     isNotDate = false
@@ -26,10 +26,10 @@ const BarGraph = ({
     isNotDate?: boolean
     values: any[],
     modelInfo: string,
-    yLimit?: number[],
+    baseSpan?: number,
     labels: { key: string; color: string }[],
 }) => {
-    const [spanItem, setSpanItem] = useState(1)
+    const [spanItem, setSpanItem] = useState(baseSpan)
     const [barProps, setBarProps] = useState(
         labels.reduce(
             (a: any, { key }: any) => {
@@ -51,6 +51,7 @@ const BarGraph = ({
     const bgCard = useColorModeValue('white', '#191919');
     const textColor = useColorModeValue('gray.900', 'gray.100');
     const [overlay, setOverlay] = useState(<OverlayOne />)
+
 
 
 
@@ -107,7 +108,7 @@ const BarGraph = ({
                             variant={'outline'}
                             aria-label='expand chart row'
                             onClick={() => {
-                                setSpanItem(value => value === 3 ? 1 : 3)
+                                setSpanItem(value => value === 3 ? baseSpan : 3)
                             }}
                             icon={<AiOutlineExpand />} />
 

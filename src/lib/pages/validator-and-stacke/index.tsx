@@ -5,6 +5,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import ReactMarkdown from 'react-markdown'
+import Renderer from 'chakra-ui-markdown-renderer'
 import {
   AmoutOfStakedInUSD,
   DailyStakingRewards,
@@ -31,7 +32,7 @@ import DonutChart from "lib/components/basic/DonutChart";
 
 
 const pageInfo = `
- ### [__Proposals__](https://docs.terra.money/docs/learn/protocol.html#proposals "Permalink to this headline")
+ #### [__Proposals__](https://docs.terra.money/docs/learn/protocol.html#proposals "Permalink to this headline")
 
   Proposals start as ideas within the community. A community member drafts and submits a proposal alongside an initial deposit.
 
@@ -41,20 +42,24 @@ const pageInfo = `
   - Community PoolSpend Proposal: To spend funds in the community pool.
   - Text Proposal : To handle other issues like large directional changes or any decision requiring manual implementation.
 
-  ## [__Staking__](https://docs.terra.money/docs/learn/glossary.html#staking "Permalink to this headline")
+  #### [__Staking__](https://docs.terra.money/docs/learn/glossary.html#staking "Permalink to this headline")
 
   When a user delegates or bonds their Luna to an active validator to receive rewards. Bonded Luna adds to a validator’s stake. Validators provide their stakes as collateral to participate in the consensus process. Validators with larger stakes are chosen to participate more often. Validators receive staking rewards for their participation. A validator’s stake can be slashed if the validator misbehaves. Validators never have ownership of a delegator’s Luna, even when staking.
   For more information on staking, visit the  [concepts page](https://docs.terra.money/docs/learn/protocol.html#staking).
   
-  ## [__Validator__](https://docs.terra.money/docs/learn/glossary.html#validator "Permalink to this headline")
+  #### [__Validator__](https://docs.terra.money/docs/learn/glossary.html#validator "Permalink to this headline")
 
   A Terra blockchain miner responsible for verifying transactions on the blockchain. Validators run programs called full nodes that allow them to participate in consensus, verify blocks, participate in governance, and receive rewards. The top 130 validators with the highest total stake can participate in consensus.
 
 For more information on validators, visit the  [concepts page](https://docs.terra.money/docs/learn/protocol.html#validators).
 
-## [__Weight__](https://docs.terra.money/docs/learn/glossary.html#weight "Permalink to this headline")
+#### [__Weight__](https://docs.terra.money/docs/learn/glossary.html#weight "Permalink to this headline")
 
 The measure of a  [validator’s](https://docs.terra.money/docs/learn/glossary.html#validator)  total stake. Validators with higher weights get selected more often to propose blocks. A validator’s weight is also a measure of their voting power in  [governance](https://docs.terra.money/docs/learn/glossary.html#governance).
+
+#### [__Rewards__](https://docs.terra.money/docs/learn/glossary.html#rewards) 
+
+Revenue generated from fees given to validators and disbursed to delegators.
 `
 
 
@@ -114,9 +119,9 @@ const Home = ({
             pb={2}
             fontWeight={"bold"}
           >
-            Page Data Overview
+            Glossary
           </chakra.h1>
-          <ReactMarkdown>
+          <ReactMarkdown components={Renderer()}>
             {pageInfo}
           </ReactMarkdown>
         </Box>
@@ -172,7 +177,7 @@ const Home = ({
           <ChartBox
             data={dailyUniqueUserStaked}
             tooltipTitle="daily unique user staked"
-            modelInfo="Number of unique wallets thats stake Terra in One of validators"
+            modelInfo="Number of unique wallets thats stake Terra in One of validators in each day"
             title="daily unique user staked"
             areaDataKey="daily unique user staked"
             xAxisDataKey="day"
@@ -185,8 +190,9 @@ const Home = ({
               "text proposals so far",
               "reward weight proposals so far",
             ]}
-            modelInfo={''}
-            title="number of proposals from over time "
+            modelInfo={`shows number of proposals in each categegory over time. for example at 19 Oct 2021 we have 12 community pool proposal. this shows from begining 
+            of community so far we have 12 community pool proposals. as we see diagram Slope of lines is increasing. this show Members' participation in the community increases over time.`}
+            title="number of diffrent proposals over the time "
             multiOff
             baseSpan={2}
             chartColors={["#F44", "#4F4", "#55f", "#f5e"]}
@@ -199,9 +205,10 @@ const Home = ({
             xAxisDataKey="day"
           />
           <ChartBox
+            baseSpan={2}
             data={amoutOfStakedInUSD}
             tooltipTitle="daily staked amount in USD"
-            modelInfo="daily staked amount in USD"
+            modelInfo="calculate price of luna that staked in each day in USD"
             title="daily staked amount in USD"
             areaDataKey="daily staked amount in USD"
             xAxisDataKey="day"
@@ -210,7 +217,7 @@ const Home = ({
             chartColors={['#0953fe', '#f2a900']}
             isNotDate
             tooltipTitle={["No of proposal", "avg price"]}
-            modelInfo="No of proposal vs avg price"
+            modelInfo="compare number of proposal in each month and average price of luna to see is this two number have correlation with each other or not(unit of each one is diffrent)"
             title="proposal vs avg price"
             areaDataKey={["No of proposal", "avg price"]}
             xAxisDataKey="month" />
@@ -218,27 +225,15 @@ const Home = ({
             chartColors={['#0953fe', '#f2a900']}
             isNotDate
             tooltipTitle={["number of proposal", "monthly votes"]}
-            modelInfo="monthly votes vs number of proposal"
+            modelInfo="compare number of proposal in each month and number of votes in Terra to see is this two number have correlation with each other or not(unit of each one is diffrent)"
             title="votes vs proposal"
             areaDataKey={["number of proposal", "monthly votes"]}
             xAxisDataKey="month" />
-          <BarGraph
-            modelInfo="Top 10 Validators according to their power"
-            values={top10Validators}
-            title="Top 10 Validators according to their power"
-            dataKey="label"
-            oyLabel="voting power"
-            oxLabel="name"
-            isNotDate
-            yLimit={[]}
-            labels={[
-              { key: "voting power", color: "#0953fe" },
-            ]}
-          />
+
           <ChartBox
             data={dailyStakingRewards}
             tooltipTitle="daily staking reward in USD"
-            modelInfo="daily staking reward in USD"
+            modelInfo="amount of staking reward distributed in Terra Validators (this number calculated by number Luna distributed and price of Luna).amount of distribution decreseasd after update Terra network (like eip1559)"
             title="daily staking reward in USD"
             areaDataKey="daily amount usd"
             xAxisDataKey="day"
@@ -247,22 +242,34 @@ const Home = ({
           <ChartBox
             data={dailyStakingRewards}
             tooltipTitle="daily staking reward in Luna"
-            modelInfo="daily staking reward in Luna"
+            modelInfo="amount of staking reward distributed in Terra Validators.amount of distribution decreseasd after update Terra network (like eip1559)"
             title="daily staking reward in Luna"
             areaDataKey="daily amount luna"
             xAxisDataKey="day"
           />
+          <BarGraph
+            modelInfo="shows Top 10 Validators and their voting power"
+            values={top10Validators}
+            title="Top 10 Validators according to their power"
+            dataKey="label"
+            oyLabel="voting power"
+            oxLabel="name"
+            isNotDate
+            labels={[
+              { key: "voting power", color: "#0953fe" },
+            ]}
+          />
           <DonutChart data={top10ValidatorsAccordingStake}
-            tooltipTitle="top ten validator according amount of staked Luna"
+            tooltipTitle="compare amount of luna staked by top 10 validators"
             modelInfo="top ten validator according amount of staked Luna"
             title="top ten validator according amount of staked Luna"
             dataKey="total staked in LUNA"
             nameKey="label"
           />
           <DonutChart data={top10ValidatorsAccordingStake}
-            tooltipTitle="top validators according amount of staked Luna(as USD)"
-            modelInfo="top validator according amount of staked Luna(as USD)"
-            title="top validator according amount of staked Luna(as USD)"
+            tooltipTitle="compare price of total Luna staked by top 10 validators and calculate Luna price at deligation time"
+            modelInfo="top validator as staked Luna(as USD)"
+            title="top validator as staked Luna(as USD)"
             dataKey="total staked in USD"
             nameKey="label"
           />
