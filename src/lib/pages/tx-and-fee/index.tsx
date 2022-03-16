@@ -4,6 +4,8 @@ import ChartBox from 'lib/components/basic/LineChart';
 import { StatsCard } from "lib/components/basic/BasicCard";
 import DonutChart from "lib/components/basic/DonutChart";
 import BarGraph from "lib/components/basic/BarGraph";
+import Renderer from 'chakra-ui-markdown-renderer'
+import MultiChartBox from "lib/components/basic/MultiLineChart";
 interface Props {
   dailyTx: DailyTx[];
   totalTx: TotalTx;
@@ -64,7 +66,7 @@ const Home = ({ dailyTx, totalTx, totalFeeEachCoin, avgFeeEachCoin, dailyBlockCo
             oyLabel="amount of fee paid"
             oxLabel="coin"
             isNotDate
-            yLimit={[-50, 50]}
+
             labels={[
               { key: "total fee in USD", color: "#0953fe" },
             ]}
@@ -77,7 +79,7 @@ const Home = ({ dailyTx, totalTx, totalFeeEachCoin, avgFeeEachCoin, dailyBlockCo
             oyLabel="change in %"
             oxLabel="coin"
             isNotDate
-            yLimit={[0, 2]}
+
             labels={[
               { key: "avg fee in USD", color: "#0953fe" },
             ]}

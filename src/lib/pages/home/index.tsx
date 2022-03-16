@@ -21,6 +21,14 @@ import {
 import ChartBox from "lib/components/basic/LineChart";
 import { StatsCard } from "lib/components/basic/BasicCard";
 import MultiChartBox from "lib/components/basic/MultiLineChart";
+import ReactMarkdown from 'react-markdown'
+import Renderer from 'chakra-ui-markdown-renderer'
+
+
+const glossary = `
+Created by start-up **Terraform** Labs and its co-founders [Do Kwon](https://twitter.com/stablekwon) and [Daniel Shin](https://www.linkedin.com/in/danielshin) in 2018, the Terra blockchain underpins a **decentralized finance** (DeFi) ecosystem that creates \`algorithmic stablecoins\`.
+In this section, you can get an overview of this blockchain.
+`
 interface Props {
   dailyNewUser: DailyNewUser[];
   curentLunaPrice: CurentLunaPrice;
@@ -72,10 +80,9 @@ const Home = ({
           >
             Terra Overview
           </chakra.h1>
-          <Text>
-            Terra is a blockchain project that aims to build a decentralized
-            network that will allow anyone to create a
-          </Text>
+          <ReactMarkdown components={Renderer()}>
+            {glossary}
+          </ReactMarkdown>
         </Box>
         <SimpleGrid
           columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
@@ -112,9 +119,9 @@ const Home = ({
         </SimpleGrid>
         <SimpleGrid
           transition={'all 0.9s ease-in-out'}
-          my={"8"}
+          py={"8"}
           columns={{ base: 1, md: 1, lg: 2, "2xl": 3 }}
-          spacing={{ base: 2, md: 4, lg: 8 }}
+          spacing={{ base: 1, md: 2, lg: 4 }}
         >
 
           <ChartBox
