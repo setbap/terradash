@@ -25,6 +25,7 @@ export async function getStaticProps() {
             avgFeeEachCoin,
             avgTxCountPerBlock
         },
+        revalidate: 60 * 60,
     };
 }
 export default TxAndFee;

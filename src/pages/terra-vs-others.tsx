@@ -10,6 +10,7 @@ export async function getStaticProps() {
             lunaVsETHPrice,
             lunaVsBtcPrice
         },
+        revalidate: 60 * 60,
     }
 }
 export default TerraVsOthers;

@@ -4,6 +4,8 @@ import { getBurnLuna } from "lib/requests/overview/burn_luna";
 import { getCirculationSupplyLuna } from "lib/requests/overview/circulation_supply_luna";
 import { getCirculationSupplyUST } from "lib/requests/overview/circulation_supply_ust";
 import { getCurrentLunaPrice } from "lib/requests/overview/current_terra_price";
+import { getDailyNewUserSince2022 } from "lib/requests/overview/daily_new_user_since_2022";
+import { getDistributionOfLunaHolders } from "lib/requests/overview/distribution_of_luna_holders";
 import { getTerraDailyAvgMinMaxPrice } from "lib/requests/overview/terra_avg_min_max_price";
 import { getAvgUSTPrice } from "lib/requests/overview/terra_avg_min_max_price copy";
 import { getTotalBurnLuna } from "lib/requests/overview/total_burn_luna";
@@ -22,7 +24,9 @@ export async function getStaticProps() {
         avgUSTPrice,
         totalLunaSupply,
         totalUSTSupply,
-        totalNumberOfWallets
+        totalNumberOfWallets,
+        distributionOfLunaHolders,
+        dailyNewUserSince2022
     ] = await Promise.all([
         getDailyNewUser(),
         getCurrentLunaPrice(),
@@ -34,7 +38,9 @@ export async function getStaticProps() {
         getAvgUSTPrice(),
         getTotalLunaSupply(),
         getTotalUSTSupply(),
-        getTotalNumberOfWallets()
+        getTotalNumberOfWallets(),
+        getDistributionOfLunaHolders(),
+        getDailyNewUserSince2022(),
     ]);
     return {
         props: {
@@ -48,8 +54,11 @@ export async function getStaticProps() {
             avgUSTPrice,
             totalLunaSupply,
             totalUSTSupply,
-            totalNumberOfWallets
+            totalNumberOfWallets,
+            distributionOfLunaHolders,
+            dailyNewUserSince2022
         },
+        revalidate: 60 * 60,
     };
 }
 export default Home;

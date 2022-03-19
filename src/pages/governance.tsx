@@ -67,6 +67,7 @@ export async function getStaticProps() {
             dailyStakingRewards,
             top10ValidatorsAccordingStake
         },
+        revalidate: 60 * 60,
     };
 }
 export default ValidatorAndStacke;

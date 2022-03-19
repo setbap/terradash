@@ -1,5 +1,5 @@
 import { Box, Text, chakra, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
-import { DailySwapCount, DailySwapVolume, TopNativeSwapPair } from "types/type";
+import { DailySwapCount, DailySwapVolume, MostUserIntractedDapps, TopNativeSwapPair } from "types/type";
 import ChartBox from 'lib/components/basic/LineChart';
 import BarGraph from "lib/components/basic/BarGraph";
 import ReactMarkdown from 'react-markdown'
@@ -13,9 +13,10 @@ interface Props {
   topNativeSwapPair: TopNativeSwapPair[];
   dailySwapCount: DailySwapCount[];
   dailySwapVolume: DailySwapVolume[];
+  mostUserIntractedDapps: MostUserIntractedDapps[];
 }
 
-const Home = ({ topNativeSwapPair, dailySwapCount, dailySwapVolume }: Props) => {
+const Home = ({ topNativeSwapPair, dailySwapCount, dailySwapVolume, mostUserIntractedDapps }: Props) => {
   const bgCard = useColorModeValue('white', '#191919');
   return (
     <>
@@ -65,9 +66,18 @@ const Home = ({ topNativeSwapPair, dailySwapCount, dailySwapVolume }: Props) => 
             areaDataKey="daily swap volume in usd"
             xAxisDataKey="day"
           />
-
-
-
+          <BarGraph
+            modelInfo="The most interaction with a project means that total number of people used it is more than other projects. This chart shows 10 of these projects."
+            values={mostUserIntractedDapps}
+            title="Top 10 Dapp with most transactions"
+            dataKey="label"
+            oyLabel="number of interact"
+            oxLabel="name"
+            isNotDate
+            labels={[
+              { key: "number of interact", color: "#0953fe" },
+            ]}
+          />
         </SimpleGrid>
       </Box>
     </>

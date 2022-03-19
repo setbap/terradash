@@ -16,6 +16,7 @@ export async function getStaticProps() {
             totalUserBorrowDeposit,
             borrowAndDepositUser
         },
+        revalidate: 60 * 60,
     }
 }
 export default Anchor;

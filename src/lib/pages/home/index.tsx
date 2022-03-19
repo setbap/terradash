@@ -12,6 +12,8 @@ import {
   CirculationSupplyUST,
   CurentLunaPrice,
   DailyNewUser,
+  DailyNewUserSince2022,
+  DistributionOfLunaHolders,
   TerraDailyAvgMinMaxPrice,
   TotalBurnLuna,
   TotalLunaSupply,
@@ -23,6 +25,7 @@ import { StatsCard } from "lib/components/basic/BasicCard";
 import MultiChartBox from "lib/components/basic/MultiLineChart";
 import ReactMarkdown from 'react-markdown'
 import Renderer from 'chakra-ui-markdown-renderer'
+import BarGraph from "lib/components/basic/BarGraph";
 
 
 const glossary = `
@@ -46,6 +49,8 @@ interface Props {
   totalLunaSupply: TotalLunaSupply,
   totalUSTSupply: TotalUSTSupply,
   totalNumberOfWallets: TotalNumberOfWallets,
+  distributionOfLunaHolders: DistributionOfLunaHolders[],
+  dailyNewUserSince2022: DailyNewUserSince2022[]
 }
 
 const Home = ({
@@ -59,7 +64,9 @@ const Home = ({
   avgUSTPrice,
   totalLunaSupply,
   totalUSTSupply,
-  totalNumberOfWallets
+  totalNumberOfWallets,
+  distributionOfLunaHolders,
+  dailyNewUserSince2022
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
 
@@ -183,6 +190,26 @@ const Home = ({
             title="Daily Burned Luna"
             areaDataKey={"amount"}
             xAxisDataKey="day"
+          />
+          <ChartBox
+            data={dailyNewUserSince2022}
+            tooltipTitle={"amount"}
+            modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
+            title="Daily new Usr since 2022"
+            areaDataKey={"new users"}
+            xAxisDataKey="day"
+          />
+          <BarGraph
+            modelInfo="This chart shows how many users hold between (0,10] LUNA, how many hold between (10,100] LUNA, how many hold between (10o,1000] LUNA and etc."
+            values={distributionOfLunaHolders}
+            title="distribution of LUNA between holders"
+            dataKey="distribution"
+            oyLabel="number of wallets"
+            oxLabel="group"
+            isNotDate
+            labels={[
+              { key: "number of addresses", color: "#0953fe" },
+            ]}
           />
         </SimpleGrid>
       </Box>

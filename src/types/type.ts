@@ -219,6 +219,21 @@ export interface DailySwapVolume {
   day: string;
 }
 
+export interface MostUserIntractedDapps {
+  label: string;
+  "number of interact": number;
+}
+
+export interface DistributionOfLunaHolders {
+  distribution: string;
+  "number of addresses": number;
+}
+
+export interface DailyNewUserSince2022 {
+  day: string;
+  "new users": number;
+}
+
 export interface TotalNumberOfValidators {
   total_number_of_validator: number;
 }
