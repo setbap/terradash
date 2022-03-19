@@ -8,6 +8,8 @@ import Layout from "lib/components/layout";
 import customTheme from "lib/styles/customTheme";
 import "lib/styles/globals.css";
 import { StaticWalletProvider, WalletControllerChainOptions, WalletProvider } from "@terra-money/wallet-provider";
+import { AnimatePresence } from "framer-motion";
+import { useRouter } from "next/router";
 const BaseComponent = ({ children, defaultNetwork, walletConnectChainIds }: any) => typeof window !== 'undefined' ? (
   <WalletProvider
     defaultNetwork={defaultNetwork}
@@ -22,7 +24,7 @@ const BaseComponent = ({ children, defaultNetwork, walletConnectChainIds }: any)
 )
 
 const MyApp = ({ Component, pageProps, defaultNetwork, walletConnectChainIds }: AppProps & WalletControllerChainOptions) => {
-
+  const router = useRouter()
   return (
     <BaseComponent defaultNetwork={defaultNetwork} walletConnectChainIds={walletConnectChainIds} >
       <ChakraProvider theme={customTheme}>
@@ -33,9 +35,11 @@ const MyApp = ({ Component, pageProps, defaultNetwork, walletConnectChainIds }: 
           />
         </Head>
         <DefaultSeo {...defaultSEOConfig} />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <AnimatePresence>
+          <Layout key={router.route}>
+            <Component {...pageProps} />
+          </Layout>
+        </AnimatePresence>
       </ChakraProvider>
     </BaseComponent >
   );

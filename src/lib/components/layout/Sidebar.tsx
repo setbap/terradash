@@ -31,6 +31,7 @@ import { VscArrowSwap } from 'react-icons/vsc';
 import { FaBitcoin } from 'react-icons/fa';
 import { CgAnchor } from 'react-icons/cg';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import MotionBox from '../motion/Box';
 interface LinkItemProps {
     name: string;
     icon: IconType;
@@ -52,8 +53,19 @@ export default function SidebarWithHeader({
     children: ReactNode;
 }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const variants = {
+        hidden: { opacity: 0, x: -50, y: 0 },
+        enter: { opacity: 1, x: 0, y: 0 },
+        exit: { opacity: 0, x: 0, y: -50 },
+    }
     return (
-        <Box minH="calc( 100vh - 14px )"
+        <MotionBox
+            variants={variants} // Pass the variant object into Framer Motion 
+            initial="hidden" // Set the initial state to variants.hidden
+            animate="enter" // Animated state to variants.enter
+            exit="exit" // Exit state (used later) to variants.exit
+            transition={{ type: 'linear' }} // Set the transition to linear
+            minH="calc( 100vh - 14px )"
             bg={useColorModeValue(
                 ' linear-gradient(to top, #e2ebf0 0% , #cfd9df  100%)',
                 'linear-gradient(to top, #434343),#000000'
@@ -83,7 +95,7 @@ export default function SidebarWithHeader({
             <Box ml={{ base: 0, md: 60 }} >
                 {children}
             </Box>
-        </Box>
+        </MotionBox>
     );
 }
 
