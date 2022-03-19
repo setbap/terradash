@@ -18,10 +18,6 @@ import {
 import NextLink from 'next/link'
 import {
     FiHome,
-    FiTrendingUp,
-    FiCompass,
-    FiStar,
-    FiSettings,
     FiMenu,
 } from 'react-icons/fi';
 import { IconType } from 'react-icons';
@@ -29,7 +25,12 @@ import { ReactText } from 'react';
 import ThemeToggle from './ThemeToggle';
 import ConnectWallet from '../basic/ConnectWallet';
 import { useRouter } from 'next/router';
-
+import { SiBuzzfeed } from 'react-icons/si'
+import { RiGovernmentLine } from 'react-icons/ri';
+import { VscArrowSwap } from 'react-icons/vsc';
+import { FaBitcoin } from 'react-icons/fa';
+import { CgAnchor } from 'react-icons/cg';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 interface LinkItemProps {
     name: string;
     icon: IconType;
@@ -37,11 +38,12 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
     { name: 'Overview', path: '/', icon: FiHome },
-    { name: 'Tx and Fee', path: '/tx-and-fee', icon: FiTrendingUp },
-    { name: 'Governance ', path: '/governance', icon: FiCompass },
-    { name: 'Native swap', path: '/native-swap', icon: FiSettings },
-    { name: 'Terra VS Others', path: '/terra-vs-others', icon: FiSettings },
-    { name: 'Anchor', path: '/anchor', icon: FiStar },
+    { name: 'Tx and Fee', path: '/tx-and-fee', icon: SiBuzzfeed },
+    { name: 'Governance ', path: '/governance', icon: RiGovernmentLine },
+    { name: 'Native swap', path: '/native-swap', icon: VscArrowSwap },
+    { name: 'Terra VS Others', path: '/terra-vs-others', icon: FaBitcoin },
+    { name: 'Anchor', path: '/anchor', icon: CgAnchor },
+    // { name: 'About', path: '/about', icon: AiOutlineInfoCircle },
 ];
 
 export default function SidebarWithHeader({
