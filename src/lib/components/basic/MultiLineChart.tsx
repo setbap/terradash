@@ -1,4 +1,4 @@
-import { chakra, Box, Button, Text, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useColorModeValue, GridItem } from "@chakra-ui/react";
+import { chakra, Box, Button, Text, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useColorModeValue, GridItem, Menu, MenuButton, MenuItemOption, MenuList, MenuOptionGroup } from "@chakra-ui/react";
 import { useState } from "react";
 import millify from "millify";
 import ReactMarkdown from 'react-markdown'
@@ -76,15 +76,22 @@ const MultiChartBox = ({ isNotDate = false, baseSpan = 1, multiOff = false, area
 
                         <chakra.h6 textAlign={'center'} noOfLines={1} textOverflow='ellipsis'>{title}</chakra.h6>
                         <Box>
-                            <IconButton
-
-                                size={'sm'}
-                                variant={'outline'}
-                                aria-label='expand chart row'
-                                onClick={() => {
-                                    setSpanItem(value => value === 3 ? baseSpan : 3)
-                                }}
-                                icon={<AiOutlineExpand />} />
+                            <Menu closeOnSelect={false}>
+                                <MenuButton
+                                    size={'sm'}
+                                    as={IconButton}
+                                    aria-label='Options'
+                                    icon={<AiOutlineExpand />}
+                                    variant='outline'
+                                />
+                                <MenuList >
+                                    <MenuOptionGroup onChange={(span) => setSpanItem(+span)} defaultValue={baseSpan.toString()} title='Chart Span' type='radio'>
+                                        <MenuItemOption value={'1'}>1 {baseSpan === 1 && '(default)'}</MenuItemOption>
+                                        <MenuItemOption value={'2'}>2 {baseSpan === 2 && '(default)'}</MenuItemOption>
+                                        <MenuItemOption value={'3'}>3 {baseSpan === 3 && '(default)'}</MenuItemOption>
+                                    </MenuOptionGroup>
+                                </MenuList>
+                            </Menu>
                         </Box>
                         <Modal size={'xl'} isCentered isOpen={isOpen} onClose={onClose}>
                             {overlay}

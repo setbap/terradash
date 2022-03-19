@@ -1,4 +1,4 @@
-import { chakra, Box, Button, Text, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useColorModeValue, GridItem } from "@chakra-ui/react";
+import { chakra, Box, Button, Text, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useColorModeValue, GridItem, Menu, MenuButton, MenuItem, MenuList, MenuOptionGroup, MenuItemOption } from "@chakra-ui/react";
 import { useState } from "react";
 import millify from "millify";
 import ReactMarkdown from 'react-markdown'
@@ -100,7 +100,23 @@ const ChartBox = ({ baseSpan = 1, isNotDate = false, extraDecimal = 2, domain, a
 
                         <chakra.h6 textAlign={'center'} noOfLines={1} textOverflow='ellipsis'>{title}</chakra.h6>
 
-                        <IconButton
+                        <Menu closeOnSelect={false}>
+                            <MenuButton
+                                size={'sm'}
+                                as={IconButton}
+                                aria-label='Options'
+                                icon={<AiOutlineExpand />}
+                                variant='outline'
+                            />
+                            <MenuList >
+                                <MenuOptionGroup onChange={(span) => setSpanItem(+span)} defaultValue={baseSpan.toString()} title='Chart Span' type='radio'>
+                                    <MenuItemOption value={'1'}>1 {baseSpan === 1 && '(default)'}</MenuItemOption>
+                                    <MenuItemOption value={'2'}>2 {baseSpan === 2 && '(default)'}</MenuItemOption>
+                                    <MenuItemOption value={'3'}>3 {baseSpan === 3 && '(default)'}</MenuItemOption>
+                                </MenuOptionGroup>
+                            </MenuList>
+                        </Menu>
+                        {/* <IconButton
 
                             size={'sm'}
                             variant={'outline'}
@@ -108,7 +124,7 @@ const ChartBox = ({ baseSpan = 1, isNotDate = false, extraDecimal = 2, domain, a
                             onClick={() => {
                                 setSpanItem(value => value === 3 ? baseSpan : 3)
                             }}
-                            icon={<AiOutlineExpand />} />
+                            icon={} /> */}
 
 
 

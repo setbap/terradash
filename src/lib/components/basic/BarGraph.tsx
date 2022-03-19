@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, Label, ResponsiveContaine
 import millify from "millify";
 import {
     Box, IconButton, chakra, Modal, ModalContent, ModalHeader, ModalCloseButton,
-    Text, ModalBody, ModalFooter, Button, ModalOverlay, useColorModeValue, useDisclosure, GridItem
+    Text, ModalBody, ModalFooter, Button, ModalOverlay, useColorModeValue, useDisclosure, GridItem, Menu, MenuButton, MenuItemOption, MenuList, MenuOptionGroup
 } from "@chakra-ui/react";
 import { AiOutlineExpand, AiOutlineInfoCircle } from "react-icons/ai";
 import ReactMarkdown from 'react-markdown'
@@ -103,14 +103,22 @@ const BarGraph = ({
 
                         <chakra.h6 textAlign={'center'} noOfLines={1} textOverflow='ellipsis'>{title}</chakra.h6>
 
-                        <IconButton
-                            size={'sm'}
-                            variant={'outline'}
-                            aria-label='expand chart row'
-                            onClick={() => {
-                                setSpanItem(value => value === 3 ? baseSpan : 3)
-                            }}
-                            icon={<AiOutlineExpand />} />
+                        <Menu closeOnSelect={false}>
+                            <MenuButton
+                                size={'sm'}
+                                as={IconButton}
+                                aria-label='Options'
+                                icon={<AiOutlineExpand />}
+                                variant='outline'
+                            />
+                            <MenuList >
+                                <MenuOptionGroup onChange={(span) => setSpanItem(+span)} defaultValue={baseSpan.toString()} title='Chart Span' type='radio'>
+                                    <MenuItemOption value={'1'}>1 {baseSpan === 1 && '(default)'}</MenuItemOption>
+                                    <MenuItemOption value={'2'}>2 {baseSpan === 2 && '(default)'}</MenuItemOption>
+                                    <MenuItemOption value={'3'}>3 {baseSpan === 3 && '(default)'}</MenuItemOption>
+                                </MenuOptionGroup>
+                            </MenuList>
+                        </Menu>
 
 
                         <Modal isCentered isOpen={isOpen} onClose={onClose}>
