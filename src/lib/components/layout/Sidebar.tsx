@@ -44,7 +44,7 @@ const LinkItems: Array<LinkItemProps> = [
     { name: 'Native swap', path: '/native-swap', icon: VscArrowSwap },
     { name: 'Terra VS Others', path: '/terra-vs-others', icon: FaBitcoin },
     { name: 'Anchor', path: '/anchor', icon: CgAnchor },
-    // { name: 'About', path: '/about', icon: AiOutlineInfoCircle },
+    { name: 'About', path: '/about', icon: AiOutlineInfoCircle },
 ];
 
 export default function SidebarWithHeader({

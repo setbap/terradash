@@ -1,47 +1,42 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, useColorModeValue } from "@chakra-ui/react";
+import { Box, chakra, useColorModeValue } from "@chakra-ui/react";
 
+import ReactMarkdown from 'react-markdown'
+import Renderer from 'chakra-ui-markdown-renderer'
 const About = () => {
     const bgCard = useColorModeValue("white", "#191919");
     return (
-        <Box mx={"auto"} bg={bgCard} px={{ base: 6, sm: 2, md: 8 }}>
+        <>
+            <Box mx={"auto"} px={{ base: 6, sm: 2, md: 8 }}>
+                <Box
+                    width={"100%"}
+                    px="6"
+                    py="2"
+                    my={"6"}
+                    shadow="base"
+                    borderRadius={"lg"}
+                    backgroundColor={bgCard}
+                    pb={8}
+                    aria-label="anchor project descrition"
+                >
+                    <chakra.h1
+                        textAlign={"center"}
+                        fontSize={"4xl"}
+                        pb={2}
+                        fontWeight={"bold"}
+                    >
+                        About
+                    </chakra.h1>
+                    <ReactMarkdown components={Renderer()}>
+                        {`
+this dashboard was created as [**FlipSideCrypto bounty**](http://flipsidecrypto.xyz/) project. this dashboard contain 50 query to flipside datawherehouse.
+more info comming soon.
+                        `}
+                    </ReactMarkdown>
+                </Box>
+            </Box>
 
-            <Accordion defaultIndex={[0]} allowMultiple>
-                <AccordionItem>
-                    <h2>
-                        <AccordionButton>
-                            <Box flex='1' textAlign='left'>
-                                Section 1 title
-                            </Box>
-                            <AccordionIcon />
-                        </AccordionButton>
-                    </h2>
-                    <AccordionPanel pb={4}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat.
-                    </AccordionPanel>
-                </AccordionItem>
+        </>
 
-                <AccordionItem>
-                    <h2>
-                        <AccordionButton>
-                            <Box flex='1' textAlign='left'>
-                                Section 2 title
-                            </Box>
-                            <AccordionIcon />
-                        </AccordionButton>
-                    </h2>
-                    <AccordionPanel pb={4}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat.
-                    </AccordionPanel>
-                </AccordionItem>
-            </Accordion>
-
-        </Box>
 
     );
 }
