@@ -1,8 +1,8 @@
 import { chakra, Box, Button, Text, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useColorModeValue, GridItem, Menu, MenuButton, MenuItem, MenuList, MenuOptionGroup, MenuItemOption } from "@chakra-ui/react";
 import { useState } from "react";
+import moment from 'moment';
 import millify from "millify";
 import ReactMarkdown from 'react-markdown'
-
 import { AiOutlineExpand, AiOutlineInfoCircle } from "react-icons/ai";
 import {
     AreaChart,
@@ -116,18 +116,6 @@ const ChartBox = ({ baseSpan = 1, isNotDate = false, extraDecimal = 2, domain, a
                                 </MenuOptionGroup>
                             </MenuList>
                         </Menu>
-                        {/* <IconButton
-
-                            size={'sm'}
-                            variant={'outline'}
-                            aria-label='expand chart row'
-                            onClick={() => {
-                                setSpanItem(value => value === 3 ? baseSpan : 3)
-                            }}
-                            icon={} /> */}
-
-
-
                         <Modal isCentered isOpen={isOpen} onClose={onClose}>
                             {overlay}
                             <ModalContent>
@@ -150,7 +138,6 @@ const ChartBox = ({ baseSpan = 1, isNotDate = false, extraDecimal = 2, domain, a
                             data={data}
                             syncId={`${areaDataKey}-${xAxisDataKey}`}
                             className="mt-1 mb-2"
-
                         >
                             <defs>
                                 <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
@@ -175,8 +162,7 @@ const ChartBox = ({ baseSpan = 1, isNotDate = false, extraDecimal = 2, domain, a
                                 fontSize={12}
                                 color={'var(--textColor)'}
                                 tickFormatter={(value) => {
-
-                                    return isNotDate ? value : new Date(value).toLocaleDateString();
+                                    return isNotDate ? value : moment(value).toDate().toLocaleDateString();
                                 }}
                                 dataKey={xAxisDataKey}
                             />
@@ -189,13 +175,12 @@ const ChartBox = ({ baseSpan = 1, isNotDate = false, extraDecimal = 2, domain, a
 
 
                             <Tooltip
-                                labelFormatter={(value: string) => isNotDate ? value : new Date(value).toDateString()}
+                                labelFormatter={(value: string) => isNotDate ? value : moment(value).toDate().toDateString()}
                                 labelStyle={{ color: 'white' }}
                                 contentStyle={{ backgroundColor: 'black', borderRadius: '5px' }}
                                 formatter={(a: any) => {
                                     return millify(a, {
                                         precision: extraDecimal,
-
                                         decimalSeparator: ","
                                     })
                                 }} />

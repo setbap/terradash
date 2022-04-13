@@ -15,6 +15,7 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from "recharts";
+import moment from "moment";
 
 interface Props {
     baseSpan?: number
@@ -169,7 +170,7 @@ const MultiChartBox = ({ isNotDate = false, baseSpan = 1, multiOff = false, area
                                 color={'var(--textColor)'}
                                 tickFormatter={(value) => {
 
-                                    return isNotDate ? value : new Date(value).toLocaleDateString();
+                                    return isNotDate ? value : moment(value).toDate().toLocaleDateString();
                                 }}
                                 dataKey={xAxisDataKey}
                             />
@@ -180,7 +181,7 @@ const MultiChartBox = ({ isNotDate = false, baseSpan = 1, multiOff = false, area
 
 
                             <Tooltip
-                                labelFormatter={(value: string) => isNotDate ? value : new Date(value).toDateString()}
+                                labelFormatter={(value: string) => isNotDate ? value : moment(value).toDate().toDateString()}
                                 labelStyle={{ color: 'white' }}
                                 contentStyle={{ backgroundColor: 'black', borderRadius: '5px' }}
                                 formatter={(a: any) => {

@@ -7,6 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { AiOutlineExpand, AiOutlineInfoCircle } from "react-icons/ai";
 import ReactMarkdown from 'react-markdown'
+import moment from "moment";
 
 const BarGraph = ({
     title,
@@ -149,7 +150,7 @@ const BarGraph = ({
                                 style={{ stroke: "rgba(10,10,10,0.1)", opacity: 0.25 }}
                                 strokeDasharray="3 3"
                             />
-                            <XAxis fontSize={"12px"} tickFormatter={(value) => isNotDate ? value : new Date(value).toLocaleDateString()} dataKey={dataKey}>
+                            <XAxis fontSize={"12px"} tickFormatter={(value) => isNotDate ? value : moment(value).toDate().toLocaleDateString()} dataKey={dataKey}>
                                 {/* <Label value={oxLabel} position="center" dy={10} dx={20} /> */}
                             </XAxis>
                             <YAxis fontSize={"12px"} type="number" tickFormatter={(value) => millify(value, {
@@ -170,7 +171,7 @@ const BarGraph = ({
                                 />
                             </YAxis>
                             <Tooltip
-                                labelFormatter={(value: string) => isNotDate ? value : new Date(value).toDateString()}
+                                labelFormatter={(value: string) => isNotDate ? value : moment(value).toDate().toDateString()}
                                 labelStyle={{ color: 'white' }}
                                 contentStyle={{ backgroundColor: 'black', borderRadius: '5px' }}
                                 formatter={(a: any) => {
