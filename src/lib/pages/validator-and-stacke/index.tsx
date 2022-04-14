@@ -23,11 +23,11 @@ import {
   TotalWalletAlreadyStaked,
   TotalWalletStaked,
 } from "types/type";
-import ChartBox from "lib/components/basic/LineChart";
-import { StatsCard } from "lib/components/basic/BasicCard";
-import MultiChartBox from "lib/components/basic/MultiLineChart";
-import BarGraph from "lib/components/basic/BarGraph";
-import DonutChart from "lib/components/basic/DonutChart";
+import ChartBox from "lib/components/charts/LineChart";
+import { StatsCard } from "lib/components/charts/StateCard";
+import MultiChartBox from "lib/components/charts/MultiLineChart";
+import BarGraph from "lib/components/charts/BarGraph";
+import DonutChart from "lib/components/charts/DonutChart";
 
 
 

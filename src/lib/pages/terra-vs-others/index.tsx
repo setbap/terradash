@@ -2,8 +2,8 @@ import { Box, Text, chakra, SimpleGrid, useColorModeValue } from "@chakra-ui/rea
 import { LunaVsBtcPrice, LunaVsEthPrice } from "types/type";
 import ReactMarkdown from 'react-markdown'
 import Renderer from 'chakra-ui-markdown-renderer'
-import MultiChartBox from "lib/components/basic/MultiLineChart";
-import BarGraph from "lib/components/basic/BarGraph";
+import MultiChartBox from "lib/components/charts/MultiLineChart";
+import BarGraph from "lib/components/charts/BarGraph";
 
 const glossary = `
 

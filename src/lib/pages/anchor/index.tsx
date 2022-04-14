@@ -5,15 +5,15 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { StatsCard } from "lib/components/basic/BasicCard";
+import { StatsCard } from "lib/components/charts/StateCard";
 import {
   AnchorBorrowAndDeposit,
   AnchorUserBorrowAndDeposit,
   SumAnchorBorrows,
   SumAnchorDeposite,
 } from "types/type";
-import ChartBox from "lib/components/basic/LineChart";
-import MultiChartBox from "lib/components/basic/MultiLineChart";
+import ChartBox from "lib/components/charts/LineChart";
+import MultiChartBox from "lib/components/charts/MultiLineChart";
 import ReactMarkdown from 'react-markdown'
 import Renderer from 'chakra-ui-markdown-renderer'
 const glossary = `

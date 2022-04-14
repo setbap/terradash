@@ -30,6 +30,16 @@ const About = () => {
                         {`
 this dashboard was created as [**FlipSideCrypto bounty**](http://flipsidecrypto.xyz/) project. this dashboard contain 50 query to flipside datawherehouse.
 more info comming soon.
+
+---
+### Change Log 
+ - 4/15/2022
+	 - fix overflow expand in mobile
+	 - fix Invalid Date on safari (maybe😛 - stay away from safari to keep safe)
+	 - disable scale on hover in chart
+
+
+
                         `}
                     </ReactMarkdown>
                 </Box>

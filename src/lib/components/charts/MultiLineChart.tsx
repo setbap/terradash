@@ -16,6 +16,8 @@ import {
     ResponsiveContainer,
 } from "recharts";
 import moment from "moment";
+import ChartSpanMenu from "../basic/ChartSpanMenu";
+import { GRID_ITEM_SIZE } from "./template";
 
 interface Props {
     baseSpan?: number
@@ -31,7 +33,7 @@ interface Props {
 }
 
 const MultiChartBox = ({ isNotDate = false, baseSpan = 1, multiOff = false, areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTitle, chartColors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"] }: Props) => {
-    const [spanItem, setSpanItem] = useState(baseSpan)
+    const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
     const OverlayOne = () => (
         <ModalOverlay
             bg='blackAlpha.700'
@@ -49,7 +51,7 @@ const MultiChartBox = ({ isNotDate = false, baseSpan = 1, multiOff = false, area
     return (
         <GridItem rowSpan={1} colSpan={spanItem} >
             <Box color={textColor} bgColor={bgCard} shadow='base'
-                transition={'all 0.5s '} _hover={{ transform: 'scale(1.01)', boxShadow: 'var(--chakra-shadows-lg)' }} borderRadius={'2xl'}
+                transition={'all 0.5s '} _hover={{ boxShadow: 'var(--chakra-shadows-lg)' }} borderRadius={'2xl'}
                 width="100%"
             >
                 <Box
@@ -86,11 +88,7 @@ const MultiChartBox = ({ isNotDate = false, baseSpan = 1, multiOff = false, area
                                     variant='outline'
                                 />
                                 <MenuList >
-                                    <MenuOptionGroup onChange={(span) => setSpanItem(+span)} defaultValue={baseSpan.toString()} title='Chart Span' type='radio'>
-                                        <MenuItemOption value={'1'}>1 {baseSpan === 1 && '(default)'}</MenuItemOption>
-                                        <MenuItemOption value={'2'}>2 {baseSpan === 2 && '(default)'}</MenuItemOption>
-                                        <MenuItemOption value={'3'}>3 {baseSpan === 3 && '(default)'}</MenuItemOption>
-                                    </MenuOptionGroup>
+                                    <ChartSpanMenu onChange={(span) => setSpanItem(GRID_ITEM_SIZE[Number(span) - 1])} baseSpan={baseSpan} />
                                 </MenuList>
                             </Menu>
                         </Box>

@@ -1,9 +1,9 @@
 import { Box, Text, chakra, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
 import { AvgFeeEachCoin, AvgTxCountPerBlock, DailyBlockCount, DailyTx, TotalFeeEachCoin, TotalTx } from "types/type";
-import ChartBox from 'lib/components/basic/LineChart';
-import { StatsCard } from "lib/components/basic/BasicCard";
-import DonutChart from "lib/components/basic/DonutChart";
-import BarGraph from "lib/components/basic/BarGraph";
+import ChartBox from 'lib/components/charts/LineChart';
+import { StatsCard } from "lib/components/charts/StateCard";
+import DonutChart from "lib/components/charts/DonutChart";
+import BarGraph from "lib/components/charts/BarGraph";
 import ReactMarkdown from 'react-markdown'
 import Renderer from 'chakra-ui-markdown-renderer'
 

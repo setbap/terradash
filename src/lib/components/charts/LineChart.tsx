@@ -1,38 +1,45 @@
-import React, { useState } from "react";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, Label, ResponsiveContainer, CartesianGrid } from "recharts";
+import { chakra, Box, Button, Text, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useColorModeValue, GridItem, Menu, MenuButton, MenuItem, MenuList, MenuOptionGroup, MenuItemOption } from "@chakra-ui/react";
+import { useState } from "react";
+import moment from 'moment';
 import millify from "millify";
-import {
-    Box, IconButton, chakra, Modal, ModalContent, ModalHeader, ModalCloseButton,
-    Text, ModalBody, ModalFooter, Button, ModalOverlay, useColorModeValue, useDisclosure, GridItem, Menu, MenuButton, MenuItemOption, MenuList, MenuOptionGroup
-} from "@chakra-ui/react";
-import { AiOutlineExpand, AiOutlineInfoCircle } from "react-icons/ai";
 import ReactMarkdown from 'react-markdown'
-import moment from "moment";
+import { AiOutlineExpand, AiOutlineInfoCircle } from "react-icons/ai";
+import {
+    AreaChart,
+    Legend,
+    Area,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    ResponsiveContainer,
+} from "recharts";
+import { GRID_ITEM_SIZE } from "./template";
+import ChartSpanMenu from "../basic/ChartSpanMenu";
 
-const BarGraph = ({
-    title,
-    dataKey,
-    oxLabel,
-    oyLabel,
-    values,
-    baseSpan = 1,
-    labels,
-    modelInfo,
-    isNotDate = false
-}: {
-    title: string,
-    dataKey: string,
-    oxLabel: string,
-    oyLabel: string,
-    isNotDate?: boolean
-    values: any[],
-    modelInfo: string,
-    baseSpan?: number,
-    labels: { key: string; color: string }[],
-}) => {
-    const [spanItem, setSpanItem] = useState(baseSpan)
+interface Props {
+    modelInfo: string
+    xAxisDataKey: string;
+    areaDataKey: string;
+    title: string;
+    tooltipTitle: string;
+    data: any[];
+    extraDecimal?: number
+    isNotDate?: boolean;
+    domain?: [number, number]
+    baseSpan?: number;
+}
+
+const ChartBox = ({ baseSpan = 1, isNotDate = false, extraDecimal = 2, domain, areaDataKey, xAxisDataKey, data, title, modelInfo, tooltipTitle }: Props) => {
+    const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
+    const OverlayOne = () => (
+        <ModalOverlay
+            bg='blackAlpha.700'
+            backdropFilter='blur(10px) hue-rotate(20deg)'
+        />
+    )
     const [barProps, setBarProps] = useState(
-        labels.reduce(
+        data.reduce(
             (a: any, { key }: any) => {
                 a[key] = false;
                 return a;
@@ -40,21 +47,6 @@ const BarGraph = ({
             { hover: null }
         )
     );
-    const OverlayOne = () => (
-        <ModalOverlay
-            bg='blackAlpha.700'
-            backdropFilter='blur(10px) hue-rotate(20deg)'
-        />
-    )
-
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const bgTooltip = useColorModeValue('gray.300', 'gray.700');
-    const bgCard = useColorModeValue('white', '#191919');
-    const textColor = useColorModeValue('gray.900', 'gray.100');
-    const [overlay, setOverlay] = useState(<OverlayOne />)
-
-
-
 
     const handleLegendMouseEnter = (e: any) => {
         if (!barProps[e.dataKey]) {
@@ -74,10 +66,16 @@ const BarGraph = ({
         });
     };
 
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const bgTooltip = useColorModeValue('gray.300', 'gray.700');
+    const bgCard = useColorModeValue('white', '#191919');
+    const textColor = useColorModeValue('gray.900', 'gray.100');
+    const [overlay, setOverlay] = useState(<OverlayOne />)
+
     return (
         <GridItem rowSpan={1} colSpan={spanItem} >
             <Box color={textColor} bgColor={bgCard} shadow='base'
-                transition={'all 0.5s '} _hover={{ transform: 'scale(1.01)', boxShadow: 'var(--chakra-shadows-lg)' }} borderRadius={'2xl'}
+                transition={'all 0.5s '} _hover={{ boxShadow: 'var(--chakra-shadows-lg)' }} borderRadius={'2xl'}
                 width="100%"
             >
                 <Box
@@ -113,15 +111,10 @@ const BarGraph = ({
                                 variant='outline'
                             />
                             <MenuList >
-                                <MenuOptionGroup onChange={(span) => setSpanItem(+span)} defaultValue={baseSpan.toString()} title='Chart Span' type='radio'>
-                                    <MenuItemOption value={'1'}>1 {baseSpan === 1 && '(default)'}</MenuItemOption>
-                                    <MenuItemOption value={'2'}>2 {baseSpan === 2 && '(default)'}</MenuItemOption>
-                                    <MenuItemOption value={'3'}>3 {baseSpan === 3 && '(default)'}</MenuItemOption>
-                                </MenuOptionGroup>
+                                <ChartSpanMenu onChange={(span) => setSpanItem(GRID_ITEM_SIZE[Number(span) - 1])} baseSpan={baseSpan} />
+
                             </MenuList>
                         </Menu>
-
-
                         <Modal isCentered isOpen={isOpen} onClose={onClose}>
                             {overlay}
                             <ModalContent>
@@ -137,74 +130,81 @@ const BarGraph = ({
                             </ModalContent>
                         </Modal>
 
-
                     </Box>
                     <Box p={'1'} />
-
                     <ResponsiveContainer width={"100%"}>
-                        <BarChart
-                            data={values}
+                        <AreaChart
+                            data={data}
+                            syncId={`${areaDataKey}-${xAxisDataKey}`}
                             className="mt-1 mb-2"
                         >
+                            <defs>
+                                <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
+                                    <stop
+                                        offset="0%"
+                                        style={{ stopColor: "#0953fe" }}
+                                        stopOpacity={0.15}
+
+                                    />
+                                    <stop
+                                        offset="95%"
+                                        style={{ stopColor: "#0343ee" }}
+                                        stopOpacity={0.1}
+                                    />
+                                </linearGradient>
+                            </defs>
                             <CartesianGrid
                                 style={{ stroke: "rgba(10,10,10,0.1)", opacity: 0.25 }}
                                 strokeDasharray="3 3"
                             />
-                            <XAxis fontSize={"12px"} tickFormatter={(value) => isNotDate ? value : moment(value).toDate().toLocaleDateString()} dataKey={dataKey}>
-                                {/* <Label value={oxLabel} position="center" dy={10} dx={20} /> */}
-                            </XAxis>
-                            <YAxis fontSize={"12px"} type="number" tickFormatter={(value) => millify(value, {
-                                precision: 2,
-                                decimalSeparator: ","
-                            })
-                            }>
-                                <Label
-                                    value={oyLabel}
-                                    position="left"
-                                    fontSize={'16px'}
-                                    angle={-90}
-                                    dy={-20}
-                                    style={{
-                                        color: textColor
-                                    }}
-                                    dx={10}
-                                />
-                            </YAxis>
+                            <XAxis
+                                fontSize={12}
+                                color={'var(--textColor)'}
+                                tickFormatter={(value) => {
+                                    return isNotDate ? value : moment(value).toDate().toLocaleDateString();
+                                }}
+                                dataKey={xAxisDataKey}
+                            />
+                            <YAxis
+                                domain={domain}
+                                tickFormatter={(value) => millify(value, {
+                                    precision: extraDecimal,
+                                    decimalSeparator: ","
+                                })} width={40} fontSize="12" tickSize={8} />
+
+
                             <Tooltip
                                 labelFormatter={(value: string) => isNotDate ? value : moment(value).toDate().toDateString()}
                                 labelStyle={{ color: 'white' }}
                                 contentStyle={{ backgroundColor: 'black', borderRadius: '5px' }}
                                 formatter={(a: any) => {
                                     return millify(a, {
-                                        precision: 2,
+                                        precision: extraDecimal,
                                         decimalSeparator: ","
                                     })
                                 }} />
+                            <Area
+
+                                dataKey={areaDataKey}
+
+                                style={{ stroke: "#0953fe50" }}
+                                fill="url(#color)"
+
+                            />
                             <Legend
+                                verticalAlign="top"
                                 fontSize={"8px"}
                                 style={{ fontSize: '7px' }}
                                 onClick={selectBar}
                                 onMouseOver={handleLegendMouseEnter}
                                 onMouseOut={handleLegendMouseLeave}
                             />
-                            {labels.map((label, index) => (
-                                <Bar
-                                    key={index}
-                                    dataKey={label.key}
-                                    fill={label.color}
-                                    stackId={dataKey}
-                                    hide={barProps[label.key] === true}
-                                    fillOpacity={Number(
-                                        barProps.hover === label.key || !barProps.hover ? 1 : 0.6
-                                    )}
-                                />
-                            ))}
-                        </BarChart>
+                        </AreaChart>
                     </ResponsiveContainer>
                 </Box>
-            </Box>
+            </Box >
         </GridItem>
     );
 };
 
-export default BarGraph;
+export default ChartBox;

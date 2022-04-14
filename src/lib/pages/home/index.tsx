@@ -20,12 +20,12 @@ import {
   TotalNumberOfWallets,
   TotalUSTSupply,
 } from "types/type";
-import ChartBox from "lib/components/basic/LineChart";
-import { StatsCard } from "lib/components/basic/BasicCard";
-import MultiChartBox from "lib/components/basic/MultiLineChart";
+import ChartBox from "lib/components/charts/LineChart";
+import { StatsCard } from "lib/components/charts/StateCard";
+import MultiChartBox from "lib/components/charts/MultiLineChart";
 import ReactMarkdown from 'react-markdown'
 import Renderer from 'chakra-ui-markdown-renderer'
-import BarGraph from "lib/components/basic/BarGraph";
+import BarGraph from "lib/components/charts/BarGraph";
 
 
 const glossary = `
@@ -132,7 +132,7 @@ const Home = ({
         <SimpleGrid
           transition={'all 0.9s ease-in-out'}
           py={"8"}
-          columns={{ base: 1, md: 1, lg: 2, "2xl": 3 }}
+          columns={{ sm: 1, md: 1, lg: 2, "2xl": 3 }}
           spacing={{ base: 1, md: 2, lg: 4 }}
         >
 

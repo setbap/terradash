@@ -30,6 +30,8 @@ import {
 } from "react-icons/ai";
 import { ResponsiveContainer, PieChart, Pie, Sector } from "recharts";
 import millify from "millify";
+import { GRID_ITEM_SIZE } from "./template";
+import ChartSpanMenu from "../basic/ChartSpanMenu";
 interface Props {
     modelInfo: string;
     dataKey: string;
@@ -49,7 +51,7 @@ const DonutChart = ({
     modelInfo,
     tooltipTitle,
 }: Props) => {
-    const [spanItem, setSpanItem] = useState(1);
+    const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan]);
 
     const [state, setState] = useState({
         activeIndex: 0,
@@ -102,7 +104,6 @@ const DonutChart = ({
 
         return (
             <g>
-
                 <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
                     {payload.name}
                 </text>
@@ -156,14 +157,13 @@ const DonutChart = ({
     };
 
     return (
-        <GridItem rowSpan={1} colSpan={spanItem}>
+        <GridItem rowSpan={1} colSpan={spanItem} >
             <Box
                 color={textColor}
                 bgColor={bgCard}
                 shadow="base"
                 transition={"all 0.5s "}
                 _hover={{
-                    transform: "scale(1.01)",
                     boxShadow: "var(--chakra-shadows-lg)",
                 }}
                 borderRadius={"2xl"}
@@ -213,11 +213,7 @@ const DonutChart = ({
                                 variant='outline'
                             />
                             <MenuList >
-                                <MenuOptionGroup onChange={(span) => setSpanItem(+span)} defaultValue={baseSpan.toString()} title='Chart Span' type='radio'>
-                                    <MenuItemOption value={'1'}>1 {baseSpan === 1 && '(default)'}</MenuItemOption>
-                                    <MenuItemOption value={'2'}>2 {baseSpan === 2 && '(default)'}</MenuItemOption>
-                                    <MenuItemOption value={'3'}>3 {baseSpan === 3 && '(default)'}</MenuItemOption>
-                                </MenuOptionGroup>
+                                <ChartSpanMenu onChange={(span) => setSpanItem(GRID_ITEM_SIZE[Number(span) - 1])} baseSpan={baseSpan} />
                             </MenuList>
                         </Menu>
                         <Modal isCentered isOpen={isOpen} onClose={onClose}>

@@ -1,7 +1,7 @@
 import { Box, Text, chakra, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
 import { DailySwapCount, DailySwapVolume, MostUserIntractedDapps, TopNativeSwapPair } from "types/type";
-import ChartBox from 'lib/components/basic/LineChart';
-import BarGraph from "lib/components/basic/BarGraph";
+import ChartBox from 'lib/components/charts/LineChart';
+import BarGraph from "lib/components/charts/BarGraph";
 import ReactMarkdown from 'react-markdown'
 import Renderer from 'chakra-ui-markdown-renderer'
 const glossary = `
