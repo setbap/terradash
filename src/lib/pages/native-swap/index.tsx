@@ -33,12 +33,13 @@ const Home = ({ topNativeSwapPair, dailySwapCount, dailySwapVolume, mostUserIntr
             {glossary}
           </ReactMarkdown>
         </Box>
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 4 }} spacing={{ base: 5, lg: 8 }}>
+        <SimpleGrid columns={{ sm: 1, md: 1, lg: 2, "2xl": 3 }} spacing={{ base: 5, lg: 8 }}>
         </SimpleGrid>
         <SimpleGrid py={'8'} columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 2, md: 4, lg: 8 }}>
           <BarGraph
             modelInfo="this chart shows the 10 most popular native swap that occurs in the terra blockchain. LUNA to UST is the most used and after that is UST to LUNA."
             values={topNativeSwapPair}
+            baseSpan={1}
             title="Top native swap pairs in Terra"
             dataKey="swap pair"
             oyLabel="number of swaps"

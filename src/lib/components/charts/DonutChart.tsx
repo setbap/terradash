@@ -51,7 +51,7 @@ const DonutChart = ({
     modelInfo,
     tooltipTitle,
 }: Props) => {
-    const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan]);
+    const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
 
     const [state, setState] = useState({
         activeIndex: 0,
@@ -74,6 +74,8 @@ const DonutChart = ({
     const bgTooltip = useColorModeValue("gray.300", "gray.700");
     const bgCard = useColorModeValue("white", "#191919");
     const textColor = useColorModeValue("gray.900", "gray.100");
+    const centerCircleTextColor = useColorModeValue("rgb(30,30,30)", "rgb(210,210,210)");
+
     const [overlay, setOverlay] = useState(<OverlayOne />);
 
     const renderActiveShape = (props: any) => {
@@ -94,17 +96,17 @@ const DonutChart = ({
         } = props;
         const sin = Math.sin(-RADIAN * midAngle);
         const cos = Math.cos(-RADIAN * midAngle);
-        const sx = cx + (outerRadius + 10) * cos;
-        const sy = cy + (outerRadius + 10) * sin;
-        const mx = cx + (outerRadius + 30) * cos;
-        const my = cy + (outerRadius + 30) * sin;
-        const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+        const sx = cx + (outerRadius + 7) * cos;
+        const sy = cy + (outerRadius + 7) * sin;
+        const mx = cx + (outerRadius + 20) * cos;
+        const my = cy + (outerRadius + 20) * sin;
+        const ex = mx + (cos >= 0 ? 1 : -1) * 11;
         const ey = my;
         const textAnchor = cos >= 0 ? "start" : "end";
 
         return (
             <g>
-                <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
+                <text x={cx} y={cy} dy={3} textAnchor="middle" fill={fill}>
                     {payload.name}
                 </text>
                 <Sector
@@ -121,37 +123,47 @@ const DonutChart = ({
                     cy={cy}
                     startAngle={startAngle}
                     endAngle={endAngle}
-                    innerRadius={outerRadius + 6}
-                    outerRadius={outerRadius + 10}
-                    fill={fill}
+                    innerRadius={outerRadius + 2}
+                    outerRadius={outerRadius + 6}
+                    fill={'rgb(100,255,100)'}
                 />
-                <path
+                {/* <path
                     d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
-                    stroke={fill}
+                    stroke={'rgb(100,255,100)'}
                     fill="none"
                 />
-                <circle cx={ex} cy={ey} r={4} fill={fill} stroke="none" />
+                <circle cx={ex} cy={ey} r={4} fill={'rgb(100,255,100)'} stroke="none" /> */}
                 <text
-                    x={ex + (cos >= 0 ? 1 : -1) * 12}
-                    y={ey}
-                    textAnchor={textAnchor}
-                    fill="#333"
-                >{`${name}  ${millify(value, {
+                    x={cx}
+                    y={cy - 16}
+                    fontSize={16}
+                    textAnchor={'middle'}
+                    fill={centerCircleTextColor}
+                >{`${millify(value, {
                     precision: 2,
                     decimalSeparator: ",",
-                })} `}</text>
+                })}`}</text>
                 <text
-                    x={ex + (cos >= 0 ? 1 : -1) * 12}
-                    y={ey}
-                    dy={18}
-                    textAnchor={textAnchor}
-                    fill="#999"
-                >
-                    {`(Rate ${millify(percent * 100, {
-                        precision: 2,
-                        decimalSeparator: ",",
-                    })}%)`}
-                </text>
+                    // x={ex + (cos >= 0 ? 1 : -1) * 7}
+                    // y={ey + 4}
+                    x={cx}
+                    y={cy + 8}
+                    fontSize={20}
+                    // textAnchor={textAnchor}
+                    textAnchor={'middle'}
+                    fill={centerCircleTextColor}
+                >{`${name}`}</text>
+
+                <text
+                    x={cx}
+                    y={cy + 32}
+                    textAnchor={'middle'}
+                    fontSize={14}
+                    fill={centerCircleTextColor}
+                >{`(Rate ${millify(percent * 100, {
+                    precision: 2,
+                    decimalSeparator: ",",
+                })}%)`}</text>
             </g>
         );
     };
@@ -241,8 +253,8 @@ const DonutChart = ({
                                 data={data}
                                 cx="50%"
                                 cy="50%"
-                                innerRadius={60}
-                                outerRadius={100}
+                                innerRadius={90}
+                                outerRadius={115}
                                 fill="#0953fe"
                                 dataKey={dataKey}
                                 nameKey={nameKey}

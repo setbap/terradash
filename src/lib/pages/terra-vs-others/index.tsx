@@ -45,7 +45,7 @@ const Home = ({ lunaVsETHPrice, lunaVsBtcPrice }: Props) => {
             {glossary}
           </ReactMarkdown>
         </Box>
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 4 }} spacing={{ base: 5, lg: 8 }}>
+        <SimpleGrid columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 5, lg: 8 }}>
 
 
         </SimpleGrid>

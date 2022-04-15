@@ -34,9 +34,11 @@ more info comming soon.
 ---
 ### Change Log 
  - 4/15/2022
+	 - change donut chart path and put it to center
 	 - fix overflow expand in mobile
-	 - fix Invalid Date on safari (maybe😛 - stay away from safari to keep safe)
+	 - fix Invalid Date on safari (maybe😛)
 	 - disable scale on hover in chart
+
 
 
 

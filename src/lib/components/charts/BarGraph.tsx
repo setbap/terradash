@@ -32,7 +32,7 @@ const BarGraph = ({
     baseSpan?: number,
     labels: { key: string; color: string }[],
 }) => {
-    const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan]);
+    const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
     const [barProps, setBarProps] = useState(
         labels.reduce(
             (a: any, { key }: any) => {

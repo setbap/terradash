@@ -42,7 +42,7 @@ const Home = ({ dailyTx, totalTx, totalFeeEachCoin, avgFeeEachCoin, dailyBlockCo
             {glossary}
           </ReactMarkdown>
         </Box>
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 4 }} spacing={{ base: 5, lg: 8 }}>
+        <SimpleGrid columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 5, lg: 8 }}>
           <StatsCard status="inc" title={"Total number of TX in Terra"} stat={totalTx["TOTAL_TX"]} />
           <StatsCard status="inc" title={"Avrage Number of Tx in each block"} stat={avgTxCountPerBlock["avg_tx_count_per_block"]} />
 
