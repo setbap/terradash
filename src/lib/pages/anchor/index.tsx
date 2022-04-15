@@ -16,6 +16,7 @@ import ChartBox from "lib/components/charts/LineChart";
 import MultiChartBox from "lib/components/charts/MultiLineChart";
 import ReactMarkdown from 'react-markdown'
 import Renderer from 'chakra-ui-markdown-renderer'
+import moment from "moment";
 const glossary = `
 ### [__Anchor__](https://docs.anchorprotocol.com/ "Permalink to this headline")
 
@@ -165,7 +166,7 @@ const Home = ({
           />
 
           <MultiChartBox
-            data={borrowAndDepositUser}
+            data={borrowAndDepositUser.sort((a, b) => moment(a['day']).isAfter(moment(b['day'])) ? 1 : -1)}
             tooltipTitle={[
               "number of wallet borrows",
               "number of wallet deposits",

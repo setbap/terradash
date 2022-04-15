@@ -1,4 +1,5 @@
-import {  Box,
+import {
+  Box,
   useColorModeValue,
   GridItem,
   MenuList,
@@ -21,6 +22,7 @@ import {
 import { GRID_ITEM_SIZE } from "./template";
 import ChartSpanMenu from "../basic/ChartSpanMenu";
 import ChartHeader from "../basic/ChartHeader";
+import { FilterDayBarBox } from "../basic/FilterDayBar";
 
 interface Props {
   modelInfo: string;
@@ -33,6 +35,7 @@ interface Props {
   isNotDate?: boolean;
   domain?: [number, number];
   baseSpan?: number;
+  defultSelectedRange?: number | string;
 }
 
 const ChartBox = ({
@@ -45,6 +48,7 @@ const ChartBox = ({
   data,
   title,
   modelInfo,
+  defultSelectedRange = 'all'
 }: Props) => {
   const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
   const [barProps, setBarProps] = useState(
@@ -56,6 +60,23 @@ const ChartBox = ({
       { hover: null }
     )
   );
+
+  const [selectedDate, setSelectedDate] = useState<number | string>(defultSelectedRange)
+  const [chartData, setChartData] = useState(data);
+  const filterDateAccordingDay = (numberOfDays: number) => {
+    const lastDay = moment(data[data.length - 1][xAxisDataKey]).subtract(numberOfDays, 'days');
+    const newData = data.filter(item => {
+      return moment(item[xAxisDataKey]).isAfter(lastDay)
+    })
+    setSelectedDate(numberOfDays);
+    setChartData(newData)
+  }
+  const resetChartData = () => {
+    setSelectedDate('all');
+    setChartData(data)
+  }
+
+
   const handleLegendMouseEnter = (e: any) => {
     if (!barProps[e.dataKey]) {
       setBarProps({ ...barProps, hover: e.dataKey });
@@ -77,6 +98,7 @@ const ChartBox = ({
   const bgCard = useColorModeValue("white", "#191919");
   const textColor = useColorModeValue("gray.900", "gray.100");
 
+
   return (
     <GridItem
       rowSpan={1}
@@ -97,8 +119,8 @@ const ChartBox = ({
         display="flex"
         flexDir={"column"}
         alignItems="center"
-        // height={"480px"}
-        height={"400px"}
+        height={"480px"}
+        // height={"400px"}
         id={title}
       >
         <ChartHeader
@@ -118,7 +140,7 @@ const ChartBox = ({
         <Box p={"1"} />
         <ResponsiveContainer width={"100%"}>
           <AreaChart
-            data={data}
+            data={chartData}
             syncId={`${areaDataKey}-${xAxisDataKey}`}
             className="mt-1 mb-2"
           >
@@ -191,13 +213,13 @@ const ChartBox = ({
             />
           </AreaChart>
         </ResponsiveContainer>
-        {/* <Box p={"1"} />
-        <Box height={"44px"}>
-          <ButtonGroup size={"sm"} variant="outline" spacing="6">
-            <Button>1D</Button>
-            <Button>1W</Button>
-          </ButtonGroup>
-        </Box> */}
+        {!isNotDate && <><Box p={"1"} />
+          <FilterDayBarBox
+            selecteRange={selectedDate}
+            onClick={filterDateAccordingDay}
+            onResetClick={resetChartData}
+            filters={[{ day: 7, name: "1W" }, { day: 30, name: "1M" }, { day: 180, name: "6M" }, { day: 365, name: "1Y" }]}
+          /></>}
       </Box>
     </GridItem>
   );

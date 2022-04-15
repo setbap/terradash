@@ -51,6 +51,7 @@ export interface AnchorBorrowAndDeposit {
 }
 
 export interface AnchorUserBorrowAndDeposit {
+  day: string;
   "unique user borrows": number;
   "unique user deposits": number;
 }

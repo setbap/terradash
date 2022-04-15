@@ -1,30 +1,14 @@
-import {  chakra,
+import {
   Box,
-  Button,
-  Text,
-  IconButton,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
   ModalOverlay,
   useDisclosure,
   useColorModeValue,
   GridItem,
-  Menu,
-  MenuButton,
-  MenuItemOption,
   MenuList,
-  MenuOptionGroup,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import millify from "millify";
-import ReactMarkdown from "react-markdown";
-import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 
-import { AiOutlineExpand, AiOutlineInfoCircle } from "react-icons/ai";
 import {
   LineChart,
   Line,
@@ -39,6 +23,7 @@ import moment from "moment";
 import ChartSpanMenu from "../basic/ChartSpanMenu";
 import { GRID_ITEM_SIZE } from "./template";
 import ChartHeader from "../basic/ChartHeader";
+import { FilterDayBarBox } from "../basic/FilterDayBar";
 
 interface Props {
   baseSpan?: number;
@@ -51,6 +36,7 @@ interface Props {
   chartColors?: string[];
   multiOff?: boolean;
   isNotDate?: boolean;
+  defultSelectedRange?: number | string;
 }
 
 const MultiChartBox = ({
@@ -63,21 +49,28 @@ const MultiChartBox = ({
   title,
   modelInfo,
   tooltipTitle,
+  defultSelectedRange = 'all',
   chartColors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"],
 }: Props) => {
   const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
-  const OverlayOne = () => (
-    <ModalOverlay
-      bg="blackAlpha.700"
-      backdropFilter="blur(10px) hue-rotate(20deg)"
-    />
-  );
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const bgTooltip = useColorModeValue("gray.300", "gray.700");
   const bgCard = useColorModeValue("white", "#191919");
   const textColor = useColorModeValue("gray.900", "gray.100");
-  const [overlay, setOverlay] = useState(<OverlayOne />);
+
+  const [selectedDate, setSelectedDate] = useState<number | string>(defultSelectedRange)
+  const [chartData, setChartData] = useState(data);
+  const filterDateAccordingDay = (numberOfDays: number) => {
+    const lastDay = moment(data[data.length - 1][xAxisDataKey]).subtract(numberOfDays, 'days');
+    const newData = data.filter(item => {
+      return moment(item[xAxisDataKey]).isAfter(lastDay)
+    })
+    setSelectedDate(numberOfDays);
+    setChartData(newData)
+  }
+  const resetChartData = () => {
+    setSelectedDate('all');
+    setChartData(data)
+  }
 
   return (
     <GridItem
@@ -100,7 +93,7 @@ const MultiChartBox = ({
         display="flex"
         flexDir={"column"}
         alignItems="center"
-        height={"400px"}
+        height={"480px"}
         id={title}
       >
         <ChartHeader
@@ -121,7 +114,7 @@ const MultiChartBox = ({
 
         <ResponsiveContainer width={"100%"}>
           <LineChart
-            data={data}
+            data={chartData}
             syncId={`${areaDataKey}-${xAxisDataKey}`}
             className="mt-1 mb-2"
           >
@@ -167,6 +160,7 @@ const MultiChartBox = ({
               fontSize={12}
               color={"var(--textColor)"}
               tickFormatter={(value) => {
+                console.log({ data: moment(value), value })
                 return isNotDate
                   ? value
                   : moment(value).toDate().toLocaleDateString();
@@ -225,6 +219,13 @@ const MultiChartBox = ({
             <Legend fontSize={"8px"} verticalAlign="top" height={12} />
           </LineChart>
         </ResponsiveContainer>
+        {!isNotDate && <><Box p={"1"} />
+          <FilterDayBarBox
+            selecteRange={selectedDate}
+            onClick={filterDateAccordingDay}
+            onResetClick={resetChartData}
+            filters={[{ day: 7, name: "1W" }, { day: 30, name: "1M" }, { day: 180, name: "6M" }, { day: 365, name: "1Y" }]}
+          /></>}
       </Box>
     </GridItem>
   );

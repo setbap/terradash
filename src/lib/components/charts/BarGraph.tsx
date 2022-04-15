@@ -1,4 +1,4 @@
-import React, { useState } from "react";import {
+import React, { useState } from "react"; import {
   BarChart,
   Bar,
   XAxis,
@@ -89,7 +89,7 @@ const BarGraph = ({
         display="flex"
         flexDir={"column"}
         alignItems="center"
-        height={"400px"}
+        height={"480px"}
         id={title}
       >
         <ChartHeader

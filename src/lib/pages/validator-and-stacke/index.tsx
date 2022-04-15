@@ -215,15 +215,14 @@ const Home = ({
           />
           <MultiChartBox data={proposalsCountMonthlyVsLUNAPrice}
             chartColors={['#0953fe', '#f2a900']}
-            isNotDate
             tooltipTitle={["No of proposal", "avg price"]}
             modelInfo="compare number of proposal in each month and average price of luna to see is this two number have correlation with each other or not(unit of each one is diffrent)"
             title="proposal vs avg price"
             areaDataKey={["No of proposal", "avg price"]}
             xAxisDataKey="month" />
-          <MultiChartBox data={proposalsCountMonthlyVsMonthlyVotes}
+          <MultiChartBox
+            data={proposalsCountMonthlyVsMonthlyVotes}
             chartColors={['#0953fe', '#f2a900']}
-            isNotDate
             tooltipTitle={["number of proposal", "monthly votes"]}
             modelInfo="compare number of proposal in each month and number of votes in Terra to see is this two number have correlation with each other or not(unit of each one is diffrent)"
             title="votes vs proposal"

@@ -1,4 +1,4 @@
-import { Box, chakra, useColorModeValue } from "@chakra-ui/react";import ReactMarkdown from "react-markdown";
+import { Box, chakra, useColorModeValue } from "@chakra-ui/react"; import ReactMarkdown from "react-markdown";
 import Renderer from "chakra-ui-markdown-renderer";
 
 const About = () => {
@@ -37,6 +37,8 @@ more info comming soon.
 	 - fix overflow expand in mobile
 	 - fix Invalid Date on safari (maybe😛)
 	 - disable scale on hover in chart
+   - add change time frame on chart
+   - improve page component base
 
 
 

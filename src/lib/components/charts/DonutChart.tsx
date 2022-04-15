@@ -49,7 +49,6 @@ const DonutChart = ({
         const {
             cx,
             cy,
-            midAngle,
             innerRadius,
             outerRadius,
             startAngle,
@@ -60,15 +59,6 @@ const DonutChart = ({
             value,
             name,
         } = props;
-        const sin = Math.sin(-RADIAN * midAngle);
-        const cos = Math.cos(-RADIAN * midAngle);
-        const sx = cx + (outerRadius + 7) * cos;
-        const sy = cy + (outerRadius + 7) * sin;
-        const mx = cx + (outerRadius + 20) * cos;
-        const my = cy + (outerRadius + 20) * sin;
-        const ex = mx + (cos >= 0 ? 1 : -1) * 11;
-        const ey = my;
-        const textAnchor = cos >= 0 ? "start" : "end";
 
         return (
             <g>
@@ -93,12 +83,7 @@ const DonutChart = ({
                     outerRadius={outerRadius + 6}
                     fill={"rgb(100,255,100)"}
                 />
-                {/* <path
-                    d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
-                    stroke={'rgb(100,255,100)'}
-                    fill="none"
-                />
-                <circle cx={ex} cy={ey} r={4} fill={'rgb(100,255,100)'} stroke="none" /> */}
+
                 <text
                     x={cx}
                     y={cy - 16}
@@ -110,12 +95,11 @@ const DonutChart = ({
                     decimalSeparator: ",",
                 })}`}</text>
                 <text
-                    // x={ex + (cos >= 0 ? 1 : -1) * 7}
-                    // y={ey + 4}
+
                     x={cx}
                     y={cy + 8}
                     fontSize={20}
-                    // textAnchor={textAnchor}
+
                     textAnchor={"middle"}
                     fill={centerCircleTextColor}
                 >{`${name}`}</text>
@@ -155,7 +139,7 @@ const DonutChart = ({
                     display="flex"
                     flexDir={"column"}
                     alignItems="center"
-                    height={"400px"}
+                    height={"480px"}
                     id={title}
                 >
                     <ChartHeader
