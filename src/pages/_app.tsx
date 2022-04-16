@@ -25,6 +25,7 @@ const BaseComponent = ({ children, defaultNetwork, walletConnectChainIds }: any)
 
 const MyApp = ({ Component, pageProps, defaultNetwork, walletConnectChainIds }: AppProps & WalletControllerChainOptions) => {
   const router = useRouter()
+  const AnyComponent = Component as any;
   return (
     <BaseComponent defaultNetwork={defaultNetwork} walletConnectChainIds={walletConnectChainIds} >
       <ChakraProvider theme={customTheme}>
@@ -37,7 +38,7 @@ const MyApp = ({ Component, pageProps, defaultNetwork, walletConnectChainIds }: 
         <DefaultSeo {...defaultSEOConfig} />
         <AnimatePresence>
           <Layout key={router.route}>
-            <Component {...pageProps} />
+            <AnyComponent {...pageProps} />
           </Layout>
         </AnimatePresence>
       </ChakraProvider>
