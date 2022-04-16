@@ -31,16 +31,23 @@ this dashboard was created as [**FlipSideCrypto bounty**](http://flipsidecrypto.
 more info comming soon.
 
 ---
-### Change Log 
- - 4/16/2022
-   - add custom time range for charts support date
- - 4/15/2022
-	 - change donut chart path and put it to center
-	 - fix overflow expand in mobile
-	 - improve date on safari
-	 - disable scale on hover in chart
-   - add change time frame on chart
-   - improve page component base
+### Change Log
+
+- 4/17/2022 [TODO]
+	- [ ] improve map legend
+	- [ ] ability to hide or show in multi-line chart
+	- [ ] add new type of charts(?)
+  - [ ] improve side bar menu(?)
+- 4/16/2022
+	- [x] add custom time range for charts support date
+- 4/15/2022
+  - [x]  change donut chart path and put it to center
+  - [x]  fix overflow expand in mobile
+  - [x]  improve date on safari
+  - [x] disable scale on hover in chart
+  - [x]  add change time frame on chart
+  - [x]  improve page component base
+
 
 
 
