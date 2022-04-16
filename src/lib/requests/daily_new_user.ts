@@ -7,8 +7,6 @@ export const getDailyNewUser = async () => {
   const dailyNewUser: RawDailyNewUser[] = await rawDailyNewUser.json();
 
   return dailyNewUser.map((item) => {
-    console.log(item.DATE);
-
     return {
       DATE: item.DATE,
       NUMBER_OF_UNIQUE_USER_PER_DAY: item.NUMBER_OF_UNIQUE_USER_PER_DAY,

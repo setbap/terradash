@@ -32,10 +32,12 @@ more info comming soon.
 
 ---
 ### Change Log 
+ - 4/16/2022
+   - add custom time range for charts support date
  - 4/15/2022
 	 - change donut chart path and put it to center
 	 - fix overflow expand in mobile
-	 - fix Invalid Date on safari (maybe😛)
+	 - improve date on safari
 	 - disable scale on hover in chart
    - add change time frame on chart
    - improve page component base

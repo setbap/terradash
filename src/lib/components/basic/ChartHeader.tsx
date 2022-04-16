@@ -1,7 +1,8 @@
-import { Box, IconButton, chakra, Menu, MenuButton, MenuList, Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, ModalOverlay, useDisclosure } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import { Box, IconButton, chakra, Menu, MenuButton, MenuList, Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, ModalOverlay, useDisclosure, Popover, PopoverArrow, PopoverCloseButton, PopoverContent, PopoverTrigger } from '@chakra-ui/react'
+import { useState } from 'react'
 import { AiOutlineInfoCircle, AiOutlineExpand } from 'react-icons/ai'
 import ReactMarkdown from 'react-markdown'
+
 
 export default function ChartHeader({ title, chartMenu, modalInfo }: { modalInfo: string, title: string, chartMenu: any }) {
     const OverlayOne = () => (
@@ -54,3 +55,6 @@ export default function ChartHeader({ title, chartMenu, modalInfo }: { modalInfo
         </Box>
     )
 }
+
+
+

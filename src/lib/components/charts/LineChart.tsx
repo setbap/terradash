@@ -71,6 +71,37 @@ const ChartBox = ({
     setSelectedDate(numberOfDays);
     setChartData(newData)
   }
+  const getMaxDate = () => {
+    let maxD = moment(data[0][xAxisDataKey]);
+    data.forEach(item => {
+      if (moment(item[xAxisDataKey]).isAfter(maxD)) {
+        maxD = moment(item[xAxisDataKey]);
+      }
+    });
+    return maxD;
+  }
+  // find the max value of the date in the data
+  const maxDate = isNotDate ? null : getMaxDate();
+  const getMinDate = () => {
+    let minD = moment(data[0][xAxisDataKey]);
+    data.forEach(item => {
+      if (moment(item[xAxisDataKey]).isBefore(minD)) {
+        minD = moment(item[xAxisDataKey]);
+      }
+    });
+    return minD;
+  }
+  const minDate = isNotDate ? null : getMinDate();
+
+
+  const filterDateAccordingRange = (minDate: Date, maxDate: Date) => {
+    const newData = data.filter(item => {
+      return moment(item[xAxisDataKey]).isAfter(minDate) && moment(item[xAxisDataKey]).isBefore(maxDate)
+    })
+    setSelectedDate("custom");
+    setChartData(newData)
+  }
+
   const resetChartData = () => {
     setSelectedDate('all');
     setChartData(data)
@@ -216,8 +247,11 @@ const ChartBox = ({
         {!isNotDate && <><Box p={"1"} />
           <FilterDayBarBox
             selecteRange={selectedDate}
-            onClick={filterDateAccordingDay}
+            onSelectLastNthDay={filterDateAccordingDay}
+            onSelectRangeDay={filterDateAccordingRange}
             onResetClick={resetChartData}
+            minDate={minDate!.toDate()!}
+            maxDate={maxDate!.toDate()}
             filters={[{ day: 7, name: "1W" }, { day: 30, name: "1M" }, { day: 180, name: "6M" }, { day: 365, name: "1Y" }]}
           /></>}
       </Box>
