@@ -1,4 +1,4 @@
-import { ButtonGroup, Button, Box, Popover, PopoverArrow, PopoverCloseButton, PopoverContent, PopoverTrigger, useDisclosure, FormControl, FormLabel } from "@chakra-ui/react";
+import { ButtonGroup, Button, Box, Popover, PopoverArrow, PopoverCloseButton, PopoverContent, PopoverTrigger, useDisclosure, FormControl, FormLabel, useColorModeValue } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import FocusLock from "react-focus-lock"
 import "react-datepicker/dist/react-datepicker.css";
@@ -44,6 +44,7 @@ const PopoverForm = ({ maxDate, minDate, onSave, selecteRange }: { selecteRange:
     const firstFieldRef = useRef(null)
     const [dateRange, setDateRange] = useState<[Date, Date]>([minDate, maxDate]);
     const [formIsDirty, setFormIsDirty] = useState(false)
+    const inputcls = useColorModeValue("dp-light", "dp-dark");
     const [startDate, endDate] = dateRange;
     const closePopover = () => {
         setFormIsDirty(false)
@@ -83,7 +84,8 @@ const PopoverForm = ({ maxDate, minDate, onSave, selecteRange }: { selecteRange:
                             <Box mb={'4'}>
                                 <DatePicker
                                     id="test"
-                                    className="date-picker"
+
+                                    className={`date-picker ${inputcls}`}
                                     selectsRange={true}
                                     startDate={startDate}
                                     minDate={minDate}
@@ -99,7 +101,7 @@ const PopoverForm = ({ maxDate, minDate, onSave, selecteRange }: { selecteRange:
                             <Button variant='outline' onClick={closePopover}>
                                 Cancel
                             </Button>
-                            <Button isDisabled={!formIsDirty} onClick={handlePopOverSave} colorScheme='linkedin'>
+                            <Button onClick={handlePopOverSave} colorScheme='linkedin'>
                                 Save
                             </Button>
                         </ButtonGroup>

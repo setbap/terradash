@@ -4,6 +4,15 @@
   border-color: rgb(49, 130, 206);
   box-shadow: rgb(49 130 206) 0px 0px 0px 1px;
 }
+
+.dp-dark {
+  background-color: rgb(9, 20, 30);
+  color: #fff;
+}
+.dp-light {
+  background-color: #fff;
+  color: #000;
+}
 .date-picker {
   width: 100%;
   min-width: 0px;
