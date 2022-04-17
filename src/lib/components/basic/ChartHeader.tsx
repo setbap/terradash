@@ -1,6 +1,7 @@
 import { Box, IconButton, chakra, Menu, MenuButton, MenuList, Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, ModalOverlay, useDisclosure, Popover, PopoverArrow, PopoverCloseButton, PopoverContent, PopoverTrigger } from '@chakra-ui/react'
 import { useState } from 'react'
 import { AiOutlineInfoCircle, AiOutlineExpand } from 'react-icons/ai'
+import { FiSettings } from 'react-icons/fi'
 import ReactMarkdown from 'react-markdown'
 
 
@@ -33,7 +34,7 @@ export default function ChartHeader({ title, chartMenu, modalInfo }: { modalInfo
                     size={'sm'}
                     as={IconButton}
                     aria-label='Options'
-                    icon={<AiOutlineExpand />}
+                    icon={<FiSettings />}
                     variant='outline'
                 />
                 {chartMenu}

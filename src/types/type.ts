@@ -255,3 +255,12 @@ export interface DailyStakingRewards {
   "daily amount usd": number;
   day: string;
 }
+
+// LFG
+
+export interface LFGBalance {
+  BALANCE: number;
+  BALANCE_DATE: string;
+  BALANCE_USD: number;
+  SYMBOL: string;
+}

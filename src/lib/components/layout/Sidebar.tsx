@@ -32,6 +32,7 @@ import { FaBitcoin } from 'react-icons/fa';
 import { CgAnchor } from 'react-icons/cg';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import MotionBox from '../motion/Box';
+import LFGICON from '../basic/LFG_ICON';
 interface LinkItemProps {
     name: string;
     icon: IconType;
@@ -39,6 +40,7 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
     { name: 'Overview', path: '/', icon: FiHome },
+    { name: 'LFG', path: '/lfg', icon: LFGICON },
     { name: 'Tx and Fee', path: '/tx-and-fee', icon: SiBuzzfeed },
     { name: 'Governance ', path: '/governance', icon: RiGovernmentLine },
     { name: 'Native swap', path: '/native-swap', icon: VscArrowSwap },
@@ -180,6 +182,7 @@ const NavItem = ({ icon, isActive, path, children, ...rest }: NavItemProps) => {
         </NextLink>
     );
 };
+
 
 interface MobileProps extends FlexProps {
     onOpen: () => void;

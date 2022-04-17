@@ -1,12 +1,12 @@
 import {
   Box,
-  ModalOverlay,
-  useDisclosure,
   useColorModeValue,
   GridItem,
   MenuList,
+  MenuOptionGroup,
+  MenuItemOption,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import millify from "millify";
 
 import {
@@ -24,26 +24,32 @@ import ChartSpanMenu from "../basic/ChartSpanMenu";
 import { GRID_ITEM_SIZE } from "./template";
 import ChartHeader from "../basic/ChartHeader";
 import { FilterDayBarBox } from "../basic/FilterDayBar";
+import { YAxixOption } from "../basic/YAxiesOption";
 
 interface Props {
   baseSpan?: number;
   modelInfo: string;
   xAxisDataKey: string;
-  areaDataKey: string[];
   title: string;
   data: any[];
   chartColors?: string[];
-  multiOff?: boolean;
   isNotDate?: boolean;
   defultSelectedRange?: number | string;
+  yAxisName: string
+  yAxisData: string
+  yAxixDataOptions: {
+    name: string;
+    value: string;
+  }[]
 }
 
-const MultiChartBox = ({
+const MultiLineChartSeprate = ({
   isNotDate = false,
   baseSpan = 1,
-  multiOff = false,
-  areaDataKey,
+  yAxixDataOptions,
   xAxisDataKey,
+  yAxisName: yAxisKey,
+  yAxisData,
   data,
   title,
   modelInfo,
@@ -57,6 +63,9 @@ const MultiChartBox = ({
 
   const [selectedDate, setSelectedDate] = useState<number | string>(defultSelectedRange)
   const [chartData, setChartData] = useState(data);
+  const [yAxisDatakey, setYAxisDatakey] = useState(yAxisData);
+  const [seprateChartData, setSeprateChartData] = useState<any[]>([])
+
   const filterDateAccordingDay = (numberOfDays: number) => {
     const lastDay = moment(data[data.length - 1][xAxisDataKey]).subtract(numberOfDays, 'days');
     const newData = data.filter(item => {
@@ -65,6 +74,27 @@ const MultiChartBox = ({
     setSelectedDate(numberOfDays);
     setChartData(newData)
   }
+  const seriesSelector = () => {
+    const categories = Array.from(new Set(chartData.map((item) => item[yAxisKey])))
+    const finalData: { name: string, data: Object }[] = []
+    categories.forEach(category => {
+      const selectedData = chartData.filter(item => {
+        return item[yAxisKey] === category
+      })
+      finalData.push({
+        name: category,
+        data: selectedData
+      })
+    })
+
+    setSeprateChartData(finalData)
+  }
+  useEffect(() => {
+    seriesSelector()
+
+
+  }, [chartData])
+
 
   const getMaxDate = () => {
     let maxD = moment(data[0][xAxisDataKey]);
@@ -75,6 +105,7 @@ const MultiChartBox = ({
     });
     return maxD;
   }
+
   const maxDate = isNotDate ? null : getMaxDate();
   const getMinDate = () => {
     let minD = moment(data[0][xAxisDataKey]);
@@ -114,7 +145,6 @@ const MultiChartBox = ({
       width="100%"
     >
       <Box
-        pe={multiOff ? 7 : 1}
         px="6"
         pt="4"
         pb={"2"}
@@ -134,6 +164,7 @@ const MultiChartBox = ({
                 }
                 baseSpan={baseSpan}
               />
+              <YAxixOption setYAxisDatakey={setYAxisDatakey} yAxisData={yAxisData} yAxixDataOptions={yAxixDataOptions} />
             </MenuList>
           }
           modalInfo={modelInfo}
@@ -143,8 +174,8 @@ const MultiChartBox = ({
 
         <ResponsiveContainer width={"100%"}>
           <LineChart
-            data={chartData}
-            syncId={`${areaDataKey}-${xAxisDataKey}`}
+            // data={seprateChartData}
+            // syncId={`${areaDataKey}-${xAxisDataKey}`}
             className="mt-1 mb-2"
           >
             <defs>
@@ -194,22 +225,24 @@ const MultiChartBox = ({
                   : moment(value).toDate().toLocaleDateString();
               }}
               dataKey={xAxisDataKey}
-            />
-            {multiOff ? (
-              <YAxis width={40} fontSize="12" tickSize={8} />
-            ) : (
-              areaDataKey.map((key, index) => (
-                <YAxis
-                  orientation={(index + 1) % 2 === 0 ? "left" : "right"}
-                  key={index}
-                  width={40}
-                  fontSize="12"
-                  yAxisId={key}
-                  tickSize={8}
-                />
-              ))
-            )}
+              type="category"
+              allowDuplicatedCategory={false}
 
+            />
+            {/* <XAxis type="number" dataKey="name" domain={['auto', 'auto']} /> */}
+
+            <YAxis
+              // domain={domain}
+              tickFormatter={(value) =>
+                millify(value, {
+                  precision: 2,
+                  decimalSeparator: ",",
+                })
+              }
+              width={40}
+              fontSize="12"
+              tickSize={8}
+            />
             <Tooltip
               labelFormatter={(value: string) =>
                 isNotDate ? value : moment(value).toDate().toDateString()
@@ -223,25 +256,11 @@ const MultiChartBox = ({
                 });
               }}
             />
-            {areaDataKey.map((item, index) =>
-              multiOff ? (
-                <Line
-                  key={item}
-                  type="natural"
-                  dataKey={item}
-                  dot={false}
-                  stroke={chartColors[index]}
-                />
-              ) : (
-                <Line
-                  key={item}
-                  type="natural"
-                  yAxisId={item}
-                  dataKey={item}
-                  dot={false}
-                  stroke={chartColors[index]}
-                />
-              )
+
+            <Legend />
+            {seprateChartData.map((item, index) => (
+              <Line dataKey={yAxisDatakey} stroke={chartColors[index % chartColors.length]} data={item.data} name={item.name} key={item.name} />
+            )
             )}
 
             <Legend fontSize={"8px"} verticalAlign="top" height={12} />
@@ -256,10 +275,14 @@ const MultiChartBox = ({
             minDate={minDate!.toDate()}
             maxDate={maxDate!.toDate()}
             filters={[{ day: 7, name: "1W" }, { day: 30, name: "1M" }, { day: 180, name: "6M" }, { day: 365, name: "1Y" }]}
-          /></>}
+          />
+        </>}
       </Box>
     </GridItem>
   );
 };
 
-export default MultiChartBox;
+export default MultiLineChartSeprate;
+
+
+
