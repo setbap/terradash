@@ -32,12 +32,13 @@ more info comming soon.
 
 ---
 ### Change Log
-
-- 4/17/2022 [TODO]
-	- [ ] improve map legend
-	- [ ] ability to hide or show in multi-line chart
-	- [ ] add new type of charts(?)
-  - [ ] improve side bar menu(?)
+- 4/18/2022 [TODO]
+  - [ ] add other chart
+  - [ ] show selected option in chart header
+- 4/17/2022
+	- [x] add new type of charts
+  - [x] improve side bar menu
+  - [x] add option to lfg chart
 - 4/16/2022
 	- [x] add custom time range for charts support date
 - 4/15/2022
