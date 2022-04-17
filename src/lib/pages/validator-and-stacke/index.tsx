@@ -184,12 +184,12 @@ const Home = ({
           />
           <MultiChartBox
             data={proposalCountOverTime}
-            tooltipTitle={[
-              "community poolproposals so far",
-              "param proposals so far",
-              "text proposals so far",
-              "reward weight proposals so far",
-            ]}
+            // tooltipTitle={[
+            //   "community poolproposals so far",
+            //   "param proposals so far",
+            //   "text proposals so far",
+            //   "reward weight proposals so far",
+            // ]}
             modelInfo={`shows number of proposals in each categegory over time. for example at 19 Oct 2021 we have 12 community pool proposal. this shows from begining 
             of community so far we have 12 community pool proposals. as we see diagram Slope of lines is increasing. this show Members' participation in the community increases over time.`}
             title="number of diffrent proposals over the time "
@@ -215,7 +215,6 @@ const Home = ({
           />
           <MultiChartBox data={proposalsCountMonthlyVsLUNAPrice}
             chartColors={['#0953fe', '#f2a900']}
-            tooltipTitle={["No of proposal", "avg price"]}
             modelInfo="compare number of proposal in each month and average price of luna to see is this two number have correlation with each other or not(unit of each one is diffrent)"
             title="proposal vs avg price"
             areaDataKey={["No of proposal", "avg price"]}
@@ -223,7 +222,6 @@ const Home = ({
           <MultiChartBox
             data={proposalsCountMonthlyVsMonthlyVotes}
             chartColors={['#0953fe', '#f2a900']}
-            tooltipTitle={["number of proposal", "monthly votes"]}
             modelInfo="compare number of proposal in each month and number of votes in Terra to see is this two number have correlation with each other or not(unit of each one is diffrent)"
             title="votes vs proposal"
             areaDataKey={["number of proposal", "monthly votes"]}

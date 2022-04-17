@@ -53,7 +53,6 @@ const Home = ({ lunaVsETHPrice, lunaVsBtcPrice }: Props) => {
           <MultiChartBox data={lunaVsETHPrice}
             baseSpan={3}
             chartColors={['#0953fe', '#5D638A']}
-            tooltipTitle={["luna price", "eth price"]}
             modelInfo="this show compare Luna Price vs ETH price.for better showing this two chart have two diffrent scale show split scale for each one. on left hand shows __ETH__ price and right hand shows __Luna__ price "
             title="Luna Price vs ETH price"
             areaDataKey={["luna", "eth"]}
@@ -75,7 +74,6 @@ const Home = ({ lunaVsETHPrice, lunaVsBtcPrice }: Props) => {
             baseSpan={3}
             data={lunaVsBtcPrice}
             chartColors={['#0953fe', '#f2a900']}
-            tooltipTitle={["luna price", "btc price"]}
             modelInfo="this show compare Luna Price vs BTC price.for better showing this two chart have two diffrent scale show split scale for each one. on left hand shows __BTC__ price and right hand shows __Luna__ price "
             title="Terra daily new user"
             areaDataKey={["luna", "btc"]}

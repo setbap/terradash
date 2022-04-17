@@ -174,7 +174,7 @@ const Home = ({
 
           <MultiChartBox
             data={terraDailyAvgMinMaxPrice}
-            tooltipTitle={["min price", "avg price", "max price"]}
+            // tooltipTitle={["min price", "avg price", "max price"]}
             modelInfo="This chart shows daily price of LUNA. the red line is minimum price and the blue line is maximum price of each day."
             title="Daily Luna Price"
             multiOff

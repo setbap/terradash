@@ -167,10 +167,10 @@ const Home = ({
 
           <MultiChartBox
             data={borrowAndDepositUser.sort((a, b) => moment(a['day']).isAfter(moment(b['day'])) ? 1 : -1)}
-            tooltipTitle={[
-              "number of wallet borrows",
-              "number of wallet deposits",
-            ]}
+            // tooltipTitle={[
+            //   "number of wallet borrows",
+            //   "number of wallet deposits",
+            // ]}
             modelInfo="this chart shows how many user borrow from anchor and deposit to it per day."
             title="The number of wallets they borrowed/deposited"
             areaDataKey={[
