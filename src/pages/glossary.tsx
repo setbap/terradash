@@ -1,5 +1,4 @@
 import { Box, chakra, Link, useColorModeValue } from "@chakra-ui/react";
-import { } from '@chakra-ui/icon'
 import ReactMarkdown from "react-markdown";
 import Renderer from "chakra-ui-markdown-renderer";
 import { FiExternalLink } from "react-icons/fi";

@@ -3,12 +3,13 @@ import {
   useColorModeValue,
   GridItem,
   MenuList,
-  MenuOptionGroup,
-  MenuItemOption,
+  Link,
+  MenuDivider,
+  MenuItem,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import millify from "millify";
-
+import { FiExternalLink } from "react-icons/fi";
 import {
   LineChart,
   Line,
@@ -40,12 +41,14 @@ interface Props {
   yAxixDataOptions: {
     name: string;
     value: string;
-  }[]
+  }[];
+  queryLink: string;
 }
 
 const MultiLineChartSeprate = ({
   isNotDate = false,
   baseSpan = 1,
+  queryLink,
   yAxixDataOptions,
   xAxisDataKey,
   yAxisName: yAxisKey,
@@ -158,13 +161,20 @@ const MultiLineChartSeprate = ({
         <ChartHeader
           chartMenu={
             <MenuList>
+              <MenuItem icon={<FiExternalLink />} as={Link} href={queryLink} isExternal >
+                Open Query Detail
+              </MenuItem>
+              <MenuDivider />
               <ChartSpanMenu
                 onChange={(span) =>
                   setSpanItem(GRID_ITEM_SIZE[Number(span) - 1])
                 }
                 baseSpan={baseSpan}
               />
+              <MenuDivider />
+
               <YAxixOption setYAxisDatakey={setYAxisDatakey} yAxisData={yAxisData} yAxixDataOptions={yAxixDataOptions} />
+
             </MenuList>
           }
           modalInfo={modelInfo}
@@ -229,8 +239,6 @@ const MultiLineChartSeprate = ({
               allowDuplicatedCategory={false}
 
             />
-            {/* <XAxis type="number" dataKey="name" domain={['auto', 'auto']} /> */}
-
             <YAxis
               // domain={domain}
               tickFormatter={(value) =>
