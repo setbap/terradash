@@ -219,7 +219,7 @@ const MultiChartBox = ({
               formatter={(a: any) => {
                 return millify(a, {
                   precision: 2,
-                  decimalSeparator: ",",
+                  decimalSeparator: ".",
                 });
               }}
             />

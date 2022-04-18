@@ -92,7 +92,7 @@ const DonutChart = ({
                     fill={centerCircleTextColor}
                 >{`${millify(value, {
                     precision: 2,
-                    decimalSeparator: ",",
+                    decimalSeparator: ".",
                 })}`}</text>
                 <text
 
@@ -112,7 +112,7 @@ const DonutChart = ({
                     fill={centerCircleTextColor}
                 >{`(Rate ${millify(percent * 100, {
                     precision: 2,
-                    decimalSeparator: ",",
+                    decimalSeparator: ".",
                 })}%)`}</text>
             </g>
         );

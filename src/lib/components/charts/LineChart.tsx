@@ -208,7 +208,7 @@ const ChartBox = ({
               tickFormatter={(value) =>
                 millify(value, {
                   precision: extraDecimal,
-                  decimalSeparator: ",",
+                  decimalSeparator: ".",
                 })
               }
               width={40}
@@ -225,7 +225,7 @@ const ChartBox = ({
               formatter={(a: any) => {
                 return millify(a, {
                   precision: extraDecimal,
-                  decimalSeparator: ",",
+                  decimalSeparator: ".",
                 });
               }}
             />

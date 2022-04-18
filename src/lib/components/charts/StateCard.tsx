@@ -50,7 +50,7 @@ export const StatsCard = (props: StatsCardProps) => {
 			<StatNumber color={statusColor} fontSize="2xl" fontWeight="medium">
 				{millify(stat, {
 					precision: 3,
-					decimalSeparator: ","
+					decimalSeparator: "."
 				})}
 			</StatNumber>
 		</Stat>

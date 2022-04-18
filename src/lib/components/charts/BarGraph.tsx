@@ -129,7 +129,7 @@ const BarGraph = ({
               tickFormatter={(value) =>
                 millify(value, {
                   precision: 2,
-                  decimalSeparator: ",",
+                  decimalSeparator: ".",
                 })
               }
             >
@@ -154,7 +154,7 @@ const BarGraph = ({
               formatter={(a: any) => {
                 return millify(a, {
                   precision: 2,
-                  decimalSeparator: ",",
+                  decimalSeparator: ".",
                 });
               }}
             />

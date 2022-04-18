@@ -236,7 +236,7 @@ const MultiLineChartSeprate = ({
               tickFormatter={(value) =>
                 millify(value, {
                   precision: 2,
-                  decimalSeparator: ",",
+                  decimalSeparator: ".",
                 })
               }
               width={40}
@@ -252,7 +252,7 @@ const MultiLineChartSeprate = ({
               formatter={(a: any) => {
                 return millify(a, {
                   precision: 2,
-                  decimalSeparator: ",",
+                  decimalSeparator: ".",
                 });
               }}
             />
