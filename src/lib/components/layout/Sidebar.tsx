@@ -31,6 +31,7 @@ import { VscArrowSwap } from 'react-icons/vsc';
 import { FaBitcoin } from 'react-icons/fa';
 import { CgAnchor } from 'react-icons/cg';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { GiBlackBook } from 'react-icons/gi';
 import MotionBox from '../motion/Box';
 import LFGICON from '../basic/LFG_ICON';
 interface LinkItemProps {
@@ -47,6 +48,7 @@ const LinkItems: Array<LinkItemProps> = [
     { name: 'Terra VS Others', path: '/terra-vs-others', icon: FaBitcoin },
     { name: 'Anchor', path: '/anchor', icon: CgAnchor },
     { name: 'About', path: '/about', icon: AiOutlineInfoCircle },
+    { name: 'Glossary', path: '/glossary', icon: GiBlackBook },
 ];
 
 export default function SidebarWithHeader({

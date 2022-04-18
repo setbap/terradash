@@ -1,21 +1,10 @@
-import { Box, Text, chakra, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
+import { Box, chakra, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
 import { AvgFeeEachCoin, AvgTxCountPerBlock, DailyBlockCount, DailyTx, TotalFeeEachCoin, TotalTx } from "types/type";
 import ChartBox from 'lib/components/charts/LineChart';
 import { StatsCard } from "lib/components/charts/StateCard";
 import DonutChart from "lib/components/charts/DonutChart";
 import BarGraph from "lib/components/charts/BarGraph";
-import ReactMarkdown from 'react-markdown'
-import Renderer from 'chakra-ui-markdown-renderer'
 
-const glossary = `
-#### block
- Groups of information stored on a blockchain. Each block contains transactions that are grouped, verified, and signed by validators.
- 
-**fee**: Includes 3 types:
--	**Gas**: Compute fees added on to all transactions to avoid spamming. Validators set 	minimum gas prices and reject transactions that have implied gas prices below this threshold.
--	**Spread fee**: A variable fee on any transaction between Terra and Luna.
-- **Tobin tax**: A fee on any transaction between Terra stablecoin denominations.
-`
 interface Props {
   dailyTx: DailyTx[];
   totalTx: TotalTx;
@@ -30,24 +19,13 @@ const Home = ({ dailyTx, totalTx, totalFeeEachCoin, avgFeeEachCoin, dailyBlockCo
   return (
     <>
       <Box mx={'auto'} px={{ base: 6, sm: 2, md: 8 }}>
-        <Box width={'100%'} px='6' py='2' my={'6'} shadow='base' borderRadius={'lg'} backgroundColor={bgCard} pb={8} aria-label="anchor project descrition">
-          <chakra.h1
-            textAlign={'center'}
-            fontSize={'4xl'}
-            pb={2}
-            fontWeight={'bold'}>
-            Glossary
-          </chakra.h1>
-          <ReactMarkdown components={Renderer()}>
-            {glossary}
-          </ReactMarkdown>
-        </Box>
-        <SimpleGrid columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 5, lg: 8 }}>
+
+        <SimpleGrid columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} pt='6' spacing={{ base: 5, lg: 8 }}>
           <StatsCard status="inc" title={"Total number of TX in Terra"} stat={totalTx["TOTAL_TX"]} />
           <StatsCard status="inc" title={"Avrage Number of Tx in each block"} stat={avgTxCountPerBlock["avg_tx_count_per_block"]} />
 
         </SimpleGrid>
-        <SimpleGrid py={'8'} columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 2, md: 4, lg: 8 }}>
+        <SimpleGrid py={'6'} columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 2, md: 4, lg: 8 }}>
           <ChartBox data={dailyTx}
             tooltipTitle=" Daily Tx "
             modelInfo="This chart shows how many transactions happen in the terra blockchain per day."

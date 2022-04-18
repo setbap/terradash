@@ -1,6 +1,5 @@
 import {
   Box,
-  Text,
   chakra,
   SimpleGrid,
   useColorModeValue,
@@ -23,20 +22,10 @@ import {
 import ChartBox from "lib/components/charts/LineChart";
 import { StatsCard } from "lib/components/charts/StateCard";
 import MultiChartBox from "lib/components/charts/MultiLineChart";
-import ReactMarkdown from 'react-markdown'
-import Renderer from 'chakra-ui-markdown-renderer'
 import BarGraph from "lib/components/charts/BarGraph";
 
 
-const glossary = `
-## [Terra](https://docs.terra.money/docs/learn/glossary.html#terra-core "Permalink to this headline")
-Created by start-up **Terraform** Labs and its co-founders [Do Kwon](https://twitter.com/stablekwon) and [Daniel Shin](https://www.linkedin.com/in/danielshin) in 2018, the Terra blockchain underpins a **decentralized finance** (DeFi) ecosystem that creates \`algorithmic stablecoins\`.
-In this section, you can get an overview of this blockchain.
 
-## [Luna](https://docs.terra.money/docs/learn/glossary.html#luna "Permalink to this headline")
-
-The native staking token of the Terra protocol. Luna supply expands and contracts in order to maintain the prices of  [Terra stablecoins](https://docs.terra.money/docs/learn/glossary.html#terra-stablecoins). Luna is also used as a governance token.  [Delegators](https://docs.terra.money/docs/learn/glossary.html#delegator)  can stake Luna to receive rewards.
-`
 interface Props {
   dailyNewUser: DailyNewUser[];
   curentLunaPrice: CurentLunaPrice;
@@ -73,7 +62,7 @@ const Home = ({
   return (
     <>
       <Box mx={"auto"} px={{ base: 6, sm: 2, md: 8 }}>
-        <Box
+        {/* <Box
           width={"100%"}
           px="6"
           py="2"
@@ -92,11 +81,9 @@ const Home = ({
           >
             Glossary
           </chakra.h1>
-          <ReactMarkdown components={Renderer()}>
-            {glossary}
-          </ReactMarkdown>
-        </Box>
+        </Box> */}
         <SimpleGrid
+          my={"6"}
           columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
           spacing={{ base: 5, lg: 8 }}
         >
@@ -131,7 +118,7 @@ const Home = ({
         </SimpleGrid>
         <SimpleGrid
           transition={'all 0.9s ease-in-out'}
-          py={"8"}
+          py={"6"}
           columns={{ sm: 1, md: 1, lg: 2, "2xl": 3 }}
           spacing={{ base: 1, md: 2, lg: 4 }}
         >

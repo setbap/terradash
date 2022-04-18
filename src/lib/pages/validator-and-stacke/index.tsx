@@ -4,8 +4,6 @@ import {
   SimpleGrid,
   useColorModeValue,
 } from "@chakra-ui/react";
-import ReactMarkdown from 'react-markdown'
-import Renderer from 'chakra-ui-markdown-renderer'
 import {
   AmoutOfStakedInUSD,
   DailyStakingRewards,
@@ -28,40 +26,6 @@ import { StatsCard } from "lib/components/charts/StateCard";
 import MultiChartBox from "lib/components/charts/MultiLineChart";
 import BarGraph from "lib/components/charts/BarGraph";
 import DonutChart from "lib/components/charts/DonutChart";
-
-
-
-const pageInfo = `
- #### [__Proposals__](https://docs.terra.money/docs/learn/protocol.html#proposals "Permalink to this headline")
-
-  Proposals start as ideas within the community. A community member drafts and submits a proposal alongside an initial deposit.
-
-  The most common proposal types include:
-
-  - Parameter Change Proposal: To change the parameters defined in each module.
-  - Community PoolSpend Proposal: To spend funds in the community pool.
-  - Text Proposal : To handle other issues like large directional changes or any decision requiring manual implementation.
-
-  #### [__Staking__](https://docs.terra.money/docs/learn/glossary.html#staking "Permalink to this headline")
-
-  When a user delegates or bonds their Luna to an active validator to receive rewards. Bonded Luna adds to a validator’s stake. Validators provide their stakes as collateral to participate in the consensus process. Validators with larger stakes are chosen to participate more often. Validators receive staking rewards for their participation. A validator’s stake can be slashed if the validator misbehaves. Validators never have ownership of a delegator’s Luna, even when staking.
-  For more information on staking, visit the  [concepts page](https://docs.terra.money/docs/learn/protocol.html#staking).
-  
-  #### [__Validator__](https://docs.terra.money/docs/learn/glossary.html#validator "Permalink to this headline")
-
-  A Terra blockchain miner responsible for verifying transactions on the blockchain. Validators run programs called full nodes that allow them to participate in consensus, verify blocks, participate in governance, and receive rewards. The top 130 validators with the highest total stake can participate in consensus.
-
-For more information on validators, visit the  [concepts page](https://docs.terra.money/docs/learn/protocol.html#validators).
-
-#### [__Weight__](https://docs.terra.money/docs/learn/glossary.html#weight "Permalink to this headline")
-
-The measure of a  [validator’s](https://docs.terra.money/docs/learn/glossary.html#validator)  total stake. Validators with higher weights get selected more often to propose blocks. A validator’s weight is also a measure of their voting power in  [governance](https://docs.terra.money/docs/learn/glossary.html#governance).
-
-#### [__Rewards__](https://docs.terra.money/docs/learn/glossary.html#rewards) 
-
-Revenue generated from fees given to validators and disbursed to delegators.
-`
-
 
 interface Props {
   dailyUniqueUserStaked: DailyUniqueUserStaked[];
@@ -102,32 +66,11 @@ const Home = ({
   return (
     <>
       <Box mx={"auto"} px={{ base: 6, sm: 2, md: 8 }}>
-        <Box
-          width={"100%"}
-          px="6"
-          py="2"
-          my={"6"}
-          shadow="base"
-          borderRadius={"lg"}
-          backgroundColor={bgCard}
-          pb={8}
-          aria-label="anchor project descrition"
-        >
-          <chakra.h1
-            textAlign={"center"}
-            fontSize={"4xl"}
-            pb={2}
-            fontWeight={"bold"}
-          >
-            Glossary
-          </chakra.h1>
-          <ReactMarkdown components={Renderer()}>
-            {pageInfo}
-          </ReactMarkdown>
-        </Box>
+
         <SimpleGrid
+          pt={'6'}
           columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
-          spacing={{ base: 5, lg: 8 }}
+          spacing={{ base: 5, lg: 6 }}
         >
           <StatsCard
             title="Total Luna Staked"
@@ -170,9 +113,9 @@ const Home = ({
           />
         </SimpleGrid>
         <SimpleGrid
-          py={"8"}
+          py={"6"}
           columns={{ base: 1, md: 1, lg: 2, "2xl": 3 }}
-          spacing={{ base: 1, md: 2, lg: 8 }}
+          spacing={{ base: 1, md: 2, lg: 6 }}
         >
           <ChartBox
             data={dailyUniqueUserStaked}

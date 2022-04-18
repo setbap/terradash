@@ -1,13 +1,9 @@
-import { Box, Text, chakra, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
+import { Box, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
 import { DailySwapCount, DailySwapVolume, MostUserIntractedDapps, TopNativeSwapPair } from "types/type";
 import ChartBox from 'lib/components/charts/LineChart';
 import BarGraph from "lib/components/charts/BarGraph";
-import ReactMarkdown from 'react-markdown'
-import Renderer from 'chakra-ui-markdown-renderer'
-const glossary = `
-A swap in Terra Station that uses the Terra protocol’s market function. Market swaps occur between Terra stablecoin denominations or between Terra and Luna.
-In this section, you can get some interesting points from terra blockchain and swaps that happen on it.
-`
+
+
 
 interface Props {
   topNativeSwapPair: TopNativeSwapPair[];
@@ -21,21 +17,10 @@ const Home = ({ topNativeSwapPair, dailySwapCount, dailySwapVolume, mostUserIntr
   return (
     <>
       <Box mx={'auto'} px={{ base: 6, sm: 2, md: 8 }}>
-        <Box width={'100%'} px='6' py='2' my={'6'} shadow='base' borderRadius={'lg'} backgroundColor={bgCard} pb={8} aria-label="anchor project descrition">
-          <chakra.h1
-            textAlign={'center'}
-            fontSize={'4xl'}
-            pb={2}
-            fontWeight={'bold'}>
-            Glossary
-          </chakra.h1>
-          <ReactMarkdown components={Renderer()}>
-            {glossary}
-          </ReactMarkdown>
-        </Box>
-        <SimpleGrid columns={{ sm: 1, md: 1, lg: 2, "2xl": 3 }} spacing={{ base: 5, lg: 8 }}>
-        </SimpleGrid>
-        <SimpleGrid py={'8'} columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 2, md: 4, lg: 8 }}>
+
+        {/* <SimpleGrid pt={'6'} columns={{ sm: 1, md: 1, lg: 2, "2xl": 3 }} spacing={{ base: 5, lg: 6 }}>
+        </SimpleGrid> */}
+        <SimpleGrid py={'6'} columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 2, md: 4, lg: 6 }}>
           <BarGraph
             modelInfo="this chart shows the 10 most popular native swap that occurs in the terra blockchain. LUNA to UST is the most used and after that is UST to LUNA."
             values={topNativeSwapPair}

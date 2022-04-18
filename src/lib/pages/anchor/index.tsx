@@ -2,7 +2,6 @@ import {
   Box,
   chakra,
   SimpleGrid,
-  Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { StatsCard } from "lib/components/charts/StateCard";
@@ -14,16 +13,8 @@ import {
 } from "types/type";
 import ChartBox from "lib/components/charts/LineChart";
 import MultiChartBox from "lib/components/charts/MultiLineChart";
-import ReactMarkdown from 'react-markdown'
-import Renderer from 'chakra-ui-markdown-renderer'
 import moment from "moment";
-const glossary = `
-### [__Anchor__](https://docs.anchorprotocol.com/ "Permalink to this headline")
 
-Anchor is a decentralized savings protocol offering low-volatile yields on Terra stablecoin deposits. The Anchor rate is powered by a diversified stream of staking rewards from major proof-of-stake blockchains, and therefore can be expected to be much more stable than money market interest rates.
-
-> for this page I  choose Anchor project as example for Terra network projects.
-`
 interface Props {
   totalUserBorrowDeposit: AnchorUserBorrowAndDeposit;
   sumAnchorDeposite: SumAnchorDeposite;
@@ -41,33 +32,11 @@ const Home = ({
   const bgCard = useColorModeValue("white", "#191919");
   return (
     <>
-      <Box mx={"auto"} px={{ base: 6, sm: 2, md: 8 }}>
-        <Box
-          width={"100%"}
-          px="6"
-          py="2"
-          my={"6"}
-          shadow="base"
-          borderRadius={"lg"}
-          backgroundColor={bgCard}
-          pb={8}
-          aria-label="anchor project descrition"
-        >
-          <chakra.h1
-            textAlign={"center"}
-            fontSize={"4xl"}
-            pb={2}
-            fontWeight={"bold"}
-          >
-            Glossary
-          </chakra.h1>
-          <ReactMarkdown components={Renderer()}>
-            {glossary}
-          </ReactMarkdown>
-        </Box>
+      <Box mx={"auto"} px={{ base: 6, sm: 2, md: 6 }}>
         <SimpleGrid
           columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
-          spacing={{ base: 5, lg: 8 }}
+          spacing={{ base: 5, lg: 6 }}
+          pt='6'
         >
           <StatsCard
             status="inc"
@@ -125,9 +94,9 @@ const Home = ({
           />
         </SimpleGrid>
         <SimpleGrid
-          py={"8"}
+          py={"6"}
           columns={{ base: 1, md: 1, lg: 2, "2xl": 3 }}
-          spacing={{ base: 2, md: 4, lg: 8 }}
+          spacing={{ base: 2, md: 4, lg: 6 }}
         >
           <ChartBox
             data={borrowAndDeposit}
@@ -177,6 +146,7 @@ const Home = ({
               "number of wallet borrows",
               "number of wallet deposits",
             ]}
+            baseSpan={2}
             xAxisDataKey="day"
           />
         </SimpleGrid>
