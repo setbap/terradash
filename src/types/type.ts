@@ -273,6 +273,45 @@ export interface TotalProposals {
   };
 }
 
+export interface TerraValidators {
+  description: {
+    moniker: string;
+  };
+  votingPower: {
+    amount: string;
+    weight: string;
+  };
+}
+export interface SimpilfiedTerraValidators {
+  name: string;
+  "voting power": number;
+}
+
+export interface TerraValidatorsWithVote {
+  description: {
+    moniker: string;
+  };
+  votes:
+    | {
+        options:
+          | {
+              option:
+                | "VOTE_OPTION_YES"
+                | "VOTE_OPTION_NO"
+                | "VOTE_OPTION_ABSTAIN";
+            }[];
+      }[]
+    | undefined;
+}
+
+export interface SimplifiedTerraValidatorsWithVote {
+  name: string;
+  "yes votes": number;
+  "no votes": number;
+  "abstain votes": number;
+  "total votes": number;
+}
+
 //----------------------- LFG
 
 export interface LFGBalance {

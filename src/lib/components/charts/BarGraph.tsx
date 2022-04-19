@@ -9,12 +9,13 @@ import React, { useState } from "react"; import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-import { Box, useColorModeValue, GridItem, MenuList } from "@chakra-ui/react";
+import { Box, useColorModeValue, GridItem, MenuList, MenuDivider } from "@chakra-ui/react";
 import millify from "millify";
 import moment from "moment";
 import { GRID_ITEM_SIZE } from "./template";
 import ChartSpanMenu from "../basic/ChartSpanMenu";
 import ChartHeader from "../basic/ChartHeader";
+import LinkToSourceMenuItem from "../basic/LinkToSourceMenuItem";
 
 const BarGraph = ({
   title,
@@ -26,6 +27,8 @@ const BarGraph = ({
   labels,
   modelInfo,
   isNotDate = false,
+  extraInfoToTooltip,
+  queryLink,
 }: {
   title: string;
   dataKey: string;
@@ -35,6 +38,8 @@ const BarGraph = ({
   values: any[];
   modelInfo: string;
   baseSpan?: number;
+  queryLink?: string;
+  extraInfoToTooltip?: string;
   labels: { key: string; color: string }[];
 }) => {
   const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
@@ -62,6 +67,22 @@ const BarGraph = ({
   };
 
   const selectBar = (e: any) => {
+    const numberOfBars = Object.keys(barProps).length - 1;
+    const numberOfHideBars = Object.entries(barProps).filter(([key, value]) => value == true).length;
+
+    if (numberOfBars === numberOfHideBars + 1 && !barProps[e.dataKey]) {
+      const newBarProps = { ...barProps };
+      // change all keys to true
+      Object.keys(newBarProps).forEach((key) => {
+        if (key === 'hover') {
+          newBarProps[key] = null;
+        } else {
+          newBarProps[key] = false;
+        }
+      });
+      setBarProps(newBarProps);
+      return
+    }
     setBarProps({
       ...barProps,
       [e.dataKey]: !barProps[e.dataKey],
@@ -82,7 +103,7 @@ const BarGraph = ({
       width="100%"
     >
       <Box
-        px="6"
+        px="4"
         pt="4"
         pb={"2"}
         _hover={{ boxShadow: `0px 0px 4px ${bgTooltip}` }}
@@ -95,6 +116,12 @@ const BarGraph = ({
         <ChartHeader
           chartMenu={
             <MenuList>
+              {queryLink &&
+                <>
+                  <LinkToSourceMenuItem queryLink={queryLink} />
+                  <MenuDivider />
+                </>
+              }
               <ChartSpanMenu
                 onChange={(span) =>
                   setSpanItem(GRID_ITEM_SIZE[Number(span) - 1])
@@ -155,7 +182,7 @@ const BarGraph = ({
                 return millify(a, {
                   precision: 2,
                   decimalSeparator: ".",
-                });
+                }) + `${extraInfoToTooltip ?? ''}`;
               }}
             />
             <Legend

@@ -10,6 +10,8 @@ import {
   ProposalCountOverTime,
   ProposalsCountMonthlyVsLUNAPrice,
   ProposalsCountMonthlyVsMonthlyVotes,
+  SimpilfiedTerraValidators,
+  SimplifiedTerraValidatorsWithVote,
   Top10Validators,
   Top10ValidatorsAccordingStake,
   TotalLunaStaked,
@@ -44,15 +46,22 @@ interface Props {
   top10ValidatorsAccordingStake: Top10ValidatorsAccordingStake[]
 
 
+
   numberOfActiveValidators: number
   numberOfTotalProposals: number,
   numberOfActiveProposals: number,
+  topTenTerraValidator: SimpilfiedTerraValidators[]
+  terraValidatorWithVote: SimplifiedTerraValidatorsWithVote[]
 }
 
 const Home = ({
   numberOfActiveValidators,
   numberOfTotalProposals,
   numberOfActiveProposals,
+  topTenTerraValidator,
+  terraValidatorWithVote,
+
+
 
   totalProposalCount,
   dailyUniqueUserStaked,
@@ -74,7 +83,6 @@ const Home = ({
   return (
     <>
       <Box mx={"auto"} px={{ base: 6, sm: 2, md: 8 }}>
-
         <SimpleGrid
           pt={'6'}
           columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
@@ -95,7 +103,50 @@ const Home = ({
             status="inc"
             stat={numberOfActiveProposals}
           />
+        </SimpleGrid>
+        <SimpleGrid
+          py={"6"}
+          columns={{ base: 1, md: 1, lg: 2, "2xl": 3 }}
+          spacing={{ base: 1, md: 2, lg: 6 }}
+        >
+          <BarGraph
+            queryLink="https://fcd.terra.dev/v1/staking/validators"
+            extraInfoToTooltip="%"
+            modelInfo="shows Top 10 Validators and their voting power"
+            values={topTenTerraValidator}
+            title="Top 10 Validators according to their power"
+            dataKey="name"
+            oyLabel="voting power(%)"
+            oxLabel="name"
+            isNotDate
+            labels={[
+              { key: "voting power", color: "#0953fe" },
+            ]}
+          />
 
+          <BarGraph
+            queryLink="https://api.terra.dev/validators"
+            modelInfo="shows Distribution of Terra votes"
+            values={terraValidatorWithVote}
+            title="Distribution of Terra votes"
+            dataKey="name"
+            baseSpan={3}
+            oyLabel="voting number"
+            oxLabel="name"
+            isNotDate
+            labels={[
+              { key: "yes votes", color: "#09f35e" },
+              { key: "no votes", color: "#f30e0e" },
+              { key: "abstain votes", color: "#f3f30e" },
+            ]}
+          />
+        </SimpleGrid>
+
+        <SimpleGrid
+          pt={'6'}
+          columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
+          spacing={{ base: 5, lg: 6 }}
+        >
           <StatsCard
             title="Total Luna Staked"
             status="inc"

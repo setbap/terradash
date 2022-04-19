@@ -3,13 +3,10 @@ import {
   useColorModeValue,
   GridItem,
   MenuList,
-  Link,
   MenuDivider,
-  MenuItem,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import millify from "millify";
-import { FiExternalLink } from "react-icons/fi";
 import {
   LineChart,
   Line,
@@ -26,6 +23,7 @@ import { GRID_ITEM_SIZE } from "./template";
 import ChartHeader from "../basic/ChartHeader";
 import { FilterDayBarBox } from "../basic/FilterDayBar";
 import { YAxixOption } from "../basic/YAxiesOption";
+import LinkToSourceMenuItem from "../basic/LinkToSourceMenuItem";
 
 interface Props {
   baseSpan?: number;
@@ -161,9 +159,7 @@ const MultiLineChartSeprate = ({
         <ChartHeader
           chartMenu={
             <MenuList>
-              <MenuItem icon={<FiExternalLink />} as={Link} href={queryLink} isExternal >
-                Open Query Detail
-              </MenuItem>
+              <LinkToSourceMenuItem queryLink={queryLink} />
               <MenuDivider />
               <ChartSpanMenu
                 onChange={(span) =>

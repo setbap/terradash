@@ -15,12 +15,15 @@ import { getTotalNumberOfValidators } from "lib/requests/validator-and-stake/tot
 import { getTop10Validators } from "lib/requests/validator-and-stake/top_10_validators";
 import { getDailyStakingRewards } from "lib/requests/validator-and-stake/daily_staking_rewards";
 import { getTop10ValidatorsAccordingStake } from "lib/requests/validator-and-stake/top_10_validators_according_stake";
-import { getNumberOfActiveProposals, getNumberOfActiveValidators, getNumberOfTotalProposals } from "lib/requests/validatorAndgovernance/all_active_validators";
+import { getNumberOfActiveProposals, getNumberOfActiveValidators, getNumberOfTotalProposals, getTerraValidatorWithVote, getTopTenTerraValidator } from "lib/requests/validatorAndgovernance/all_active_validators";
 export async function getStaticProps() {
     const [
         numberOfActiveValidators,
         numberOfTotalProposals,
         numberOfActiveProposals,
+        topTenTerraValidator,
+        terraValidatorWithVote,
+
 
 
 
@@ -43,6 +46,8 @@ export async function getStaticProps() {
         getNumberOfActiveValidators(),
         getNumberOfTotalProposals(),
         getNumberOfActiveProposals(),
+        getTopTenTerraValidator(),
+        getTerraValidatorWithVote(),
 
         getTotalLunaStaked(),
         getTotalLunaStakedInUSD(),
@@ -65,6 +70,8 @@ export async function getStaticProps() {
             numberOfActiveValidators,
             numberOfTotalProposals,
             numberOfActiveProposals,
+            topTenTerraValidator,
+            terraValidatorWithVote,
 
 
 
