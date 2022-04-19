@@ -72,7 +72,7 @@ export default function SidebarWithHeader({
             minH="calc( 100vh - 14px )"
             bg={useColorModeValue(
                 ' linear-gradient(to top, #e2ebf0 0% , #cfd9df  100%)',
-                'linear-gradient(to top, #434343),#000000'
+                'linear-gradient(to top, #090909,#000000)'
             )}
         >
             <SidebarContent
@@ -85,7 +85,6 @@ export default function SidebarWithHeader({
                 placement="left"
                 onClose={onClose}
                 closeOnOverlayClick
-
                 closeOnEsc
                 returnFocusOnClose={false}
                 onOverlayClick={onClose}
@@ -96,7 +95,7 @@ export default function SidebarWithHeader({
             </Drawer>
 
             <MobileNav onOpen={onOpen} />
-            <Box ml={{ base: 0, md: 60 }} >
+            <Box ml={{ base: 0, md: 64 }} >
                 {children}
             </Box>
         </MotionBox>
@@ -114,20 +113,22 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
             overflowX={'hidden'}
             transition="0.7s ease"
-            // bg={useColorModeValue('white', '#191919')}
+            bg={useColorModeValue('#0046a8', '#1c1c1c')}
+            color={'white'}
             borderRight="1px"
             borderRightColor={useColorModeValue('gray.200', 'gray.700')}
-            w={{ base: 'full', md: 60 }}
+            w={{ base: 'full', md: 64 }}
             pos="fixed"
             h="full"
             {...rest}>
-            <Box zIndex={'-1'} className='backi' bgColor={useColorModeValue('#ebebeb', '#191919')} style={{ filter: 'blur(5px)' }} position={'absolute'} left={'0'} top={'0'} bottom={'0'} right={'0'} />
 
             <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
 
-                <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+                <Text fontSize="xl" fontWeight="semibold">
                     <NextLink href={'/'} passHref>
-                        Terradash
+                        <>
+                            <Box display={'inline'} fontFamily='sans-serif' fontSize='2xl' ps={'2'} fontWeight={'extrabold'}>Terra </Box>dash
+                        </>
                     </NextLink>
                 </Text>
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
@@ -153,25 +154,31 @@ const NavItem = ({ icon, isActive, path, children, ...rest }: NavItemProps) => {
     const activeBgColor = useColorModeValue('gray.200', '#232323')
     return (
         <NextLink href={path} passHref>
-            <Link style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+            <Link style={{ textDecoration: 'none' }} >
                 <Flex
                     align="center"
-                    p="4"
-                    mx="4"
+                    ps="4"
+                    py={'4'}
+                    mx="3"
+                    mb={'1'}
+                    transition='all 0.7s ease'
                     borderRadius="lg"
                     role="group"
+                    fontSize="md"
+                    fontWeight="medium"
                     cursor="pointer"
-                    bg={isActive ? activeBgColor : 'transparent'}
-                    border={isActive ? '1px' : 'none'}
+                    border={'1.5px solid transparent'}
+                    shadow={isActive ? 'inner' : 'none'}
+                    borderColor={isActive ? 'white' : 'transparent'}
                     _hover={{
-                        bg: 'cyan.400',
-                        color: 'white',
+                        borderColor: 'whiteAlpha.500',
                     }}
                     {...rest}>
                     {icon && (
                         <Icon
                             mr="4"
-                            fontSize="16"
+                            fontSize="1rem"
+                            fontWeight={'bold'}
                             _groupHover={{
                                 color: 'white',
                             }}
@@ -192,7 +199,7 @@ interface MobileProps extends FlexProps {
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
     return (
         <Flex
-            ml={{ base: 0, md: 60 }}
+            ml={{ base: 0, md: 0 }}
             px={{ base: 4, md: 4 }}
             height="16"
             alignItems="center"
@@ -210,12 +217,12 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                     icon={<FiMenu />}
                 />
             </Box>
-            <Text
-                display={{ base: 'flex', md: 'none' }}
-                fontSize="2xl"
-                fontFamily="monospace"
-                fontWeight="bold">
-                Terradash
+            <Text display={{ base: 'flex', md: 'none' }} alignItems='baseline' fontSize="xl" fontWeight="semibold">
+                <NextLink href={'/'} passHref>
+                    <>
+                        <Box display={'inline'} fontFamily='sans-serif' fontSize='2xl' fontWeight={'extrabold'}>Terra </Box>{""} dash
+                    </>
+                </NextLink>
             </Text>
             <Box marginLeft="auto" />
             <HStack gap={'2'} spacing={{ base: '0', md: '6' }}>

@@ -252,7 +252,7 @@ const ChartBox = ({
             onResetClick={resetChartData}
             minDate={minDate!.toDate()!}
             maxDate={maxDate!.toDate()}
-            filters={[{ day: 7, name: "1W" }, { day: 30, name: "1M" }, { day: 180, name: "6M" }, { day: 365, name: "1Y" }]}
+            filters={[{ day: 7, name: "1W" }, { day: 30, name: "1M" }, { day: 365, name: "1Y" }]}
           /></>}
       </Box>
     </GridItem>

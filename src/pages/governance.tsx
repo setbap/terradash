@@ -15,8 +15,15 @@ import { getTotalNumberOfValidators } from "lib/requests/validator-and-stake/tot
 import { getTop10Validators } from "lib/requests/validator-and-stake/top_10_validators";
 import { getDailyStakingRewards } from "lib/requests/validator-and-stake/daily_staking_rewards";
 import { getTop10ValidatorsAccordingStake } from "lib/requests/validator-and-stake/top_10_validators_according_stake";
+import { getNumberOfActiveProposals, getNumberOfActiveValidators, getNumberOfTotalProposals } from "lib/requests/validatorAndgovernance/all_active_validators";
 export async function getStaticProps() {
     const [
+        numberOfActiveValidators,
+        numberOfTotalProposals,
+        numberOfActiveProposals,
+
+
+
         totalLunaStaked,
         totalLunaStakedInUSD,
         totalWalletStaked,
@@ -33,6 +40,10 @@ export async function getStaticProps() {
         dailyStakingRewards,
         top10ValidatorsAccordingStake
     ] = await Promise.all([
+        getNumberOfActiveValidators(),
+        getNumberOfTotalProposals(),
+        getNumberOfActiveProposals(),
+
         getTotalLunaStaked(),
         getTotalLunaStakedInUSD(),
         getTotalWalletStaked(),
@@ -51,6 +62,12 @@ export async function getStaticProps() {
     ]);
     return {
         props: {
+            numberOfActiveValidators,
+            numberOfTotalProposals,
+            numberOfActiveProposals,
+
+
+
             totalLunaStaked,
             totalLunaStakedInUSD,
             totalWalletStaked,

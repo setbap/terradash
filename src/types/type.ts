@@ -256,7 +256,24 @@ export interface DailyStakingRewards {
   day: string;
 }
 
-// LFG
+//----------------------- Validators and Governance
+export interface ActiveValidators {
+  validators: Object[];
+  pagination: {
+    next_key: string;
+    total: string;
+  };
+}
+
+export interface TotalProposals {
+  proposals: Object[];
+  pagination: {
+    next_key: string;
+    total: string;
+  };
+}
+
+//----------------------- LFG
 
 export interface LFGBalance {
   BALANCE: number;

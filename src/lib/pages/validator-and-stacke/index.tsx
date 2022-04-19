@@ -1,6 +1,5 @@
 import {
   Box,
-  chakra,
   SimpleGrid,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -43,9 +42,18 @@ interface Props {
   totalNumberOfValidators: TotalNumberOfValidators;
   dailyStakingRewards: DailyStakingRewards[];
   top10ValidatorsAccordingStake: Top10ValidatorsAccordingStake[]
+
+
+  numberOfActiveValidators: number
+  numberOfTotalProposals: number,
+  numberOfActiveProposals: number,
 }
 
 const Home = ({
+  numberOfActiveValidators,
+  numberOfTotalProposals,
+  numberOfActiveProposals,
+
   totalProposalCount,
   dailyUniqueUserStaked,
   totalVotesCountForProposal,
@@ -72,6 +80,22 @@ const Home = ({
           columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
           spacing={{ base: 5, lg: 6 }}
         >
+          <StatsCard
+            title="number of active validators"
+            status="unchanged"
+            stat={numberOfActiveValidators}
+          />
+          <StatsCard
+            title="total number of governance proposals"
+            status="inc"
+            stat={numberOfTotalProposals}
+          />
+          <StatsCard
+            title="number of active governance proposals"
+            status="inc"
+            stat={numberOfActiveProposals}
+          />
+
           <StatsCard
             title="Total Luna Staked"
             status="inc"

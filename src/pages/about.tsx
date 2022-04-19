@@ -27,7 +27,7 @@ const About = () => {
           </chakra.h1>
           <ReactMarkdown components={Renderer()}>
             {`
-this dashboard was created as [**FlipSideCrypto bounty**](http://flipsidecrypto.xyz/) project. this dashboard contain 50 query to flipside datawherehouse.
+this dashboard was created as [**Flipside Crypto bounty**](http://flipsidecrypto.xyz/) project. this dashboard contain 50 query to flipside datawherehouse.
 more info comming soon.
 
 ---
