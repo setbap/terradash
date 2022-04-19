@@ -7,11 +7,13 @@ import {
 import {
   AvgUSTPrice,
   BurnLuna,
+  ChangedDailyTx,
   CirculationSupplyLuna,
   CirculationSupplyUST,
   CurentLunaPrice,
   DailyNewUser,
   DailyNewUserSince2022,
+  DailyTx,
   DistributionOfLunaHolders,
   TerraDailyAvgMinMaxPrice,
   TotalBurnLuna,
@@ -37,9 +39,14 @@ interface Props {
   avgUSTPrice: AvgUSTPrice[]
   totalLunaSupply: TotalLunaSupply,
   totalUSTSupply: TotalUSTSupply,
-  totalNumberOfWallets: TotalNumberOfWallets,
   distributionOfLunaHolders: DistributionOfLunaHolders[],
-  dailyNewUserSince2022: DailyNewUserSince2022[]
+  dailyNewUserSince2022: DailyNewUserSince2022[],
+
+
+
+
+  totalNumberOfWallets: TotalNumberOfWallets,
+  terraDailyTx: ChangedDailyTx[];
 }
 
 const Home = ({
@@ -53,35 +60,45 @@ const Home = ({
   avgUSTPrice,
   totalLunaSupply,
   totalUSTSupply,
-  totalNumberOfWallets,
   distributionOfLunaHolders,
-  dailyNewUserSince2022
+  dailyNewUserSince2022,
+
+
+  terraDailyTx,
+  totalNumberOfWallets,
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
 
   return (
     <>
       <Box mx={"auto"} px={{ base: 6, sm: 2, md: 8 }}>
-        {/* <Box
-          width={"100%"}
-          px="6"
-          py="2"
+        <SimpleGrid
           my={"6"}
-          shadow="base"
-          borderRadius={"lg"}
-          backgroundColor={bgCard}
-          pb={8}
-          aria-label="anchor project descrition"
+          columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
+          spacing={{ base: 5, lg: 8 }}
         >
-          <chakra.h1
-            textAlign={"center"}
-            fontSize={"4xl"}
-            pb={2}
-            fontWeight={"bold"}
-          >
-            Glossary
-          </chakra.h1>
-        </Box> */}
+          <StatsCard
+            status="inc"
+            title={"Total Number of Unique Wallet"}
+            stat={totalNumberOfWallets["total number of user"]}
+          />
+        </SimpleGrid>
+        <SimpleGrid
+          transition={'all 0.9s ease-in-out'}
+          py={"6"}
+          columns={{ sm: 1, md: 1, lg: 2, "2xl": 3 }}
+          spacing={{ base: 1, md: 2, lg: 4 }}
+        >
+          <ChartBox data={terraDailyTx}
+            showMonthly
+            tooltipTitle=" Tx "
+            modelInfo="This chart shows how many transactions happen in the terra blockchain per day."
+            title="Tx per "
+            areaDataKey="transaction count"
+            xAxisDataKey="day" />
+        </SimpleGrid>
+
+        {/* old ---------------------------- old */}
         <SimpleGrid
           my={"6"}
           columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}

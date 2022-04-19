@@ -1,6 +1,8 @@
 import { ButtonGroup, Button, Box, Popover, PopoverArrow, PopoverCloseButton, PopoverContent, PopoverTrigger, useDisclosure, FormControl, FormLabel, useColorModeValue } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import FocusLock from "react-focus-lock"
+import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
 
 export function FilterDayBarBox({
@@ -20,9 +22,10 @@ export function FilterDayBarBox({
     maxDate: Date,
     selecteRange: number | string;
 }) {
+
     return (
-        <Box height={"44px"}>
-            <ButtonGroup size={"sm"} variant="outline" spacing={2}>
+        <Box height={"36px"}>
+            <ButtonGroup size={"xs"} variant="outline" spacing={1}>
                 {filters.map(({ day, name }) => (
                     <Button variant={selecteRange === day ? 'solid' : 'outline'} key={day} onClick={() => onSelectLastNthDay(day)}>
                         {name}
@@ -37,7 +40,7 @@ export function FilterDayBarBox({
 
 
 
-import DatePicker from "react-datepicker";
+
 
 const PopoverForm = ({ maxDate, minDate, onSave, selecteRange }: { selecteRange: any, minDate: Date, maxDate: Date, onSave: (start: Date, end: Date) => void }) => {
     const { onOpen, onClose, isOpen } = useDisclosure()
@@ -71,7 +74,7 @@ const PopoverForm = ({ maxDate, minDate, onSave, selecteRange }: { selecteRange:
                 closeOnBlur={false}
             >
                 <PopoverTrigger>
-                    <Button variant={selecteRange === 'custom' ? 'solid' : 'outline'} ms={'1'} size={'sm'} onClick={() => { }}>Custom</Button>
+                    <Button variant={selecteRange === 'custom' ? 'solid' : 'outline'} ms={'1'} size={'xs'} onClick={() => { }}>Custom</Button>
                 </PopoverTrigger>
                 <PopoverContent p={5}>
                     <FocusLock returnFocus persistentFocus={false}>

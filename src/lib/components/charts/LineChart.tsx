@@ -3,8 +3,9 @@ import {
   useColorModeValue,
   GridItem,
   MenuList,
-  ButtonGroup,
-  Button,
+  MenuDivider,
+  MenuItemOption,
+  MenuOptionGroup,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import moment from "moment";
@@ -23,6 +24,8 @@ import { GRID_ITEM_SIZE } from "./template";
 import ChartSpanMenu from "../basic/ChartSpanMenu";
 import ChartHeader from "../basic/ChartHeader";
 import { FilterDayBarBox } from "../basic/FilterDayBar";
+import { AnimatePresence } from "framer-motion";
+import MotionBox from "../motion/Box";
 
 interface Props {
   modelInfo: string;
@@ -36,10 +39,13 @@ interface Props {
   domain?: [number, number];
   baseSpan?: number;
   defultSelectedRange?: number | string;
+  defultDateView?: "month" | "day";
+  showMonthly?: boolean
 }
 
 const ChartBox = ({
   baseSpan = 1,
+  defultDateView = "day",
   isNotDate = false,
   extraDecimal = 2,
   domain,
@@ -48,87 +54,93 @@ const ChartBox = ({
   data,
   title,
   modelInfo,
-  defultSelectedRange = 'all'
+  defultSelectedRange = "all",
+  showMonthly = true
 }: Props) => {
   const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
-  const [barProps, setBarProps] = useState(
-    data.reduce(
-      (a: any, { key }: any) => {
-        a[key] = false;
-        return a;
-      },
-      { hover: null }
-    )
+  const [defultViewSetting, setDefultViewSetting] = useState(defultDateView);
+  const [selectedDate, setSelectedDate] = useState<number | string>(
+    defultSelectedRange
   );
-
-  const [selectedDate, setSelectedDate] = useState<number | string>(defultSelectedRange)
   const [chartData, setChartData] = useState(data);
+  const [savedDailyChart, setSavedDailyChart] = useState(data);
   const filterDateAccordingDay = (numberOfDays: number) => {
-    const lastDay = moment(data[data.length - 1][xAxisDataKey]).subtract(numberOfDays, 'days');
-    const newData = data.filter(item => {
-      return moment(item[xAxisDataKey]).isAfter(lastDay)
-    })
+    const lastDay = moment(data[data.length - 1][xAxisDataKey]).subtract(
+      numberOfDays,
+      "days"
+    );
+    const newData = data.filter((item) => {
+      return moment(item[xAxisDataKey]).isAfter(lastDay);
+    });
     setSelectedDate(numberOfDays);
-    setChartData(newData)
-  }
+    setChartData(newData);
+  };
   const getMaxDate = () => {
     let maxD = moment(data[0][xAxisDataKey]);
-    data.forEach(item => {
+    data.forEach((item) => {
       if (moment(item[xAxisDataKey]).isAfter(maxD)) {
         maxD = moment(item[xAxisDataKey]);
       }
     });
     return maxD;
-  }
-  // find the max value of the date in the data
+  };
   const maxDate = isNotDate ? null : getMaxDate();
   const getMinDate = () => {
     let minD = moment(data[0][xAxisDataKey]);
-    data.forEach(item => {
+    data.forEach((item) => {
       if (moment(item[xAxisDataKey]).isBefore(minD)) {
         minD = moment(item[xAxisDataKey]);
       }
     });
     return minD;
-  }
+  };
   const minDate = isNotDate ? null : getMinDate();
 
+  const changeDataToMonethly = () => {
+    const newData: { [key: string]: number[] } = {};
+    data.forEach((item) => {
+      const monthName: string = moment(item[xAxisDataKey]).format("MMM YYYY");
+      if (newData[monthName] === undefined) {
+        newData[monthName] = [];
+      }
+      newData[monthName].push(item[areaDataKey]);
+    });
+    setDefultViewSetting("month");
+    setSavedDailyChart(chartData);
+    setChartData(
+      Object.entries(newData).map(([key, value]) => {
+        return {
+          [xAxisDataKey]: key,
+          [areaDataKey]: value.reduce((a, b) => a + b, 0),
+        };
+      })
+    );
+  };
+
+  const changeDataToDaily = () => {
+    setChartData(savedDailyChart);
+    setDefultViewSetting("day");
+  };
 
   const filterDateAccordingRange = (minDate: Date, maxDate: Date) => {
-    const newData = data.filter(item => {
-      return moment(item[xAxisDataKey]).isAfter(minDate) && moment(item[xAxisDataKey]).isBefore(maxDate)
-    })
+    const newData = data.filter((item) => {
+      return (
+        moment(item[xAxisDataKey]).isAfter(minDate) &&
+        moment(item[xAxisDataKey]).isBefore(maxDate)
+      );
+    });
     setSelectedDate("custom");
-    setChartData(newData)
-  }
+    setChartData(newData);
+  };
 
   const resetChartData = () => {
-    setSelectedDate('all');
-    setChartData(data)
-  }
-
-
-  const handleLegendMouseEnter = (e: any) => {
-    if (!barProps[e.dataKey]) {
-      setBarProps({ ...barProps, hover: e.dataKey });
-    }
-  };
-  const handleLegendMouseLeave = (_: never) => {
-    setBarProps({ ...barProps, hover: null });
-  };
-
-  const selectBar = (e: any) => {
-    setBarProps({
-      ...barProps,
-      [e.dataKey]: !barProps[e.dataKey],
-      hover: null,
-    });
+    setSelectedDate("all");
+    setChartData(data);
   };
 
   const bgTooltip = useColorModeValue("gray.300", "gray.700");
   const bgCard = useColorModeValue("white", "#191919");
   const textColor = useColorModeValue("gray.900", "gray.100");
-
 
   return (
     <GridItem
@@ -157,6 +169,22 @@ const ChartBox = ({
         <ChartHeader
           chartMenu={
             <MenuList>
+              {showMonthly && (<><MenuOptionGroup
+                onChange={(value) => {
+                  if (value === "month") {
+                    changeDataToMonethly();
+                  } else {
+                    changeDataToDaily();
+                  }
+                }}
+                defaultValue={defultViewSetting}
+                title="Chart Date Type"
+                type="radio"
+              >
+                <MenuItemOption value={"month"}>monthly</MenuItemOption>
+                <MenuItemOption value={"day"}>daily</MenuItemOption>
+              </MenuOptionGroup>
+                <MenuDivider /></>)}
               <ChartSpanMenu
                 onChange={(span) =>
                   setSpanItem(GRID_ITEM_SIZE[Number(span) - 1])
@@ -166,14 +194,17 @@ const ChartBox = ({
             </MenuList>
           }
           modalInfo={modelInfo}
-          title={title}
+          title={title + (showMonthly ? defultViewSetting : "")}
         />
         <Box p={"1"} />
-        <ResponsiveContainer width={"100%"}>
+        <ResponsiveContainer
+          height={!isNotDate && defultViewSetting === "day" ? 380 : 425}
+          width={"100%"}
+        >
           <AreaChart
             data={chartData}
             syncId={`${areaDataKey}-${xAxisDataKey}`}
-            className="mt-1 mb-2"
+            className="mt-1 mb-1"
           >
             <defs>
               <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
@@ -197,9 +228,12 @@ const ChartBox = ({
               fontSize={12}
               color={"var(--textColor)"}
               tickFormatter={(value) => {
-                return isNotDate
-                  ? value
-                  : moment(value).toDate().toLocaleDateString();
+                if (isNotDate || defultViewSetting === "month") {
+                  return value;
+                }
+                if (defultViewSetting === "day") {
+                  return moment(value).toDate().toDateString();
+                }
               }}
               dataKey={xAxisDataKey}
             />
@@ -215,11 +249,15 @@ const ChartBox = ({
               fontSize="12"
               tickSize={8}
             />
-
             <Tooltip
-              labelFormatter={(value: string) =>
-                isNotDate ? value : moment(value).toDate().toDateString()
-              }
+              labelFormatter={(value: string) => {
+                if (isNotDate || defultViewSetting === "month") {
+                  return value;
+                }
+                if (defultViewSetting === "day") {
+                  return moment(value).toDate().toDateString();
+                }
+              }}
               labelStyle={{ color: "white" }}
               contentStyle={{ backgroundColor: "black", borderRadius: "5px" }}
               formatter={(a: any) => {
@@ -238,22 +276,47 @@ const ChartBox = ({
               verticalAlign="top"
               fontSize={"8px"}
               style={{ fontSize: "7px" }}
-              onClick={selectBar}
-              onMouseOver={handleLegendMouseEnter}
-              onMouseOut={handleLegendMouseLeave}
             />
           </AreaChart>
         </ResponsiveContainer>
-        {!isNotDate && <><Box p={"1"} />
-          <FilterDayBarBox
-            selecteRange={selectedDate}
-            onSelectLastNthDay={filterDateAccordingDay}
-            onSelectRangeDay={filterDateAccordingRange}
-            onResetClick={resetChartData}
-            minDate={minDate!.toDate()!}
-            maxDate={maxDate!.toDate()}
-            filters={[{ day: 7, name: "1W" }, { day: 30, name: "1M" }, { day: 365, name: "1Y" }]}
-          /></>}
+        <AnimatePresence>
+          {!isNotDate && defultViewSetting === "day" && (
+            <MotionBox
+              animate={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
+              exit={{ opacity: 0 }}
+              height={"36px"}
+            >
+              <Box p={"1"} />
+              <FilterDayBarBox
+                selecteRange={selectedDate}
+                onSelectLastNthDay={filterDateAccordingDay}
+                onSelectRangeDay={filterDateAccordingRange}
+                onResetClick={resetChartData}
+                minDate={minDate!.toDate()!}
+                maxDate={maxDate!.toDate()}
+                filters={[
+                  { day: 7, name: "1W" },
+                  { day: 30, name: "1M" },
+                  {
+                    day:
+                      Math.round(
+                        (maxDate!.toDate().getTime() -
+                          new Date(
+                            maxDate!.toDate().getFullYear(),
+                            0,
+                            1
+                          ).getTime()) /
+                        (1000 * 60 * 60 * 24)
+                      ) + 1,
+                    name: maxDate!.toDate().getFullYear().toString(),
+                  },
+                  { day: 365, name: "1Y" },
+                ]}
+              />
+            </MotionBox>
+          )}
+        </AnimatePresence>
       </Box>
     </GridItem>
   );

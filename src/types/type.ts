@@ -86,11 +86,6 @@ export interface TotalUSTSupply {
   "UST total Supply": number;
 }
 
-export interface DailyTx {
-  "daily TX": number;
-  day: string;
-}
-
 export interface TotalTx {
   TOTAL_TX: number;
 }
@@ -253,6 +248,18 @@ export interface Top10ValidatorsAccordingStake {
 export interface DailyStakingRewards {
   "daily amount luna": number;
   "daily amount usd": number;
+  day: string;
+}
+
+// ---------------------- Overview
+
+export interface DailyTx {
+  "daily TX": number;
+  day: string;
+}
+
+export interface ChangedDailyTx {
+  "transaction count": number;
   day: string;
 }
 

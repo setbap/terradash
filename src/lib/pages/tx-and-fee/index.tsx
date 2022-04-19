@@ -1,12 +1,12 @@
 import { Box, chakra, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
-import { AvgFeeEachCoin, AvgTxCountPerBlock, DailyBlockCount, DailyTx, TotalFeeEachCoin, TotalTx } from "types/type";
+import { AvgFeeEachCoin, AvgTxCountPerBlock, DailyBlockCount, TotalFeeEachCoin, TotalTx } from "types/type";
 import ChartBox from 'lib/components/charts/LineChart';
 import { StatsCard } from "lib/components/charts/StateCard";
 import DonutChart from "lib/components/charts/DonutChart";
 import BarGraph from "lib/components/charts/BarGraph";
 
 interface Props {
-  dailyTx: DailyTx[];
+
   totalTx: TotalTx;
   totalFeeEachCoin: TotalFeeEachCoin[];
   avgFeeEachCoin: AvgFeeEachCoin[];
@@ -14,7 +14,7 @@ interface Props {
   avgTxCountPerBlock: AvgTxCountPerBlock
 }
 
-const Home = ({ dailyTx, totalTx, totalFeeEachCoin, avgFeeEachCoin, dailyBlockCount, avgTxCountPerBlock }: Props) => {
+const Home = ({ totalTx, totalFeeEachCoin, avgFeeEachCoin, dailyBlockCount, avgTxCountPerBlock }: Props) => {
   const bgCard = useColorModeValue('white', '#191919');
   return (
     <>
@@ -26,12 +26,7 @@ const Home = ({ dailyTx, totalTx, totalFeeEachCoin, avgFeeEachCoin, dailyBlockCo
 
         </SimpleGrid>
         <SimpleGrid py={'6'} columns={{ base: 1, md: 1, lg: 2, '2xl': 3 }} spacing={{ base: 2, md: 4, lg: 8 }}>
-          <ChartBox data={dailyTx}
-            tooltipTitle=" Daily Tx "
-            modelInfo="This chart shows how many transactions happen in the terra blockchain per day."
-            title="Tx per day"
-            areaDataKey="daily TX"
-            xAxisDataKey="day" />
+
           <ChartBox data={dailyBlockCount}
             tooltipTitle=" Daily Block Count "
             modelInfo="This chart shows how many blocks create in the terra blockchain per day."

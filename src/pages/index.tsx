@@ -10,10 +10,15 @@ import { getTerraDailyAvgMinMaxPrice } from "lib/requests/overview/terra_avg_min
 import { getAvgUSTPrice } from "lib/requests/overview/terra_avg_min_max_price copy";
 import { getTotalBurnLuna } from "lib/requests/overview/total_burn_luna";
 import { getTotalLunaSupply } from "lib/requests/overview/total_luna_supply";
-import { getTotalNumberOfWallets } from "lib/requests/overview/total_number_of_wallets";
+import { getTotalNumberOfWallets } from "lib/requests/AllOverview";
 import { getTotalUSTSupply } from "lib/requests/overview/total_ust_supply";
+import { getTerraDailyTx } from "lib/requests/AllOverview";
 export async function getStaticProps() {
     const [
+        totalNumberOfWallets,
+        terraDailyTx,
+
+
         dailyNewUser,
         curentLunaPrice,
         circulationSupplyLuna,
@@ -24,10 +29,13 @@ export async function getStaticProps() {
         avgUSTPrice,
         totalLunaSupply,
         totalUSTSupply,
-        totalNumberOfWallets,
         distributionOfLunaHolders,
         dailyNewUserSince2022
     ] = await Promise.all([
+        getTotalNumberOfWallets(),
+        getTerraDailyTx(),
+
+
         getDailyNewUser(),
         getCurrentLunaPrice(),
         getCirculationSupplyLuna(),
@@ -38,12 +46,15 @@ export async function getStaticProps() {
         getAvgUSTPrice(),
         getTotalLunaSupply(),
         getTotalUSTSupply(),
-        getTotalNumberOfWallets(),
         getDistributionOfLunaHolders(),
         getDailyNewUserSince2022(),
     ]);
     return {
         props: {
+            totalNumberOfWallets,
+            terraDailyTx,
+
+
             dailyNewUser,
             curentLunaPrice,
             circulationSupplyLuna,
@@ -54,7 +65,6 @@ export async function getStaticProps() {
             avgUSTPrice,
             totalLunaSupply,
             totalUSTSupply,
-            totalNumberOfWallets,
             distributionOfLunaHolders,
             dailyNewUserSince2022
         },
