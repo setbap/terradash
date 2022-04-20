@@ -10,9 +10,7 @@ const Header = () => {
         <Link href="/">Terradash</Link>
       </Heading>
 
-      <Box marginLeft="auto">
-        <ThemeToggle />
-      </Box>
+      <Box marginLeft="auto">{/* <ThemeToggle /> */}</Box>
     </Flex>
   );
 };

@@ -67,7 +67,7 @@ export default function SidebarWithHeader({
       animate="enter" // Animated state to variants.enter
       exit="exit" // Exit state (used later) to variants.exit
       transition={{ type: "linear" }} // Set the transition to linear
-      minH="calc( 100vh - 64px )"
+      minH="calc( 100vh - 56px )"
       bg={useColorModeValue(
         " linear-gradient(to top, #e2ebf0 0% , #cfd9df  100%)",
         "linear-gradient(to top, #090909,#000000)"
@@ -247,8 +247,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       </Text>
       <Box marginLeft="auto" />
       <HStack gap={"2"} spacing={{ base: "0", md: "6" }}>
-        <ConnectWallet />
-        <ThemeToggle />
+        {/* <ConnectWallet />
+        <ThemeToggle /> */}
       </HStack>
     </Flex>
   );
