@@ -1,6 +1,13 @@
 import moment from "moment";
-import { USTBridge, USTBridgeInfo } from "types/type";
+import { USTBridge, USTBridgeInfo, USTSupply } from "types/type";
 
+export const getUSTSupply = async (): Promise<number> => {
+    const response = await fetch(
+        'https://lcd.terra.dev/cosmos/bank/v1beta1/supply/uusd'
+    );
+    const data: USTSupply = await response.json();
+    return Number(data.amount.amount) / 1000_000;
+}
 
 export const getUSTBridgeValue: () => Promise<USTBridgeInfo> = async () => {
     const res = await fetch(

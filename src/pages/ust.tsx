@@ -1,13 +1,13 @@
 import UST from "lib/pages/ust";
-import { getUSTBridgeValue } from "lib/requests/ust";
+import { getUSTBridgeValue, getUSTSupply } from "lib/requests/ust";
 
 export async function getStaticProps() {
-    const [ustBridgeValue] = await Promise.all(
-        [getUSTBridgeValue()]
+    const [ustBridgeValue, USTSupply] = await Promise.all(
+        [getUSTBridgeValue(), getUSTSupply()]
     );
     return {
         props: {
-            ustBridgeValue
+            ustBridgeValue, USTSupply,
         },
         revalidate: 60 * 60,
     }

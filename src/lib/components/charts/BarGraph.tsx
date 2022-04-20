@@ -175,9 +175,15 @@ const BarGraph = ({
             />
             <XAxis
               fontSize={"12px"}
-              tickFormatter={(value) =>
-                isNotDate ? value : moment(value).toDate().toLocaleDateString()
-              }
+              tickFormatter={(value: string) => {
+                if (isNotDate) {
+                  return value
+                }
+                if (chartTimeFrame === 'month') {
+                  return moment(value).format("MMM YYYY")
+                }
+                return moment(value).format("MMM DD YYYY")
+              }}
               dataKey={dataKey}
             >
               {/* <Label value={oxLabel} position="center" dy={10} dx={20} /> */}
@@ -198,6 +204,7 @@ const BarGraph = ({
                 fontSize={"16px"}
                 angle={-90}
                 dy={-20}
+                fill={'gray'}
                 style={{
                   color: textColor,
                 }}
@@ -205,9 +212,15 @@ const BarGraph = ({
               />
             </YAxis>
             <Tooltip
-              labelFormatter={(value: string) =>
-                isNotDate ? value : moment(value).toDate().toDateString()
-              }
+              labelFormatter={(value: string) => {
+                if (isNotDate) {
+                  return value
+                }
+                if (chartTimeFrame === 'month') {
+                  return moment(value).format("MMM YYYY")
+                }
+                return moment(value).format("MMM DD YYYY")
+              }}
               labelStyle={{ color: "white" }}
               contentStyle={{ backgroundColor: "black", borderRadius: "5px" }}
               formatter={(a: any) => {
