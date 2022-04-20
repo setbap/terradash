@@ -9,7 +9,7 @@ import React, { useState } from "react"; import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-import { Box, useColorModeValue, GridItem, MenuList, MenuDivider } from "@chakra-ui/react";
+import { Box, useColorModeValue, GridItem, MenuList, MenuDivider, MenuItemOption, MenuOptionGroup } from "@chakra-ui/react";
 import millify from "millify";
 import moment from "moment";
 import { GRID_ITEM_SIZE } from "./template";
@@ -27,6 +27,7 @@ const BarGraph = ({
   labels,
   modelInfo,
   isNotDate = false,
+  monthlyValues,
   extraInfoToTooltip,
   queryLink,
 }: {
@@ -35,6 +36,7 @@ const BarGraph = ({
   oxLabel: string;
   oyLabel: string;
   isNotDate?: boolean;
+  monthlyValues?: any[];
   values: any[];
   modelInfo: string;
   baseSpan?: number;
@@ -42,6 +44,9 @@ const BarGraph = ({
   extraInfoToTooltip?: string;
   labels: { key: string; color: string }[];
 }) => {
+  const hasMonthly = !isNotDate && monthlyValues && monthlyValues.length > 0;
+  const [chartData, setChartData] = useState(values);
+  const [chartTimeFrame, setChartTimeFrame] = useState<'day' | 'month'>('day')
   const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
   const [barProps, setBarProps] = useState(
     labels.reduce(
@@ -90,6 +95,17 @@ const BarGraph = ({
     });
   };
 
+  const changeDataToMonethly = () => {
+    setChartTimeFrame('month');
+    setChartData(monthlyValues!);
+  }
+
+  const changeDataToDaily = () => {
+    setChartTimeFrame('day');
+    setChartData(values);
+  }
+
+
   return (
     <GridItem
       rowSpan={1}
@@ -122,6 +138,22 @@ const BarGraph = ({
                   <MenuDivider />
                 </>
               }
+              {hasMonthly && (<><MenuOptionGroup
+                onChange={(value) => {
+                  if (value === "month") {
+                    changeDataToMonethly();
+                  } else {
+                    changeDataToDaily();
+                  }
+                }}
+                defaultValue={chartTimeFrame}
+                title="Chart Date Type"
+                type="radio"
+              >
+                <MenuItemOption value={"month"}>monthly</MenuItemOption>
+                <MenuItemOption value={"day"}>daily</MenuItemOption>
+              </MenuOptionGroup>
+                <MenuDivider /></>)}
               <ChartSpanMenu
                 onChange={(span) =>
                   setSpanItem(GRID_ITEM_SIZE[Number(span) - 1])
@@ -136,7 +168,7 @@ const BarGraph = ({
         <Box p={"1"} />
 
         <ResponsiveContainer width={"100%"}>
-          <BarChart data={values} className="mt-1 mb-2">
+          <BarChart data={chartData} className="mt-1 mb-2">
             <CartesianGrid
               style={{ stroke: "rgba(10,10,10,0.1)", opacity: 0.25 }}
               strokeDasharray="3 3"

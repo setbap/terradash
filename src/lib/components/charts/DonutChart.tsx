@@ -1,10 +1,11 @@
-import { Box, useColorModeValue, GridItem, MenuList } from "@chakra-ui/react";
+import { Box, useColorModeValue, GridItem, MenuList, MenuDivider } from "@chakra-ui/react";
 import { useState } from "react";
-import { ResponsiveContainer, PieChart, Pie, Sector } from "recharts";
+import { ResponsiveContainer, PieChart, Pie, Sector, Cell } from "recharts";
 import millify from "millify";
 import { GRID_ITEM_SIZE } from "./template";
 import ChartSpanMenu from "../basic/ChartSpanMenu";
 import ChartHeader from "../basic/ChartHeader";
+import LinkToSourceMenuItem from "../basic/LinkToSourceMenuItem";
 interface Props {
     modelInfo: string;
     dataKey: string;
@@ -13,16 +14,20 @@ interface Props {
     tooltipTitle: string;
     data: any[];
     baseSpan?: number;
+    colors?: string[];
+    queryLink?: string;
 }
 
 const DonutChart = ({
     baseSpan = 1,
+    queryLink,
     dataKey,
     nameKey,
     data,
     title,
     modelInfo,
     tooltipTitle,
+    colors = ["#00bcd4", "#ffc107", "#ff5722", "#03a9f4", "#4caf50", "#f44336", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#009688", "#607d8b"],
 }: Props) => {
     const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
 
@@ -95,11 +100,9 @@ const DonutChart = ({
                     decimalSeparator: ".",
                 })}`}</text>
                 <text
-
                     x={cx}
                     y={cy + 8}
                     fontSize={20}
-
                     textAnchor={"middle"}
                     fill={centerCircleTextColor}
                 >{`${name}`}</text>
@@ -145,6 +148,12 @@ const DonutChart = ({
                     <ChartHeader
                         chartMenu={
                             <MenuList>
+                                {queryLink &&
+                                    <>
+                                        <LinkToSourceMenuItem queryLink={queryLink} />
+                                        <MenuDivider />
+                                    </>
+                                }
                                 <ChartSpanMenu
                                     onChange={(span) =>
                                         setSpanItem(GRID_ITEM_SIZE[Number(span) - 1])
@@ -166,13 +175,17 @@ const DonutChart = ({
                                 data={data}
                                 cx="50%"
                                 cy="50%"
-                                innerRadius={90}
-                                outerRadius={115}
+                                innerRadius={105}
+                                outerRadius={140}
                                 fill="#0953fe"
                                 dataKey={dataKey}
                                 nameKey={nameKey}
                                 onMouseEnter={onPieEnter}
-                            />
+                            >
+                                {data.map((_, index) => (
+                                    <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                                ))}
+                            </Pie>
                         </PieChart>
                     </ResponsiveContainer>
                 </Box>

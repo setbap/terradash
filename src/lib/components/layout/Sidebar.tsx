@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";import {
+import React, { ReactNode, useEffect } from "react";
+import {
   IconButton,
   Box,
   CloseButton,
@@ -13,6 +14,7 @@ import React, { ReactNode } from "react";import {
   useDisclosure,
   BoxProps,
   FlexProps,
+  useColorMode,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { FiHome, FiMenu } from "react-icons/fi";
@@ -55,6 +57,12 @@ export default function SidebarWithHeader({
   children: ReactNode;
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { colorMode, toggleColorMode } = useColorMode();
+  useEffect(() => {
+    if (colorMode === "light") {
+      toggleColorMode();
+    }
+  }, []);
   const variants = {
     hidden: { opacity: 0, x: -50, y: 0 },
     enter: { opacity: 1, x: 0, y: 0 },

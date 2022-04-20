@@ -8,7 +8,6 @@ export async function getStaticProps() {
     return {
         props: {
             ustBridgeValue
-
         },
         revalidate: 60 * 60,
     }
