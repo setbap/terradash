@@ -327,3 +327,11 @@ export interface LFGBalance {
   BALANCE_USD: number;
   SYMBOL: string;
 }
+
+// ------------------------ UST
+export interface USTBridge {
+  BRIDGE: string;
+  DAY: string;
+  DESTINATION_CHAIN: string;
+  UST_AMOUNT: number;
+}

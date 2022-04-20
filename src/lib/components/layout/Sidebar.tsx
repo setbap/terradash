@@ -30,7 +30,7 @@ import { RiGovernmentLine } from 'react-icons/ri';
 import { VscArrowSwap } from 'react-icons/vsc';
 import { FaBitcoin } from 'react-icons/fa';
 import { CgAnchor } from 'react-icons/cg';
-import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { AiFillDollarCircle, AiOutlineInfoCircle } from 'react-icons/ai';
 import { GiBlackBook } from 'react-icons/gi';
 import MotionBox from '../motion/Box';
 import LFGICON from '../basic/LFG_ICON';
@@ -42,13 +42,15 @@ interface LinkItemProps {
 const LinkItems: Array<LinkItemProps> = [
     { name: 'Overview', path: '/', icon: FiHome },
     { name: 'LFG', path: '/lfg', icon: LFGICON },
-    { name: 'Tx and Fee', path: '/tx-and-fee', icon: SiBuzzfeed },
+    { name: 'UST', path: '/ust', icon: AiFillDollarCircle },
     { name: 'Governance ', path: '/governance', icon: RiGovernmentLine },
+    { name: 'Anchor', path: '/anchor', icon: CgAnchor },
+    { name: 'Glossary', path: '/glossary', icon: GiBlackBook },
+
+    { name: 'Tx and Fee', path: '/tx-and-fee', icon: SiBuzzfeed },
     { name: 'Native swap', path: '/native-swap', icon: VscArrowSwap },
     { name: 'Terra VS Others', path: '/terra-vs-others', icon: FaBitcoin },
-    { name: 'Anchor', path: '/anchor', icon: CgAnchor },
     { name: 'About', path: '/about', icon: AiOutlineInfoCircle },
-    { name: 'Glossary', path: '/glossary', icon: GiBlackBook },
 ];
 
 export default function SidebarWithHeader({
