@@ -386,3 +386,50 @@ export interface USTBridgeInfo {
     amount: number;
   }[];
 }
+
+export interface UST_IN_ALL_BCs {
+  DATE: string;
+  ETH_DAILY_USERS: number;
+  ETH_MIN_DATE: string;
+  ETH_NEW_USERS: number;
+  ETH_TX: number;
+  ETH_TX_CUMULATIVE: number;
+  ETH_USERS_CUMULATIVE: number;
+  ETH_UST_CUMULATIVE: number;
+  ETH_UST_DAILY: number;
+  HAR_DAILY_USERS?: number;
+  HAR_DATE: string;
+  HAR_NEW_USERS?: number;
+  HAR_TX?: number;
+  HAR_TX_CMULATIVE?: number;
+  HAR_USERS_CUMULATIVE?: number;
+  HAR_UST_DAILY?: number;
+  HAR_VOL_CUMULATIVE?: number;
+  POLY_DAILY_USERS?: number;
+  POLY_DATE: string;
+  POLY_MIN_DATE: string;
+  POLY_NEW_USERS?: number;
+  POLY_TX?: number;
+  POLY_TX_CUMULATIVE?: number;
+  POLY_USERS_CUMULATIVE?: number;
+  POLY_UST_CUMULATIVE?: number;
+  POLY_UST_DAILY?: number;
+  SOL_DAILY_USERS?: number;
+  SOL_DATE: string;
+  SOL_MIN_DATE: string;
+  SOL_NEW_USERS?: number;
+  SOL_TX?: number;
+  SOL_TX_CUMULATIVE?: number;
+  SOL_USERS_CUMULATIVE?: number;
+  SOL_UST_CUMULATIVE?: number;
+  SOL_UST_DAILY?: number;
+  TERRA_DAILY_USERS?: number;
+  TERRA_DATE: string;
+  TERRA_MIN_DATE: string;
+  TERRA_NEW_USERS?: number;
+  TERRA_TX?: number;
+  TERRA_TX_CUMULATIVE?: number;
+  TERRA_USERS_CUMULATIVE?: number;
+  TERRA_UST_CUMULATIVE?: number;
+  TERRA_UST_DAILY?: number;
+}
