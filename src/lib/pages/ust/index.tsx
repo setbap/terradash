@@ -14,7 +14,7 @@ const UST = ({ ustBridgeValue, USTSupply }: Props) => {
       <Box mx={"auto"} px={{ base: 6, sm: 2, md: 8 }}>
         <SimpleGrid
           my={"6"}
-          columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
+          columns={{ base: 1, md: 2, lg: 2, "2xl": 3 }}
           spacing={{ base: 5, lg: 8 }}
         >
           <StatsCard
