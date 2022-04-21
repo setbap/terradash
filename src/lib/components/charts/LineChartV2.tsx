@@ -35,6 +35,7 @@ interface Props {
   title: string;
   tooltipTitle: string;
   data: any[];
+  monthlyData?: any[];
   extraDecimal?: number;
   isNotDate?: boolean;
   domain?: [number, number];
@@ -45,12 +46,13 @@ interface Props {
   queryLink?: string;
 }
 
-const ChartBox = ({
+const LineChartV2 = ({
   baseSpan = 1,
   defultDateView = "day",
   queryLink,
   isNotDate = false,
   extraDecimal = 2,
+  monthlyData,
   domain,
   areaDataKey,
   xAxisDataKey,
@@ -65,7 +67,7 @@ const ChartBox = ({
   const [selectedDate, setSelectedDate] = useState<number | string>(
     defultSelectedRange
   );
-  const [chartData, setChartData] = useState(data);
+  const [chartData, setChartData] = useState(defultViewSetting === 'day' ? data : monthlyData);
   const [savedDailyChart, setSavedDailyChart] = useState(data);
   const filterDateAccordingDay = (numberOfDays: number) => {
     const lastDay = moment(data[data.length - 1][xAxisDataKey]).subtract(
@@ -100,24 +102,11 @@ const ChartBox = ({
   const minDate = isNotDate ? null : getMinDate();
 
   const changeDataToMonethly = () => {
-    const newData: { [key: string]: number[] } = {};
-    data.forEach((item) => {
-      const monthName: string = moment(item[xAxisDataKey]).format("MMM YYYY");
-      if (newData[monthName] === undefined) {
-        newData[monthName] = [];
-      }
-      newData[monthName].push(item[areaDataKey]);
-    });
     setDefultViewSetting("month");
     setSavedDailyChart(chartData);
-    setChartData(
-      Object.entries(newData).map(([key, value]) => {
-        return {
-          [xAxisDataKey]: key,
-          [areaDataKey]: value.reduce((a, b) => a + b, 0),
-        };
-      })
-    );
+    console.log(monthlyData);
+
+    setChartData(monthlyData!);
   };
 
   const changeDataToDaily = () => {
@@ -331,4 +320,4 @@ const ChartBox = ({
   );
 };
 
-export default ChartBox;
+export default LineChartV2;

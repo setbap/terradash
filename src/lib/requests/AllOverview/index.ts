@@ -1,11 +1,44 @@
 import moment from "moment";
 import {
+  AtiveUserOverTime,
+  DailyActiveWallets,
   DailyTx,
   SimpilifiedTotalFeeByEachToken,
   TotalFeeByEachToken,
   TotalNumberOfWallets,
   TransactionFee,
 } from "types/type";
+
+export const getDailyActiveWallets: () => Promise<AtiveUserOverTime> =
+  async () => {
+    const dailyRes = await fetch(
+      "https://api.flipsidecrypto.com/api/v2/queries/abd492f7-d5a2-456a-92b1-33bc8a542e04/data/latest"
+    );
+    const monthlyRes = await fetch(
+      "https://api.flipsidecrypto.com/api/v2/queries/9b5c761e-dfff-41e8-a3c5-f13081f591a0/data/latest"
+    );
+    const numberOfDailyActiveWallets: DailyActiveWallets[] =
+      await dailyRes.json();
+    const numberOfMonthlyActiveWallets: DailyActiveWallets[] =
+      await monthlyRes.json();
+    return {
+      numberOfMonthlyActiveWallets: numberOfMonthlyActiveWallets.map(
+        (month) => {
+          return {
+            "number of active user": month.ACTIVE_USERS,
+            date: moment(month.DATE).format("MMM YYYY"),
+          };
+        }
+      ),
+      numberOfDailyActiveWallets: numberOfDailyActiveWallets.map((day) => {
+        return {
+          "number of active user": day.ACTIVE_USERS,
+          date: moment(day.DATE).format("DD MMM YYYY"),
+        };
+      }),
+    };
+  };
+
 export const getTotalNumberOfWallets = async () => {
   const res = await fetch(
     "https://api.flipsidecrypto.com/api/v2/queries/dd20f26c-d742-440e-a447-43b939091a2f/data/latest"

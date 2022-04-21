@@ -4,6 +4,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import {
+  AtiveUserOverTime,
   AvgUSTPrice,
   BurnLuna,
   ChangedDailyTx,
@@ -21,6 +22,7 @@ import {
   TotalUSTSupply,
 } from "types/type";
 import ChartBox from "lib/components/charts/LineChart";
+import LineChartV2 from "lib/components/charts/LineChartV2";
 import { StatsCard } from "lib/components/charts/StateCard";
 import MultiChartBox from "lib/components/charts/MultiLineChart";
 import BarGraph from "lib/components/charts/BarGraph";
@@ -47,6 +49,8 @@ interface Props {
   transactionFees: any,
   totalNumberOfWallets: TotalNumberOfWallets,
   terraDailyTx: ChangedDailyTx[];
+  dailyActiveWallets: AtiveUserOverTime
+
 }
 
 const Home = ({
@@ -68,6 +72,7 @@ const Home = ({
   transactionFees,
   terraDailyTx,
   totalNumberOfWallets,
+  dailyActiveWallets,
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
 
@@ -93,14 +98,27 @@ const Home = ({
           columns={{ sm: 1, md: 1, lg: 2, "2xl": 3 }}
           spacing={{ base: 1, md: 2, lg: 4 }}
         >
+
           <ChartBox data={terraDailyTx}
             showMonthly
             tooltipTitle=" Tx "
             modelInfo="This chart shows how many transactions happen in the terra blockchain per day."
             title="Tx per "
-            baseSpan={2}
+            baseSpan={3}
             areaDataKey="transaction count"
             xAxisDataKey="day" />
+          <LineChartV2
+            data={dailyActiveWallets.numberOfDailyActiveWallets}
+            queryLink="https://app.flipsidecrypto.com/dashboard/active-user-over-the-time-jMf4wy"
+            showMonthly
+            monthlyData={dailyActiveWallets.numberOfMonthlyActiveWallets}
+            tooltipTitle=" Tx "
+            defultDateView="month"
+            modelInfo="This chart shows how many transactions happen in the terra blockchain per day."
+            title="Active user per "
+            baseSpan={2}
+            areaDataKey="number of active user"
+            xAxisDataKey="date" />
           <DonutChart
             queryLink="https://app.flipsidecrypto.com/velocity/queries/8c595217-f3ad-44c9-bf83-853e71ee1c2d"
             data={totalFeeByEachToken}

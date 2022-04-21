@@ -253,6 +253,22 @@ export interface DailyStakingRewards {
 
 // ---------------------- Overview
 
+export interface DailyActiveWallets {
+  ACTIVE_USERS: number;
+  DATE: string;
+}
+
+export interface AtiveUserOverTime {
+  numberOfMonthlyActiveWallets: {
+    "number of active user": number;
+    date: string;
+  }[];
+  numberOfDailyActiveWallets: {
+    "number of active user": number;
+    date: string;
+  }[];
+}
+
 export interface DailyTx {
   "daily TX": number;
   day: string;
