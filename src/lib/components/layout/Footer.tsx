@@ -60,7 +60,7 @@ export default function Footer() {
       >
         <Stack direction={"row"} spacing={2}>
           <Text>Powered by</Text>
-          <Link href={"http://flipsidecrypto.xyz/"} isExternal display={'inline-flex'}>
+          <Link href={"https://flipsidecrypto.xyz/"} isExternal display={'inline-flex'}>
             Flipside Crypto <Box ml={'1'}><FlipSideIcon fill={baseColor} /></Box>
           </Link>
           <Text>&</Text>
