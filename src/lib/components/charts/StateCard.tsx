@@ -35,6 +35,7 @@ export const StatsCard = (props: StatsCardProps) => {
 	return (
 		<Stat
 			px={{ base: 4, md: 8 }}
+			zIndex={0}
 			py="5"
 			shadow="base"
 			transition={'box-shadow 0.4s'}

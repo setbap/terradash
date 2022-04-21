@@ -1,6 +1,5 @@
 import {
   Box,
-  chakra,
   SimpleGrid,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -13,8 +12,8 @@ import {
   CurentLunaPrice,
   DailyNewUser,
   DailyNewUserSince2022,
-  DailyTx,
   DistributionOfLunaHolders,
+  SimpilifiedTotalFeeByEachToken,
   TerraDailyAvgMinMaxPrice,
   TotalBurnLuna,
   TotalLunaSupply,
@@ -25,8 +24,9 @@ import ChartBox from "lib/components/charts/LineChart";
 import { StatsCard } from "lib/components/charts/StateCard";
 import MultiChartBox from "lib/components/charts/MultiLineChart";
 import BarGraph from "lib/components/charts/BarGraph";
+import DonutChart from "lib/components/charts/DonutChart";
 
-
+const colors = ["#ffc107", "#ff5722", "#03a9f4", "#4caf50", "#00bcd4", "#f44336", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#009688", "#607d8b"]
 
 interface Props {
   dailyNewUser: DailyNewUser[];
@@ -43,8 +43,8 @@ interface Props {
   dailyNewUserSince2022: DailyNewUserSince2022[],
 
 
-
-
+  totalFeeByEachToken: SimpilifiedTotalFeeByEachToken[]
+  transactionFees: any,
   totalNumberOfWallets: TotalNumberOfWallets,
   terraDailyTx: ChangedDailyTx[];
 }
@@ -64,6 +64,8 @@ const Home = ({
   dailyNewUserSince2022,
 
 
+  totalFeeByEachToken,
+  transactionFees,
   terraDailyTx,
   totalNumberOfWallets,
 }: Props) => {
@@ -84,8 +86,10 @@ const Home = ({
           />
         </SimpleGrid>
         <SimpleGrid
+          position={'relative'}
           transition={'all 0.9s ease-in-out'}
           py={"6"}
+          zIndex={100}
           columns={{ sm: 1, md: 1, lg: 2, "2xl": 3 }}
           spacing={{ base: 1, md: 2, lg: 4 }}
         >
@@ -94,8 +98,31 @@ const Home = ({
             tooltipTitle=" Tx "
             modelInfo="This chart shows how many transactions happen in the terra blockchain per day."
             title="Tx per "
+            baseSpan={2}
             areaDataKey="transaction count"
             xAxisDataKey="day" />
+          <DonutChart
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/8c595217-f3ad-44c9-bf83-853e71ee1c2d"
+            data={totalFeeByEachToken}
+            tooltipTitle="Total amount of each token  paid as fee"
+            modelInfo="This chart shows the distribution amount of each coin paid as fee."
+            title="Total amount of each token  paid as fee"
+            dataKey="amount token"
+            nameKey="token name"
+          />
+          <BarGraph
+            queryLink="https://app.flipsidecrypto.com/dashboard/terra-transactions-daily-monthly-all-time-GO-QmX"
+            modelInfo="shows amount of each token paid as fee over the time"
+            values={transactionFees.daily}
+            monthlyValues={transactionFees.monthly}
+            defualtTime="month"
+            title="Amount of each token paid as fee over the time"
+            dataKey="date"
+            baseSpan={3}
+            oyLabel="Amout of each Token"
+            oxLabel="name"
+            labels={transactionFees.denums.filter((item: string) => !item.startsWith('ibc')).map((item: string, index: number) => ({ key: item, color: colors[index % colors.length] }))}
+          />
         </SimpleGrid>
 
         {/* old ---------------------------- old */}

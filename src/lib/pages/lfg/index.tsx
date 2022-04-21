@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, useColorModeValue } from "@chakra-ui/react";import { LFGBalance } from "types/type";
+import { Box, SimpleGrid, useColorModeValue } from "@chakra-ui/react"; import { LFGBalance } from "types/type";
 import MultiLineChartSeprate from "lib/components/charts/MultiLineChartSeprate";
 import moment from "moment";
 
@@ -14,7 +14,7 @@ const Home = ({ lfgBalance }: Props) => {
         <iframe
           height="100%"
           width="100%"
-          src="https://analytics.zoho.com/open-view/2490519000000560829"
+          src="https://analytics.zoho.com/open-view/2490519000000806007"
         ></iframe>
         {/* <SimpleGrid
           columns={{ base: 1, md: 1, lg: 2, "2xl": 3 }}

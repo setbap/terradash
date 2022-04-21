@@ -10,13 +10,15 @@ import { getTerraDailyAvgMinMaxPrice } from "lib/requests/overview/terra_avg_min
 import { getAvgUSTPrice } from "lib/requests/overview/terra_avg_min_max_price copy";
 import { getTotalBurnLuna } from "lib/requests/overview/total_burn_luna";
 import { getTotalLunaSupply } from "lib/requests/overview/total_luna_supply";
-import { getTotalNumberOfWallets } from "lib/requests/AllOverview";
+import { getDailyTerraTransactionFee, getTotalFeeByEachToken, getTotalNumberOfWallets } from "lib/requests/AllOverview";
 import { getTotalUSTSupply } from "lib/requests/overview/total_ust_supply";
 import { getTerraDailyTx } from "lib/requests/AllOverview";
 export async function getStaticProps() {
     const [
         totalNumberOfWallets,
         terraDailyTx,
+        transactionFees,
+        totalFeeByEachToken,
 
 
         dailyNewUser,
@@ -34,6 +36,8 @@ export async function getStaticProps() {
     ] = await Promise.all([
         getTotalNumberOfWallets(),
         getTerraDailyTx(),
+        getDailyTerraTransactionFee(),
+        getTotalFeeByEachToken(),
 
 
         getDailyNewUser(),
@@ -53,6 +57,8 @@ export async function getStaticProps() {
         props: {
             totalNumberOfWallets,
             terraDailyTx,
+            transactionFees,
+            totalFeeByEachToken,
 
 
             dailyNewUser,

@@ -90,6 +90,7 @@ const DonutChart = ({
                 />
 
                 <text
+                    width={100}
                     x={cx}
                     y={cy - 16}
                     fontSize={16}

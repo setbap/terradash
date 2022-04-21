@@ -28,9 +28,10 @@ const BarGraph = ({
   modelInfo,
   isNotDate = false,
   monthlyValues,
-  extraInfoToTooltip,
+  extraInfoToTooltip, defualtTime = "day",
   queryLink,
 }: {
+  defualtTime?: 'day' | 'month';
   title: string;
   dataKey: string;
   oxLabel: string;
@@ -45,8 +46,8 @@ const BarGraph = ({
   labels: { key: string; color: string }[];
 }) => {
   const hasMonthly = !isNotDate && monthlyValues && monthlyValues.length > 0;
-  const [chartData, setChartData] = useState(values);
-  const [chartTimeFrame, setChartTimeFrame] = useState<'day' | 'month'>('day')
+  const [chartData, setChartData] = useState(defualtTime === "day" ? values : monthlyValues);
+  const [chartTimeFrame, setChartTimeFrame] = useState<'day' | 'month'>(defualtTime)
   const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
   const [barProps, setBarProps] = useState(
     labels.reduce(
@@ -232,7 +233,7 @@ const BarGraph = ({
             />
             <Legend
               fontSize={"8px"}
-              style={{ fontSize: "7px" }}
+              style={{ fontSize: "7px", position: 'relative' }}
               onClick={selectBar}
               onMouseOver={handleLegendMouseEnter}
               onMouseOut={handleLegendMouseLeave}

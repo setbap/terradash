@@ -263,6 +263,22 @@ export interface ChangedDailyTx {
   day: string;
 }
 
+export interface TransactionFee {
+  DATE: string;
+  DENOM: string;
+  TOTAL_AMOUNT: number;
+}
+
+export interface TotalFeeByEachToken {
+  DENOM: string;
+  TOTAL_AMOUNT: number;
+}
+
+export interface SimpilifiedTotalFeeByEachToken {
+  "token name": string;
+  "amount token": number;
+}
+
 //----------------------- Validators and Governance
 export interface ActiveValidators {
   validators: Object[];
