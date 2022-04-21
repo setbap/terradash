@@ -29,9 +29,8 @@ export interface AnchorDeposite {
 }
 
 export interface SumAnchorDeposite {
-  ALL_DEPOSIT_AMOUNT_USD: number;
-  PAST_30_DEPOSIT_AMOUNT_USD: number;
-  PAST_7_DEPOSIT_AMOUNT_USD: number;
+  PAST_30_AMOUNT: number;
+  PAST_7_AMOUNT: number;
 }
 
 export interface AnchorBorrows {
@@ -46,11 +45,10 @@ export interface SumAnchorBorrows {
 }
 
 export interface AnchorBorrowAndDeposit {
-  DAY: string;
-  "daily redeems": number;
-  "daily deposits": number;
+  DAY: date;
+  "Daily Deposits": number;
+  "Daily Redemptions": number;
   "Net Activity": number;
-  "sum diffrent redeems and deposits": number;
 }
 
 export interface AnchorUserBorrowAndDeposit {
