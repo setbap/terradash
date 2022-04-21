@@ -67,7 +67,7 @@ const LineChartV2 = ({
   const [selectedDate, setSelectedDate] = useState<number | string>(
     defultSelectedRange
   );
-  const [chartData, setChartData] = useState(defultViewSetting === 'day' ? data : monthlyData);
+  const [chartData, setChartData] = useState(defultViewSetting === 'day' ? data : monthlyData!);
   const [savedDailyChart, setSavedDailyChart] = useState(data);
   const filterDateAccordingDay = (numberOfDays: number) => {
     const lastDay = moment(data[data.length - 1][xAxisDataKey]).subtract(
