@@ -38,17 +38,16 @@ interface LinkItemProps {
   path: string;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: "Overview", path: "/", icon: FiHome },
-  { name: "LFG", path: "/lfg", icon: LFGICON },
-  { name: "UST", path: "/ust", icon: AiFillDollarCircle },
-  { name: "Governance ", path: "/governance", icon: RiGovernmentLine },
-  { name: "Anchor", path: "/anchor", icon: CgAnchor },
-  { name: "Glossary", path: "/glossary", icon: GiBlackBook },
-
-  { name: "Tx and Fee", path: "/tx-and-fee", icon: SiBuzzfeed },
-  { name: "Native swap", path: "/native-swap", icon: VscArrowSwap },
-  { name: "Terra VS Others", path: "/terra-vs-others", icon: FaBitcoin },
-  { name: "About", path: "/about", icon: AiOutlineInfoCircle },
+    { name: 'Overview', path: '/', icon: FiHome },
+    { name: 'LFG', path: '/lfg', icon: LFGICON },
+    { name: "UST", path: "/ust", icon: AiFillDollarCircle },
+    { name: 'Tx and Fees', path: '/tx-and-fee', icon: SiBuzzfeed },
+    { name: 'Governance ', path: '/governance', icon: RiGovernmentLine },
+    { name: 'Native Swaps', path: '/native-swap', icon: VscArrowSwap },
+    { name: 'Terra vs Others', path: '/terra-vs-others', icon: FaBitcoin },
+    { name: 'Anchor', path: '/anchor', icon: CgAnchor },
+    { name: 'About', path: '/about', icon: AiOutlineInfoCircle },
+    { name: 'Glossary', path: '/glossary', icon: GiBlackBook },
 ];
 
 export default function SidebarWithHeader({

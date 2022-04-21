@@ -50,29 +50,29 @@ const Home = ({
           />
           <StatsCard
             status="inc"
-            title={"Total UST Deposited [overall]"}
+            title={"Total UST Deposited [all time]"}
             stat={sumAnchorDeposite.ALL_DEPOSIT_AMOUNT_USD}
           />
 
           <StatsCard
             status="inc"
-            title={"Total UST borrowed [past 7 days]"}
+            title={"Total UST Borrowed [past 7 days]"}
             stat={sumAnchorBorrow.PAST_7_SUM_BORROWS_USD}
           />
           <StatsCard
             status="inc"
-            title={"Total UST borrowed [past 30 days]"}
+            title={"Total UST Borrowed [past 30 days]"}
             stat={sumAnchorBorrow.PAST_30_SUM_BORROWS_USD}
           />
           <StatsCard
             status="inc"
-            title={"Total UST borrowed [overall]"}
+            title={"Total UST Borrowed [all time]"}
             stat={sumAnchorBorrow.ALL_SUM_BORROWS_USD}
           />
 
           <StatsCard
             status="dec"
-            title={"Total difference Borrow and Deposit(USD) "}
+            title={"Borrows Minus Deposits (USD)"}
             stat={
               borrowAndDeposit.length
                 ? borrowAndDeposit[borrowAndDeposit.length - 1]?.[
@@ -84,12 +84,12 @@ const Home = ({
 
           <StatsCard
             status="inc"
-            title={"Number of unique users that borrowed"}
+            title={"# of Unique Users Who Borrowed"}
             stat={totalUserBorrowDeposit["unique user borrows"]}
           />
           <StatsCard
             status="inc"
-            title={"Number of unique users that deposited"}
+            title={"# of Unique Users Who Deposited"}
             stat={totalUserBorrowDeposit["unique user deposits"]}
           />
         </SimpleGrid>
@@ -100,9 +100,9 @@ const Home = ({
         >
           <ChartBox
             data={borrowAndDeposit}
-            tooltipTitle="Daily Anchor Deposit(USD)"
-            modelInfo="This chart shows how much deposit to anchor in USD each day in the Terra blockchain. "
-            title="Anchor Deposit(USD)"
+            tooltipTitle="Daily Anchor Deposits (USD)"
+            modelInfo="Daily amount deposited to Anchor on the Terra blockchain. "
+            title="Anchor Deposits (USD)"
             areaDataKey="daily deposits"
             xAxisDataKey="DAY"
           />
@@ -110,26 +110,26 @@ const Home = ({
           <ChartBox
             data={borrowAndDeposit}
             tooltipTitle="Daily Anchor Borrows(USD)"
-            modelInfo="This chart shows how much borrow from anchor in USD each day in the Terra blockchain."
-            title="Anchor Borrow(USD)"
+            modelInfo="Daily amount borrowed from Anchor on the Terra blockchain."
+            title="Anchor Borrows (USD)"
             areaDataKey="daily borrows"
             xAxisDataKey="DAY"
           />
 
           <ChartBox
             data={borrowAndDeposit}
-            tooltipTitle={"difference between borrow and deposit (USD)"}
-            modelInfo="This chart shows the difference between depositing and borrowing in USD on anchor per day. zero line means deposit and borrow are equal. below zero means deposit is more than borrow and above zero means borrow is more than deposit."
-            title="difference between borrow and deposit (USD)"
+            tooltipTitle={"Difference between borrow and deposit (USD)"}
+            modelInfo="Difference between depositing and borrowing in USD on Anchor per day. Zero line means deposits and borrows are equal. Above zero means borrows are more than deposits; below zero means deposits are more than borrows."
+            title="Borrows Minus Deposits (USD)"
             areaDataKey={"diffrent borrows and deposits"}
             xAxisDataKey="DAY"
           />
 
           <ChartBox
             data={borrowAndDeposit}
-            tooltipTitle={"cumulative difference between borrow and deposit (USD)"}
-            modelInfo="This chart shows cumulative differences between borrow and deposit on anchor. If the chart is a constant line, this is means deposit and borrow are equal. If it is ascending, this is means borrow is more than deposit and If it is descending means deposit is more than borrow."
-            title="cumulative difference between borrow and deposit (USD)"
+            tooltipTitle={"Cumulative difference between borrows and deposits (USD)"}
+            modelInfo="Cumulative difference between borrows and deposits on Anchor. If the chart is a constant line, this means deposits and borrows are holding equal. Ascending means borrows are continually outpacing deposits over time; descending means deposits are continually outpacing borrows over time."
+            title="Borrows Minus Deposits - Cumulative (USD)"
             areaDataKey={"sum diffrent borrows and deposits"}
             xAxisDataKey="DAY"
           />
@@ -140,8 +140,8 @@ const Home = ({
             //   "number of wallet borrows",
             //   "number of wallet deposits",
             // ]}
-            modelInfo="this chart shows how many user borrow from anchor and deposit to it per day."
-            title="The number of wallets they borrowed/deposited"
+            modelInfo="Daily # of wallets borrowing and depositing on Anchor."
+            title="Daily # of Users Borrowing and Depositing"
             areaDataKey={[
               "number of wallet borrows",
               "number of wallet deposits",

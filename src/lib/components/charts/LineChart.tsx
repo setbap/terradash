@@ -194,7 +194,7 @@ const ChartBox = ({
             </MenuList>
           }
           modalInfo={modelInfo}
-          title={title + (showMonthly ? defultViewSetting : "")}
+          title={title + ' ' + (showMonthly ? defultViewSetting : "")}
         />
         <Box p={"1"} />
         <ResponsiveContainer
