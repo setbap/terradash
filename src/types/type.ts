@@ -387,3 +387,24 @@ export interface USTBridgeInfo {
     amount: number;
   }[];
 }
+
+// ------------------------ Anchor - forg additions
+export interface AnchorBalances {
+  stable_demon: string;
+  liquid_terra: string;
+  exchange_rate: string;
+  last_updated: string;
+  borrowed_terra: string;
+  utilization_ratio: string;
+  current_apy: string;
+}
+
+export interface AnchorEarnUsers {
+  date: string;
+  unique_wallets: number;
+}
+
+export interface AnchorBorrowUsers {
+  date: string;
+  unique_wallets: number;
+}
