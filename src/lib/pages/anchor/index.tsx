@@ -10,6 +10,7 @@ import {
   AnchorUserBorrowAndDeposit,
   SumAnchorBorrows,
   SumAnchorDeposite,
+  AnchorDeposite,
 } from "types/type";
 import ChartBox from "lib/components/charts/LineChart";
 import MultiChartBox from "lib/components/charts/MultiLineChart";
@@ -21,6 +22,7 @@ interface Props {
   sumAnchorBorrow: SumAnchorBorrows;
   borrowAndDeposit: AnchorBorrowAndDeposit[];
   borrowAndDepositUser: AnchorUserBorrowAndDeposit[];
+  anchorDeposite: AnchorDeposite[];
 }
 const Home = ({
   sumAnchorDeposite,
@@ -28,6 +30,7 @@ const Home = ({
   borrowAndDeposit,
   totalUserBorrowDeposit,
   borrowAndDepositUser,
+  anchorDeposite,
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
   return (
@@ -76,7 +79,7 @@ const Home = ({
             stat={
               borrowAndDeposit.length
                 ? borrowAndDeposit[borrowAndDeposit.length - 1]?.[
-                "sum diffrent borrows and deposits"
+                "sum diffrent redeems and deposits"
                 ]
                 : 0
             }
@@ -100,10 +103,10 @@ const Home = ({
         >
           <ChartBox
             data={borrowAndDeposit}
-            tooltipTitle="Daily Anchor Deposits (USD)"
-            modelInfo="Daily amount deposited to Anchor on the Terra blockchain. "
-            title="Anchor Deposits (USD)"
-            areaDataKey="daily deposits"
+            tooltipTitle="Daily Anchor Earn Activity (USD)"
+            modelInfo="Daily Earn deposits into Anchor minus redemptions out of Anchor."
+            title="Net Depositor Activity (Anchor Earn)"
+            areaDataKey="Net Activity"
             xAxisDataKey="DAY"
           />
 
@@ -112,7 +115,7 @@ const Home = ({
             tooltipTitle="Daily Anchor Borrows(USD)"
             modelInfo="Daily amount borrowed from Anchor on the Terra blockchain."
             title="Anchor Borrows (USD)"
-            areaDataKey="daily borrows"
+            areaDataKey="daily redeems"
             xAxisDataKey="DAY"
           />
 
@@ -121,7 +124,7 @@ const Home = ({
             tooltipTitle={"Difference between borrow and deposit (USD)"}
             modelInfo="Difference between depositing and borrowing in USD on Anchor per day. Zero line means deposits and borrows are equal. Above zero means borrows are more than deposits; below zero means deposits are more than borrows."
             title="Borrows Minus Deposits (USD)"
-            areaDataKey={"diffrent borrows and deposits"}
+            areaDataKey={"Net Activity"}
             xAxisDataKey="DAY"
           />
 
@@ -130,7 +133,7 @@ const Home = ({
             tooltipTitle={"Cumulative difference between borrows and deposits (USD)"}
             modelInfo="Cumulative difference between borrows and deposits on Anchor. If the chart is a constant line, this means deposits and borrows are holding equal. Ascending means borrows are continually outpacing deposits over time; descending means deposits are continually outpacing borrows over time."
             title="Borrows Minus Deposits - Cumulative (USD)"
-            areaDataKey={"sum diffrent borrows and deposits"}
+            areaDataKey={"sum diffrent redeems and deposits"}
             xAxisDataKey="DAY"
           />
 

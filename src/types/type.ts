@@ -21,8 +21,11 @@ export interface RawDailyNewUser {
 }
 
 export interface AnchorDeposite {
-  BLOCK_TIMESTAMP: string;
-  DEPOSIT_AMOUNT_USD: number;
+  DATE: string;
+  DEPOSIT_AMOUNT: number;
+  NET_DAILY_AMOUNT: number;
+  REDEEM_AMOUNT: number;
+  Z_CUMULATIVE_SUM: number;
 }
 
 export interface SumAnchorDeposite {
@@ -44,10 +47,10 @@ export interface SumAnchorBorrows {
 
 export interface AnchorBorrowAndDeposit {
   DAY: string;
-  "daily borrows": number;
+  "daily redeems": number;
   "daily deposits": number;
-  "diffrent borrows and deposits": number;
-  "sum diffrent borrows and deposits": number;
+  "Net Activity": number;
+  "sum diffrent redeems and deposits": number;
 }
 
 export interface AnchorUserBorrowAndDeposit {
