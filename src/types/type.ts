@@ -327,3 +327,30 @@ export interface LFGBalance {
   BALANCE_USD: number;
   SYMBOL: string;
 }
+
+// ------------------------ UST
+
+export interface USTSupply {
+  amount: {
+    denom: string;
+    amount: string;
+  };
+}
+
+export interface USTBridge {
+  BRIDGE: string;
+  DAY: string;
+  DESTINATION_CHAIN: string;
+  UST_AMOUNT: number;
+}
+
+export interface USTBridgeInfo {
+  bridges: string[];
+  blockchains: string[];
+  dailyBridgeValue: any;
+  monthlyBridgeValue: any;
+  blockchainsWithValue: {
+    blockchain: string;
+    amount: number;
+  }[];
+}

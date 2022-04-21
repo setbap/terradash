@@ -6,7 +6,12 @@ import fonts from "./fonts";
 
 const customTheme = extendTheme({
   fonts,
+
   colors,
+  config: {
+    initialColorMode: "dark",
+    useSystemColorMode: false,
+  },
   components: {
     Button,
   },
