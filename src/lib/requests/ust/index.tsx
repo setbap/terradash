@@ -100,7 +100,7 @@ export const getUSTInfoInBCsUstVolume = async (): Promise<any> => {
 
 export const getUSTBridgeValue: () => Promise<USTBridgeInfo> = async () => {
     const res = await fetch(
-        "https://api.flipsidecrypto.com/api/v2/queries/cbcea6f8-a3b1-4298-906e-db63b6971e25/data/latest"
+        "https://api.flipsidecrypto.com/api/v2/queries/4eab2b30-aa8a-4830-8b48-14ca336b0a5b/data/latest"
     );
     const USTBridgeValue: USTBridge[] = await res.json();
     const blockchains = Array.from(

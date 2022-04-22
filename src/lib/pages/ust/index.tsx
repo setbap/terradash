@@ -67,7 +67,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
         >
 
           <BarGraph
-            queryLink="https://app.flipsidecrypto.com/velocity/queries/cbcea6f8-a3b1-4298-906e-db63b6971e25"
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/4eab2b30-aa8a-4830-8b48-14ca336b0a5b"
             modelInfo="Volume of UST bridged out By Each Bridge over the time"
             values={ustBridgeValue.dailyBridgeValue}
             monthlyValues={ustBridgeValue.monthlyBridgeValue}
@@ -92,11 +92,11 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
             oyLabel="number of users"
             oxLabel="name"
             labels={[
-              { key: "Terra", color: "#09f35e" },
-              { key: "Sol", color: "#fe3" },
-              { key: "Ethereum", color: "#4af" },
-              { key: "Polygon", color: "#f30e0e" },
-              { key: "Harmony", color: "#b3d" },
+              { key: "Terra", color: "#fad85d" },
+              { key: "Sol", color: "#7d80d9" },
+              { key: "Ethereum", color: "#8b93b3" },
+              { key: "Polygon", color: "#8347e4" },
+              { key: "Harmony", color: "#0bb7e3" },
             ]}
           />
 
@@ -110,11 +110,11 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
             oyLabel="transaction count"
             oxLabel="name"
             labels={[
-              { key: "Terra", color: "#09f35e" },
-              { key: "Sol", color: "#fe3" },
-              { key: "Ethereum", color: "#4af" },
-              { key: "Polygon", color: "#f30e0e" },
-              { key: "Harmony", color: "#b3d" },
+              { key: "Terra", color: "#fad85d" },
+              { key: "Sol", color: "#7d80d9" },
+              { key: "Ethereum", color: "#8b93b3" },
+              { key: "Polygon", color: "#8347e4" },
+              { key: "Harmony", color: "#0bb7e3" },
             ]}
           />
 
@@ -128,15 +128,15 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
             oyLabel="volume of UST"
             oxLabel="name"
             labels={[
-              { key: "Terra", color: "#09f35e" },
-              { key: "Sol", color: "#fe3" },
-              { key: "Ethereum", color: "#4af" },
-              { key: "Polygon", color: "#f30e0e" },
-              { key: "Harmony", color: "#b3d" },
+              { key: "Terra", color: "#fad85d" },
+              { key: "Sol", color: "#7d80d9" },
+              { key: "Ethereum", color: "#8b93b3" },
+              { key: "Polygon", color: "#8347e4" },
+              { key: "Harmony", color: "#0bb7e3" },
             ]}
           />
           {/* <DonutChart
-            queryLink="https://app.flipsidecrypto.com/velocity/queries/cbcea6f8-a3b1-4298-906e-db63b6971e25"
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/4eab2b30-aa8a-4830-8b48-14ca336b0a5b"
             data={ustBridgeValue.blockchainsWithValue}
             tooltipTitle=" Total Fee Paid With Each coin "
             modelInfo="This chart shows the distribution Volume of UST bridged out to Each Blockchain."
