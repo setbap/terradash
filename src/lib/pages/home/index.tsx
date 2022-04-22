@@ -86,7 +86,7 @@ const Home = ({
         >
           <StatsCard
             status="inc"
-            title={"Total Number of Unique Wallet"}
+            title={"Total Number of Unique Wallets"}
             stat={totalNumberOfWallets["total number of user"]}
           />
         </SimpleGrid>
@@ -101,9 +101,9 @@ const Home = ({
 
           <ChartBox data={terraDailyTx}
             showMonthly
-            tooltipTitle=" Tx "
-            modelInfo="This chart shows how many transactions happen in the terra blockchain per day."
-            title="Tx per "
+            tooltipTitle="Terra Transactions"
+            modelInfo="Terra transactions over time."
+            title="Terra Transactions per "
             baseSpan={3}
             areaDataKey="transaction count"
             xAxisDataKey="day" />
@@ -112,10 +112,10 @@ const Home = ({
             queryLink="https://app.flipsidecrypto.com/dashboard/active-user-over-the-time-jMf4wy"
             showMonthly
             monthlyData={dailyActiveWallets.numberOfMonthlyActiveWallets}
-            tooltipTitle=" Tx "
+            tooltipTitle="Active Users"
             defultDateView="month"
-            modelInfo="This chart shows how many transactions happen in the terra blockchain per day."
-            title="Active user per "
+            modelInfo="Methodology: Active users is the count of unique addresses involved in a transaction, not including validators or oracle voting transactions, calculated through the previous month."
+            title="Active Users per "
             baseSpan={2}
             areaDataKey="number of active user"
             xAxisDataKey="date" />
@@ -130,7 +130,7 @@ const Home = ({
           />
           <BarGraph
             queryLink="https://app.flipsidecrypto.com/dashboard/terra-transactions-daily-monthly-all-time-GO-QmX"
-            modelInfo="shows amount of each token paid as fee over the time"
+            modelInfo="Amount of each token paid as fees."
             values={transactionFees.daily}
             monthlyValues={transactionFees.monthly}
             defualtTime="month"
@@ -151,7 +151,7 @@ const Home = ({
         >
           <StatsCard
             status="inc"
-            title={"Current Luna Price(USD)"}
+            title={"Current Luna Price (USD)"}
             stat={curentLunaPrice["PRICE_USD"]}
           />
 
@@ -197,16 +197,16 @@ const Home = ({
           <ChartBox
             data={circulationSupplyLuna}
             tooltipTitle="circulation supply luna"
-            modelInfo={`Circulating supply is the total LUNA that normal users have (not dex, cex, smart contract, etc)`}
-            title="Luna circulation supply"
+            modelInfo={`Held by typical users, e.g. does not include exchages (dex or cex), or smart contracts, etc.`}
+            title="Circulating Supply LUNA"
             areaDataKey="Luna Circulating Supply"
             xAxisDataKey="day"
           />
           <ChartBox
             data={avgUSTPrice}
-            tooltipTitle="Avg UST price  "
-            modelInfo="UST is an algorithmic stablecoin on Terra blockchain but that does not mean the price is always $1. In this chart, you can see the fluctuations of the UST on different days."
-            title="[next]Avg Daily UST price "
+            tooltipTitle="Avg Daily UST Price (USD)"
+            modelInfo="UST is an algorithmic stablecoin on Terra blockchain."
+            title="[next]Avg Daily UST Price (USD)"
             areaDataKey="avg price"
             extraDecimal={5}
             domain={[0.9, 1.1]}
@@ -224,7 +224,7 @@ const Home = ({
           <MultiChartBox
             data={terraDailyAvgMinMaxPrice}
             // tooltipTitle={["min price", "avg price", "max price"]}
-            modelInfo="This chart shows daily price of LUNA. the red line is minimum price and the blue line is maximum price of each day."
+            modelInfo="Daily LUNA price with daily minimum in red and daily maximum in blue."
             title="[v1.5]Daily Luna Price"
             multiOff
             chartColors={["#F44", "#4F4", "#55f"]}
@@ -235,8 +235,8 @@ const Home = ({
           <ChartBox
             data={burnLuna}
             tooltipTitle={"amount"}
-            modelInfo="In terra blockchain we have burn event. that means some amount of LUNA burnt daily.amount of burn increase after Columbus-5 update"
-            title="[v1.5]Daily Burned Luna"
+            modelInfo="LUNA is burnt daily to sustain Terra's economics. Burn amounts increased after the Oct 2021 Columbus-5 network update."
+            title="[v1.5]Burned Luna per"
             areaDataKey={"amount"}
             xAxisDataKey="day"
           />
@@ -249,9 +249,9 @@ const Home = ({
             xAxisDataKey="day"
           />
           <BarGraph
-            modelInfo="This chart shows how many users hold between (0,10] LUNA, how many hold between (10,100] LUNA, how many hold between (10o,1000] LUNA and etc."
+            modelInfo="Count of users holding between (0,10] LUNA, (10,100] LUNA, (100,1000] LUNA etc."
             values={distributionOfLunaHolders}
-            title="[next]distribution of LUNA between holders"
+            title="[next] LUNA holders by amount held"
             dataKey="distribution"
             oyLabel="number of wallets"
             oxLabel="group"

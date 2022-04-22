@@ -53,19 +53,19 @@ const Home = ({
 
           <StatsCard
             status="inc"
-            title={"Total Deposit"}
+            title={"Total Deposits"}
             stat={(+anchorBalances.borrowed_terra / 1000000) + (+anchorBalances.liquid_terra / 1000000)}
           />
 
           <StatsCard
             status="inc"
-            title={"Total Borrow"}
+            title={"Total Borrowed"}
             stat={(+anchorBalances.borrowed_terra / 1000000)}
           />
 
           <StatsCard
             status="inc"
-            title={"UST Reserve"}
+            title={"UST Reserves"}
             stat={(+anchorBalances.liquid_terra / 1000000)}
           />
 
@@ -77,13 +77,13 @@ const Home = ({
 
           <StatsCard
             status="inc"
-            title={"Net UST Deposited [past 7 days]"}
+            title={"Net UST Deposits [past 7 days]"}
             stat={sumAnchorDeposite.PAST_7_AMOUNT}
           />
 
           <StatsCard
             status="inc"
-            title={"Net UST Deposited [past 30 days]"}
+            title={"Net UST Deposits [past 30 days]"}
             stat={sumAnchorDeposite.PAST_30_AMOUNT}
           />
 
@@ -101,8 +101,8 @@ const Home = ({
 
           <ChartBox
             data={borrowAndDeposit}
-            tooltipTitle="Daily Anchor Earn Activity (USD)"
-            modelInfo="Daily Earn deposits into Anchor minus redemptions out of Anchor."
+            tooltipTitle="Net Depositor Activity (Anchor Earn)"
+            modelInfo="Daily earn deposits into Anchor minus redemptions out of Anchor."
             title="Net Depositor Activity (Anchor Earn)"
             areaDataKey="Net Activity"
             baseSpan={2}
@@ -113,7 +113,7 @@ const Home = ({
           <ChartBox
             data={anchorEarnUsers}
             additionalDumpTextToAddKeyToKeyBeUnique="Users, Earn"
-            modelInfo="shows Daily Active Users, Earn"
+            modelInfo="Daily Active Users, Earn"
             tooltipTitle=""
             title="Daily Active Users, Earn"
             areaDataKey="UNIQUE_WALLETS"
@@ -124,7 +124,7 @@ const Home = ({
             additionalDumpTextToAddKeyToKeyBeUnique="Users, Borrow"
             showMonthly={false}
             data={anchorBorrowUsers}
-            modelInfo="shows Daily Active Users, Borrow"
+            modelInfo="Daily Active Users, Borrow"
             tooltipTitle=""
             title="Daily Active Users, Borrow"
             areaDataKey="UNIQUE_WALLETS"
