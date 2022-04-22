@@ -283,11 +283,11 @@ const ChartBox = ({
               style={{ stroke: "var(--chakra-colors-green-300)" }}
               fill="url(#color)"
             />
-            <Legend
+            {/* <Legend
               verticalAlign="top"
               fontSize={"8px"}
               style={{ fontSize: "7px" }}
-            />
+            /> */}
           </AreaChart>
         </ResponsiveContainer>
         <AnimatePresence>
