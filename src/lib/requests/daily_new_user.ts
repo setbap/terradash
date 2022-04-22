@@ -1,8 +1,6 @@
-import { DailyNewUser, RawDailyNewUser } from "types/type";
-
-export const getDailyNewUser = async () => {
+import { DailyNewUser, RawDailyNewUser } from "types/type";export const getDailyNewUser = async () => {
   const rawDailyNewUser = await fetch(
-    "https://api.flipsidecrypto.com/api/v2/queries/fd9f3216-6902-44fc-b59d-e333fbee0325/data/latest"
+    "https://api.flipsidecrypto.com/api/v2/queries/54bbe92e-5034-4a5e-af54-c45663caa567/data/latest"
   );
   const dailyNewUser: RawDailyNewUser[] = await rawDailyNewUser.json();
 

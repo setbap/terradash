@@ -90,6 +90,7 @@ const Home = ({
         >
 
           <ChartBox data={terraDailyTx}
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/09d05805-ce6e-470b-9bdc-3a2d5f89654d"
             showMonthly
             tooltipTitle="Terra Transactions"
             modelInfo="Terra transactions over time."
@@ -98,6 +99,7 @@ const Home = ({
             areaDataKey="transaction count"
             xAxisDataKey="day" />
           <ChartBox
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/0c3eda6f-92bc-4594-a00d-fea003875016"
             data={circulationSupplyLuna}
             tooltipTitle="circulation supply luna"
             modelInfo={`Circulating supply is the total LUNA that normal users have (not dex, cex, smart contract, etc)`}
@@ -107,6 +109,7 @@ const Home = ({
             baseSpan={2}
           />
           <ChartBox
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/687c37e7-d15d-48e4-a453-d5bf7e589580"
             data={dailyNewUserSince2022}
             tooltipTitle={"amount"}
             modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
@@ -115,6 +118,7 @@ const Home = ({
             xAxisDataKey="day"
           />
           <ChartBox
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/54bbe92e-5034-4a5e-af54-c45663caa567"
             data={dailyNewUser}
             tooltipTitle="New wallet count"
             modelInfo={`see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community.`}
