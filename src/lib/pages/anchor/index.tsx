@@ -7,10 +7,6 @@ import {
 import { StatsCard } from "lib/components/charts/StateCard";
 import {
   AnchorBorrowAndDeposit,
-  AnchorUserBorrowAndDeposit,
-  SumAnchorBorrows,
-  SumAnchorDeposite,
-  AnchorDeposite,
   AnchorBalances,
   AnchorEarnUsers,
   AnchorBorrowUsers,
@@ -22,17 +18,12 @@ import MultiChartBox from "lib/components/charts/MultiLineChart";
 import moment from "moment";
 
 interface Props {
-  totalUserBorrowDeposit: AnchorUserBorrowAndDeposit;
-  sumAnchorDeposite: SumAnchorDeposite;
-  sumAnchorBorrow: SumAnchorBorrows;
   borrowAndDeposit: AnchorBorrowAndDeposit[];
-  borrowAndDepositUser: AnchorUserBorrowAndDeposit[];
-  anchorDeposite: AnchorDeposite[];
   anchorBalances: AnchorBalances;
   anchorEarnUsers: AnchorEarnUsers[];
   anchorBorrowUsers: AnchorBorrowUsers[];
-  currentYieldReserve: CurrentYieldReserve[];
-  anchorGrossTVLUSD: AnchorGrossTVLUSD;
+  currentYieldReserve: CurrentYieldReserve;
+  anchorGrossTVLUSD: AnchorGrossTVLUSD[];
 }
 const Home = ({
   sumAnchorDeposite,
