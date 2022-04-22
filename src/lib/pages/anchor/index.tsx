@@ -26,19 +26,13 @@ interface Props {
   anchorGrossTVLUSD: AnchorGrossTVLUSD[];
 }
 const Home = ({
-  sumAnchorDeposite,
-  sumAnchorBorrow,
   borrowAndDeposit,
-  totalUserBorrowDeposit,
-  borrowAndDepositUser,
-  anchorDeposite,
   anchorBalances,
   anchorEarnUsers,
   anchorBorrowUsers,
   currentYieldReserve,
   anchorGrossTVLUSD,
 }: Props) => {
-  const bgCard = useColorModeValue("white", "#191919");
   return (
     <>
       <Box mx={"auto"} px={{ base: 6, sm: 2, md: 6 }}>

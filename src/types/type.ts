@@ -1,4 +1,5 @@
-export interface VoterInfo {  NUMBER_NOT_WHALE_VOTER: number;
+export interface VoterInfo {
+  NUMBER_NOT_WHALE_VOTER: number;
   NUMBER_OF_ANCHOR_VOTER: number;
   NUMBER_OF_MIR_VOTER: number;
   NUMBER_OF_NOT_VOTED_WHALES: number;
