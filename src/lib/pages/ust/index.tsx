@@ -2,14 +2,15 @@ import { Box, SimpleGrid, useColorModeValue } from "@chakra-ui/react"; import Ba
 import DonutChart from "lib/components/charts/DonutChart";
 import StackedAreaChart from "lib/components/charts/StackedAreaGraph";
 import { StatsCard } from "lib/components/charts/StateCard";
-import { USTBridgeInfo, UST_IN_ALL_BCs } from "types/type";
+import { USTBridgeInfo, USTMarketCap, UST_IN_ALL_BCs } from "types/type";
 interface Props {
   ustBridgeValue: USTBridgeInfo;
   USTSupply: number,
+  ustMarketCap: USTMarketCap,
   USTInfoInBCs: UST_IN_ALL_BCs[]
 }
 
-const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs }: Props) => {
+const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
   return (
     <>
@@ -23,6 +24,32 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs }: Props) => {
             title="Total Supply of UST"
             status="inc"
             stat={USTSupply}
+          />
+          <StatsCard
+            title="wUST marketcap in Etherieum"
+            comment="Powered by [Ethereum (ETH) Blockchain Explorer (etherscan.io)](https://etherscan.io/) APIs"
+            status="inc"
+            stat={ustMarketCap.wUST}
+          />
+          <StatsCard
+            title="Wormhole UST marketcap"
+            comment="Powered by [Ethereum (ETH) Blockchain Explorer (etherscan.io)](https://etherscan.io/) APIs"
+            status="inc"
+            stat={ustMarketCap.wormholUST}
+          />
+
+          <StatsCard
+            title="BNB UST marketcap"
+            comment="Powered by [Binance (BNB) Blockchain Explorer (bscscan.com)](https://bscscan.com/) APIs"
+            status="inc"
+            stat={ustMarketCap.BNBUST}
+          />
+
+          <StatsCard
+            title="Avalanche UST marketcap"
+            comment="Powered by [SnowTrace.io: Avalanche C-Chain Blockchain Explorer](https://snowtrace.io/) APIs"
+            status="inc"
+            stat={ustMarketCap.AvaxUST}
           />
         </SimpleGrid>
         <SimpleGrid

@@ -1,5 +1,5 @@
 import moment from "moment";
-import { USTBridge, USTBridgeInfo, USTSupply, UST_IN_ALL_BCs } from "types/type";
+import { USTBridge, USTBridgeInfo, USTMarketCap, USTMarketCapRes, USTSupply, UST_IN_ALL_BCs } from "types/type";
 
 export const getUSTSupply = async (): Promise<number> => {
     const response = await fetch(
@@ -8,6 +8,38 @@ export const getUSTSupply = async (): Promise<number> => {
     const data: USTSupply = await response.json();
     return Number(data.amount.amount) / 1000_000;
 }
+
+export const getUSTMarketCap = async (): Promise<USTMarketCap> => {
+    const wUSTResponse = await fetch(
+        `https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=0xa47c8bf37f92aBed4A126BDA807A7b7498661acD&apikey=${process.env.ETHER_SCAN_API_KEY}`
+    );
+    const WormholeUSTResponse = await fetch(
+        `https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=0xa693B19d2931d498c5B318dF961919BB4aee87a5&apikey=${process.env.ETHER_SCAN_API_KEY}`
+    );
+
+    const AvaxUSTResponse = await fetch(
+        `https://api.snowtrace.io/api?module=stats&action=tokensupply&contractaddress=0xb599c3590f42f8f995ecfa0f85d2980b76862fc1&apikey=${process.env.SNOW_TRACE_API_KEY}`
+    )
+
+    const BNBUSTResponse = await fetch(
+        `https://api.bscscan.com/api?module=stats&action=tokensupply&contractaddress=0x23396cf899ca06c4472205fc903bdb4de249d6fc&apikey=${process.env.BSC_SCAN_API_KEY}`
+    )
+    const wUsetMarketCap: USTMarketCapRes = await wUSTResponse.json();
+    const WormholeUSTMarketCap: USTMarketCapRes = await WormholeUSTResponse.json();
+    const AvaxUSTMarketCap: USTMarketCapRes = await AvaxUSTResponse.json();
+    const BNBUSTMarketCap: USTMarketCapRes = await BNBUSTResponse.json();
+    console.log(AvaxUSTMarketCap);
+    console.log(BNBUSTMarketCap);
+
+    return ({
+        wUST: (+wUsetMarketCap.result) / 1e18,
+        wormholUST: (+WormholeUSTMarketCap.result) / 1e6,
+        AvaxUST: (+AvaxUSTMarketCap.result) / 1e6,
+        BNBUST: (+BNBUSTMarketCap.result) / 1e18,
+    })
+}
+
+
 
 export const getUSTInfoInBCs = async (): Promise<UST_IN_ALL_BCs[]> => {
     const response = await fetch(
