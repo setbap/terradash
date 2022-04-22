@@ -43,6 +43,7 @@ interface Props {
   defultDateView?: "month" | "day";
   showMonthly?: boolean;
   queryLink?: string;
+  additionalDumpTextToAddKeyToKeyBeUnique?: string;
 }
 
 const ChartBox = ({
@@ -57,6 +58,7 @@ const ChartBox = ({
   data,
   title,
   modelInfo,
+  additionalDumpTextToAddKeyToKeyBeUnique = "",
   defultSelectedRange = "all",
   showMonthly = true
 }: Props) => {
@@ -212,7 +214,7 @@ const ChartBox = ({
         >
           <AreaChart
             data={chartData}
-            syncId={`${areaDataKey}-${xAxisDataKey}`}
+            syncId={`${areaDataKey}-${xAxisDataKey}-${additionalDumpTextToAddKeyToKeyBeUnique}`}
             className="mt-1 mb-1"
           >
             <defs>

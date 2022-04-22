@@ -26,7 +26,7 @@ interface Props {
   borrowAndDeposit: AnchorBorrowAndDeposit[];
   borrowAndDepositUser: AnchorUserBorrowAndDeposit[];
   anchorDeposite: AnchorDeposite[];
-  anchorBalances: AnchorBalances[];
+  anchorBalances: AnchorBalances;
   anchorEarnUsers: AnchorEarnUsers[];
   anchorBorrowUsers: AnchorBorrowUsers[];
 }
@@ -54,25 +54,25 @@ const Home = ({
           <StatsCard
             status="inc"
             title={"Total Deposit"}
-            stat={(anchorBalances.borrowed_terra / 1000000) + (anchorBalances.liquid_terra / 1000000)}
+            stat={(+anchorBalances.borrowed_terra / 1000000) + (+anchorBalances.liquid_terra / 1000000)}
           />
 
           <StatsCard
             status="inc"
             title={"Total Borrow"}
-            stat={(anchorBalances.borrowed_terra / 1000000)}
+            stat={(+anchorBalances.borrowed_terra / 1000000)}
           />
 
           <StatsCard
             status="inc"
             title={"UST Reserve"}
-            stat={(anchorBalances.liquid_terra / 1000000)}
+            stat={(+anchorBalances.liquid_terra / 1000000)}
           />
 
           <StatsCard
             status="inc"
             title={"Current APY"}
-            stat={anchorBalances.current_apy * 100}
+            stat={+anchorBalances.current_apy * 100}
           />
 
           <StatsCard
@@ -112,13 +112,20 @@ const Home = ({
 
           <ChartBox
             data={anchorEarnUsers}
+            additionalDumpTextToAddKeyToKeyBeUnique="Users, Earn"
+            modelInfo="shows Daily Active Users, Earn"
+            tooltipTitle=""
             title="Daily Active Users, Earn"
             areaDataKey="UNIQUE_WALLETS"
             xAxisDataKey="DATE"
           />
 
           <ChartBox
+            additionalDumpTextToAddKeyToKeyBeUnique="Users, Borrow"
+            showMonthly={false}
             data={anchorBorrowUsers}
+            modelInfo="shows Daily Active Users, Borrow"
+            tooltipTitle=""
             title="Daily Active Users, Borrow"
             areaDataKey="UNIQUE_WALLETS"
             xAxisDataKey="DATE"
