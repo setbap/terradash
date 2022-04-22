@@ -1,5 +1,4 @@
-import {
-  ActiveValidators,
+import {  ActiveValidators,
   SimpilfiedTerraValidators,
   SimplifiedTerraValidatorsWithVote,
   TerraValidators,
@@ -56,13 +55,13 @@ export const getTerraValidatorWithVote = async () => {
       .map((validator) => ({
         name: validator.description.moniker,
         "total votes": validator.votes!.length,
-        "yes votes": validator.votes!.filter(
+        Yes: validator.votes!.filter(
           (vote) => vote.options[0].option === "VOTE_OPTION_YES"
         ).length,
-        "no votes": validator.votes!.filter(
+        No: validator.votes!.filter(
           (vote) => vote.options[0].option === "VOTE_OPTION_NO"
         ).length,
-        "abstain votes": validator.votes!.filter(
+        Abstain: validator.votes!.filter(
           (vote) => vote.options[0].option === "VOTE_OPTION_ABSTAIN"
         ).length,
       })) || [];

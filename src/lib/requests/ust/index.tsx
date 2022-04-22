@@ -45,32 +45,54 @@ export const getUSTMarketCap = async (): Promise<USTMarketCap> => {
 
 
 
-export const getUSTInfoInBCs = async (): Promise<UST_IN_ALL_BCs[]> => {
+export const getUSTInfoInBCsTxCount = async (): Promise<any> => {
     const response = await fetch(
         'https://api.flipsidecrypto.com/api/v2/queries/37af1ab8-b314-4e6d-88bb-7613a83e5b14/data/latest'
     );
     const data: UST_IN_ALL_BCs[] = await response.json();
     return data.sort((a, b) => moment(a.DATE).isAfter(moment(b.DATE)) ? 1 : -1).map(item => {
-
         return ({
-            ...item,
-            "TERRA new users": item.TERRA_NEW_USERS,
-            "SOL new users": item.SOL_NEW_USERS,
-            "ETH new users": item.ETH_NEW_USERS,
-            "POLY new users": item.POLY_NEW_USERS,
-            "HAR new users": item.HAR_NEW_USERS,
+            "DATE": item.DATE,
+            "Terra": item.TERRA_TX,
+            "Sol": item.SOL_TX,
+            "Ethereum": item.ETH_TX,
+            "Polygon": item.POLY_TX,
+            "Harmony": item.HAR_TX,
+        })
+    });
+}
 
-            "TERRA TX count": item.TERRA_TX,
-            "SOL TX count": item.SOL_TX,
-            "ETH TX count": item.ETH_TX,
-            "POLY TX count": item.POLY_TX,
-            "HAR TX count": item.HAR_TX,
+export const getUSTInfoInBCsNewUser = async (): Promise<any> => {
+    const response = await fetch(
+        'https://api.flipsidecrypto.com/api/v2/queries/37af1ab8-b314-4e6d-88bb-7613a83e5b14/data/latest'
+    );
+    const data: UST_IN_ALL_BCs[] = await response.json();
+    return data.sort((a, b) => moment(a.DATE).isAfter(moment(b.DATE)) ? 1 : -1).map(item => {
+        return ({
+            "DATE": item.DATE,
+            "Terra": item.TERRA_NEW_USERS,
+            "Sol": item.SOL_NEW_USERS,
+            "Ethereum": item.ETH_NEW_USERS,
+            "Polygon": item.POLY_NEW_USERS,
+            "Harmony": item.HAR_NEW_USERS,
 
-            "TERRA UST Valume": item.TERRA_UST_DAILY,
-            "SOL UST Valume": item.SOL_UST_DAILY,
-            "ETH UST Valume": item.ETH_UST_DAILY,
-            "POLY UST Valume": item.POLY_UST_DAILY,
-            "HAR UST Valume": item.HAR_UST_DAILY,
+        })
+    });
+}
+
+export const getUSTInfoInBCsUstVolume = async (): Promise<any> => {
+    const response = await fetch(
+        'https://api.flipsidecrypto.com/api/v2/queries/37af1ab8-b314-4e6d-88bb-7613a83e5b14/data/latest'
+    );
+    const data: UST_IN_ALL_BCs[] = await response.json();
+    return data.sort((a, b) => moment(a.DATE).isAfter(moment(b.DATE)) ? 1 : -1).map(item => {
+        return ({
+            "DATE": item.DATE,
+            "Terra": item.TERRA_UST_DAILY,
+            "Sol": item.SOL_UST_DAILY,
+            "Ethereum": item.ETH_UST_DAILY,
+            "Polygon": item.POLY_UST_DAILY,
+            "Harmony": item.HAR_UST_DAILY,
         })
     });
 }
@@ -78,7 +100,7 @@ export const getUSTInfoInBCs = async (): Promise<UST_IN_ALL_BCs[]> => {
 
 export const getUSTBridgeValue: () => Promise<USTBridgeInfo> = async () => {
     const res = await fetch(
-        "https://api.flipsidecrypto.com/api/v2/queries/cbcea6f8-a3b1-4298-906e-db63b6971e25/data/latest"
+        "https://api.flipsidecrypto.com/api/v2/queries/4eab2b30-aa8a-4830-8b48-14ca336b0a5b/data/latest"
     );
     const USTBridgeValue: USTBridge[] = await res.json();
     const blockchains = Array.from(

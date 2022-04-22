@@ -165,9 +165,9 @@ const Home = ({
             oxLabel="name"
             isNotDate
             labels={[
-              { key: "yes votes", color: "#09f35e" },
-              { key: "no votes", color: "#f30e0e" },
-              { key: "abstain votes", color: "#f3f30e" },
+              { key: "Yes", color: "#09f35e" },
+              { key: "No", color: "#f30e0e" },
+              { key: "Abstain", color: "#f3f30e" },
             ]}
           />
         </SimpleGrid>
