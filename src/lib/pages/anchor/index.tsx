@@ -77,13 +77,13 @@ const Home = ({
 
           <StatsCard
             status="inc"
-            title={"Net UST Deposits [past 7 days]"}
+            title={"Net UST Deposits Past 7 Days"}
             stat={sumAnchorDeposite.PAST_7_AMOUNT}
           />
 
           <StatsCard
             status="inc"
-            title={"Net UST Deposits [past 30 days]"}
+            title={"Net UST Deposits Past 30 days"}
             stat={sumAnchorDeposite.PAST_30_AMOUNT}
           />
 
@@ -103,7 +103,7 @@ const Home = ({
             data={borrowAndDeposit}
             tooltipTitle="Net Depositor Activity (Anchor Earn)"
             modelInfo="Daily earn deposits into Anchor minus redemptions out of Anchor."
-            title="Net Depositor Activity (Anchor Earn)"
+            title="Net Depositor Activity on Anchor Earn"
             areaDataKey="Net Activity"
             baseSpan={2}
             xAxisDataKey="DAY"
@@ -115,7 +115,7 @@ const Home = ({
             additionalDumpTextToAddKeyToKeyBeUnique="Users, Earn"
             modelInfo="Daily Active Users, Earn"
             tooltipTitle=""
-            title="Daily Active Users, Earn"
+            title="Daily Active Users on Anchor Earn"
             areaDataKey="UNIQUE_WALLETS"
             xAxisDataKey="DATE"
           />
@@ -124,7 +124,7 @@ const Home = ({
             additionalDumpTextToAddKeyToKeyBeUnique="Users, Borrow"
             showMonthly={false}
             data={anchorBorrowUsers}
-            modelInfo="Daily Active Users, Borrow"
+            modelInfo="Daily Active Users on Anchor Borrow"
             tooltipTitle=""
             title="Daily Active Users, Borrow"
             areaDataKey="UNIQUE_WALLETS"
