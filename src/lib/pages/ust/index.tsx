@@ -121,7 +121,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) =
             queryLink="https://app.flipsidecrypto.com/velocity/queries/37af1ab8-b314-4e6d-88bb-7613a83e5b14"
             modelInfo="UST Volume by Chain"
             values={USTInfoInBCs}
-            title="Volume of UST in All blockchains"
+            title="UST Volume by Chain"
             dataKey="DATE"
             baseSpan={3}
             oyLabel="valume of UST"

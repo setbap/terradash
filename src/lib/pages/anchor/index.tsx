@@ -126,7 +126,7 @@ const Home = ({
             data={anchorBorrowUsers}
             modelInfo="Daily Active Users on Anchor Borrow"
             tooltipTitle=""
-            title="Daily Active Users, Borrow"
+            title="Daily Active Users on Anchor Borrow"
             areaDataKey="UNIQUE_WALLETS"
             xAxisDataKey="DATE"
           />
