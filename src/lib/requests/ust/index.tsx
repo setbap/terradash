@@ -127,8 +127,8 @@ export const getUSTBridgeValue: () => Promise<USTBridgeInfo> = async () => {
         amount: bc[1],
     }));
 
-    const dailyBridgeValue = calculateDailyBridgeValue("MM-DD-YYYY", USTBridgeValue, bridges);
-    const monthlyBridgeValue = calculateDailyBridgeValue("YYYY/MM", USTBridgeValue, bridges);
+    const dailyBridgeValue = calculateDailyBridgeValue("MM/DD/YYYY", USTBridgeValue, bridges);
+    const monthlyBridgeValue = calculateDailyBridgeValue("YYYY-MM", USTBridgeValue, bridges);
 
     return {
         bridges,
