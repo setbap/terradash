@@ -43,7 +43,7 @@ const LinkItems: Array<LinkItemProps> = [
   { name: 'Governance ', path: '/governance', icon: RiGovernmentLine },
   { name: 'Anchor', path: '/anchor', icon: CgAnchor },
   { name: 'LFG', path: '/lfg', icon: LFGICON },
-  { name: 'Roadmap', path: '/roadmap', icon: AiOutlineInfoCircle },
+  { name: 'About', path: '/about', icon: AiOutlineInfoCircle },
   // { name: 'Tx and Fees', path: '/tx-and-fee', icon: SiBuzzfeed },
   // { name: 'Native Swaps', path: '/native-swap', icon: VscArrowSwap },
   // { name: 'Terra vs Others', path: '/terra-vs-others', icon: FaBitcoin },
@@ -136,9 +136,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                 ps={"2"}
                 fontWeight={"extrabold"}
               >
-                Terra{" "}
+                TerraDash
               </Box>
-              dash
+
             </>
           </NextLink>
         </Text>
@@ -246,9 +246,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               fontSize="2xl"
               fontWeight={"extrabold"}
             >
-              Terra{" "}
+              TerraDash
             </Box>
-            {""} dash
+
           </>
         </NextLink>
       </Text>

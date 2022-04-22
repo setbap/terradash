@@ -21,6 +21,7 @@ interface StatsCardProps {
 	status?: "inc" | "dec" | "unchanged";
 	link?: string;
 	comment?: string;
+	unit?: string
 }
 export const StatsCard = (props: StatsCardProps) => {
 	const bgCard = useColorModeValue("white", "#191919");
@@ -104,10 +105,13 @@ export const StatsCard = (props: StatsCardProps) => {
 				fontSize="4xl"
 				fontWeight="extrabold"
 			>
-				{millify(stat, {
-					precision: 2,
-					decimalSeparator: ".",
-				})}
+				<Box display={'inline-flex'}>
+					{millify(stat, {
+						precision: 2,
+						decimalSeparator: ".",
+					})}
+					<Box fontSize={'2xl'} fontWeight={'bold'}>	{props.unit ?? ''}</Box>
+				</Box>
 			</StatNumber>
 		</Stat>
 	);

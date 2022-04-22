@@ -44,25 +44,28 @@ const Home = ({
 
           <StatsCard
             status="inc"
-            title={"Total Deposits"}
+            title={"Total Deposits (UST)"}
+
             stat={(+anchorBalances.borrowed_terra / 1000000) + (+anchorBalances.liquid_terra / 1000000)}
           />
 
           <StatsCard
             status="inc"
-            title={"Total Borrowed"}
+            title={"Total Borrowed (UST)"}
+
             stat={(+anchorBalances.borrowed_terra / 1000000)}
           />
 
           <StatsCard
             status="inc"
-            title={"Current APY"}
+            title={"Current APY (%)"}
+
             stat={+anchorBalances.current_apy * 100}
           />
 
           <StatsCard
             status="inc"
-            title={"Yield Reserve"}
+            title={"Yield Reserve (UST)"}
             stat={currentYieldReserve.BALANCE}
           />
 
