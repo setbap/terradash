@@ -21,38 +21,38 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) =
           spacing={{ base: 5, lg: 8 }}
         >
           <StatsCard
-            title="Total Supply of UST"
+            title="UST Total Supply"
             status="inc"
             stat={USTSupply}
           />
           <StatsCard
-            title="wUST marketcap in Etherieum"
+            title="Ethereum wUST Market Cap"
             comment="Powered by [Ethereum (ETH) Blockchain Explorer (etherscan.io)](https://etherscan.io/) APIs"
             status="inc"
             stat={ustMarketCap.wUST}
           />
           <StatsCard
-            title="Wormhole UST marketcap"
+            title="Wormhole UST Market Cap"
             comment="Powered by [Ethereum (ETH) Blockchain Explorer (etherscan.io)](https://etherscan.io/) APIs"
             status="inc"
             stat={ustMarketCap.wormholUST}
           />
 
           <StatsCard
-            title="BNB UST marketcap"
+            title="BNB UST Market Cap"
             comment="Powered by [Binance (BNB) Blockchain Explorer (bscscan.com)](https://bscscan.com/) APIs"
             status="inc"
             stat={ustMarketCap.BNBUST}
           />
 
           <StatsCard
-            title="Avalanche UST marketcap"
+            title="Avalanche UST Market Cap"
             comment="Powered by [SnowTrace.io: Avalanche C-Chain Blockchain Explorer](https://snowtrace.io/) APIs"
             status="inc"
             stat={ustMarketCap.AvaxUST}
           />
           <StatsCard
-            title="ThorChain UST marketcap"
+            title="THORChain UST Market Cap"
             status="inc"
             stat={ustMarketCap.ThorChainUST}
           />
@@ -68,7 +68,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) =
             modelInfo="Volume of UST bridged out By Each Bridge over the time"
             values={ustBridgeValue.dailyBridgeValue}
             monthlyValues={ustBridgeValue.monthlyBridgeValue}
-            title="Volume of UST bridged out By Each Bridge"
+            title="UST Bridge Volume"
             dataKey="date"
             baseSpan={3}
             oyLabel="Amout of UST"
@@ -85,7 +85,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) =
             queryLink="https://app.flipsidecrypto.com/velocity/queries/37af1ab8-b314-4e6d-88bb-7613a83e5b14"
             modelInfo="number of new users who user ust in each blokchain"
             values={USTInfoInBCs}
-            title="Count of new UST user in all blockchains"
+            title="New UST Users by Chain"
             dataKey="DATE"
             baseSpan={3}
             oyLabel="number of users"
@@ -103,7 +103,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) =
             queryLink="https://app.flipsidecrypto.com/velocity/queries/37af1ab8-b314-4e6d-88bb-7613a83e5b14"
             modelInfo="number of transactions done with UST in each All blockchains"
             values={USTInfoInBCs}
-            title="Count of transaction with UST in All blockchains"
+            title="UST Transactions by Chain"
             dataKey="DATE"
             baseSpan={3}
             oyLabel="transaction count"
@@ -119,7 +119,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) =
 
           <StackedAreaChart
             queryLink="https://app.flipsidecrypto.com/velocity/queries/37af1ab8-b314-4e6d-88bb-7613a83e5b14"
-            modelInfo="Volume of UST in blockchains over the time"
+            modelInfo="UST Volume by Chain"
             values={USTInfoInBCs}
             title="Volume of UST in All blockchains"
             dataKey="DATE"
@@ -139,7 +139,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) =
             data={ustBridgeValue.blockchainsWithValue}
             tooltipTitle=" Total Fee Paid With Each coin "
             modelInfo="This chart shows the distribution Volume of UST bridged out to Each Blockchain."
-            title="Volume of UST bridged out to Each Blockchain"
+            title="UST Volume Bridged Out to Each Blockchain"
             dataKey="amount"
             nameKey="blockchain"
           /> */}

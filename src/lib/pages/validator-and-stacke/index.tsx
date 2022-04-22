@@ -71,7 +71,7 @@ const Home = ({
           spacing={{ base: 5, lg: 6 }}
         >
           <StatsCard
-            title="Number of Active Validators"
+            title="Active Validators"
             status="unchanged"
             stat={numberOfActiveValidators}
           />
@@ -82,12 +82,12 @@ const Home = ({
           />
           <StatsCard
             link="https://station.terra.money/gov#PROPOSAL_STATUS_VOTING_PERIOD"
-            title="Governance Proposals - Active"
+            title="Governance Proposals Active"
             status="inc"
             stat={numberOfActiveProposals}
           />
           <StatsCard
-            title="Total Luna Staked"
+            title="LUNA Staked"
             status="inc"
             stat={totalLunaStaked["LUNA total staked"]}
           />
@@ -97,27 +97,27 @@ const Home = ({
             stat={totalLunaStakedInUSD["total staked in usd"]}
           />
           <StatsCard
-            title="Number of wallets they have ever staked"
+            title="Wallets That Have Ever Staked"
             status="inc"
             stat={totalWalletStaked["Number of wallets they have ever staked"]}
           />
           <StatsCard
-            title="total Votes CountFor Proposal"
+            title="Votes All Proposals"
             status="inc"
             stat={totalVotesCountForProposal["total votes count for proposal"]}
           />
           <StatsCard
-            title="Total Proposal Count"
+            title="Proposals All Time"
             status="inc"
             stat={totalProposalCount["total proposal count"]}
           />
           <StatsCard
-            title="Total number of Validator"
+            title="Validators All Time"
             status="inc"
             stat={totalNumberOfValidators["total_number_of_validator"]}
           />
           <StatsCard
-            title="Number of wallets they have already staked"
+            title="Wallets That Have Already Staked"
             status="inc"
             stat={
               totalWalletAlreadyStaked[
@@ -135,7 +135,7 @@ const Home = ({
             data={dailyUniqueUserStaked}
             tooltipTitle="daily unique user staked"
             modelInfo="Number of unique wallets thats stake Terra in One of validators in each day"
-            title="Daily Unique Users Staking"
+            title="Unique Users Staking"
             areaDataKey="daily unique user staked"
             xAxisDataKey="day"
           />
@@ -144,7 +144,7 @@ const Home = ({
             extraInfoToTooltip="%"
             modelInfo="shows Top 10 Validators and their voting power"
             values={topTenTerraValidator}
-            title="Top 10 Validators according to their power"
+            title="Top 10 Validators by Voting Power"
             dataKey="name"
             oyLabel="voting power(%)"
             oxLabel="name"
@@ -158,7 +158,7 @@ const Home = ({
             queryLink="https://api.terra.dev/validators"
             modelInfo="shows Distribution of Terra votes"
             values={terraValidatorWithVote}
-            title="Distribution of Terra votes"
+            title="Terra Vote Distribution"
             dataKey="name"
             baseSpan={3}
             oyLabel="voting number"
