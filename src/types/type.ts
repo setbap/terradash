@@ -1,5 +1,4 @@
-export interface VoterInfo {
-  NUMBER_NOT_WHALE_VOTER: number;
+export interface VoterInfo {  NUMBER_NOT_WHALE_VOTER: number;
   NUMBER_OF_ANCHOR_VOTER: number;
   NUMBER_OF_MIR_VOTER: number;
   NUMBER_OF_NOT_VOTED_WHALES: number;
@@ -425,7 +424,7 @@ export interface CurrentYieldReserve {
   BALANCE: number;
 }
 
-export interface: AnchorCollateralStatsLong {
+export interface AnchorCollateralStatsLong {
   DATES: string;
   COLLATERAL: string;
   COLLATERAL_NAME: string;
@@ -437,7 +436,7 @@ export interface: AnchorCollateralStatsLong {
   TVL_USD: number;
 }
 
-export interface: AnchorGrossTVLUSD {
+export interface AnchorGrossTVLUSD {
   DATES: string;
   GROSS_TVL_USD: number;
 }
