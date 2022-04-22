@@ -421,6 +421,10 @@ export interface AnchorBorrowUsers {
   unique_wallets: number;
 }
 
+export interface CurrentYieldReserve {
+  BALANCE: number;
+}
+
 export interface UST_IN_ALL_BCs {
   DATE: string;
   ETH_DAILY_USERS: number;

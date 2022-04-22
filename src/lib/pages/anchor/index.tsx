@@ -13,7 +13,8 @@ import {
   AnchorDeposite,
   AnchorBalances,
   AnchorEarnUsers,
-  AnchorBorrowUsers
+  AnchorBorrowUsers,
+  CurrentYieldReserve,
 } from "types/type";
 import ChartBox from "lib/components/charts/LineChart";
 import MultiChartBox from "lib/components/charts/MultiLineChart";
@@ -29,6 +30,7 @@ interface Props {
   anchorBalances: AnchorBalances;
   anchorEarnUsers: AnchorEarnUsers[];
   anchorBorrowUsers: AnchorBorrowUsers[];
+  currentYieldReserve: CurrentYieldReserve[];
 }
 const Home = ({
   sumAnchorDeposite,
@@ -40,6 +42,7 @@ const Home = ({
   anchorBalances,
   anchorEarnUsers,
   anchorBorrowUsers,
+  currentYieldReserve,
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
   return (
@@ -77,17 +80,9 @@ const Home = ({
 
           <StatsCard
             status="inc"
-            title={"Net UST Deposits Past 7 Days"}
-            stat={sumAnchorDeposite.PAST_7_AMOUNT}
+            title={"Yield Reserve"}
+            stat={currentYieldReserve.BALANCE}
           />
-
-          <StatsCard
-            status="inc"
-            title={"Net UST Deposits Past 30 days"}
-            stat={sumAnchorDeposite.PAST_30_AMOUNT}
-          />
-
-
 
 
         </SimpleGrid>
