@@ -98,6 +98,15 @@ const Home = ({
             areaDataKey="transaction count"
             xAxisDataKey="day" />
           <ChartBox
+            data={circulationSupplyLuna}
+            tooltipTitle="circulation supply luna"
+            modelInfo={`Circulating supply is the total LUNA that normal users have (not dex, cex, smart contract, etc)`}
+            title="LUNA Circulating Supply"
+            areaDataKey="Luna Circulating Supply"
+            xAxisDataKey="day"
+            baseSpan={2}
+          />
+          <ChartBox
             data={dailyNewUserSince2022}
             tooltipTitle={"amount"}
             modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
@@ -113,15 +122,6 @@ const Home = ({
             areaDataKey="NUMBER_OF_UNIQUE_USER_PER_DAY"
             xAxisDataKey="DATE"
           />
-
-          <ChartBox
-            data={circulationSupplyLuna}
-            tooltipTitle="circulation supply luna"
-            modelInfo={`Circulating supply is the total LUNA that normal users have (not dex, cex, smart contract, etc)`}
-            title="Luna circulation supply"
-            areaDataKey="Luna Circulating Supply"
-            xAxisDataKey="day"
-          />
           <LineChartV2
             data={dailyActiveWallets.numberOfDailyActiveWallets}
             queryLink="https://app.flipsidecrypto.com/dashboard/active-user-over-the-time-jMf4wy"
@@ -134,7 +134,7 @@ const Home = ({
             baseSpan={2}
             areaDataKey="number of active user"
             xAxisDataKey="date" />
-          <DonutChart
+          {/* <DonutChart
             queryLink="https://app.flipsidecrypto.com/velocity/queries/8c595217-f3ad-44c9-bf83-853e71ee1c2d"
             data={totalFeeByEachToken}
             tooltipTitle="Total Fees Paid - USD"
@@ -142,7 +142,7 @@ const Home = ({
             title="Total amount of each token  paid as fee"
             dataKey="amount token"
             nameKey="token name"
-          />
+          /> */}
           <BarGraph
             queryLink="https://app.flipsidecrypto.com/dashboard/terra-transactions-daily-monthly-all-time-GO-QmX"
             modelInfo="Amount of each token paid as fees."

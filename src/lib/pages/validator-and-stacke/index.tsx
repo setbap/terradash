@@ -133,9 +133,9 @@ const Home = ({
         >
           <ChartBox
             data={dailyUniqueUserStaked}
-            tooltipTitle="daily unique user staked"
+            tooltipTitle="Unique Users Staking"
             modelInfo="Number of unique wallets thats stake Terra in One of validators in each day"
-            title="Daily Unique Users Staking"
+            title="Unique Users Staking"
             areaDataKey="daily unique user staked"
             xAxisDataKey="day"
           />
@@ -144,13 +144,13 @@ const Home = ({
             extraInfoToTooltip="%"
             modelInfo="shows Top 10 Validators and their voting power"
             values={topTenTerraValidator}
-            title="Top 10 Validators according to their power"
+            title="Top 10 Validators by Voting Power"
             dataKey="name"
             oyLabel="voting power(%)"
             oxLabel="name"
             isNotDate
             labels={[
-              { key: "voting power", color: "#0953fe" },
+              { key: "voting power", color: "var(--chakra-colors-green-400)" },
             ]}
           />
 
@@ -158,7 +158,7 @@ const Home = ({
             queryLink="https://api.terra.dev/validators"
             modelInfo="shows Distribution of Terra votes"
             values={terraValidatorWithVote}
-            title="Distribution of Terra votes"
+            title="Terra Vote Distribution"
             dataKey="name"
             baseSpan={3}
             oyLabel="voting number"
