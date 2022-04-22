@@ -71,12 +71,12 @@ const Home = ({
           spacing={{ base: 5, lg: 6 }}
         >
           <StatsCard
-            title="number of active validators"
+            title="Number of Active Validators"
             status="unchanged"
             stat={numberOfActiveValidators}
           />
           <StatsCard
-            title="[chnage]Governance Proposals - Total"
+            title="Governance Proposals - Total"
             status="inc"
             stat={numberOfTotalProposals}
           />
@@ -91,7 +91,7 @@ const Home = ({
             status="inc"
             stat={totalLunaStaked["LUNA total staked"]}
           />
-          <StatsCard
+          {/* <StatsCard
             title="Total Luna Staked In USD"
             status="inc"
             stat={totalLunaStakedInUSD["total staked in usd"]}
@@ -124,7 +124,7 @@ const Home = ({
               "Number of wallets they have already staked"
               ]
             }
-          />
+          /> */}
         </SimpleGrid>
         <SimpleGrid
           py={"6"}

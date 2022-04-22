@@ -134,7 +134,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) =
               { key: "HAR UST Valume", color: "#b3d" },
             ]}
           />
-          <DonutChart
+          {/* <DonutChart
             queryLink="https://app.flipsidecrypto.com/velocity/queries/cbcea6f8-a3b1-4298-906e-db63b6971e25"
             data={ustBridgeValue.blockchainsWithValue}
             tooltipTitle=" Total Fee Paid With Each coin "
@@ -142,7 +142,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) =
             title="Volume of UST bridged out to Each Blockchain"
             dataKey="amount"
             nameKey="blockchain"
-          />
+          /> */}
 
         </SimpleGrid>
       </Box>
