@@ -76,7 +76,7 @@ const Home = ({
             stat={numberOfActiveValidators}
           />
           <StatsCard
-            title="Governance Proposals - Total"
+            title="Governance Proposals Total"
             status="inc"
             stat={numberOfTotalProposals}
           />
@@ -146,7 +146,7 @@ const Home = ({
             values={topTenTerraValidator}
             title="Top 10 Validators by Voting Power"
             dataKey="name"
-            oyLabel="voting power(%)"
+            oyLabel="voting power (%)"
             oxLabel="name"
             isNotDate
             labels={[
@@ -161,7 +161,7 @@ const Home = ({
             title="Terra Vote Distribution"
             dataKey="name"
             baseSpan={3}
-            oyLabel="voting number"
+            oyLabel="vote count"
             oxLabel="name"
             isNotDate
             labels={[
