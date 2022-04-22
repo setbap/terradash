@@ -85,7 +85,7 @@ const Home = ({
       <Box mx={"auto"} px={{ base: 6, sm: 2, md: 8 }}>
         <SimpleGrid
           pt={'6'}
-          columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
+          columns={{ base: 1, md: 2, lg: 2, "2xl": 3 }}
           spacing={{ base: 5, lg: 6 }}
         >
           <StatsCard
@@ -94,12 +94,13 @@ const Home = ({
             stat={numberOfActiveValidators}
           />
           <StatsCard
-            title="total number of governance proposals"
+            title="[chnage]Governance Proposals - Total"
             status="inc"
             stat={numberOfTotalProposals}
           />
           <StatsCard
-            title="number of active governance proposals"
+            link="https://station.terra.money/gov#PROPOSAL_STATUS_VOTING_PERIOD"
+            title="Governance Proposals - Active"
             status="inc"
             stat={numberOfActiveProposals}
           />
@@ -144,7 +145,7 @@ const Home = ({
 
         <SimpleGrid
           pt={'6'}
-          columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
+          columns={{ base: 1, md: 2, lg: 2, "2xl": 3 }}
           spacing={{ base: 5, lg: 6 }}
         >
           <StatsCard
@@ -196,7 +197,7 @@ const Home = ({
             data={dailyUniqueUserStaked}
             tooltipTitle="daily unique user staked"
             modelInfo="Number of unique wallets thats stake Terra in One of validators in each day"
-            title="daily unique user staked"
+            title="[change]Daily Unique Users Staking"
             areaDataKey="daily unique user staked"
             xAxisDataKey="day"
           />
@@ -210,7 +211,7 @@ const Home = ({
             // ]}
             modelInfo={`shows number of proposals in each categegory over time. for example at 19 Oct 2021 we have 12 community pool proposal. this shows from begining 
             of community so far we have 12 community pool proposals. as we see diagram Slope of lines is increasing. this show Members' participation in the community increases over time.`}
-            title="number of diffrent proposals over the time "
+            title="[delete]number of diffrent proposals over the time "
             multiOff
             baseSpan={2}
             chartColors={["#F44", "#4F4", "#55f", "#f5e"]}
@@ -227,21 +228,21 @@ const Home = ({
             data={amoutOfStakedInUSD}
             tooltipTitle="daily staked amount in USD"
             modelInfo="calculate price of luna that staked in each day in USD"
-            title="daily staked amount in USD"
+            title="[delete]daily staked amount in USD"
             areaDataKey="daily staked amount in USD"
             xAxisDataKey="day"
           />
           <MultiChartBox data={proposalsCountMonthlyVsLUNAPrice}
             chartColors={['#0953fe', '#f2a900']}
             modelInfo="compare number of proposal in each month and average price of luna to see is this two number have correlation with each other or not(unit of each one is diffrent)"
-            title="proposal vs avg price"
+            title="[delete]proposal vs avg price"
             areaDataKey={["No of proposal", "avg price"]}
             xAxisDataKey="month" />
           <MultiChartBox
             data={proposalsCountMonthlyVsMonthlyVotes}
             chartColors={['#0953fe', '#f2a900']}
             modelInfo="compare number of proposal in each month and number of votes in Terra to see is this two number have correlation with each other or not(unit of each one is diffrent)"
-            title="votes vs proposal"
+            title="[delete]votes vs proposal"
             areaDataKey={["number of proposal", "monthly votes"]}
             xAxisDataKey="month" />
 
@@ -249,7 +250,7 @@ const Home = ({
             data={dailyStakingRewards}
             tooltipTitle="daily staking reward in USD"
             modelInfo="amount of staking reward distributed in Terra Validators (this number calculated by number Luna distributed and price of Luna).amount of distribution decreseasd after update Terra network (like eip1559)"
-            title="daily staking reward in USD"
+            title="[delete]daily staking reward in USD"
             areaDataKey="daily amount usd"
             xAxisDataKey="day"
           />
@@ -258,14 +259,14 @@ const Home = ({
             data={dailyStakingRewards}
             tooltipTitle="daily staking reward in Luna"
             modelInfo="amount of staking reward distributed in Terra Validators.amount of distribution decreseasd after update Terra network (like eip1559)"
-            title="daily staking reward in Luna"
+            title="[delete]daily staking reward in Luna"
             areaDataKey="daily amount luna"
             xAxisDataKey="day"
           />
           <BarGraph
             modelInfo="shows Top 10 Validators and their voting power"
             values={top10Validators}
-            title="Top 10 Validators according to their power"
+            title="[delete]Top 10 Validators according to their power"
             dataKey="label"
             oyLabel="voting power"
             oxLabel="name"
@@ -277,14 +278,14 @@ const Home = ({
           <DonutChart data={top10ValidatorsAccordingStake}
             tooltipTitle="compare amount of luna staked by top 10 validators"
             modelInfo="top ten validator according amount of staked Luna"
-            title="top ten validator according amount of staked Luna"
+            title="[delete]top ten validator according amount of staked Luna"
             dataKey="total staked in LUNA"
             nameKey="label"
           />
           <DonutChart data={top10ValidatorsAccordingStake}
             tooltipTitle="compare price of total Luna staked by top 10 validators and calculate Luna price at deligation time"
             modelInfo="top validator as staked Luna(as USD)"
-            title="top validator as staked Luna(as USD)"
+            title="[delete]top validator as staked Luna(as USD)"
             dataKey="total staked in USD"
             nameKey="label"
           />

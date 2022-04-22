@@ -1,4 +1,6 @@
 import {
+	Box,
+	Link,
 	Stat,
 	StatLabel,
 	StatNumber,
@@ -6,11 +8,13 @@ import {
 } from "@chakra-ui/react";
 import millify from 'millify'
 import { useEffect, useState } from "react";
+import { FiExternalLink } from "react-icons/fi";
 
 interface StatsCardProps {
 	title: string;
 	stat: number;
 	status?: 'inc' | 'dec' | 'unchanged';
+	link?: string
 }
 export const StatsCard = (props: StatsCardProps) => {
 	const bgCard = useColorModeValue('white', '#191919');
@@ -36,7 +40,8 @@ export const StatsCard = (props: StatsCardProps) => {
 		<Stat
 			px={{ base: 4, md: 8 }}
 			zIndex={0}
-			py="5"
+			pt="5"
+			pb={'4'}
 			shadow="base"
 			transition={'box-shadow 0.4s'}
 			_hover={{ boxShadow: 'var(--chakra-shadows-xl)' }}
@@ -45,16 +50,19 @@ export const StatsCard = (props: StatsCardProps) => {
 			borderColor={statusColor}
 			rounded="lg"
 		>
-			<StatLabel fontWeight="medium" isTruncated>
+			{props.link === undefined ? <StatLabel fontWeight="medium" isTruncated>
 				{title}
+			</StatLabel> : <Link href={props.link} isExternal><StatLabel fontWeight="medium" display={'inline-flex'} isTruncated >
+				{title} <Box ps={'1'}><FiExternalLink /></Box>
 			</StatLabel>
-			<StatNumber color={statusColor} fontSize="2xl" fontWeight="medium">
+			</Link>}
+			<StatNumber pt={'1'} color={statusColor} fontSize="4xl" fontWeight="extrabold">
 				{millify(stat, {
-					precision: 3,
+					precision: 2,
 					decimalSeparator: "."
 				})}
 			</StatNumber>
-		</Stat>
+		</Stat >
 	);
 }
 

@@ -1,5 +1,5 @@
 import moment from "moment";
-import { USTBridge, USTBridgeInfo, USTSupply } from "types/type";
+import { USTBridge, USTBridgeInfo, USTSupply, UST_IN_ALL_BCs } from "types/type";
 
 export const getUSTSupply = async (): Promise<number> => {
     const response = await fetch(
@@ -8,6 +8,25 @@ export const getUSTSupply = async (): Promise<number> => {
     const data: USTSupply = await response.json();
     return Number(data.amount.amount) / 1000_000;
 }
+
+export const getUSTInfoInBCs = async (): Promise<UST_IN_ALL_BCs[]> => {
+    const response = await fetch(
+        'https://api.flipsidecrypto.com/api/v2/queries/37af1ab8-b314-4e6d-88bb-7613a83e5b14/data/latest'
+    );
+    const data: UST_IN_ALL_BCs[] = await response.json();
+    return data.sort((a, b) => moment(a.DATE).isAfter(moment(b.DATE)) ? 1 : -1).map(item => {
+
+        return ({
+            ...item,
+            "TERRA new users": item.TERRA_NEW_USERS,
+            "SOL new users": item.SOL_NEW_USERS,
+            "ETH new users": item.ETH_NEW_USERS,
+            "POLY new users": item.POLY_NEW_USERS,
+            "HAR new users": item.HAR_NEW_USERS,
+        })
+    });
+}
+
 
 export const getUSTBridgeValue: () => Promise<USTBridgeInfo> = async () => {
     const res = await fetch(
@@ -40,7 +59,6 @@ export const getUSTBridgeValue: () => Promise<USTBridgeInfo> = async () => {
 
     const dailyBridgeValue = calculateDailyBridgeValue("MM-DD-YYYY", USTBridgeValue, bridges);
     const monthlyBridgeValue = calculateDailyBridgeValue("YYYY/MM", USTBridgeValue, bridges);
-
 
     return {
         bridges,
