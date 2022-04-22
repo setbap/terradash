@@ -71,7 +71,7 @@ const Home = ({
           spacing={{ base: 5, lg: 6 }}
         >
           <StatsCard
-            title="Number of Active Validators"
+            title="Active Validators"
             status="unchanged"
             stat={numberOfActiveValidators}
           />
@@ -82,12 +82,12 @@ const Home = ({
           />
           <StatsCard
             link="https://station.terra.money/gov#PROPOSAL_STATUS_VOTING_PERIOD"
-            title="Governance Proposals - Active"
+            title="Governance Proposals Active"
             status="inc"
             stat={numberOfActiveProposals}
           />
           <StatsCard
-            title="Total Luna Staked"
+            title="LUNA Staked"
             status="inc"
             stat={totalLunaStaked["LUNA total staked"]}
           />
@@ -97,27 +97,27 @@ const Home = ({
             stat={totalLunaStakedInUSD["total staked in usd"]}
           />
           <StatsCard
-            title="Number of wallets they have ever staked"
+            title="Wallets That Have Ever Staked"
             status="inc"
             stat={totalWalletStaked["Number of wallets they have ever staked"]}
           />
           <StatsCard
-            title="total Votes CountFor Proposal"
+            title="Votes All Proposals"
             status="inc"
             stat={totalVotesCountForProposal["total votes count for proposal"]}
           />
           <StatsCard
-            title="Total Proposal Count"
+            title="Proposals All Time"
             status="inc"
             stat={totalProposalCount["total proposal count"]}
           />
           <StatsCard
-            title="Total number of Validator"
+            title="Validators All Time"
             status="inc"
             stat={totalNumberOfValidators["total_number_of_validator"]}
           />
           <StatsCard
-            title="Number of wallets they have already staked"
+            title="Wallets That Have Already Staked"
             status="inc"
             stat={
               totalWalletAlreadyStaked[

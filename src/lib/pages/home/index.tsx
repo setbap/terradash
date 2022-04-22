@@ -71,12 +71,12 @@ const Home = ({
         >
           <StatsCard
             status="inc"
-            title={"Current Luna Price(USD)"}
+            title={"Current LUNA Price (USD)"}
             stat={curentLunaPrice["PRICE_USD"]}
           />
           <StatsCard
             status="inc"
-            title={"Total Number of Unique Wallet"}
+            title={"# Unique Terra Wallets"}
             stat={totalNumberOfWallets["total number of user"]}
           />
         </SimpleGrid>
@@ -110,7 +110,7 @@ const Home = ({
             data={dailyNewUserSince2022}
             tooltipTitle={"amount"}
             modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
-            title="Daily New Users - 2022"
+            title="Daily New Users"
             areaDataKey={"new users"}
             xAxisDataKey="day"
           />
@@ -118,7 +118,7 @@ const Home = ({
             data={dailyNewUser}
             tooltipTitle="New wallet count"
             modelInfo={`see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community.`}
-            title="daily unique user"
+            title="Daily Unique Users"
             areaDataKey="NUMBER_OF_UNIQUE_USER_PER_DAY"
             xAxisDataKey="DATE"
           />
@@ -139,7 +139,7 @@ const Home = ({
             data={totalFeeByEachToken}
             tooltipTitle="Total Fees Paid - USD"
             modelInfo="This chart shows the distribution amount of each coin paid as fee."
-            title="Total amount of each token  paid as fee"
+            title="Total Fees Paid"
             dataKey="amount token"
             nameKey="token name"
           /> */}
