@@ -132,7 +132,9 @@ const Home = ({
           spacing={{ base: 1, md: 2, lg: 6 }}
         >
           <ChartBox
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/a340bfd5-ceaf-41fa-bd0a-79c7535e105a"
             data={dailyUniqueUserStaked}
+            baseSpan={2}
             tooltipTitle="Unique Users Staking"
             modelInfo="Number of unique wallets thats stake Terra in One of validators in each day"
             title="Unique Users Staking"

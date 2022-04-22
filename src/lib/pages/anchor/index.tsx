@@ -75,6 +75,7 @@ const Home = ({
         >
 
           <ChartBox
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/09651200-e39b-43e0-bc40-6fa2afb18291"
             data={anchorGrossTVLUSD}
             tooltipTitle="Anchor Collateral TVL (in USD)"
             modelInfo="Anchor Collateral TVL (in USD) across all available assets."
@@ -87,6 +88,7 @@ const Home = ({
           />
 
           <ChartBox
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/ed7c8884-c2f7-4243-978a-055ada7f2db2"
             data={borrowAndDeposit}
             tooltipTitle="Net Depositor Activity (Anchor Earn)"
             modelInfo="Daily earn deposits into Anchor minus redemptions out of Anchor."
@@ -97,6 +99,8 @@ const Home = ({
           />
 
           <ChartBox
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/8661c1e7-368b-4dd5-9833-2169d13a6576"
+            baseSpan={3}
             data={anchorEarnUsers}
             additionalDumpTextToAddKeyToKeyBeUnique="Users, Earn"
             modelInfo="Daily Active Users, Earn"
@@ -107,6 +111,8 @@ const Home = ({
           />
 
           <ChartBox
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/333c9bdc-c60c-4697-8008-0e6140f0f5e1"
+            baseSpan={3}
             additionalDumpTextToAddKeyToKeyBeUnique="Users, Borrow"
             showMonthly={false}
             data={anchorBorrowUsers}
