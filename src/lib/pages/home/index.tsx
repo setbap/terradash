@@ -132,7 +132,7 @@ const Home = ({
             modelInfo="Methodology: Active users is the count of unique addresses involved in a transaction, not including validators or oracle voting transactions, calculated through the previous month."
             title="Active Users per "
             baseSpan={2}
-            areaDataKey="number of active user"
+            areaDataKey="number of active users"
             xAxisDataKey="date" />
           {/* <DonutChart
             queryLink="https://app.flipsidecrypto.com/velocity/queries/8c595217-f3ad-44c9-bf83-853e71ee1c2d"
