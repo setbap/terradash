@@ -91,9 +91,9 @@ const Home = ({
 
           <ChartBox data={terraDailyTx}
             showMonthly
-            tooltipTitle=" Tx "
-            modelInfo="This chart shows how many transactions happen in the terra blockchain per day."
-            title="Tx per "
+            tooltipTitle="Terra Transactions"
+            modelInfo="Terra transactions over time."
+            title="Terra Transactions per "
             baseSpan={3}
             areaDataKey="transaction count"
             xAxisDataKey="day" />
@@ -127,10 +127,10 @@ const Home = ({
             queryLink="https://app.flipsidecrypto.com/dashboard/active-user-over-the-time-jMf4wy"
             showMonthly
             monthlyData={dailyActiveWallets.numberOfMonthlyActiveWallets}
-            tooltipTitle=" Tx "
+            tooltipTitle="Active Users"
             defultDateView="month"
-            modelInfo="This chart shows how many transactions happen in the terra blockchain per day."
-            title="Active user per "
+            modelInfo="Methodology: Active users is the count of unique addresses involved in a transaction, not including validators or oracle voting transactions, calculated through the previous month."
+            title="Active Users per "
             baseSpan={2}
             areaDataKey="number of active user"
             xAxisDataKey="date" />
@@ -145,7 +145,7 @@ const Home = ({
           />
           <BarGraph
             queryLink="https://app.flipsidecrypto.com/dashboard/terra-transactions-daily-monthly-all-time-GO-QmX"
-            modelInfo="shows amount of each token paid as fee over the time"
+            modelInfo="Amount of each token paid as fees."
             values={transactionFees.daily}
             monthlyValues={transactionFees.monthly}
             defualtTime="month"
