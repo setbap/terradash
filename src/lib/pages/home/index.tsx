@@ -81,7 +81,7 @@ const Home = ({
       <Box mx={"auto"} px={{ base: 6, sm: 2, md: 8 }}>
         <SimpleGrid
           my={"6"}
-          columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
+          columns={{ base: 1, md: 2, lg: 2, "2xl": 3 }}
           spacing={{ base: 5, lg: 8 }}
         >
           <StatsCard
@@ -122,7 +122,7 @@ const Home = ({
           <DonutChart
             queryLink="https://app.flipsidecrypto.com/velocity/queries/8c595217-f3ad-44c9-bf83-853e71ee1c2d"
             data={totalFeeByEachToken}
-            tooltipTitle="Total amount of each token  paid as fee"
+            tooltipTitle="[changed] Total Fees Paid - USD"
             modelInfo="This chart shows the distribution amount of each coin paid as fee."
             title="Total amount of each token  paid as fee"
             dataKey="amount token"
@@ -134,7 +134,7 @@ const Home = ({
             values={transactionFees.daily}
             monthlyValues={transactionFees.monthly}
             defualtTime="month"
-            title="Amount of each token paid as fee over the time"
+            title="Fees Paid Over Time"
             dataKey="date"
             baseSpan={3}
             oyLabel="Amout of each Token"
@@ -146,7 +146,7 @@ const Home = ({
         {/* old ---------------------------- old */}
         <SimpleGrid
           my={"6"}
-          columns={{ base: 1, md: 2, lg: 3, "2xl": 4 }}
+          columns={{ base: 1, md: 2, lg: 2, "2xl": 3 }}
           spacing={{ base: 5, lg: 8 }}
         >
           <StatsCard
@@ -157,24 +157,24 @@ const Home = ({
 
           <StatsCard
             status="unchanged"
-            title={"LUNA total Supply"}
+            title={"[v1.5]LUNA total Supply"}
             stat={totalLunaSupply["LUNA total Supply"]}
           />
           <StatsCard
             status="unchanged"
-            title={"UST total Supply"}
+            title={"[v1.5]UST total Supply"}
             stat={totalUSTSupply["UST total Supply"]}
           />
 
           <StatsCard
             status="inc"
-            title={"Total burn Luna from Col5"}
+            title={"[next]Total burn Luna from Col5"}
             stat={totalBurnLuna["burnt_luna"]}
           />
 
           <StatsCard
             status="inc"
-            title={"Total Number of Unique Wallet"}
+            title={"[delete duplicated]Total Number of Unique Wallet"}
             stat={totalNumberOfWallets["total number of user"]}
           />
         </SimpleGrid>
@@ -206,7 +206,7 @@ const Home = ({
             data={avgUSTPrice}
             tooltipTitle="Avg UST price  "
             modelInfo="UST is an algorithmic stablecoin on Terra blockchain but that does not mean the price is always $1. In this chart, you can see the fluctuations of the UST on different days."
-            title="Avg Daily UST price "
+            title="[next]Avg Daily UST price "
             areaDataKey="avg price"
             extraDecimal={5}
             domain={[0.9, 1.1]}
@@ -216,7 +216,7 @@ const Home = ({
             data={circulationSupplyUST}
             tooltipTitle="circulation supply UST"
             modelInfo="Circulating supply is the total UST that normal users have."
-            title="UST circulation supply"
+            title="[delete]UST circulation supply"
             areaDataKey="UST Circulating Supply"
             xAxisDataKey="day"
           />
@@ -225,7 +225,7 @@ const Home = ({
             data={terraDailyAvgMinMaxPrice}
             // tooltipTitle={["min price", "avg price", "max price"]}
             modelInfo="This chart shows daily price of LUNA. the red line is minimum price and the blue line is maximum price of each day."
-            title="Daily Luna Price"
+            title="[v1.5]Daily Luna Price"
             multiOff
             chartColors={["#F44", "#4F4", "#55f"]}
             areaDataKey={["min price", "avg price", "max price"]}
@@ -236,7 +236,7 @@ const Home = ({
             data={burnLuna}
             tooltipTitle={"amount"}
             modelInfo="In terra blockchain we have burn event. that means some amount of LUNA burnt daily.amount of burn increase after Columbus-5 update"
-            title="Daily Burned Luna"
+            title="[v1.5]Daily Burned Luna"
             areaDataKey={"amount"}
             xAxisDataKey="day"
           />
@@ -244,14 +244,14 @@ const Home = ({
             data={dailyNewUserSince2022}
             tooltipTitle={"amount"}
             modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
-            title="Daily new Usr since 2022"
+            title="[change]Daily New Users - 2022"
             areaDataKey={"new users"}
             xAxisDataKey="day"
           />
           <BarGraph
             modelInfo="This chart shows how many users hold between (0,10] LUNA, how many hold between (10,100] LUNA, how many hold between (10o,1000] LUNA and etc."
             values={distributionOfLunaHolders}
-            title="distribution of LUNA between holders"
+            title="[next]distribution of LUNA between holders"
             dataKey="distribution"
             oyLabel="number of wallets"
             oxLabel="group"
