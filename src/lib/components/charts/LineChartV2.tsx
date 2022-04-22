@@ -208,12 +208,12 @@ const LineChartV2 = ({
               <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="0%"
-                  style={{ stopColor: "#0953fe" }}
+                  style={{ stopColor: "var(--chakra-colors-green-300)" }}
                   stopOpacity={0.15}
                 />
                 <stop
                   offset="95%"
-                  style={{ stopColor: "#0343ee" }}
+                  style={{ stopColor: "var(--chakra-colors-green-400)" }}
                   stopOpacity={0.1}
                 />
               </linearGradient>
@@ -267,14 +267,14 @@ const LineChartV2 = ({
             />
             <Area
               dataKey={areaDataKey}
-              style={{ stroke: "#0953fe50" }}
+              style={{ stroke: "var(--chakra-colors-green-400)" }}
               fill="url(#color)"
             />
-            <Legend
+            {/* <Legend
               verticalAlign="top"
               fontSize={"8px"}
               style={{ fontSize: "7px" }}
-            />
+            /> */}
           </AreaChart>
         </ResponsiveContainer>
         <AnimatePresence>
