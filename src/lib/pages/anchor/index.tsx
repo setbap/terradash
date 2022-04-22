@@ -74,12 +74,6 @@ const Home = ({
 
           <StatsCard
             status="inc"
-            title={"UST Reserves"}
-            stat={(+anchorBalances.liquid_terra / 1000000)}
-          />
-
-          <StatsCard
-            status="inc"
             title={"Current APY"}
             stat={+anchorBalances.current_apy * 100}
           />
