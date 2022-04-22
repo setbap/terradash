@@ -161,7 +161,7 @@ const Home = ({
             title="Terra Vote Distribution"
             dataKey="name"
             baseSpan={3}
-            oyLabel="voting count"
+            oyLabel="vote count"
             oxLabel="name"
             isNotDate
             labels={[
