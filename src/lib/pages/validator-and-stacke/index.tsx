@@ -76,13 +76,13 @@ const Home = ({
             stat={numberOfActiveValidators}
           />
           <StatsCard
-            title="Governance Proposals Total"
+            title="Total Governance Proposals"
             status="inc"
             stat={numberOfTotalProposals}
           />
           <StatsCard
             link="https://station.terra.money/gov#PROPOSAL_STATUS_VOTING_PERIOD"
-            title="Governance Proposals Active"
+            title="Active Governance Proposals"
             status="inc"
             stat={numberOfActiveProposals}
           />
@@ -91,40 +91,6 @@ const Home = ({
             status="inc"
             stat={totalLunaStaked["LUNA total staked"]}
           />
-          {/* <StatsCard
-            title="Total Luna Staked In USD"
-            status="inc"
-            stat={totalLunaStakedInUSD["total staked in usd"]}
-          />
-          <StatsCard
-            title="Wallets That Have Ever Staked"
-            status="inc"
-            stat={totalWalletStaked["Number of wallets they have ever staked"]}
-          />
-          <StatsCard
-            title="Votes All Proposals"
-            status="inc"
-            stat={totalVotesCountForProposal["total votes count for proposal"]}
-          />
-          <StatsCard
-            title="Proposals All Time"
-            status="inc"
-            stat={totalProposalCount["total proposal count"]}
-          />
-          <StatsCard
-            title="Validators All Time"
-            status="inc"
-            stat={totalNumberOfValidators["total_number_of_validator"]}
-          />
-          <StatsCard
-            title="Wallets That Have Already Staked"
-            status="inc"
-            stat={
-              totalWalletAlreadyStaked[
-              "Number of wallets they have already staked"
-              ]
-            }
-          /> */}
         </SimpleGrid>
         <SimpleGrid
           py={"6"}

@@ -1,5 +1,4 @@
-import { Box, chakra, useColorModeValue } from "@chakra-ui/react"; import ReactMarkdown from "react-markdown";
-import Renderer from "chakra-ui-markdown-renderer";
+import { Box, chakra, useColorModeValue } from "@chakra-ui/react";
 import MDRenderer from "lib/components/basic/MDRenderer";
 
 const About = () => {
@@ -17,14 +16,7 @@ const About = () => {
           pb={8}
           aria-label="about this dashboard"
         >
-          {/* <chakra.h1
-            textAlign={"center"}
-            fontSize={"4xl"}
-            pb={2}
-            fontWeight={"bold"}
-          >
-            About
-          </chakra.h1> */}
+
           <MDRenderer>
             {`
 
@@ -58,8 +50,7 @@ The initial version focuses on elements that are critical to the core Terra ecos
     
 -   [Sam](https://twitter.com/sem1d5)
     
--   [TZM  
-    ](https://twitter.com/TZMCrypto)
+-   [TZM](https://twitter.com/TZMCrypto)
     
 
   
@@ -75,23 +66,25 @@ The initial version focuses on elements that are critical to the core Terra ecos
 -   Metrics were selected by Flipside community members with demonstrated experience in Terra analytics.
     
 
-### Roadmap (Version 1.5)
+### Roadmap
 
--   Revise the Fees Paid Over Time chart in Overview to be denominated in USD
+-   Revise the Fees Paid Over Time chart in __Overview__ to be denominated in USD
+
+-   Adjust Y-Axes on various charts to make month-over-month changes more visible
     
--   Expand UST section to show cross-chain flows of UST over time
+-   Expand __UST__ section to show cross-chain flows of UST over time
     
--   Incorporate a DeFi tab drawing on elements from a [partner submission](https://datastudio.google.com/u/0/reporting/e568ad77-be7f-47be-8c6d-946c5f08f35b/page/p_vwnqjnbysc?s=vOcvwiJuiS0)
+-   Incorporate a __DeFi__ tab drawing on elements from a [_**partner submission**_](https://datastudio.google.com/u/0/reporting/e568ad77-be7f-47be-8c6d-946c5f08f35b/page/p_vwnqjnbysc?s=vOcvwiJuiS0)
     
--   Implement a Feedback widget for people to report bugs, missing data, or suggestions
+-   Implement a __Feedback__ widget for people to report bugs, missing data, or suggestions
     
--   Expand Governance tab to provide voting power for validators beyond the top 10
+-   Expand __Governance__ tab to provide voting power for validators beyond the top 10
     
--   Add Glossary section to define terms & provide additional explanation on the detailed methodology for each tab
+-   Add __Glossary__ section to define terms & provide additional explanation on the detailed methodology for each tab
     
 -   Add tooltips to provide a brief explanation of each metric
     
--   Incorporate feedback from Anchor Protocol regarding collateral growth on Anchor tab
+-   Incorporate feedback from Anchor Protocol regarding collateral growth on __Anchor__ tab
     
 -   Add tabs to provide high-level metrics for other key protocols
     
@@ -100,11 +93,10 @@ The initial version focuses on elements that are critical to the core Terra ecos
 
   
 
-Do you have metrics you would like to see on this dashboard? Reach out to GJ via [Twitter](https://twitter.com/GJFlannery19) or Telegram (@Sunslinger) and we’ll do our best to incorporate them into our roadmap!
+_**Do you have metrics you would like to see on this dashboard? Reach out to GJ via [Twitter](https://twitter.com/GJFlannery19) or Telegram (@Sunslinger) and we’ll do our best to incorporate them into our roadmap!**_
 
-  
 
-__Last Updated: Apr 22, 2022__
+Last Updated: __Apr 22, 2022__
 `}
           </MDRenderer>
         </Box>
