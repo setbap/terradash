@@ -5,7 +5,7 @@ import { FiSettings } from 'react-icons/fi'
 import ReactMarkdown from 'react-markdown'
 
 
-export default function ChartHeader({ title, chartMenu, modalInfo }: { modalInfo: string, title: string, chartMenu: any }) {
+export default function ChartHeader({ title, chartMenu, modalInfo, disclaimer }: { disclaimer?: string; modalInfo: string, title: string, chartMenu: any }) {
     const OverlayOne = () => (
         <ModalOverlay
             bg='blackAlpha.700'
@@ -27,8 +27,10 @@ export default function ChartHeader({ title, chartMenu, modalInfo }: { modalInfo
                     onOpen()
                 }}
                 icon={<AiOutlineInfoCircle />} /> */}
-
-            <chakra.h6 textAlign={'center'} noOfLines={1} textOverflow='ellipsis'>{title}</chakra.h6>
+            <Box>
+                <chakra.h6 textAlign={'center'} noOfLines={1} textOverflow='ellipsis'>{title}</chakra.h6>
+                {disclaimer && <chakra.sub>{disclaimer}</chakra.sub>}
+            </Box>
 
             <Menu closeOnSelect={false}>
                 <MenuButton

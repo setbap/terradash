@@ -30,9 +30,11 @@ const BarGraph = ({
   monthlyValues,
   extraInfoToTooltip, defualtTime = "day",
   queryLink,
+  disclaimer,
 }: {
   defualtTime?: 'day' | 'month';
   title: string;
+  disclaimer?: string;
   dataKey: string;
   oxLabel: string;
   oyLabel: string;
@@ -131,6 +133,7 @@ const BarGraph = ({
         id={title}
       >
         <ChartHeader
+          disclaimer={disclaimer}
           chartMenu={
             <MenuList>
               {queryLink &&

@@ -1,20 +1,20 @@
 /** @type {import('next-seo').DefaultSeoProps} */
 const defaultSEOConfig = {
   title: "TerraDash",
-  titleTemplate: "%s | terradash",
-  defaultTitle: "terradash: a dashboard for terra",
+  titleTemplate: "%s | The Best Terra Dashboard Ever ",
+  defaultTitle: "TerraDash: The Best Terra Dashboard Ever ",
   description:
-    "a dashboard for terra created by setbap as flipsidecrypto project",
-  canonical: "https://terradash.vercel.com",
+    "best Dashboard for Terra Network  by Flipside Crypto and Setbap ",
+  canonical: "https://terradash.vercel.app/",
   openGraph: {
-    url: "https://terradash.vercel.com",
+    url: "https://terradash.vercel.app/",
     title: "TerraDash",
     description:
-      "a dashboard for terra created by setbap as flipsidecrypto project",
+      "best Dashboard for Terra Network  by Flipside Crypto and Setbap ",
     images: [
       {
-        url: "https://og-image.sznm.dev/**TerraDash**.vercel.com.png?theme=dark&md=1&fontSize=125px",
-        alt: "terradash by setbap",
+        url: "https://og-image.sznm.dev/**TerraDash**.vercel.app.png?theme=dark&md=1&fontSize=125px",
+        alt: "terradash by Flipside Crypto and Setbap",
       },
     ],
     site_name: "terradash",

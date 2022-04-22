@@ -154,6 +154,7 @@ const Home = ({
             monthlyValues={transactionFees.monthly}
             defualtTime="month"
             title="Fees Paid Over Time"
+            disclaimer="(USD Values Coming Soon™)"
             dataKey="date"
             baseSpan={3}
             oyLabel="Amout of each Token"
