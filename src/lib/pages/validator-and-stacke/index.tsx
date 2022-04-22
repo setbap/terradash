@@ -135,7 +135,7 @@ const Home = ({
             data={dailyUniqueUserStaked}
             tooltipTitle="daily unique user staked"
             modelInfo="Number of unique wallets thats stake Terra in One of validators in each day"
-            title="[change]Daily Unique Users Staking"
+            title="Daily Unique Users Staking"
             areaDataKey="daily unique user staked"
             xAxisDataKey="day"
           />

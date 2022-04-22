@@ -372,6 +372,7 @@ export interface USTMarketCap {
   wormholUST: number;
   AvaxUST: number;
   BNBUST: number;
+  ThorChainUST: number;
 }
 
 export interface USTSupply {

@@ -24,18 +24,22 @@ export const getUSTMarketCap = async (): Promise<USTMarketCap> => {
     const BNBUSTResponse = await fetch(
         `https://api.bscscan.com/api?module=stats&action=tokensupply&contractaddress=0x23396cf899ca06c4472205fc903bdb4de249d6fc&apikey=${process.env.BSC_SCAN_API_KEY}`
     )
+    const THORCHAINUSTResponse = await fetch(
+        `https://api.flipsidecrypto.com/api/v2/queries/9c3ae373-f24e-4379-8f81-ca2151e0fc9b/data/latest`
+    )
     const wUsetMarketCap: USTMarketCapRes = await wUSTResponse.json();
     const WormholeUSTMarketCap: USTMarketCapRes = await WormholeUSTResponse.json();
     const AvaxUSTMarketCap: USTMarketCapRes = await AvaxUSTResponse.json();
     const BNBUSTMarketCap: USTMarketCapRes = await BNBUSTResponse.json();
-    console.log(AvaxUSTMarketCap);
-    console.log(BNBUSTMarketCap);
+    const THORCHAINUSTMarketCap: [{ TOTAL_UST: number }] = await THORCHAINUSTResponse.json();
+
 
     return ({
         wUST: (+wUsetMarketCap.result) / 1e18,
         wormholUST: (+WormholeUSTMarketCap.result) / 1e6,
         AvaxUST: (+AvaxUSTMarketCap.result) / 1e6,
         BNBUST: (+BNBUSTMarketCap.result) / 1e18,
+        ThorChainUST: (+THORCHAINUSTMarketCap[0].TOTAL_UST)
     })
 }
 

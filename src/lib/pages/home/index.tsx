@@ -137,7 +137,7 @@ const Home = ({
           <DonutChart
             queryLink="https://app.flipsidecrypto.com/velocity/queries/8c595217-f3ad-44c9-bf83-853e71ee1c2d"
             data={totalFeeByEachToken}
-            tooltipTitle="[changed] Total Fees Paid - USD"
+            tooltipTitle="Total Fees Paid - USD"
             modelInfo="This chart shows the distribution amount of each coin paid as fee."
             title="Total amount of each token  paid as fee"
             dataKey="amount token"
