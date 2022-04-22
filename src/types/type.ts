@@ -425,6 +425,23 @@ export interface CurrentYieldReserve {
   BALANCE: number;
 }
 
+export interface: AnchorCollateralStatsLong {
+  DATES: string;
+  COLLATERAL: string;
+  COLLATERAL_NAME: string;
+  DEPOSITS: number;
+  WITHDRAWALS: number;
+  LIQUIDATIONS: number;
+  COLLATERAL_CHANGE: number;
+  TVL_AMOUNT: number;
+  TVL_USD: number;
+}
+
+export interface: AnchorGrossTVLUSD {
+  DATES: string;
+  GROSS_TVL_USD: number;
+}
+
 export interface UST_IN_ALL_BCs {
   DATE: string;
   ETH_DAILY_USERS: number;

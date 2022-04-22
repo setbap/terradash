@@ -8,10 +8,12 @@ import { getAnchorBalances } from "lib/requests/anchor_balances";
 import { getAnchorEarnUsers } from "lib/requests/anchor_earn_users";
 import { getAnchorBorrowUsers } from "lib/requests/anchor_borrow_users";
 import { getCurrentYieldReserve } from "lib/requests/current_yield_reserve";
+import { getAnchorCollateralStatsLong } from "lib/requests/anchor_collateral_stats_long";
+import { getAnchorTVLUSD } from "lib/requests/anchor_collateral_tvl"
 
 export async function getStaticProps() {
-    const [sumAnchorDeposite, sumAnchorBorrow, borrowAndDeposit, totalUserBorrowDeposit, borrowAndDepositUser, anchorBalances, anchorEarnUsers, anchorBorrowUsers, currentYieldReserve] = await Promise.all(
-        [getSumAnchorDeposite(), getSumAnchorBorrow(), getAnchorBorrowAndDeposit(), getSumAnchorUserBorrowDeposit(), getAnchorBorrowAndDepositUser(), getAnchorBalances(), getAnchorEarnUsers(), getAnchorBorrowUsers(), getCurrentYieldReserve()]
+    const [sumAnchorDeposite, sumAnchorBorrow, borrowAndDeposit, totalUserBorrowDeposit, borrowAndDepositUser, anchorBalances, anchorEarnUsers, anchorBorrowUsers, currentYieldReserve, anchorCollateralStatsLong, anchorGrossTVLUSD] = await Promise.all(
+        [getSumAnchorDeposite(), getSumAnchorBorrow(), getAnchorBorrowAndDeposit(), getSumAnchorUserBorrowDeposit(), getAnchorBorrowAndDepositUser(), getAnchorBalances(), getAnchorEarnUsers(), getAnchorBorrowUsers(), getCurrentYieldReserve(), getAnchorCollateralStatsLong(), getAnchorTVLUSD()]
     );
     return {
         props: {
@@ -24,6 +26,8 @@ export async function getStaticProps() {
             anchorEarnUsers,
             anchorBorrowUsers,
             currentYieldReserve,
+            anchorCollateralStatsLong,
+            anchorGrossTVLUSD
         },
         revalidate: 60 * 60,
     }

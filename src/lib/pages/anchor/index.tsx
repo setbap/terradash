@@ -15,6 +15,8 @@ import {
   AnchorEarnUsers,
   AnchorBorrowUsers,
   CurrentYieldReserve,
+  AnchorCollateralStatsLong,
+  AnchorGrossTVLUSD
 } from "types/type";
 import ChartBox from "lib/components/charts/LineChart";
 import MultiChartBox from "lib/components/charts/MultiLineChart";
@@ -31,6 +33,8 @@ interface Props {
   anchorEarnUsers: AnchorEarnUsers[];
   anchorBorrowUsers: AnchorBorrowUsers[];
   currentYieldReserve: CurrentYieldReserve[];
+  anchorCollateralStatsLong: AnchorCollateralStatsLong[];
+  anchorGrossTVLUSD: AnchorGrossTVLUSD[];
 }
 const Home = ({
   sumAnchorDeposite,
@@ -43,6 +47,8 @@ const Home = ({
   anchorEarnUsers,
   anchorBorrowUsers,
   currentYieldReserve,
+  anchorCollateralStatsLong,
+  anchorGrossTVLUSD,
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
   return (
@@ -92,7 +98,16 @@ const Home = ({
           spacing={{ base: 2, md: 4, lg: 6 }}
         >
 
+          <ChartBox
+            data={anchorGrossTVLUSD}
+            tooltipTitle="Anchor Collateral TVL (in USD)"
+            modelInfo="Anchor Collateral TVL (in USD) across all available assets."
+            title="Collateral TVL (in USD)"
+            areaDataKey="GROSS_TVL_USD"
+            xAxisDataKey="DATES"
+            baseSpan={3}
 
+          />
 
           <ChartBox
             data={borrowAndDeposit}
@@ -100,9 +115,8 @@ const Home = ({
             modelInfo="Daily earn deposits into Anchor minus redemptions out of Anchor."
             title="Net Depositor Activity on Anchor Earn"
             areaDataKey="Net Activity"
-            baseSpan={2}
+            baseSpan={3}
             xAxisDataKey="DAY"
-
           />
 
           <ChartBox
