@@ -15,7 +15,6 @@ import {
   AnchorEarnUsers,
   AnchorBorrowUsers,
   CurrentYieldReserve,
-  AnchorCollateralStatsLong,
   AnchorGrossTVLUSD
 } from "types/type";
 import ChartBox from "lib/components/charts/LineChart";
@@ -33,8 +32,7 @@ interface Props {
   anchorEarnUsers: AnchorEarnUsers[];
   anchorBorrowUsers: AnchorBorrowUsers[];
   currentYieldReserve: CurrentYieldReserve[];
-  anchorCollateralStatsLong: AnchorCollateralStatsLong[];
-  anchorGrossTVLUSD: AnchorGrossTVLUSD[];
+  anchorGrossTVLUSD: AnchorGrossTVLUSD;
 }
 const Home = ({
   sumAnchorDeposite,
@@ -47,7 +45,6 @@ const Home = ({
   anchorEarnUsers,
   anchorBorrowUsers,
   currentYieldReserve,
-  anchorCollateralStatsLong,
   anchorGrossTVLUSD,
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
@@ -100,7 +97,8 @@ const Home = ({
             areaDataKey="GROSS_TVL_USD"
             xAxisDataKey="DATES"
             baseSpan={3}
-
+            showMonthly={false}
+            additionalDumpTextToAddKeyToKeyBeUnique="Collateral TVL"
           />
 
           <ChartBox
