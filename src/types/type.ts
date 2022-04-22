@@ -21,14 +21,16 @@ export interface RawDailyNewUser {
 }
 
 export interface AnchorDeposite {
-  BLOCK_TIMESTAMP: string;
-  DEPOSIT_AMOUNT_USD: number;
+  DATE: string;
+  DEPOSIT_AMOUNT: number;
+  NET_DAILY_AMOUNT: number;
+  REDEEM_AMOUNT: number;
+  Z_CUMULATIVE_SUM: number;
 }
 
 export interface SumAnchorDeposite {
-  ALL_DEPOSIT_AMOUNT_USD: number;
-  PAST_30_DEPOSIT_AMOUNT_USD: number;
-  PAST_7_DEPOSIT_AMOUNT_USD: number;
+  PAST_30_AMOUNT: number;
+  PAST_7_AMOUNT: number;
 }
 
 export interface AnchorBorrows {
@@ -43,11 +45,10 @@ export interface SumAnchorBorrows {
 }
 
 export interface AnchorBorrowAndDeposit {
-  DAY: string;
-  "daily borrows": number;
-  "daily deposits": number;
-  "diffrent borrows and deposits": number;
-  "sum diffrent borrows and deposits": number;
+  DAY: date;
+  "Daily Deposits": number;
+  "Daily Redemptions": number;
+  "Net Activity": number;
 }
 
 export interface AnchorUserBorrowAndDeposit {
@@ -385,6 +386,28 @@ export interface USTBridgeInfo {
     blockchain: string;
     amount: number;
   }[];
+}
+
+
+// ------------------------ Anchor - forg additions
+export interface AnchorBalances {
+  stable_demon: string;
+  liquid_terra: string;
+  exchange_rate: string;
+  last_updated: string;
+  borrowed_terra: string;
+  utilization_ratio: string;
+  current_apy: string;
+}
+
+export interface AnchorEarnUsers {
+  date: string;
+  unique_wallets: number;
+}
+
+export interface AnchorBorrowUsers {
+  date: string;
+  unique_wallets: number;
 }
 
 export interface UST_IN_ALL_BCs {
