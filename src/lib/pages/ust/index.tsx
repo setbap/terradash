@@ -85,7 +85,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) =
             queryLink="https://app.flipsidecrypto.com/velocity/queries/37af1ab8-b314-4e6d-88bb-7613a83e5b14"
             modelInfo="number of new users who user ust in each blokchain"
             values={USTInfoInBCs}
-            title="New UST Users by Chain"
+            title="UST New Users by Chain"
             dataKey="DATE"
             baseSpan={3}
             oyLabel="number of users"

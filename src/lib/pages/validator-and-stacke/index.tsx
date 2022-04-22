@@ -76,7 +76,7 @@ const Home = ({
             stat={numberOfActiveValidators}
           />
           <StatsCard
-            title="Governance Proposals - Total"
+            title="Governance Proposals Total"
             status="inc"
             stat={numberOfTotalProposals}
           />
