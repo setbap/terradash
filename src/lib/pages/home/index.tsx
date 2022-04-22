@@ -147,7 +147,7 @@ const Home = ({
             dataKey="amount token"
             nameKey="token name"
           /> */}
-          <BarGraph
+          {/*<BarGraph
             queryLink="https://app.flipsidecrypto.com/dashboard/terra-transactions-daily-monthly-all-time-GO-QmX"
             modelInfo="Amount of each token paid as fees."
             values={transactionFees.daily}
@@ -160,7 +160,7 @@ const Home = ({
             oyLabel="Amount of Each Token"
             oxLabel="name"
             labels={transactionFees.denums.filter((item: string) => !item.startsWith('ibc')).map((item: string, index: number) => ({ key: item, color: colors[index % colors.length] }))}
-          />
+        /> */}
         </SimpleGrid>
       </Box>
     </>
