@@ -1,5 +1,4 @@
-import moment from "moment";
-import {
+import moment from "moment";import {
   AtiveUserOverTime,
   DailyActiveWallets,
   DailyTx,
@@ -25,14 +24,14 @@ export const getDailyActiveWallets: () => Promise<AtiveUserOverTime> =
       numberOfMonthlyActiveWallets: numberOfMonthlyActiveWallets.map(
         (month) => {
           return {
-            "number of active user": month.ACTIVE_USERS,
+            "number of active users": month.ACTIVE_USERS,
             date: moment(month.DATE).format("MMM YYYY"),
           };
         }
       ),
       numberOfDailyActiveWallets: numberOfDailyActiveWallets.map((day) => {
         return {
-          "number of active user": day.ACTIVE_USERS,
+          "number of active users": day.ACTIVE_USERS,
           date: moment(day.DATE).format("DD MMM YYYY"),
         };
       }),
