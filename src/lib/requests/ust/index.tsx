@@ -54,7 +54,7 @@ export const getUSTInfoInBCsTxCount = async (): Promise<any> => {
         return ({
             "DATE": item.DATE,
             "Terra": item.TERRA_TX,
-            "Sol": item.SOL_TX,
+            "Solana": item.SOL_TX,
             "Ethereum": item.ETH_TX,
             "Polygon": item.POLY_TX,
             "Harmony": item.HAR_TX,
@@ -71,7 +71,7 @@ export const getUSTInfoInBCsNewUser = async (): Promise<any> => {
         return ({
             "DATE": item.DATE,
             "Terra": item.TERRA_NEW_USERS,
-            "Sol": item.SOL_NEW_USERS,
+            "Solana": item.SOL_NEW_USERS,
             "Ethereum": item.ETH_NEW_USERS,
             "Polygon": item.POLY_NEW_USERS,
             "Harmony": item.HAR_NEW_USERS,
@@ -89,7 +89,7 @@ export const getUSTInfoInBCsUstVolume = async (): Promise<any> => {
         return ({
             "DATE": item.DATE,
             "Terra": item.TERRA_UST_DAILY,
-            "Sol": item.SOL_UST_DAILY,
+            "Solana": item.SOL_UST_DAILY,
             "Ethereum": item.ETH_UST_DAILY,
             "Polygon": item.POLY_UST_DAILY,
             "Harmony": item.HAR_UST_DAILY,

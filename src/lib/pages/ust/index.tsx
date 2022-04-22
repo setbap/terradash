@@ -71,15 +71,15 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
             modelInfo="Volume of UST bridged out By Each Bridge over the time"
             values={ustBridgeValue.dailyBridgeValue}
             monthlyValues={ustBridgeValue.monthlyBridgeValue}
-            title="UST Bridge Volume"
+            title="UST Outflow From Terra"
             dataKey="date"
             baseSpan={3}
             oyLabel="Amout of UST"
             oxLabel="name"
             labels={[
-              { key: "Shuttle", color: "#09f35e" },
-              { key: "Wormhole", color: "#f30e0e" },
-              { key: "IBC", color: "#f3f30e" },
+              { key: "Shuttle", color: "#5293f7" },
+              { key: "Wormhole", color: "#f4801a" },
+              { key: "IBC", color: "#5a3ea4" },
             ]}
           />
           <StackedAreaChart
@@ -89,11 +89,11 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
             title="UST New Users by Chain"
             dataKey="DATE"
             baseSpan={3}
-            oyLabel="number of users"
+            oyLabel="Number of New Users"
             oxLabel="name"
             labels={[
               { key: "Terra", color: "#fad85d" },
-              { key: "Sol", color: "#7d80d9" },
+              { key: "Solana", color: "#7d80d9" },
               { key: "Ethereum", color: "#8b93b3" },
               { key: "Polygon", color: "#8347e4" },
               { key: "Harmony", color: "#0bb7e3" },
@@ -107,11 +107,11 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
             title="UST Transactions by Chain"
             dataKey="DATE"
             baseSpan={3}
-            oyLabel="transaction count"
+            oyLabel="Transaction Count"
             oxLabel="name"
             labels={[
               { key: "Terra", color: "#fad85d" },
-              { key: "Sol", color: "#7d80d9" },
+              { key: "Solana", color: "#7d80d9" },
               { key: "Ethereum", color: "#8b93b3" },
               { key: "Polygon", color: "#8347e4" },
               { key: "Harmony", color: "#0bb7e3" },
@@ -125,11 +125,11 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
             title="UST Volume by Chain"
             dataKey="DATE"
             baseSpan={3}
-            oyLabel="volume of UST"
+            oyLabel="Volume of UST"
             oxLabel="name"
             labels={[
               { key: "Terra", color: "#fad85d" },
-              { key: "Sol", color: "#7d80d9" },
+              { key: "Solana", color: "#7d80d9" },
               { key: "Ethereum", color: "#8b93b3" },
               { key: "Polygon", color: "#8347e4" },
               { key: "Harmony", color: "#0bb7e3" },
