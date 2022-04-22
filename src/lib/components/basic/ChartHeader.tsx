@@ -17,7 +17,8 @@ export default function ChartHeader({ title, chartMenu, modalInfo }: { modalInfo
 
     return (
         <Box width={'100%'} display={'flex'} alignItems='center' justifyContent={'space-between'}>
-            <IconButton
+            <Box></Box>
+            {/* <IconButton
                 size={'sm'}
                 variant={'outline'}
                 aria-label='open info about chart'
@@ -25,7 +26,7 @@ export default function ChartHeader({ title, chartMenu, modalInfo }: { modalInfo
                     setOverlay(<OverlayOne />)
                     onOpen()
                 }}
-                icon={<AiOutlineInfoCircle />} />
+                icon={<AiOutlineInfoCircle />} /> */}
 
             <chakra.h6 textAlign={'center'} noOfLines={1} textOverflow='ellipsis'>{title}</chakra.h6>
 
