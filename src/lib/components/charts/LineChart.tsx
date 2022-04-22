@@ -60,7 +60,7 @@ const ChartBox = ({
   modelInfo,
   additionalDumpTextToAddKeyToKeyBeUnique = "",
   defultSelectedRange = "all",
-  showMonthly = true
+  showMonthly = false
 }: Props) => {
   const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
   const [defultViewSetting, setDefultViewSetting] = useState(defultDateView);
@@ -221,13 +221,13 @@ const ChartBox = ({
               <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="0%"
-                  style={{ stopColor: "#0953fe" }}
-                  stopOpacity={0.15}
+                  style={{ stopColor: "var(--chakra-colors-green-300)" }}
+                  stopOpacity={0.95}
                 />
                 <stop
                   offset="95%"
-                  style={{ stopColor: "#0343ee" }}
-                  stopOpacity={0.1}
+                  style={{ stopColor: "var(--chakra-colors-green-400)" }}
+                  stopOpacity={0.8}
                 />
               </linearGradient>
             </defs>
@@ -280,7 +280,7 @@ const ChartBox = ({
             />
             <Area
               dataKey={areaDataKey}
-              style={{ stroke: "#0953fe50" }}
+              style={{ stroke: "var(--chakra-colors-green-300)" }}
               fill="url(#color)"
             />
             <Legend
