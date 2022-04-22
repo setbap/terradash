@@ -74,7 +74,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
             title="UST Outflow From Terra"
             dataKey="date"
             baseSpan={3}
-            oyLabel="Amout of UST"
+            oyLabel="Amount of UST"
             oxLabel="name"
             labels={[
               { key: "Shuttle", color: "#5293f7" },

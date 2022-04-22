@@ -156,7 +156,7 @@ const Home = ({
             title="Fees Paid Over Time"
             dataKey="date"
             baseSpan={3}
-            oyLabel="Amout of each Token"
+            oyLabel="Amount of each Token"
             oxLabel="name"
             labels={transactionFees.denums.filter((item: string) => !item.startsWith('ibc')).map((item: string, index: number) => ({ key: item, color: colors[index % colors.length] }))}
           />
