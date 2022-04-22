@@ -345,9 +345,9 @@ export interface TerraValidatorsWithVote {
 
 export interface SimplifiedTerraValidatorsWithVote {
   name: string;
-  "yes votes": number;
-  "no votes": number;
-  "abstain votes": number;
+  Yes: number;
+  No: number;
+  Abstain: number;
   "total votes": number;
 }
 

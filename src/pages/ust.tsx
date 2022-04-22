@@ -1,13 +1,21 @@
 import UST from "lib/pages/ust";
-import { getUSTBridgeValue, getUSTInfoInBCs, getUSTMarketCap, getUSTSupply } from "lib/requests/ust";
+import { getUSTBridgeValue, getUSTInfoInBCsNewUser, getUSTInfoInBCsUstVolume, getUSTInfoInBCsTxCount, getUSTMarketCap, getUSTSupply } from "lib/requests/ust";
 
 export async function getStaticProps() {
-    const [ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap] = await Promise.all(
-        [getUSTBridgeValue(), getUSTSupply(), getUSTInfoInBCs(), getUSTMarketCap()]
-    );
+    const [ustBridgeValue, USTSupply,
+        USTInfoInBCsNewUser,
+        USTInfoInBCsUstVolume,
+        USTInfoInBCsTxCount
+        , ustMarketCap] = await Promise.all(
+            [getUSTBridgeValue(), getUSTSupply(),
+            getUSTInfoInBCsNewUser(), getUSTInfoInBCsUstVolume(), getUSTInfoInBCsTxCount(),
+            getUSTMarketCap()]
+        );
     return {
         props: {
-            ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap
+            ustBridgeValue, USTSupply, USTInfoInBCsNewUser,
+            USTInfoInBCsUstVolume,
+            USTInfoInBCsTxCount, ustMarketCap
         },
         revalidate: 60 * 60,
     }

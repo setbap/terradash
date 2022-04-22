@@ -7,10 +7,13 @@ interface Props {
   ustBridgeValue: USTBridgeInfo;
   USTSupply: number,
   ustMarketCap: USTMarketCap,
-  USTInfoInBCs: UST_IN_ALL_BCs[]
+
+  USTInfoInBCsNewUser: any,
+  USTInfoInBCsUstVolume: any,
+  USTInfoInBCsTxCount: any,
 }
 
-const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) => {
+const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCount, USTInfoInBCsUstVolume, ustMarketCap }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
   return (
     <>
@@ -64,7 +67,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) =
         >
 
           <BarGraph
-            queryLink="https://app.flipsidecrypto.com/velocity/queries/cbcea6f8-a3b1-4298-906e-db63b6971e25"
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/4eab2b30-aa8a-4830-8b48-14ca336b0a5b"
             modelInfo="Volume of UST bridged out By Each Bridge over the time"
             values={ustBridgeValue.dailyBridgeValue}
             monthlyValues={ustBridgeValue.monthlyBridgeValue}
@@ -79,63 +82,61 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCs, ustMarketCap }: Props) =
               { key: "IBC", color: "#f3f30e" },
             ]}
           />
-
-
           <StackedAreaChart
             queryLink="https://app.flipsidecrypto.com/velocity/queries/37af1ab8-b314-4e6d-88bb-7613a83e5b14"
             modelInfo="number of new users who user ust in each blokchain"
-            values={USTInfoInBCs}
+            values={USTInfoInBCsNewUser}
             title="UST New Users by Chain"
             dataKey="DATE"
             baseSpan={3}
             oyLabel="number of users"
             oxLabel="name"
             labels={[
-              { key: "TERRA new users", color: "#09f35e" },
-              { key: "SOL new users", color: "#fe3" },
-              { key: "ETH new users", color: "#4af" },
-              { key: "POLY new users", color: "#f30e0e" },
-              { key: "HAR new users", color: "#b3d" },
+              { key: "Terra", color: "#fad85d" },
+              { key: "Sol", color: "#7d80d9" },
+              { key: "Ethereum", color: "#8b93b3" },
+              { key: "Polygon", color: "#8347e4" },
+              { key: "Harmony", color: "#0bb7e3" },
             ]}
           />
 
           <StackedAreaChart
             queryLink="https://app.flipsidecrypto.com/velocity/queries/37af1ab8-b314-4e6d-88bb-7613a83e5b14"
             modelInfo="number of transactions done with UST in each All blockchains"
-            values={USTInfoInBCs}
+            values={USTInfoInBCsTxCount}
             title="UST Transactions by Chain"
             dataKey="DATE"
             baseSpan={3}
             oyLabel="transaction count"
             oxLabel="name"
             labels={[
-              { key: "TERRA TX count", color: "#09f35e" },
-              { key: "SOL TX count", color: "#fe3" },
-              { key: "ETH TX count", color: "#4af" },
-              { key: "POLY TX count", color: "#f30e0e" },
-              { key: "HAR TX count", color: "#b3d" },
+              { key: "Terra", color: "#fad85d" },
+              { key: "Sol", color: "#7d80d9" },
+              { key: "Ethereum", color: "#8b93b3" },
+              { key: "Polygon", color: "#8347e4" },
+              { key: "Harmony", color: "#0bb7e3" },
             ]}
           />
 
           <StackedAreaChart
             queryLink="https://app.flipsidecrypto.com/velocity/queries/37af1ab8-b314-4e6d-88bb-7613a83e5b14"
             modelInfo="UST Volume by Chain"
-            values={USTInfoInBCs}
+            values={USTInfoInBCsUstVolume}
             title="UST Volume by Chain"
             dataKey="DATE"
             baseSpan={3}
-            oyLabel="valume of UST"
+            oyLabel="volume of UST"
             oxLabel="name"
             labels={[
-              { key: "TERRA UST Valume", color: "#09f35e" },
-              { key: "SOL UST Valume", color: "#fe3" },
-              { key: "ETH UST Valume", color: "#4af" },
-              { key: "POLY UST Valume", color: "#f30e0e" },
-              { key: "HAR UST Valume", color: "#b3d" },
+              { key: "Terra", color: "#fad85d" },
+              { key: "Sol", color: "#7d80d9" },
+              { key: "Ethereum", color: "#8b93b3" },
+              { key: "Polygon", color: "#8347e4" },
+              { key: "Harmony", color: "#0bb7e3" },
             ]}
           />
           {/* <DonutChart
-            queryLink="https://app.flipsidecrypto.com/velocity/queries/cbcea6f8-a3b1-4298-906e-db63b6971e25"
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/4eab2b30-aa8a-4830-8b48-14ca336b0a5b"
             data={ustBridgeValue.blockchainsWithValue}
             tooltipTitle=" Total Fee Paid With Each coin "
             modelInfo="This chart shows the distribution Volume of UST bridged out to Each Blockchain."
