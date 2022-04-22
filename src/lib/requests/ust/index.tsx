@@ -23,6 +23,18 @@ export const getUSTInfoInBCs = async (): Promise<UST_IN_ALL_BCs[]> => {
             "ETH new users": item.ETH_NEW_USERS,
             "POLY new users": item.POLY_NEW_USERS,
             "HAR new users": item.HAR_NEW_USERS,
+
+            "TERRA TX count": item.TERRA_TX,
+            "SOL TX count": item.SOL_TX,
+            "ETH TX count": item.ETH_TX,
+            "POLY TX count": item.POLY_TX,
+            "HAR TX count": item.HAR_TX,
+
+            "TERRA UST Valume": item.TERRA_UST_DAILY,
+            "SOL UST Valume": item.SOL_UST_DAILY,
+            "ETH UST Valume": item.ETH_UST_DAILY,
+            "POLY UST Valume": item.POLY_UST_DAILY,
+            "HAR UST Valume": item.HAR_UST_DAILY,
         })
     });
 }
