@@ -63,9 +63,9 @@ export default function SidebarWithHeader({
     }
   }, []);
   const variants = {
-    hidden: { opacity: 0.7, },
+    hidden: { opacity: 0.01, },
     enter: { opacity: 1 },
-    exit: { opacity: 0.7, },
+    exit: { opacity: 0.01, },
   };
   return (
     <MotionBox
