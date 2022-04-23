@@ -70,11 +70,13 @@ const Home = ({
           spacing={{ base: 5, lg: 8 }}
         >
           <StatsCard
+            link="https://app.flipsidecrypto.com/velocity/queries/a99f1fa8-2590-4eb5-9473-7d6006b40fea"
             status="inc"
             title={"Current LUNA Price (USD)"}
             stat={curentLunaPrice["PRICE_USD"]}
           />
           <StatsCard
+            link="https://app.flipsidecrypto.com/velocity/queries/dd20f26c-d742-440e-a447-43b939091a2f"
             status="inc"
             title={"# Unique Terra Wallets"}
             stat={totalNumberOfWallets["total number of user"]}
@@ -94,9 +96,9 @@ const Home = ({
             showMonthly
             tooltipTitle="Terra Transactions"
             modelInfo="Terra transactions over time."
-            title="Terra Transactions per "
+            title="Number of Terra Transactions"
             baseSpan={3}
-            areaDataKey="transaction count"
+            areaDataKey="Transaction Count"
             xAxisDataKey="day" />
           <ChartBox
             queryLink="https://app.flipsidecrypto.com/velocity/queries/0c3eda6f-92bc-4594-a00d-fea003875016"
@@ -104,7 +106,7 @@ const Home = ({
             tooltipTitle="circulation supply luna"
             modelInfo={`Circulating supply is the total LUNA that normal users have (not dex, cex, smart contract, etc)`}
             title="LUNA Circulating Supply"
-            areaDataKey="Luna Circulating Supply"
+            areaDataKey="LUNA Circulating Supply"
             xAxisDataKey="day"
             baseSpan={2}
           />
@@ -114,7 +116,7 @@ const Home = ({
             tooltipTitle={"amount"}
             modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
             title="Daily New Users"
-            areaDataKey={"new users"}
+            areaDataKey={"New Users"}
             xAxisDataKey="day"
           />
           <ChartBox
@@ -123,7 +125,7 @@ const Home = ({
             tooltipTitle="New wallet count"
             modelInfo={`see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community.`}
             title="Daily Unique Users"
-            areaDataKey="NUMBER_OF_UNIQUE_USER_PER_DAY"
+            areaDataKey="Daily Unique Users"
             xAxisDataKey="DATE"
           />
           <LineChartV2
@@ -134,9 +136,9 @@ const Home = ({
             tooltipTitle="Active Users"
             defultDateView="month"
             modelInfo="Methodology: Active users is the count of unique addresses involved in a transaction, not including validators or oracle voting transactions, calculated through the previous month."
-            title="Active Users per "
+            title="Number of Active Users"
             baseSpan={2}
-            areaDataKey="number of active users"
+            areaDataKey="Number of Active Users"
             xAxisDataKey="date" />
           {/* <DonutChart
             queryLink="https://app.flipsidecrypto.com/velocity/queries/8c595217-f3ad-44c9-bf83-853e71ee1c2d"

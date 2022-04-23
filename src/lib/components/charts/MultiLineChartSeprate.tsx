@@ -249,7 +249,7 @@ const MultiLineChartSeprate = ({
             />
             <Tooltip
               labelFormatter={(value: string) =>
-                isNotDate ? value : moment(value).toDate().toDateString()
+                isNotDate ? value : moment(value).format("MMM DD YYYY")
               }
               labelStyle={{ color: "white" }}
               contentStyle={{ backgroundColor: "black", borderRadius: "5px" }}

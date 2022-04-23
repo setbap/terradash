@@ -71,11 +71,13 @@ const Home = ({
           spacing={{ base: 5, lg: 6 }}
         >
           <StatsCard
+            link="https://lcd.terra.dev/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED"
             title="Active Validators"
             status="unchanged"
             stat={numberOfActiveValidators}
           />
           <StatsCard
+            link="https://lcd.terra.dev/cosmos/gov/v1beta1/proposals"
             title="Total Governance Proposals"
             status="inc"
             stat={numberOfTotalProposals}
@@ -87,6 +89,7 @@ const Home = ({
             stat={numberOfActiveProposals}
           />
           <StatsCard
+            link="https://app.flipsidecrypto.com/velocity/queries/44f993a2-2322-45bc-8f30-e4ffa10d6b83"
             title="LUNA Staked"
             status="inc"
             stat={totalLunaStaked["LUNA total staked"]}
@@ -104,7 +107,7 @@ const Home = ({
             tooltipTitle="Unique Users Staking"
             modelInfo="Number of unique wallets thats stake Terra in One of validators in each day"
             title="Unique Users Staking"
-            areaDataKey="daily unique user staked"
+            areaDataKey="Daily Unique Stakers"
             xAxisDataKey="day"
           />
           <BarGraph
@@ -114,11 +117,11 @@ const Home = ({
             values={topTenTerraValidator}
             title="Top 10 Validators by Voting Power"
             dataKey="name"
-            oyLabel="voting power (%)"
+            oyLabel="Voting Power (%) "
             oxLabel="name"
             isNotDate
             labels={[
-              { key: "voting power", color: "var(--chakra-colors-green-400)" },
+              { key: "Voting Power", color: "var(--chakra-colors-green-400)" },
             ]}
           />
 
@@ -129,7 +132,7 @@ const Home = ({
             title="Terra Vote Distribution"
             dataKey="name"
             baseSpan={3}
-            oyLabel="vote count"
+            oyLabel="Vote Count"
             oxLabel="name"
             isNotDate
             labels={[

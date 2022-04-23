@@ -1,4 +1,5 @@
-import {  ActiveValidators,
+import {
+  ActiveValidators,
   SimpilfiedTerraValidators,
   SimplifiedTerraValidatorsWithVote,
   TerraValidators,
@@ -37,7 +38,7 @@ export const getTopTenTerraValidator = async () => {
       .filter((_, index) => index < 10)
       .map((validator) => ({
         name: validator.description.moniker,
-        "voting power": +validator.votingPower.weight * 100,
+        "Voting Power": +validator.votingPower.weight * 100,
       })) || [];
   return topTenTerraValidator;
 };

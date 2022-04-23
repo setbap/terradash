@@ -205,7 +205,7 @@ const ChartBox = ({
             </MenuList>
           }
           modalInfo={modelInfo}
-          title={title + ' ' + (showMonthly ? defultViewSetting : "")}
+          title={title}
         />
         <Box p={"1"} />
         <ResponsiveContainer
@@ -243,7 +243,7 @@ const ChartBox = ({
                   return value;
                 }
                 if (defultViewSetting === "day") {
-                  return moment(value).toDate().toDateString();
+                  return moment(value).format("MMM DD YYYY");
                 }
               }}
               dataKey={xAxisDataKey}
@@ -266,7 +266,7 @@ const ChartBox = ({
                   return value;
                 }
                 if (defultViewSetting === "day") {
-                  return moment(value).toDate().toDateString();
+                  return moment(value).format("MMM DD YYYY");
                 }
               }}
               labelStyle={{ color: "white" }}

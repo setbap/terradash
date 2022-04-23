@@ -24,14 +24,14 @@ export const getDailyActiveWallets: () => Promise<AtiveUserOverTime> =
       numberOfMonthlyActiveWallets: numberOfMonthlyActiveWallets.map(
         (month) => {
           return {
-            "number of active users": month.ACTIVE_USERS,
+            "Number of Active Users": month.ACTIVE_USERS,
             date: moment(month.DATE).format("MMM YYYY"),
           };
         }
       ),
       numberOfDailyActiveWallets: numberOfDailyActiveWallets.map((day) => {
         return {
-          "number of active users": day.ACTIVE_USERS,
+          "Number of Active Users": day.ACTIVE_USERS,
           date: moment(day.DATE).format("DD MMM YYYY"),
         };
       }),
@@ -54,7 +54,7 @@ export const getTerraDailyTx = async () => {
 
   return terraDailyTx.map((txCount) => ({
     day: txCount.day,
-    "transaction count": txCount["daily TX"],
+    "Transaction Count": txCount["daily TX"],
   }));
 };
 

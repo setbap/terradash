@@ -230,7 +230,7 @@ const LineChartV2 = ({
                   return value;
                 }
                 if (defultViewSetting === "day") {
-                  return moment(value).toDate().toDateString();
+                  return moment(value).format("MMM DD YYYY");
                 }
               }}
               dataKey={xAxisDataKey}
@@ -253,7 +253,7 @@ const LineChartV2 = ({
                   return value;
                 }
                 if (defultViewSetting === "day") {
-                  return moment(value).toDate().toDateString();
+                  return moment(value).format("MMM DD YYYY");
                 }
               }}
               labelStyle={{ color: "white" }}

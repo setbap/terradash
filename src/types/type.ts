@@ -1,4 +1,5 @@
-export interface VoterInfo {  NUMBER_NOT_WHALE_VOTER: number;
+export interface VoterInfo {
+  NUMBER_NOT_WHALE_VOTER: number;
   NUMBER_OF_ANCHOR_VOTER: number;
   NUMBER_OF_MIR_VOTER: number;
   NUMBER_OF_NOT_VOTED_WHALES: number;
@@ -101,7 +102,7 @@ export interface TerraDailyAvgMinMaxPrice {
 }
 
 export interface CirculationSupplyLuna {
-  "Luna Circulating Supply": number;
+  "LUNA Circulating Supply": number;
   day: string;
 }
 
@@ -227,7 +228,7 @@ export interface DistributionOfLunaHolders {
 
 export interface DailyNewUserSince2022 {
   day: string;
-  "new users": number;
+  "New Users": number;
 }
 
 export interface TotalNumberOfValidators {
@@ -260,11 +261,11 @@ export interface DailyActiveWallets {
 
 export interface AtiveUserOverTime {
   numberOfMonthlyActiveWallets: {
-    "number of active users": number;
+    "Number of Active Users": number;
     date: string;
   }[];
   numberOfDailyActiveWallets: {
-    "number of active users": number;
+    "Number of Active Users": number;
     date: string;
   }[];
 }
@@ -323,7 +324,7 @@ export interface TerraValidators {
 }
 export interface SimpilfiedTerraValidators {
   name: string;
-  "voting power": number;
+  "Voting Power": number;
 }
 
 export interface TerraValidatorsWithVote {
@@ -411,13 +412,13 @@ export interface AnchorBalances {
 }
 
 export interface AnchorEarnUsers {
-  date: string;
-  unique_wallets: number;
+  DATE: string;
+  UNIQUE_WALLETS: number;
 }
 
 export interface AnchorBorrowUsers {
-  date: string;
-  unique_wallets: number;
+  DATE: string;
+  UNIQUE_WALLETS: number;
 }
 
 export interface CurrentYieldReserve {

@@ -43,27 +43,28 @@ const Home = ({
         >
 
           <StatsCard
+            link="https://eth-api.anchorprotocol.com/api/v1/stablecoin_info/uusd"
             status="inc"
             title={"Total Deposits (UST)"}
-
             stat={(+anchorBalances.borrowed_terra / 1000000) + (+anchorBalances.liquid_terra / 1000000)}
           />
 
           <StatsCard
             status="inc"
             title={"Total Borrowed (UST)"}
-
+            link="https://eth-api.anchorprotocol.com/api/v1/stablecoin_info/uusd"
             stat={(+anchorBalances.borrowed_terra / 1000000)}
           />
 
           <StatsCard
             status="inc"
             title={"Current APY (%)"}
-
+            link="https://eth-api.anchorprotocol.com/api/v1/stablecoin_info/uusd"
             stat={+anchorBalances.current_apy * 100}
           />
 
           <StatsCard
+            link="https://app.flipsidecrypto.com/velocity/queries/9acc8040-4d62-451b-8029-d3e381ee3ac8"
             status="inc"
             title={"Yield Reserve (UST)"}
             stat={currentYieldReserve.BALANCE}
@@ -83,7 +84,7 @@ const Home = ({
             tooltipTitle="Anchor Collateral TVL (in USD)"
             modelInfo="Anchor Collateral TVL (in USD) across all available assets."
             title="Collateral TVL (in USD)"
-            areaDataKey="GROSS_TVL_USD"
+            areaDataKey="Collateral TVL (USD)"
             xAxisDataKey="DATES"
             baseSpan={3}
             showMonthly={false}
@@ -109,7 +110,7 @@ const Home = ({
             modelInfo="Daily Active Users, Earn"
             tooltipTitle=""
             title="Daily Active Users on Anchor Earn"
-            areaDataKey="UNIQUE_WALLETS"
+            areaDataKey="Unique Users Depositing"
             xAxisDataKey="DATE"
           />
 
@@ -122,7 +123,7 @@ const Home = ({
             modelInfo="Daily Active Users on Anchor Borrow"
             tooltipTitle=""
             title="Daily Active Users on Anchor Borrow"
-            areaDataKey="UNIQUE_WALLETS"
+            areaDataKey="Unique Users Borrowing"
             xAxisDataKey="DATE"
           />
 

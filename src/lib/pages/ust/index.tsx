@@ -24,6 +24,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
           spacing={{ base: 5, lg: 8 }}
         >
           <StatsCard
+            link="https://lcd.terra.dev/cosmos/bank/v1beta1/supply/uusd"
             title="UST Total Supply"
             status="inc"
             stat={USTSupply}
@@ -57,6 +58,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
             stat={ustMarketCap.AvaxUST}
           />
           <StatsCard
+            link="https://app.flipsidecrypto.com/velocity/queries/9c3ae373-f24e-4379-8f81-ca2151e0fc9b"
             title="THORChain UST Market Cap"
             status="inc"
             stat={ustMarketCap.ThorChainUST}
