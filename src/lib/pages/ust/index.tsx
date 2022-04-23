@@ -27,6 +27,8 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
             title="UST Total Supply"
             status="inc"
             stat={USTSupply}
+            forceDecimal={true}
+
           />
           <StatsCard
             title="Ethereum wUST Market Cap"

@@ -22,10 +22,11 @@ interface StatsCardProps {
 	link?: string;
 	comment?: string;
 	unit?: string
+	forceDecimal?: boolean
 }
 export const StatsCard = (props: StatsCardProps) => {
 	const bgCard = useColorModeValue("white", "#191919");
-	const { title, stat, status = "unchanged" } = props;
+	const { title, stat, status = "unchanged", forceDecimal = false } = props;
 	const defaultColor = useColorModeValue("gray.600", "gray.400");
 	const incColor = useColorModeValue("green.800", "green.300");
 	const decColor = useColorModeValue("red.800", "red.500");
@@ -42,6 +43,33 @@ export const StatsCard = (props: StatsCardProps) => {
 			setStatusColor(defaultColor);
 		}
 	}, []);
+
+	const calculateNum = (num: number) => {
+		if (!forceDecimal) {
+			return millify(stat, {
+				precision: 2,
+				decimalSeparator: ".",
+			})
+		}
+		const word = millify(stat, {
+			precision: 2,
+			decimalSeparator: ".",
+		})
+		const splited = word.split(".");
+		if (splited.length === 1) {
+			const num = word.match(/\d+/g);
+			const text = word.match(/[a-zA-Z]+/g) ?? " ";
+			return `${num![0]}.00${text![0]}`;
+		} else {
+			const firstNum = splited[0];
+			const secondNum = splited[1].match(/\d+/g);
+			const text = splited[1].match(/[a-zA-Z]+/g) ?? " ";
+			return `${firstNum}.${secondNum![0].padEnd(2, "0")}${text[0]}`;
+		}
+	}
+
+
+
 
 	const tooltip = props.comment && (
 		<Tooltip
@@ -106,10 +134,7 @@ export const StatsCard = (props: StatsCardProps) => {
 				fontWeight="extrabold"
 			>
 				<Box display={'inline-flex'}>
-					{millify(stat, {
-						precision: 2,
-						decimalSeparator: ".",
-					})}
+					{calculateNum(stat)}
 					<Box fontSize={'2xl'} fontWeight={'bold'}>	{props.unit ?? ''}</Box>
 				</Box>
 			</StatNumber>
