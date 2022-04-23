@@ -60,11 +60,11 @@ export default function Footer() {
       >
         <Stack direction={"row"} spacing={2}>
           <Text>Powered by</Text>
-          <Link href={"https://flipsidecrypto.xyz/"} isExternal display={'inline-flex'}>
-            Flipside Crypto <Box ml={'1'}><FlipSideIcon fill={baseColor} /></Box>
+          <Link style={{marginInlineStart: '0.25em'}} href={"https://flipsidecrypto.xyz/"} isExternal display={'inline-flex'}>
+            Flipside Crypto <Box style={{marginTop: '-0.05em'}} ml={'1'}><FlipSideIcon fill={baseColor} /></Box>
           </Link>
-          <Text>&</Text>
-          <Link href={"http://github.com/setbap"} isExternal display={'inline-flex'}>
+          <Text style={{marginInlineStart: '0.3em'}}>&</Text>
+          <Link style={{marginInlineStart: '0.25em'}} href={"http://github.com/setbap"} isExternal display={'inline-flex'}>
             SetBap <Box mt={'1'} ml={'1'}><FaGithub /></Box>
           </Link>
 
