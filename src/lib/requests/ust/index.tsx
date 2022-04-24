@@ -43,8 +43,6 @@ export const getUSTMarketCap = async (): Promise<USTMarketCap> => {
     })
 }
 
-
-
 export const getUSTInfoInBCsTxCount = async (): Promise<any> => {
     const response = await fetch(
         'https://api.flipsidecrypto.com/api/v2/queries/37af1ab8-b314-4e6d-88bb-7613a83e5b14/data/latest'
@@ -159,11 +157,7 @@ function calculateDailyBridgeValue(dateFormat: string, USTBridgeValue: USTBridge
         });
         return finalObject;
     }).sort((a, b) => {
-        // @ts-ignore
         return moment(a.date).isAfter(moment(b.date)) ? 1 : -1;
     });
     return dailyBridgeValue;
 }
-
-
-
