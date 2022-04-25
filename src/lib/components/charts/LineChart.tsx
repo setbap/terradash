@@ -44,6 +44,7 @@ interface Props {
   showMonthly?: boolean;
   queryLink?: string;
   additionalDumpTextToAddKeyToKeyBeUnique?: string;
+  customColor?: string
 }
 
 const ChartBox = ({
@@ -60,7 +61,8 @@ const ChartBox = ({
   modelInfo,
   additionalDumpTextToAddKeyToKeyBeUnique = "",
   defultSelectedRange = "all",
-  showMonthly = false
+  showMonthly = false,
+  customColor = "var(--chakra-colors-green-300)"
 }: Props) => {
   const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
   const [defultViewSetting, setDefultViewSetting] = useState(defultDateView);
@@ -146,6 +148,8 @@ const ChartBox = ({
   const bgTooltip = useColorModeValue("gray.300", "gray.700");
   const bgCard = useColorModeValue("white", "#191919");
   const textColor = useColorModeValue("gray.900", "gray.100");
+  const chartColor = customColor
+  const chartUniquKey = `${areaDataKey}-${xAxisDataKey}-${additionalDumpTextToAddKeyToKeyBeUnique}`
 
   return (
     <GridItem
@@ -214,19 +218,19 @@ const ChartBox = ({
         >
           <AreaChart
             data={chartData}
-            syncId={`${areaDataKey}-${xAxisDataKey}-${additionalDumpTextToAddKeyToKeyBeUnique}`}
+            syncId={chartUniquKey}
             className="mt-1 mb-1"
           >
             <defs>
-              <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id={`color${additionalDumpTextToAddKeyToKeyBeUnique}`} x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="0%"
-                  style={{ stopColor: "var(--chakra-colors-green-300)" }}
+                  style={{ stopColor: chartColor }}
                   stopOpacity={0.95}
                 />
                 <stop
                   offset="95%"
-                  style={{ stopColor: "var(--chakra-colors-green-400)" }}
+                  style={{ stopColor: chartColor }}
                   stopOpacity={0.8}
                 />
               </linearGradient>
@@ -280,8 +284,8 @@ const ChartBox = ({
             />
             <Area
               dataKey={areaDataKey}
-              style={{ stroke: "var(--chakra-colors-green-300)" }}
-              fill="url(#color)"
+              style={{ stroke: chartColor }}
+              fill={`url(#color${additionalDumpTextToAddKeyToKeyBeUnique})`}
             />
             {/* <Legend
               verticalAlign="top"

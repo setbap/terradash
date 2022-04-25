@@ -18,15 +18,16 @@ import Renderer from "chakra-ui-markdown-renderer";
 interface StatsCardProps {
 	title: string;
 	stat: number;
-	status?: "inc" | "dec" | "unchanged";
+	status?: "inc" | "dec" | "unchanged" | "custom";
 	link?: string;
 	comment?: string;
 	unit?: string
 	forceDecimal?: boolean
+	customColor?: string
 }
 export const StatsCard = (props: StatsCardProps) => {
 	const bgCard = useColorModeValue("white", "#191919");
-	const { title, stat, status = "unchanged", forceDecimal = false } = props;
+	const { title, stat, status = "unchanged", forceDecimal = false, customColor = "#ec5f7e" } = props;
 	const defaultColor = useColorModeValue("gray.600", "gray.400");
 	const incColor = useColorModeValue("green.800", "green.300");
 	const decColor = useColorModeValue("red.800", "red.500");
@@ -38,10 +39,13 @@ export const StatsCard = (props: StatsCardProps) => {
 		if (status === "dec" && statusColor !== decColor) {
 			setStatusColor(decColor);
 		}
-
 		if (status === "unchanged" && statusColor !== defaultColor) {
 			setStatusColor(defaultColor);
 		}
+		if (status === "custom" && statusColor !== defaultColor) {
+			setStatusColor(customColor);
+		}
+
 	}, []);
 
 	const calculateNum = (num: number) => {

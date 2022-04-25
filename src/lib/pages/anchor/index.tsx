@@ -50,7 +50,7 @@ const Home = ({
           />
 
           <StatsCard
-            status="inc"
+            status="custom"
             title={"Total Borrowed (UST)"}
             link="https://eth-api.anchorprotocol.com/api/v1/stablecoin_info/uusd"
             stat={(+anchorBalances.borrowed_terra / 1000000)}
@@ -69,8 +69,6 @@ const Home = ({
             title={"Yield Reserve (UST)"}
             stat={currentYieldReserve.BALANCE}
           />
-
-
         </SimpleGrid>
         <SimpleGrid
           py={"6"}
@@ -88,7 +86,7 @@ const Home = ({
             xAxisDataKey="DATE"
             baseSpan={3}
             showMonthly={false}
-            additionalDumpTextToAddKeyToKeyBeUnique="Collateral TVL"
+            additionalDumpTextToAddKeyToKeyBeUnique="collateraltVL"
           />
 
           <ChartBox
@@ -106,7 +104,7 @@ const Home = ({
             queryLink="https://app.flipsidecrypto.com/velocity/queries/8661c1e7-368b-4dd5-9833-2169d13a6576"
             baseSpan={3}
             data={anchorEarnUsers}
-            additionalDumpTextToAddKeyToKeyBeUnique="Users, Earn"
+            additionalDumpTextToAddKeyToKeyBeUnique="usersearn"
             modelInfo="Daily Active Users, Earn"
             tooltipTitle=""
             title="Daily Active Users on Anchor Earn"
@@ -117,7 +115,7 @@ const Home = ({
           <ChartBox
             queryLink="https://app.flipsidecrypto.com/velocity/queries/333c9bdc-c60c-4697-8008-0e6140f0f5e1"
             baseSpan={3}
-            additionalDumpTextToAddKeyToKeyBeUnique="Users, Borrow"
+            additionalDumpTextToAddKeyToKeyBeUnique="usersborrow"
             showMonthly={false}
             data={anchorBorrowUsers}
             modelInfo="Daily Active Users on Anchor Borrow"
@@ -125,6 +123,7 @@ const Home = ({
             title="Daily Active Users on Anchor Borrow"
             areaDataKey="Unique Users Borrowing"
             xAxisDataKey="DATE"
+            customColor="#ec5f7e"
           />
 
         </SimpleGrid>
