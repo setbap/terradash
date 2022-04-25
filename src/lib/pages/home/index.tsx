@@ -76,7 +76,7 @@ const Home = ({
             stat={curentLunaPrice["PRICE_USD"]}
           />
           <StatsCard
-            link="https://app.flipsidecrypto.com/velocity/queries/dd20f26c-d742-440e-a447-43b939091a2f"
+            link="https://app.flipsidecrypto.com/velocity/queries/129cfcfb-1d97-4454-a7b8-d8111f8173f2"
             status="inc"
             title={"# Unique Terra Wallets"}
             stat={totalNumberOfWallets["total number of user"]}

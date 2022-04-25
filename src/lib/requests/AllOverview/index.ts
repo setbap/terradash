@@ -1,4 +1,5 @@
-import moment from "moment";import {
+import moment from "moment";
+import {
   AtiveUserOverTime,
   DailyActiveWallets,
   DailyTx,
@@ -40,7 +41,7 @@ export const getDailyActiveWallets: () => Promise<AtiveUserOverTime> =
 
 export const getTotalNumberOfWallets = async () => {
   const res = await fetch(
-    "https://api.flipsidecrypto.com/api/v2/queries/dd20f26c-d742-440e-a447-43b939091a2f/data/latest"
+    "https://api.flipsidecrypto.com/api/v2/queries/129cfcfb-1d97-4454-a7b8-d8111f8173f2/data/latest"
   );
   const totalNumberOfWallets: TotalNumberOfWallets = (await res.json())[0];
   return totalNumberOfWallets;
