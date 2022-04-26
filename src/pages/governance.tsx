@@ -62,7 +62,7 @@ export async function getStaticProps() {
             proposalsCountMonthlyVsLUNAPrice,
             totalNumberOfValidators,
         },
-        revalidate: 60 * 60,
+        revalidate: 10 * 60,
     };
 }
 export default ValidatorAndStacke;

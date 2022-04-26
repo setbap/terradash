@@ -81,7 +81,7 @@ export async function getStaticProps() {
             distributionOfLunaHolders,
             dailyNewUserSince2022
         },
-        revalidate: 60 * 60,
+        revalidate: 10 * 60,
     };
 }
 export default Home;
