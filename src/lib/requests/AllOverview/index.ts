@@ -47,6 +47,40 @@ export const getTotalNumberOfWallets = async () => {
   return totalNumberOfWallets;
 };
 
+export const getTotalNumberOfActiveUserInPeriod = async () => {
+  const res = await fetch(
+    "https://api.flipsidecrypto.com/api/v2/queries/5d5129be-e976-4d92-844a-380c0497a14e/data/latest"
+  );
+  const totalNumberOfActiveUser: { active_user: number }[] = await res.json();
+  return [
+    {
+      title: "# Active Users past day",
+      name: "1D",
+      value: totalNumberOfActiveUser[0].active_user,
+    },
+    {
+      title: "# Active Users Past 7 days",
+      name: "7D",
+      value: totalNumberOfActiveUser[1].active_user,
+    },
+    {
+      title: "# Active Users Past 30 days",
+      name: "30D",
+      value: totalNumberOfActiveUser[2].active_user,
+    },
+    {
+      title: "# Active Users in 2022",
+      name: "2022",
+      value: totalNumberOfActiveUser[3].active_user,
+    },
+    {
+      title: "# Active Users in Past Year",
+      name: "1Y",
+      value: totalNumberOfActiveUser[4].active_user,
+    },
+  ];
+};
+
 export const getTerraDailyTx = async () => {
   const res = await fetch(
     "https://api.flipsidecrypto.com/api/v2/queries/09d05805-ce6e-470b-9bdc-3a2d5f89654d/data/latest"

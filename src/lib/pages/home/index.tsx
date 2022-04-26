@@ -6,27 +6,19 @@ import {
 import {
   AtiveUserOverTime,
   AvgUSTPrice,
-  BurnLuna,
   ChangedDailyTx,
   CirculationSupplyLuna,
   CirculationSupplyUST,
   CurentLunaPrice,
   DailyNewUser,
   DailyNewUserSince2022,
-  DistributionOfLunaHolders,
   SimpilifiedTotalFeeByEachToken,
-  TerraDailyAvgMinMaxPrice,
-  TotalBurnLuna,
-  TotalLunaSupply,
   TotalNumberOfWallets,
-  TotalUSTSupply,
 } from "types/type";
 import ChartBox from "lib/components/charts/LineChart";
 import LineChartV2 from "lib/components/charts/LineChartV2";
 import { StatsCard } from "lib/components/charts/StateCard";
-import MultiChartBox from "lib/components/charts/MultiLineChart";
-import BarGraph from "lib/components/charts/BarGraph";
-import DonutChart from "lib/components/charts/DonutChart";
+import { StatsCardMulti } from "lib/components/charts/StateCardMulti";
 
 const colors = ["#ffc107", "#ff5722", "#03a9f4", "#4caf50", "#00bcd4", "#f44336", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#009688", "#607d8b"]
 
@@ -37,6 +29,11 @@ interface Props {
   circulationSupplyUST: CirculationSupplyUST[];
   avgUSTPrice: AvgUSTPrice[]
   dailyNewUserSince2022: DailyNewUserSince2022[],
+  totalNumberOfActiveUserInPeriod: {
+    name: string;
+    value: number;
+    title: string;
+  }[],
 
 
 
@@ -55,6 +52,7 @@ const Home = ({
   dailyNewUserSince2022,
   totalFeeByEachToken,
   transactionFees,
+  totalNumberOfActiveUserInPeriod,
   terraDailyTx,
   totalNumberOfWallets,
   dailyActiveWallets,
@@ -81,6 +79,13 @@ const Home = ({
             title={"# Unique Terra Wallets"}
             stat={totalNumberOfWallets["total number of user"]}
           />
+          <StatsCardMulti
+            link="https://app.flipsidecrypto.com/dashboard/active-users-on-terra-jrvTrO"
+            status="inc"
+            defualtState={0}
+            data={totalNumberOfActiveUserInPeriod}
+          />
+
         </SimpleGrid>
         <SimpleGrid
           position={'relative'}

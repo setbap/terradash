@@ -10,7 +10,7 @@ import { getTerraDailyAvgMinMaxPrice } from "lib/requests/overview/terra_avg_min
 import { getAvgUSTPrice } from "lib/requests/overview/terra_avg_min_max_price copy";
 import { getTotalBurnLuna } from "lib/requests/overview/total_burn_luna";
 import { getTotalLunaSupply } from "lib/requests/overview/total_luna_supply";
-import { getDailyActiveWallets, getDailyTerraTransactionFee, getTotalFeeByEachToken, getTotalNumberOfWallets } from "lib/requests/AllOverview";
+import { getDailyActiveWallets, getDailyTerraTransactionFee, getTotalFeeByEachToken, getTotalNumberOfActiveUserInPeriod, getTotalNumberOfWallets } from "lib/requests/AllOverview";
 import { getTotalUSTSupply } from "lib/requests/overview/total_ust_supply";
 import { getTerraDailyTx } from "lib/requests/AllOverview";
 export async function getStaticProps() {
@@ -20,6 +20,7 @@ export async function getStaticProps() {
         terraDailyTx,
         transactionFees,
         totalFeeByEachToken,
+        totalNumberOfActiveUserInPeriod,
 
 
         dailyNewUser,
@@ -40,6 +41,7 @@ export async function getStaticProps() {
         getTerraDailyTx(),
         getDailyTerraTransactionFee(),
         getTotalFeeByEachToken(),
+        getTotalNumberOfActiveUserInPeriod(),
 
 
         getDailyNewUser(),
@@ -62,6 +64,7 @@ export async function getStaticProps() {
             terraDailyTx,
             transactionFees,
             totalFeeByEachToken,
+            totalNumberOfActiveUserInPeriod,
 
 
 

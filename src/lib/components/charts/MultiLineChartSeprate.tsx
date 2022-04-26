@@ -278,7 +278,7 @@ const MultiLineChartSeprate = ({
             onResetClick={resetChartData}
             minDate={minDate!.toDate()}
             maxDate={maxDate!.toDate()}
-            filters={[{ day: 7, name: "1W" }, { day: 30, name: "1M" }, { day: 365, name: "1Y" }]}
+            filters={[{ day: 7, name: "7D" }, { day: 30, name: "30D" }, { day: 365, name: "1Y" }]}
           />
         </>}
       </Box>
