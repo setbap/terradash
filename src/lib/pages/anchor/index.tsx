@@ -16,6 +16,7 @@ import {
 import ChartBox from "lib/components/charts/LineChart";
 import MultiChartBox from "lib/components/charts/MultiLineChart";
 import moment from "moment";
+import { NextSeo } from "next-seo";
 
 interface Props {
   borrowAndDeposit: AnchorBorrowAndDeposit[];
@@ -33,8 +34,39 @@ const Home = ({
   currentYieldReserve,
   anchorGrossTVLUSD,
 }: Props) => {
+  const totalDeposits = (+anchorBalances.borrowed_terra / 1000000) + (+anchorBalances.liquid_terra / 1000000)
+  const totalBorrowed = (+anchorBalances.borrowed_terra / 1000000)
+  const currentAPY = +anchorBalances.current_apy * 100
+  const yieldReserve = currentYieldReserve.BALANCE
+  const ogUrl = `https://ogterradash.vercel.app/api/anchor?totalDeposits=${totalDeposits}&totalBorrowed=${totalBorrowed}&currentAPY=${currentAPY}&yieldReserve=${yieldReserve}`
+  // const ogUrl = `localhost:3001/api/anchor?totalDeposits=${totalDeposits}&totalBorrowed=${totalBorrowed}&currentAPY=${currentAPY}&yieldReserve=${yieldReserve}`
+
   return (
     <>
+      <NextSeo
+        title="TerraDash"
+        description="This example uses more of the available config options."
+        openGraph={{
+          url: 'https://terradash.vercel.app/anchor',
+          title: 'TerraDash:Anchor | Business Intelligence Dashboard for Terra Network',
+          description: 'Show Static and Information about Anchor Protocol',
+          images: [
+            {
+              url: ogUrl,
+              width: 1200,
+              height: 630,
+              alt: 'Anchor Information',
+              type: 'image/png',
+            },
+          ],
+          site_name: 'TerraDash',
+        }}
+        twitter={{
+          handle: "@flipsidecrypto",
+          cardType: "summary_large_image",
+        }}
+      />
+
       <Box mx={"auto"} px={{ base: 6, sm: 2, md: 6 }}>
         <SimpleGrid
           columns={{ base: 1, md: 2, lg: 2, "2xl": 3 }}
