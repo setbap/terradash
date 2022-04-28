@@ -119,7 +119,7 @@ const Home = ({
             stat={numberOfActiveProposals}
           />
           <StatsCard
-            link="https://app.flipsidecrypto.com/velocity/queries/44f993a2-2322-45bc-8f30-e4ffa10d6b83"
+            link="https://lcd.terra.dev/cosmos/staking/v1beta1/pool"
             title="LUNA Staked"
             status="inc"
             stat={totalLunaStaked["LUNA total staked"]}

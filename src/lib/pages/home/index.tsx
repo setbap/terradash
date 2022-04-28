@@ -155,7 +155,7 @@ const Home = ({
             xAxisDataKey="day"
           />
           <ChartBox
-            queryLink="https://app.flipsidecrypto.com/velocity/queries/54bbe92e-5034-4a5e-af54-c45663caa567"
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/3d9fe65b-5c5a-4c10-920f-956fd5627fc0"
             data={dailyNewUser}
             tooltipTitle="New wallet count"
             modelInfo={`see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community.`}
