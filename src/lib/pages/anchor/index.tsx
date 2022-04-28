@@ -38,23 +38,25 @@ const Home = ({
   const totalBorrowed = (+anchorBalances.borrowed_terra / 1000000)
   const currentAPY = +anchorBalances.current_apy * 100
   const yieldReserve = currentYieldReserve.BALANCE
+  const ogUrl = `https://ogterradash.vercel.app/api/anchor?totalDeposits=${totalDeposits}&totalBorrowed=${totalBorrowed}&currentAPY=${currentAPY}&yieldReserve=${yieldReserve}`
+  // const ogUrl = `localhost:3001/api/anchor?totalDeposits=${totalDeposits}&totalBorrowed=${totalBorrowed}&currentAPY=${currentAPY}&yieldReserve=${yieldReserve}`
+
   return (
     <>
       <NextSeo
         title="TerraDash"
         description="This example uses more of the available config options."
-        canonical="https://www.canonical.ie/"
         openGraph={{
           url: 'https://terradash.vercel.app/anchor',
           title: 'TerraDash:Anchor | Business Intelligence Dashboard for Terra Network',
           description: 'Show Static and Information about Anchor Protocol',
           images: [
             {
-              url: `https://ogterradash.vercel.app/api/anchor?totalDeposits=${totalDeposits}&totalBorrowed=${totalBorrowed}&currentAPY=${currentAPY}&yieldReserve=${yieldReserve}`,
+              url: ogUrl,
               width: 1024,
               height: 1024,
               alt: 'Anchor Information',
-              type: 'image/png'
+              type: 'image/jpeg'
             },
           ],
           site_name: 'TerraDash',
