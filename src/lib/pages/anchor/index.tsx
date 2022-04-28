@@ -48,7 +48,7 @@ const Home = ({
         description="This example uses more of the available config options."
         openGraph={{
           url: 'https://terradash.vercel.app/anchor',
-          title: 'TerraDash:Anchor | Business Intelligence Dashboard for Terra Network',
+          title: 'TerraDash | Business Intelligence Dashboard for Terra Network',
           description: 'Show Static and Information about Anchor Protocol',
           images: [
             {

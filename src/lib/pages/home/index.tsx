@@ -19,6 +19,7 @@ import ChartBox from "lib/components/charts/LineChart";
 import LineChartV2 from "lib/components/charts/LineChartV2";
 import { StatsCard } from "lib/components/charts/StateCard";
 import { StatsCardMulti } from "lib/components/charts/StateCardMulti";
+import { NextSeo } from "next-seo";
 
 const colors = ["#ffc107", "#ff5722", "#03a9f4", "#4caf50", "#00bcd4", "#f44336", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#009688", "#607d8b"]
 
@@ -58,9 +59,38 @@ const Home = ({
   dailyActiveWallets,
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
+  // lunaPrice, numberOfWallets, activeUser 
+  const lunaPrice = curentLunaPrice["PRICE_USD"];
+  const numberOfWallets = totalNumberOfWallets["total number of user"];
+  const activeUser = totalNumberOfActiveUserInPeriod[2].value;
+  const ogUrl = `https://ogterradash.vercel.app/api/overview?lunaPrice=${lunaPrice}&numberOfWallets=${numberOfWallets}&activeUser=${activeUser}`
+
 
   return (
     <>
+      <NextSeo
+        title='TerraDash | Business Intelligence Dashboard for Terra Network'
+        description='Overview Static and Information Terra Network'
+        openGraph={{
+          url: 'https://terradash.vercel.app/ust',
+          title: 'TerraDash | Business Intelligence Dashboard for Terra Network',
+          description: 'Overview Static and Information Terra Network',
+          images: [
+            {
+              url: ogUrl,
+              width: 1200,
+              height: 630,
+              alt: 'Overview Terra Information',
+              type: 'image/png',
+            },
+          ],
+          site_name: 'TerraDash',
+        }}
+        twitter={{
+          handle: "@flipsidecrypto",
+          cardType: "summary_large_image",
+        }}
+      />
       <Box mx={"auto"} px={{ base: 6, sm: 2, md: 8 }}>
         <SimpleGrid
           my={"6"}

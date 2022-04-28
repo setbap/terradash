@@ -2,6 +2,7 @@ import { Box, SimpleGrid, useColorModeValue } from "@chakra-ui/react"; import Ba
 import DonutChart from "lib/components/charts/DonutChart";
 import StackedAreaChart from "lib/components/charts/StackedAreaGraph";
 import { StatsCard } from "lib/components/charts/StateCard";
+import { NextSeo } from "next-seo";
 import { USTBridgeInfo, USTMarketCap, UST_IN_ALL_BCs } from "types/type";
 interface Props {
   ustBridgeValue: USTBridgeInfo;
@@ -15,8 +16,39 @@ interface Props {
 
 const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCount, USTInfoInBCsUstVolume, ustMarketCap }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
+  const uSTSupply = USTSupply;
+  const wUST = ustMarketCap.wUST
+  const wormholUST = ustMarketCap.wormholUST
+  const BNBUST = ustMarketCap.BNBUST
+  const AvaxUST = ustMarketCap.AvaxUST
+  const ThorChainUST = ustMarketCap.ThorChainUST
+  const ogUrl = `https://ogterradash.vercel.app/api/ust?USTTotalSupply=${uSTSupply}&wUST=${wUST}&wormholUST=${wormholUST}&BNBUST=${BNBUST}&AvaxUST=${AvaxUST}&ThorChainUST=${ThorChainUST}`
+
   return (
     <>
+      <NextSeo
+        title='TerraDash | Business Intelligence Dashboard for Terra Network'
+        description='Show Static and Information about UST'
+        openGraph={{
+          url: 'https://terradash.vercel.app/ust',
+          title: 'TerraDash | Business Intelligence Dashboard for Terra Network',
+          description: 'Show Static and Information about UST',
+          images: [
+            {
+              url: ogUrl,
+              width: 1200,
+              height: 630,
+              alt: 'UST Information',
+              type: 'image/png',
+            },
+          ],
+          site_name: 'TerraDash',
+        }}
+        twitter={{
+          handle: "@flipsidecrypto",
+          cardType: "summary_large_image",
+        }}
+      />
       <Box mx={"auto"} px={{ base: 6, sm: 2, md: 8 }}>
         <SimpleGrid
           my={"6"}
@@ -27,7 +59,7 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
             link="https://lcd.terra.dev/cosmos/bank/v1beta1/supply/uusd"
             title="UST Total Supply"
             status="inc"
-            stat={USTSupply}
+            stat={uSTSupply}
             forceDecimal={true}
 
           />

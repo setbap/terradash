@@ -25,6 +25,7 @@ import {
 import ChartBox from "lib/components/charts/LineChart";
 import { StatsCard } from "lib/components/charts/StateCard";
 import BarGraph from "lib/components/charts/BarGraph";
+import { NextSeo } from "next-seo";
 
 
 
@@ -62,8 +63,37 @@ const Home = ({
   totalNumberOfValidators,
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
+  const stackedLuna = totalLunaStaked["LUNA total staked"]
+  const activeValidator = numberOfActiveValidators
+  const goverannceProposal = numberOfTotalProposals
+  const activeProposal = numberOfActiveProposals
+  const ogUrl = `https://ogterradash.vercel.app/api/governance?stackedLuna=${stackedLuna}&activeValidator=${activeValidator}&goverannceProposal=${goverannceProposal}&activeProposal=${activeProposal}`
+
   return (
     <>
+      <NextSeo
+        title='TerraDash | Business Intelligence Dashboard for Terra Network'
+        description='Show Static and Information Terra Governance'
+        openGraph={{
+          url: 'https://terradash.vercel.app/ust',
+          title: 'TerraDash | Business Intelligence Dashboard for Terra Network',
+          description: 'Show Static and Information about Terra Governance',
+          images: [
+            {
+              url: ogUrl,
+              width: 1200,
+              height: 630,
+              alt: 'Terra Governance Information',
+              type: 'image/png',
+            },
+          ],
+          site_name: 'TerraDash',
+        }}
+        twitter={{
+          handle: "@flipsidecrypto",
+          cardType: "summary_large_image",
+        }}
+      />
       <Box mx={"auto"} px={{ base: 6, sm: 2, md: 8 }}>
         <SimpleGrid
           pt={'6'}
