@@ -28,11 +28,11 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
     <>
       <NextSeo
         title='TerraDash | Business Intelligence Dashboard for Terra Network'
-        description='Show Static and Information about UST'
+        description='Track the latest trends on UST growth and adoption'
         openGraph={{
           url: 'https://terradash.vercel.app/ust',
           title: 'TerraDash | Business Intelligence Dashboard for Terra Network',
-          description: 'Show Static and Information about UST',
+          description: 'Track the latest trends on UST growth and adoption',
           images: [
             {
               url: ogUrl,

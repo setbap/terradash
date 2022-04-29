@@ -70,11 +70,11 @@ const Home = ({
     <>
       <NextSeo
         title='TerraDash | Business Intelligence Dashboard for Terra Network'
-        description='Overview Static and Information Terra Network'
+        description='Track the latest stats and trends on Terra'
         openGraph={{
           url: 'https://terradash.vercel.app/ust',
           title: 'TerraDash | Business Intelligence Dashboard for Terra Network',
-          description: 'Overview Static and Information Terra Network',
+          description: 'Track the latest stats and trends on Terra',
           images: [
             {
               url: ogUrl,
