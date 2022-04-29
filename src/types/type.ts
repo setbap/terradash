@@ -106,6 +106,14 @@ export interface CirculationSupplyLuna {
   day: string;
 }
 
+export interface CirculationSupplyLunaResualt {
+  uluna: {
+    date: string;
+    circ: number;
+    total: number;
+  }[];
+}
+
 export interface CirculationSupplyUST {
   "UST Circulating Supply": number;
   day: string;

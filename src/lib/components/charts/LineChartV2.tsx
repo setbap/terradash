@@ -104,8 +104,6 @@ const LineChartV2 = ({
   const changeDataToMonethly = () => {
     setDefultViewSetting("month");
     setSavedDailyChart(chartData);
-    console.log(monthlyData);
-
     setChartData(monthlyData!);
   };
 

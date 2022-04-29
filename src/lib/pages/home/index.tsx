@@ -136,7 +136,7 @@ const Home = ({
             areaDataKey="Transaction Count"
             xAxisDataKey="day" />
           <ChartBox
-            queryLink="https://app.flipsidecrypto.com/velocity/queries/0c3eda6f-92bc-4594-a00d-fea003875016"
+            queryLink="https://api.extraterrestrial.money/v1/api/supply?denom=uluna"
             data={circulationSupplyLuna}
             tooltipTitle="circulation supply luna"
             modelInfo={`Circulating supply is the total LUNA that normal users have (not dex, cex, smart contract, etc)`}
