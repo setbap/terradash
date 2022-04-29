@@ -1,5 +1,4 @@
-import {
-  CirculationSupplyLuna,
+import {  CirculationSupplyLuna,
   CirculationSupplyLunaResualt,
 } from "types/type";
 export const getCirculationSupplyLuna: () => Promise<
@@ -10,8 +9,10 @@ export const getCirculationSupplyLuna: () => Promise<
     "https://api.extraterrestrial.money/v1/api/supply?denom=uluna"
   );
   const circulationSupplyLuna: CirculationSupplyLunaResualt = await res.json();
-  return circulationSupplyLuna.uluna.map((lunaCirculatingSupply) => ({
-    day: lunaCirculatingSupply.date,
-    "LUNA Circulating Supply": lunaCirculatingSupply.circ / 1e6,
-  }));
+  return circulationSupplyLuna.uluna
+    .map((lunaCirculatingSupply) => ({
+      day: lunaCirculatingSupply.date,
+      "LUNA Circulating Supply": lunaCirculatingSupply.circ / 1e6,
+    }))
+    .sort((a, b) => new Date(a.day).getTime() - new Date(b.day).getTime());
 };
