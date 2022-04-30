@@ -1,4 +1,6 @@
-import {  CirculationSupplyLuna,
+import moment from "moment";
+import {
+  CirculationSupplyLuna,
   CirculationSupplyLunaResualt,
 } from "types/type";
 export const getCirculationSupplyLuna: () => Promise<
@@ -14,5 +16,5 @@ export const getCirculationSupplyLuna: () => Promise<
       day: lunaCirculatingSupply.date,
       "LUNA Circulating Supply": lunaCirculatingSupply.circ / 1e6,
     }))
-    .sort((a, b) => new Date(a.day).getTime() - new Date(b.day).getTime());
+    .sort((a, b) => (moment(a.day).isAfter(moment(b.day)) ? 1 : -1));
 };
