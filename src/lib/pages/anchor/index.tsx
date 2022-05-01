@@ -52,7 +52,7 @@ const Home = ({
           description: 'Track the latest stats and trends on the economics of Anchor',
           images: [
             {
-              url: ogUrl,
+              url: 'https://ogterradash.vercel.app/ogterradash.png',
               width: 1200,
               height: 630,
               alt: 'Anchor Information',

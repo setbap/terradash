@@ -75,7 +75,7 @@ const Home = ({
         title='TerraDash | Business Intelligence Dashboard for Terra Network'
         description='Track the latest trends and proposals on Terra Governance'
         openGraph={{
-          url: 'https://terradash.vercel.app/ust',
+          url: 'https://ogterradash.vercel.app/ogterradash.png',
           title: 'TerraDash | Business Intelligence Dashboard for Terra Network',
           description: 'Track the latest trends and proposals on Terra Governance',
           images: [
