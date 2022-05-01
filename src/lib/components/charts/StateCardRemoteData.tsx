@@ -129,7 +129,7 @@ export const StateCardRemoteData = (props: StateCardRemoteDataProps) => {
 			borderColor={statusColor}
 			rounded="lg"
 		>
-			<Progress pos={'absolute'} right={0} left={0} bottom={0} height={'100%'} opacity={isFetching ? 0.2 : 0} colorScheme='green' isIndeterminate={isFetching} />
+			<Progress pointerEvents={'none'} pos={'absolute'} right={0} left={0} bottom={0} height={'100%'} opacity={isFetching ? 0.2 : 0} colorScheme='green' isIndeterminate={isFetching} />
 			{props.link === undefined ? (
 				<StatLabel fontWeight="medium" isTruncated display={"inline-flex"}>
 					{title} {tooltip}
@@ -152,7 +152,7 @@ export const StateCardRemoteData = (props: StateCardRemoteDataProps) => {
 				fontSize="4xl"
 				fontWeight="extrabold"
 			>
-				<Skeleton isLoaded={!isLoading} colorScheme={'orange'} height={'32px'} width={'100%'} display={'inline-flex'}>
+				<Skeleton isLoaded={!isLoading} colorScheme={'orange'} height={['32px', '40px']} maxWidth={'260px'} display={'inline-flex'}>
 					{data && calculateNum(data!)}
 					{error && <Box fontSize={["lg", "sm", "lg"]} isTruncated noOfLines={1} color={'red.400'}>{'Error in Fetching Data'}</Box>}
 					<Box fontSize={'2xl'} fontWeight={'bold'}>	{props.unit ?? ''}</Box>
