@@ -42,6 +42,7 @@ const LinkItems: Array<LinkItemProps> = [
   { name: "UST", path: "/ust", icon: AiFillDollarCircle },
   { name: 'Governance ', path: '/governance', icon: RiGovernmentLine },
   { name: 'Anchor', path: '/anchor', icon: CgAnchor },
+  { name: 'Mirror', path: '/mirror', icon: CgAnchor },
   { name: 'LFG', path: '/lfg', icon: LFGICON },
   { name: 'About', path: '/about', icon: AiOutlineInfoCircle },
   // { name: 'Tx and Fees', path: '/tx-and-fee', icon: SiBuzzfeed },

@@ -5,12 +5,18 @@ export async function getStaticProps() {
     const [ustBridgeValue, USTSupply,
         USTInfoInBCsNewUser,
         USTInfoInBCsUstVolume,
-        USTInfoInBCsTxCount
-        , ustMarketCap] = await Promise.all(
-            [getUSTBridgeValue(), getUSTSupply(),
-            getUSTInfoInBCsNewUser(), getUSTInfoInBCsUstVolume(), getUSTInfoInBCsTxCount(),
-            getUSTMarketCap()]
-        );
+        USTInfoInBCsTxCount,
+        ustMarketCap
+    ] = await Promise.all(
+        [
+            getUSTBridgeValue(),
+            getUSTSupply(),
+            getUSTInfoInBCsNewUser(),
+            getUSTInfoInBCsUstVolume(),
+            getUSTInfoInBCsTxCount(),
+            getUSTMarketCap()
+        ]
+    );
     return {
         props: {
             ustBridgeValue, USTSupply, USTInfoInBCsNewUser,

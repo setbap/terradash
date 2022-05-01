@@ -17,6 +17,7 @@ import ChartBox from "lib/components/charts/LineChart";
 import MultiChartBox from "lib/components/charts/MultiLineChart";
 import moment from "moment";
 import { NextSeo } from "next-seo";
+import { StateCardRemoteData } from "lib/components/charts/StateCardRemoteData";
 
 interface Props {
   borrowAndDeposit: AnchorBorrowAndDeposit[];
@@ -73,7 +74,13 @@ const Home = ({
           spacing={{ base: 5, lg: 6 }}
           pt='6'
         >
-
+          <StateCardRemoteData
+            url="https://api.extraterrestrial.money/v1/api/prices?symbol=ANC"
+            link="https://terrasco.pe/"
+            status="inc"
+            title={"Current ANC Price (USD)"}
+            getStat={(data) => data.prices.ANC.price}
+          />
           <StatsCard
             link="https://eth-api.anchorprotocol.com/api/v1/stablecoin_info/uusd"
             status="inc"

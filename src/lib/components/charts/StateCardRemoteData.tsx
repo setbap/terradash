@@ -31,7 +31,7 @@ interface StateCardRemoteDataProps {
 }
 export const StateCardRemoteData = (props: StateCardRemoteDataProps) => {
 	const bgCard = useColorModeValue("white", "#191919");
-	const { title, getStat: stat, status = "unchanged", forceDecimal = false, customColor = "#ec5f7e" } = props;
+	const { title, status = "unchanged", forceDecimal = false, customColor = "#ec5f7e" } = props;
 	const defaultColor = useColorModeValue("gray.600", "gray.400");
 	const incColor = useColorModeValue("green.800", "green.300");
 	const decColor = useColorModeValue("red.800", "red.500");
@@ -42,7 +42,7 @@ export const StateCardRemoteData = (props: StateCardRemoteDataProps) => {
 		return props.getStat(data)
 	}
 
-	const { isLoading, error, data, isFetching } = useQuery(['price', 'luna'], fetchPrice, {
+	const { isLoading, error, data, isFetching } = useQuery([title], fetchPrice, {
 		retry: 10,
 	})
 

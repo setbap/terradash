@@ -496,3 +496,34 @@ export interface UST_IN_ALL_BCs {
   TERRA_UST_CUMULATIVE?: number;
   TERRA_UST_DAILY?: number;
 }
+
+// --------------------------- Mirror
+export interface MirrorTokenPriceRes {
+  prices: number[][];
+  market_caps: number[][];
+  total_volumes: number[][];
+}
+export interface MirrorTokenPrice {
+  day: string;
+  "Mir Price": number;
+}
+
+export interface SwapValumeRes {
+  SWAP_DATE: string;
+  LP_ADDRESS: string;
+  TOKEN_NAME: string;
+  TOTAL_VOLUME_USD: number;
+  AVG_PRICE: number;
+}
+
+export interface MirrorTVLByStocksVolumeRes {
+  SWAP_DATE: string;
+  LP_ADDRESS: string;
+  TOKEN_NAME: string;
+  TOTAL_VOLUME_USD: number;
+  AVG_PRICE: number;
+  DATE: string;
+  LP_ADDRESS_BALANCE: string;
+  LP_BALANCE_USD: number;
+  "Pool Utilisation": number;
+}
