@@ -30,12 +30,12 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
         title='TerraDash | Business Intelligence Dashboard for Terra Network'
         description='Track the latest trends on UST growth and adoption'
         openGraph={{
-          url: 'https://ogterradash.vercel.app/ogterradash.png',
+          url: 'https://terradash.vercel.app/ust',
           title: 'TerraDash | Business Intelligence Dashboard for Terra Network',
           description: 'Track the latest trends on UST growth and adoption',
           images: [
             {
-              url: ogUrl,
+              url: 'https://ogterradash.vercel.app/ogterradash.png',
               width: 1200,
               height: 630,
               alt: 'UST Information',
