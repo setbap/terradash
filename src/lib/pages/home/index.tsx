@@ -100,7 +100,7 @@ const Home = ({
         >
           <StateCardRemoteData
             url="https://api.extraterrestrial.money/v1/api/prices?symbol=LUNA"
-            link="https://app.flipsidecrypto.com/velocity/queries/a99f1fa8-2590-4eb5-9473-7d6006b40fea"
+            link="https://terrasco.pe/"
             status="inc"
             title={"Current LUNA Price (USD)"}
             getStat={(data) => data.prices.LUNA.price}

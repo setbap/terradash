@@ -129,10 +129,7 @@ export const StateCardRemoteData = (props: StateCardRemoteDataProps) => {
 			borderColor={statusColor}
 			rounded="lg"
 		>
-			{
-				(isFetching || isLoading) &&
-				<Progress pos={'absolute'} right={0} left={0} bottom={0} height={'100%'} opacity={0.2} colorScheme='green' isIndeterminate />
-			}
+			<Progress pos={'absolute'} right={0} left={0} bottom={0} height={'100%'} opacity={isFetching ? 0.2 : 0} colorScheme='green' isIndeterminate={isFetching} />
 			{props.link === undefined ? (
 				<StatLabel fontWeight="medium" isTruncated display={"inline-flex"}>
 					{title} {tooltip}
