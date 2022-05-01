@@ -1,13 +1,9 @@
 import {
 	Box,
-	Button,
-	ButtonGroup,
 	IconButton,
 	Link,
-	Menu,
-	MenuButton,
-	MenuItem,
-	MenuList,
+	Progress,
+	Skeleton,
 	Stat,
 	StatLabel,
 	StatNumber,
@@ -15,16 +11,17 @@ import {
 	useColorModeValue,
 } from "@chakra-ui/react";
 import millify from "millify";
+import { useQuery } from 'react-query'
 import { useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { FiExternalLink } from "react-icons/fi";
 import ReactMarkdown from "react-markdown";
 import Renderer from "chakra-ui-markdown-renderer";
-import MotionBox from "../motion/Box";
 
-interface StatsCardMultiProps {
-	data: { value: number, name: string, title: string }[]
-	defualtState: number
+interface StateCardRemoteDataProps {
+	title: string;
+	getStat: (data: any) => number;
+	url: string;
 	status?: "inc" | "dec" | "unchanged" | "custom";
 	link?: string;
 	comment?: string;
@@ -32,21 +29,25 @@ interface StatsCardMultiProps {
 	forceDecimal?: boolean
 	customColor?: string
 }
-export const StatsCardMulti = (props: StatsCardMultiProps) => {
+export const StateCardRemoteData = (props: StateCardRemoteDataProps) => {
 	const bgCard = useColorModeValue("white", "#191919");
-	const { status = "unchanged", forceDecimal = false, defualtState, customColor = "#ec5f7e" } = props;
-	const [selectedStat, setSelectedStat] = useState(defualtState)
-	const [selectedData, setSelectedData] = useState(props.data[selectedStat])
+	const { title, getStat: stat, status = "unchanged", forceDecimal = false, customColor = "#ec5f7e" } = props;
 	const defaultColor = useColorModeValue("gray.600", "gray.400");
 	const incColor = useColorModeValue("green.800", "green.300");
 	const decColor = useColorModeValue("red.800", "red.500");
 	const [statusColor, setStatusColor] = useState<any>();
+	const fetchPrice = async () => {
+		const res = await fetch(props.url)
+		const data = await res.json()
+		return props.getStat(data)
+	}
 
-	useEffect(() => {
-		setSelectedData(props.data[selectedStat])
-		return () => {
-		}
-	}, [selectedStat])
+	const { isLoading, error, data, isFetching } = useQuery(['price', 'luna'], fetchPrice, {
+		retry: 10,
+	})
+
+
+
 
 	useEffect(() => {
 		if (status === "inc" && statusColor !== incColor) {
@@ -66,20 +67,20 @@ export const StatsCardMulti = (props: StatsCardMultiProps) => {
 
 	const calculateNum = (num: number) => {
 		if (!forceDecimal) {
-			return millify(selectedData.value, {
+			return millify(num, {
 				precision: 2,
 				decimalSeparator: ".",
 			})
 		}
-		const word = millify(selectedData.value, {
+		const word = millify(num, {
 			precision: 2,
 			decimalSeparator: ".",
 		})
 		const splited = word.split(".");
 		if (splited.length === 1) {
-			const num = word.match(/\d+/g);
+			const numValue = word.match(/\d+/g);
 			const text = word.match(/[a-zA-Z]+/g) ?? " ";
-			return `${num![0]}.00${text![0]}`;
+			return `${numValue![0]}.00${text![0]}`;
 		} else {
 			const firstNum = splited[0];
 			const secondNum = splited[1].match(/\d+/g);
@@ -87,9 +88,6 @@ export const StatsCardMulti = (props: StatsCardMultiProps) => {
 			return `${firstNum}.${secondNum![0].padEnd(2, "0")}${text[0]}`;
 		}
 	}
-
-
-
 
 	const tooltip = props.comment && (
 		<Tooltip
@@ -120,8 +118,7 @@ export const StatsCardMulti = (props: StatsCardMultiProps) => {
 	return (
 		<Stat
 			px={{ base: 4, md: 8 }}
-			zIndex={1000}
-
+			zIndex={0}
 			pt="5"
 			pb={"4"}
 			shadow="base"
@@ -132,14 +129,18 @@ export const StatsCardMulti = (props: StatsCardMultiProps) => {
 			borderColor={statusColor}
 			rounded="lg"
 		>
+			{
+				(isFetching || isLoading) &&
+				<Progress pos={'absolute'} right={0} left={0} bottom={0} height={'100%'} opacity={0.2} colorScheme='green' isIndeterminate />
+			}
 			{props.link === undefined ? (
 				<StatLabel fontWeight="medium" isTruncated display={"inline-flex"}>
-					{selectedData.title} {tooltip}
+					{title} {tooltip}
 				</StatLabel>
 			) : (
 				<Link href={props.link} isExternal>
 					<StatLabel fontWeight="medium" display={"inline-flex"} isTruncated>
-						{selectedData.title}{" "}
+						{title}{" "}
 						<Box px={"1"}>
 							<FiExternalLink />
 						</Box>
@@ -153,28 +154,13 @@ export const StatsCardMulti = (props: StatsCardMultiProps) => {
 				color={statusColor}
 				fontSize="4xl"
 				fontWeight="extrabold"
-				pos='relative'
-				zIndex={10000}
 			>
-				<Menu >
-					<MenuButton position={'absolute'}
-						right={'0'}
-						size={'sm'}
-						top='-8' as={Button} >
-						{selectedData.name}
-					</MenuButton>
-					<MenuList pos={'relative'} zIndex={'10000'}>
-						{props.data.map((data, index) => (
-							<MenuItem fontSize={'sm'} key={index} onClick={() => setSelectedStat(index)}>{data.name}</MenuItem>
-						))}
-					</MenuList>
-				</Menu>
-				<Box display={'inline-flex'}>
-					{calculateNum(selectedData.value)}
+				<Skeleton isLoaded={!isLoading} colorScheme={'orange'} height={'32px'} width={'100%'} display={'inline-flex'}>
+					{data && calculateNum(data!)}
+					{error && <Box fontSize={["lg", "sm", "lg"]} isTruncated noOfLines={1} color={'red.400'}>{'Error in Fetching Data'}</Box>}
 					<Box fontSize={'2xl'} fontWeight={'bold'}>	{props.unit ?? ''}</Box>
-				</Box>
-
-			</StatNumber>
+				</Skeleton>
+			</StatNumber >
 		</Stat >
 	);
 };

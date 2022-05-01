@@ -20,6 +20,7 @@ import LineChartV2 from "lib/components/charts/LineChartV2";
 import { StatsCard } from "lib/components/charts/StateCard";
 import { StatsCardMulti } from "lib/components/charts/StateCardMulti";
 import { NextSeo } from "next-seo";
+import { StateCardRemoteData } from "lib/components/charts/StateCardRemoteData";
 
 const colors = ["#ffc107", "#ff5722", "#03a9f4", "#4caf50", "#00bcd4", "#f44336", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#009688", "#607d8b"]
 
@@ -97,11 +98,12 @@ const Home = ({
           columns={{ base: 1, md: 2, lg: 2, "2xl": 3 }}
           spacing={{ base: 5, lg: 8 }}
         >
-          <StatsCard
+          <StateCardRemoteData
+            url="https://api.extraterrestrial.money/v1/api/prices?symbol=LUNA"
             link="https://app.flipsidecrypto.com/velocity/queries/a99f1fa8-2590-4eb5-9473-7d6006b40fea"
             status="inc"
             title={"Current LUNA Price (USD)"}
-            stat={curentLunaPrice["PRICE_USD"]}
+            getStat={(data) => data.prices.LUNA.price}
           />
           <StatsCard
             link="https://app.flipsidecrypto.com/velocity/queries/129cfcfb-1d97-4454-a7b8-d8111f8173f2"
