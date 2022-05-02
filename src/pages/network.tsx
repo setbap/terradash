@@ -1,19 +1,22 @@
 import Network from "lib/pages/network";
-import { getNetworkFeeDaily, getTotalTransactionDailyFee } from "lib/requests/network";
+import { getNetworkFeeDaily, getTerraTransactionStatics, getTotalTransactionDailyFee } from "lib/requests/network";
 
 
 export async function getStaticProps() {
     const [
         networkFeeDaily,
-        totalTransactionDailyFee
+        totalTransactionDailyFee,
+        terraTransactionStatics,
     ] = await Promise.all([
         getNetworkFeeDaily(),
-        getTotalTransactionDailyFee()
+        getTotalTransactionDailyFee(),
+        getTerraTransactionStatics()
     ]);
     return {
         props: {
             networkFeeDaily,
-            totalTransactionDailyFee
+            totalTransactionDailyFee,
+            terraTransactionStatics
         },
         revalidate: 60 * 10,
     }

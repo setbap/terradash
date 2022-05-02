@@ -1,5 +1,4 @@
-export interface VoterInfo {
-  NUMBER_NOT_WHALE_VOTER: number;
+export interface VoterInfo {  NUMBER_NOT_WHALE_VOTER: number;
   NUMBER_OF_ANCHOR_VOTER: number;
   NUMBER_OF_MIR_VOTER: number;
   NUMBER_OF_NOT_VOTED_WHALES: number;
@@ -566,4 +565,21 @@ export interface TotalNetworkFeeDaily {
   day: string;
   Fee: number;
   "Avrage Fee": number;
+}
+
+export interface TerraTransactionStaticsRes {
+  DATETIME: string;
+  TRANSACTIONS: number;
+  SUCCEEDED_TRANSACTIONS: number;
+  TPS_WITH_FAILS: number;
+  TPS: number;
+  SUCCESS_RATE: number;
+}
+
+export interface TerraTransactionStatics {
+  day: string;
+  "Number of Transacton": number;
+  TPS: number;
+
+  "Success Rate": number;
 }

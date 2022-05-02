@@ -5,6 +5,7 @@ import BarGraph from "lib/components/charts/BarGraph";
 import ChartBox from "lib/components/charts/LineChart";
 import StackedAreaChart from "lib/components/charts/StackedAreaGraph";
 import { NextSeo } from "next-seo";
+import { TerraTransactionStatics } from "types/type";
 
 const COLOR_ARRAY = ['#FF6633', '#3366E6', '#1AFF33', '#FFB399', '#FF33FF', '#FF1A66', '#FFFF99',
     '#1AB399', '#00B3E6',
@@ -23,10 +24,11 @@ const COLOR_ARRAY = ['#FF6633', '#3366E6', '#1AFF33', '#FFB399', '#FF33FF', '#FF
 
 interface Props {
     networkFeeDaily: any
-    totalTransactionDailyFee: any
+    totalTransactionDailyFee: any;
+    terraTransactionStatics: TerraTransactionStatics[]
 }
 const Network = ({
-    networkFeeDaily, totalTransactionDailyFee
+    networkFeeDaily, totalTransactionDailyFee, terraTransactionStatics
 }: Props) => {
 
     // const ogUrl = `https://ogterradash.vercel.app/api/anchor?totalDeposits=${totalDeposits}&totalBorrowed=${totalBorrowed}&currentAPY=${currentAPY}&yieldReserve=${yieldReserve}`
@@ -115,7 +117,6 @@ const Network = ({
                         baseSpan={3}
                         xAxisDataKey="day"
                     />
-
                     <ChartBox
                         queryLink="https://app.flipsidecrypto.com/velocity/queries/687c37e7-d15d-48e4-a453-d5bf7e589580"
                         data={totalTransactionDailyFee}
@@ -127,6 +128,43 @@ const Network = ({
                         areaDataKey={"Avrage Fee"}
                         xAxisDataKey="day"
                     />
+
+                    <ChartBox
+                        queryLink="https://app.flipsidecrypto.com/velocity/queries/687c37e7-d15d-48e4-a453-d5bf7e589580"
+                        data={terraTransactionStatics}
+                        tooltipTitle={"amount"}
+                        modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
+                        title="Daily Transaction Per Second"
+                        baseSpan={3}
+                        areaDataKey={"TPS"}
+                        xAxisDataKey="day"
+                    />
+
+                    <ChartBox
+                        queryLink="https://app.flipsidecrypto.com/velocity/queries/687c37e7-d15d-48e4-a453-d5bf7e589580"
+                        data={terraTransactionStatics}
+                        tooltipTitle={"amount"}
+                        modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
+                        title="Number of Transactions Per Day"
+                        baseSpan={3}
+                        areaDataKey={"Number of Transacton"}
+                        xAxisDataKey="day"
+                    />
+
+
+                    <ChartBox
+                        queryLink="https://app.flipsidecrypto.com/velocity/queries/687c37e7-d15d-48e4-a453-d5bf7e589580"
+                        data={terraTransactionStatics}
+                        tooltipTitle={"amount"}
+                        modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
+                        title="Success Rate of Transactions"
+                        baseSpan={3}
+                        extraDecimal={5}
+                        areaDataKey={"Success Rate"}
+                        xAxisDataKey="day"
+                    />
+
+
                 </SimpleGrid>
             </Box>
         </>

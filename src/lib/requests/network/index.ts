@@ -1,6 +1,7 @@
-import moment from "moment";
-import {
+import moment from "moment";import {
   NetworkFeeDaily,
+  TerraTransactionStatics,
+  TerraTransactionStaticsRes,
   TotalNetworkFeeDaily,
   TotalNetworkFeeDailyRes,
 } from "types/type";
@@ -18,6 +19,22 @@ export const getTotalTransactionDailyFee: () => Promise<
     "Avrage Fee": item.AVERAGE_FEE_USD,
   }));
 };
+
+export const getTerraTransactionStatics: () => Promise<
+  TerraTransactionStatics[]
+> = async () => {
+  const res = await fetch(
+    "https://api.flipsidecrypto.com/api/v2/queries/1628a1ba-3b50-4c3c-bca8-aee303f1e117/data/latest"
+  );
+  const data: TerraTransactionStaticsRes[] = await res.json();
+  return data.map((item) => ({
+    day: moment(item.DATETIME).format("YYYY-MM-DD"),
+    "Success Rate": item.SUCCESS_RATE,
+    TPS: item.TPS,
+    "Number of Transacton": item.TRANSACTIONS,
+  }));
+};
+
 export const getNetworkFeeDaily = async () => {
   const res = await fetch(
     "https://api.flipsidecrypto.com/api/v2/queries/30b18d71-6174-4a13-8edc-e840c4c13601/data/latest"
