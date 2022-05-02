@@ -167,7 +167,7 @@ const Home = ({
             baseSpan={3}
             tooltipTitle="New wallet count"
             modelInfo={`see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community.`}
-            title="# Unique Users"
+            title="Number of Unique Users"
             areaDataKey="Unique Users"
             xAxisDataKey="DATE"
           />
