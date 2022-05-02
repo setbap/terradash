@@ -2,6 +2,7 @@ import { Box, SimpleGrid, useColorModeValue } from "@chakra-ui/react"; import Ba
 import DonutChart from "lib/components/charts/DonutChart";
 import StackedAreaChart from "lib/components/charts/StackedAreaGraph";
 import { StatsCard } from "lib/components/charts/StateCard";
+import { StateCardRemoteData } from "lib/components/charts/StateCardRemoteData";
 import { NextSeo } from "next-seo";
 import { USTBridgeInfo, USTMarketCap, UST_IN_ALL_BCs } from "types/type";
 interface Props {
@@ -55,11 +56,12 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
           columns={{ base: 1, md: 2, lg: 2, "2xl": 3 }}
           spacing={{ base: 5, lg: 8 }}
         >
-          <StatsCard
+          <StateCardRemoteData
             link="https://lcd.terra.dev/cosmos/bank/v1beta1/supply/uusd"
+            url="https://lcd.terra.dev/cosmos/bank/v1beta1/supply/uusd"
             title="UST Total Supply"
             status="inc"
-            stat={uSTSupply}
+            getStat={(data) => Number(data.amount.amount.slice(0, -6))}
             forceDecimal={true}
 
           />

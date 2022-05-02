@@ -152,7 +152,7 @@ export const StateCardRemoteData = (props: StateCardRemoteDataProps) => {
 				fontSize="4xl"
 				fontWeight="extrabold"
 			>
-				<Skeleton isLoaded={!isLoading} colorScheme={'orange'} height={['32px', '40px']} maxWidth={'260px'} display={'inline-flex'}>
+				<Skeleton isLoaded={!isLoading} colorScheme={'orange'} height={['32px', '40px']} minWidth={'240px'} display={'inline-flex'}>
 					{data && calculateNum(data!)}
 					{error && <Box fontSize={["lg", "sm", "lg"]} isTruncated noOfLines={1} color={'red.400'}>{'Error in Fetching Data'}</Box>}
 					<Box fontSize={'2xl'} fontWeight={'bold'}>	{props.unit ?? ''}</Box>

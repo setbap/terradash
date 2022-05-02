@@ -15,7 +15,7 @@ const AnchorIcon: IconType = (props: any) => (
     >
 
         <title>Anchor Protocol Logo</title>
-        <g id="GNB" stroke="none" stroke-width="1" fill="none" fillRule="evenodd">
+        <g id="GNB" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="GNB---Earn-1" transform="translate(-100.000000, -18.000000)">
                 <g id="GNB">
                     <g id="Group" transform="translate(100.000000, 18.000000)" fillRule="nonzero">
