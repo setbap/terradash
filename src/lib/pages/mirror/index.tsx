@@ -99,14 +99,14 @@ const Mirror = ({
           spacing={{ base: 2, md: 4, lg: 6 }}
         >
           <BarGraph
-            queryLink="https://app.flipsidecrypto.com/velocity/queries/4eab2b30-aa8a-4830-8b48-14ca336b0a5b"
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/ade76dba-e6df-4bbd-a2f3-f2ea4fe3bd46"
             modelInfo="Volume of UST bridged out By Each Bridge over the time"
             values={mirrorSwapValuem.dailySwapValume}
             monthlyValues={mirrorSwapValuem.monthlySwapValume}
-            title="Swap Volume in Mirror Finance"
+            title="Mirror Swap Volume"
             dataKey="date"
             baseSpan={3}
-            oyLabel="Amount (USD)"
+            oyLabel="Volume (USD)"
             oxLabel="name"
             labels={(mirrorSwapValuem.tokenNames as string[]).filter(name => name !== null).map(
               (name, index) => ({
@@ -117,10 +117,10 @@ const Mirror = ({
           />
 
           <BarGraph
-            queryLink="https://app.flipsidecrypto.com/velocity/queries/4eab2b30-aa8a-4830-8b48-14ca336b0a5b"
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/52915f60-a99b-4b24-95a7-2d98a0499f08"
             modelInfo="Volume of UST bridged out By Each Bridge over the time"
             values={mirrorTVLByStocksVolume.dailyTVLUSD}
-            title="Swap Volume in Mirror Finance"
+            title="Mirror Stocks TVL"
             dataKey="date"
             baseSpan={3}
             oyLabel="Amount (USD)"

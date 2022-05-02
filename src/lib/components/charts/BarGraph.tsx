@@ -216,10 +216,13 @@ const BarGraph = ({
               />
             </YAxis>
             <Tooltip
+
+              wrapperStyle={{ zIndex: 10 }}
               labelFormatter={(value: string) => {
                 if (isNotDate) {
                   return value
                 }
+
                 if (chartTimeFrame === 'month') {
                   return moment(value).format("MMM YYYY")
                 }
