@@ -31,6 +31,7 @@ const StackedAreaChart = ({
   monthlyValues,
   extraInfoToTooltip, defualtTime = "day",
   queryLink,
+  dataPrecision = 2,
 }: {
   defualtTime?: 'day' | 'month';
   title: string;
@@ -44,6 +45,7 @@ const StackedAreaChart = ({
   baseSpan?: number;
   queryLink?: string;
   extraInfoToTooltip?: string;
+  dataPrecision?: number;
   labels: { key: string; color: string }[];
 }) => {
   const hasMonthly = !isNotDate && monthlyValues && monthlyValues.length > 0;
@@ -195,7 +197,7 @@ const StackedAreaChart = ({
               type="number"
               tickFormatter={(value) =>
                 millify(value, {
-                  precision: 2,
+                  precision: dataPrecision,
                   decimalSeparator: ".",
                 })
               }
@@ -228,7 +230,7 @@ const StackedAreaChart = ({
               contentStyle={{ backgroundColor: "black", borderRadius: "5px" }}
               formatter={(a: any) => {
                 return millify(a, {
-                  precision: 2,
+                  precision: dataPrecision,
                   decimalSeparator: ".",
                 }) + `${extraInfoToTooltip ?? ''}`;
               }}

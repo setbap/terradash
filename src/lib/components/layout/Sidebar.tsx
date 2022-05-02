@@ -34,6 +34,7 @@ import MotionBox from "../motion/Box";
 import LFGICON from "../basic/LFG_ICON";
 import MirrorIcon from "../basic/MirrorIcon";
 import AnchorIcon from "../basic/AnchorIcon";
+import { BiNetworkChart } from "react-icons/bi";
 interface LinkItemProps {
   name: string;
   icon: IconType;
@@ -43,6 +44,7 @@ const LinkItems: Array<LinkItemProps> = [
   { name: 'Overview', path: '/', icon: FiHome },
   { name: "UST", path: "/ust", icon: AiFillDollarCircle },
   { name: 'Governance ', path: '/governance', icon: RiGovernmentLine },
+  { name: 'Network ', path: '/network', icon: BiNetworkChart },
   { name: 'Anchor', path: '/anchor', icon: AnchorIcon },
   { name: 'Mirror', path: '/mirror', icon: MirrorIcon },
   { name: 'LFG', path: '/lfg', icon: LFGICON },

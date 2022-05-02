@@ -537,3 +537,33 @@ export interface MirrorTVLByStocksVolumeRes {
   LP_BALANCE_USD: number;
   "Pool Utilisation": number;
 }
+
+// ------------------------------ network
+
+export interface NetworkFeeDaily {
+  DATETIME: string;
+  TOTAL_FEE: number;
+  AVERAGE_FEE_BY_CURRENCY: number;
+  CURRENCY: string;
+  SYMBOL: string;
+  USD_RATE: number;
+  LUNA_RATE: number;
+  TOTAL_FEE_LUNA: number;
+  TOTAL_FEE_USD: number;
+  AVERAGE_FEE_BY_CURRENCY_LUNA: number;
+  AVERAGE_FEE_BY_CURRENCY_USD: number;
+}
+
+export interface TotalNetworkFeeDailyRes {
+  DATETIME: string;
+  DAILY_TOTAL_FEE_LUNA: number;
+  DAILY_TOTAL_FEE_USD: number;
+  AVERAGE_FEE_LUNA: number;
+  AVERAGE_FEE_USD: number;
+}
+
+export interface TotalNetworkFeeDaily {
+  day: string;
+  Fee: number;
+  "Avrage Fee": number;
+}
