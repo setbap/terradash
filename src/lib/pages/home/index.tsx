@@ -156,15 +156,6 @@ const Home = ({
             areaDataKey={"New Users"}
             xAxisDataKey="day"
           />
-          <ChartBox
-            queryLink="https://app.flipsidecrypto.com/velocity/queries/3d9fe65b-5c5a-4c10-920f-956fd5627fc0"
-            data={dailyNewUser}
-            tooltipTitle="New wallet count"
-            modelInfo={`see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community.`}
-            title="Daily Unique Users"
-            areaDataKey="Daily Unique Users"
-            xAxisDataKey="DATE"
-          />
           <LineChartV2
             data={dailyActiveWallets.numberOfDailyActiveWallets}
             queryLink="https://app.flipsidecrypto.com/dashboard/active-user-over-the-time-jMf4wy"
@@ -174,9 +165,20 @@ const Home = ({
             defultDateView="month"
             modelInfo="Methodology: Active users is the count of unique addresses involved in a transaction, not including validators or oracle voting transactions, calculated through the previous month."
             title="Number of Active Users"
-            baseSpan={2}
+            baseSpan={1}
             areaDataKey="Number of Active Users"
             xAxisDataKey="date" />
+          <ChartBox
+            queryLink="https://app.flipsidecrypto.com/velocity/queries/3d9fe65b-5c5a-4c10-920f-956fd5627fc0"
+            data={dailyNewUser}
+            baseSpan={2}
+            tooltipTitle="New wallet count"
+            modelInfo={`see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community.`}
+            title="Daily Unique Users"
+            areaDataKey="Daily Unique Users"
+            xAxisDataKey="DATE"
+          />
+
           {/* <DonutChart
             queryLink="https://app.flipsidecrypto.com/velocity/queries/8c595217-f3ad-44c9-bf83-853e71ee1c2d"
             data={totalFeeByEachToken}

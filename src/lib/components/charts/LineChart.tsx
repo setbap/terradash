@@ -311,7 +311,7 @@ const ChartBox = ({
                 minDate={minDate!.toDate()!}
                 maxDate={maxDate!.toDate()}
                 filters={[
-                  { day: 7, name: "1D" },
+                  { day: 7, name: "7D" },
                   { day: 30, name: "30D" },
                   {
                     day:

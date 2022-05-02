@@ -32,6 +32,8 @@ import { AiFillDollarCircle, AiOutlineInfoCircle } from "react-icons/ai";
 import { GiBlackBook } from "react-icons/gi";
 import MotionBox from "../motion/Box";
 import LFGICON from "../basic/LFG_ICON";
+import MirrorIcon from "../basic/MirrorIcon";
+import AnchorIcon from "../basic/AnchorIcon";
 interface LinkItemProps {
   name: string;
   icon: IconType;
@@ -41,8 +43,8 @@ const LinkItems: Array<LinkItemProps> = [
   { name: 'Overview', path: '/', icon: FiHome },
   { name: "UST", path: "/ust", icon: AiFillDollarCircle },
   { name: 'Governance ', path: '/governance', icon: RiGovernmentLine },
-  { name: 'Anchor', path: '/anchor', icon: CgAnchor },
-  { name: 'Mirror', path: '/mirror', icon: CgAnchor },
+  { name: 'Anchor', path: '/anchor', icon: AnchorIcon },
+  { name: 'Mirror', path: '/mirror', icon: MirrorIcon },
   { name: 'LFG', path: '/lfg', icon: LFGICON },
   { name: 'About', path: '/about', icon: AiOutlineInfoCircle },
   // { name: 'Tx and Fees', path: '/tx-and-fee', icon: SiBuzzfeed },
