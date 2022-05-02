@@ -190,7 +190,7 @@ const LineChartV2 = ({
             </MenuList>
           }
           modalInfo={modelInfo}
-          title={title + ' ' + (showMonthly ? defultViewSetting : "")}
+          title={title}
         />
         <Box p={"1"} />
         <ResponsiveContainer

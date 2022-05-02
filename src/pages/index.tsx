@@ -10,12 +10,12 @@ import { getTerraDailyAvgMinMaxPrice } from "lib/requests/overview/terra_avg_min
 import { getAvgUSTPrice } from "lib/requests/overview/terra_avg_min_max_price copy";
 import { getTotalBurnLuna } from "lib/requests/overview/total_burn_luna";
 import { getTotalLunaSupply } from "lib/requests/overview/total_luna_supply";
-import { getDailyActiveWallets, getDailyTerraTransactionFee, getTotalFeeByEachToken, getTotalNumberOfActiveUserInPeriod, getTotalNumberOfWallets } from "lib/requests/AllOverview";
+import { getDailyTerraTransactionFee, getTotalFeeByEachToken, getTotalNumberOfActiveUserInPeriod, getTotalNumberOfWallets } from "lib/requests/AllOverview";
 import { getTotalUSTSupply } from "lib/requests/overview/total_ust_supply";
 import { getTerraDailyTx } from "lib/requests/AllOverview";
 export async function getStaticProps() {
     const [
-        dailyActiveWallets,
+        // dailyActiveWallets,
         totalNumberOfWallets,
         terraDailyTx,
         transactionFees,
@@ -23,7 +23,7 @@ export async function getStaticProps() {
         totalNumberOfActiveUserInPeriod,
 
 
-        dailyNewUser,
+        newUser,
         curentLunaPrice,
         circulationSupplyLuna,
         circulationSupplyUST,
@@ -36,7 +36,7 @@ export async function getStaticProps() {
         distributionOfLunaHolders,
         dailyNewUserSince2022
     ] = await Promise.all([
-        getDailyActiveWallets(),
+        // getDailyActiveWallets(),
         getTotalNumberOfWallets(),
         getTerraDailyTx(),
         getDailyTerraTransactionFee(),
@@ -59,7 +59,7 @@ export async function getStaticProps() {
     ]);
     return {
         props: {
-            dailyActiveWallets,
+            // dailyActiveWallets,
             totalNumberOfWallets,
             terraDailyTx,
             transactionFees,
@@ -68,7 +68,7 @@ export async function getStaticProps() {
 
 
 
-            dailyNewUser,
+            newUser,
             curentLunaPrice,
             circulationSupplyLuna,
             circulationSupplyUST,

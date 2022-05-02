@@ -1,21 +1,21 @@
 import { Box, SimpleGrid, useColorModeValue } from "@chakra-ui/react"; import BarGraph from "lib/components/charts/BarGraph";
-import DonutChart from "lib/components/charts/DonutChart";
+import ChartBox from "lib/components/charts/LineChart";
 import StackedAreaChart from "lib/components/charts/StackedAreaGraph";
 import { StatsCard } from "lib/components/charts/StateCard";
 import { StateCardRemoteData } from "lib/components/charts/StateCardRemoteData";
 import { NextSeo } from "next-seo";
-import { USTBridgeInfo, USTMarketCap, UST_IN_ALL_BCs } from "types/type";
+import { USTBridgeInfo, USTDailySupply, USTMarketCap } from "types/type";
 interface Props {
   ustBridgeValue: USTBridgeInfo;
   USTSupply: number,
   ustMarketCap: USTMarketCap,
-
+  uSTDailySupply: USTDailySupply[];
   USTInfoInBCsNewUser: any,
   USTInfoInBCsUstVolume: any,
   USTInfoInBCsTxCount: any,
 }
 
-const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCount, USTInfoInBCsUstVolume, ustMarketCap }: Props) => {
+const UST = ({ ustBridgeValue, USTSupply, uSTDailySupply, USTInfoInBCsNewUser, USTInfoInBCsTxCount, USTInfoInBCsUstVolume, ustMarketCap }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
   const uSTSupply = USTSupply;
   const wUST = ustMarketCap.wUST
@@ -103,6 +103,19 @@ const UST = ({ ustBridgeValue, USTSupply, USTInfoInBCsNewUser, USTInfoInBCsTxCou
           columns={{ base: 1, md: 1, lg: 2, "2xl": 3 }}
           spacing={{ base: 2, md: 4, lg: 8 }}
         >
+
+          <ChartBox
+            queryLink="https://flipside.leslug.com/terra/ust/circulating"
+            data={uSTDailySupply}
+            baseSpan={3}
+            tooltipTitle="circulation supply UST"
+            modelInfo={`Circulating supply is the total LUNA that normal users have (not dex, cex, smart contract, etc)`}
+            title="UST Circulating Supply"
+            areaDataKey="UST Supply"
+            xAxisDataKey="day"
+
+          />
+
 
           <BarGraph
             queryLink="https://app.flipsidecrypto.com/velocity/queries/4eab2b30-aa8a-4830-8b48-14ca336b0a5b"

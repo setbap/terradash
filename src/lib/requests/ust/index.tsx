@@ -1,5 +1,5 @@
 import moment from "moment";
-import { USTBridge, USTBridgeInfo, USTMarketCap, USTMarketCapRes, USTSupply, UST_IN_ALL_BCs } from "types/type";
+import { USTBridge, USTBridgeInfo, USTDailySupply, USTDailySupplyRes, USTMarketCap, USTMarketCapRes, USTSupply, UST_IN_ALL_BCs } from "types/type";
 
 export const getUSTSupply = async (): Promise<number> => {
     const response = await fetch(
@@ -7,6 +7,16 @@ export const getUSTSupply = async (): Promise<number> => {
     );
     const data: USTSupply = await response.json();
     return Number(data.amount.amount) / 1000_000;
+}
+
+export const getUSTDailySupply = async (): Promise<USTDailySupply[]> => {
+    const res = await fetch('https://flipside.leslug.com/terra/ust/circulating')
+    const data: USTDailySupplyRes[] = await res.json()
+    return data.map((item) => ({
+        day: item.date,
+        "UST Supply": item.circulating
+    })).sort((a, b) => moment(a.day).isAfter(moment(b.day)) ? 1 : -1)
+
 }
 
 export const getUSTMarketCap = async (): Promise<USTMarketCap> => {

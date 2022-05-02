@@ -87,6 +87,16 @@ export interface TotalUSTSupply {
   "UST total Supply": number;
 }
 
+export interface USTDailySupplyRes {
+  date: string;
+  denom: string;
+  circulating: number;
+}
+export interface USTDailySupply {
+  day: string;
+  "UST Supply": number;
+}
+
 export interface TotalTx {
   TOTAL_TX: number;
 }

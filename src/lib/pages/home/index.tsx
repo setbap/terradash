@@ -25,7 +25,10 @@ import { StateCardRemoteData } from "lib/components/charts/StateCardRemoteData";
 const colors = ["#ffc107", "#ff5722", "#03a9f4", "#4caf50", "#00bcd4", "#f44336", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#009688", "#607d8b"]
 
 interface Props {
-  dailyNewUser: DailyNewUser[];
+  newUser: {
+    daily: DailyNewUser[],
+    monthly: DailyNewUser[]
+  };
   curentLunaPrice: CurentLunaPrice;
   circulationSupplyLuna: CirculationSupplyLuna[];
   circulationSupplyUST: CirculationSupplyUST[];
@@ -43,12 +46,12 @@ interface Props {
   transactionFees: any,
   totalNumberOfWallets: TotalNumberOfWallets,
   terraDailyTx: ChangedDailyTx[];
-  dailyActiveWallets: AtiveUserOverTime
+  // dailyActiveWallets: AtiveUserOverTime
 
 }
 
 const Home = ({
-  dailyNewUser,
+  newUser,
   curentLunaPrice,
   circulationSupplyLuna,
   dailyNewUserSince2022,
@@ -57,7 +60,7 @@ const Home = ({
   totalNumberOfActiveUserInPeriod,
   terraDailyTx,
   totalNumberOfWallets,
-  dailyActiveWallets,
+  // dailyActiveWallets,
 }: Props) => {
   const bgCard = useColorModeValue("white", "#191919");
   // lunaPrice, numberOfWallets, activeUser 
@@ -156,26 +159,16 @@ const Home = ({
             areaDataKey={"New Users"}
             xAxisDataKey="day"
           />
+
           <LineChartV2
-            data={dailyActiveWallets.numberOfDailyActiveWallets}
-            queryLink="https://app.flipsidecrypto.com/dashboard/active-user-over-the-time-jMf4wy"
-            showMonthly
-            monthlyData={dailyActiveWallets.numberOfMonthlyActiveWallets}
-            tooltipTitle="Active Users"
-            defultDateView="month"
-            modelInfo="Methodology: Active users is the count of unique addresses involved in a transaction, not including validators or oracle voting transactions, calculated through the previous month."
-            title="Number of Active Users"
-            baseSpan={1}
-            areaDataKey="Number of Active Users"
-            xAxisDataKey="date" />
-          <ChartBox
             queryLink="https://app.flipsidecrypto.com/velocity/queries/3d9fe65b-5c5a-4c10-920f-956fd5627fc0"
-            data={dailyNewUser}
-            baseSpan={2}
+            data={newUser.daily}
+            monthlyData={newUser.monthly}
+            baseSpan={3}
             tooltipTitle="New wallet count"
             modelInfo={`see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community.`}
-            title="Daily Unique Users"
-            areaDataKey="Daily Unique Users"
+            title="# Unique Users"
+            areaDataKey="Unique Users"
             xAxisDataKey="DATE"
           />
 
