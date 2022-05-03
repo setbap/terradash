@@ -13,11 +13,14 @@ export const getTotalTransactionDailyFee: () => Promise<
     "https://api.flipsidecrypto.com/api/v2/queries/4b1c3da6-6616-44f4-b76d-4d67b3d4feeb/data/latest"
   );
   const data: TotalNetworkFeeDailyRes[] = await res.json();
-  return data.map((item) => ({
-    day: moment(item.DATETIME).format("YYYY-MM-DD"),
-    Fee: item.DAILY_TOTAL_FEE_USD,
-    "Avrage Fee": item.AVERAGE_FEE_USD,
-  }));
+
+  return data
+    .map((item) => ({
+      day: moment(item.DATETIME).format("YYYY-MM-DD"),
+      Fee: item.DAILY_TOTAL_FEE_USD,
+      "Avrage Fee": item.AVERAGE_FEE_USD,
+    }))
+    .sort((a, b) => (moment(a.day).isAfter(moment(b.day)) ? 1 : -1));
 };
 
 export const getTerraTransactionStatics: () => Promise<
