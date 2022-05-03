@@ -1,5 +1,8 @@
-import moment from "moment";import {
+import moment from "moment";
+import {
   NetworkFeeDaily,
+  TerraStakingRewardUSD,
+  TerraStakingRewardUSDRes,
   TerraTransactionStatics,
   TerraTransactionStaticsRes,
   TotalNetworkFeeDaily,
@@ -36,6 +39,21 @@ export const getTerraTransactionStatics: () => Promise<
     TPS: item.TPS,
     "Number of Transacton": item.TRANSACTIONS,
   }));
+};
+
+export const getTerraStakingRewardUSD: () => Promise<
+  TerraStakingRewardUSD[]
+> = async () => {
+  const res = await fetch(
+    "https://api.flipsidecrypto.com/api/v2/queries/6c88ff78-811d-41aa-845f-12bc239ff760/data/latest"
+  );
+  const data: TerraStakingRewardUSDRes[] = await res.json();
+  return data
+    .map((item) => ({
+      day: moment(item.DATE).format("YYYY-MM-DD"),
+      Reward: item.REWARDS_USD,
+    }))
+    .sort((a, b) => (moment(a.day).isAfter(moment(b.day)) ? 1 : -1));
 };
 
 export const getNetworkFeeDaily = async () => {

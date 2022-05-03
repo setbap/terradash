@@ -5,7 +5,7 @@ import BarGraph from "lib/components/charts/BarGraph";
 import ChartBox from "lib/components/charts/LineChart";
 import StackedAreaChart from "lib/components/charts/StackedAreaGraph";
 import { NextSeo } from "next-seo";
-import { TerraTransactionStatics } from "types/type";
+import { TerraStakingRewardUSD, TerraTransactionStatics } from "types/type";
 
 const COLOR_ARRAY = ['#FF6633', '#3366E6', '#1AFF33', '#FFB399', '#FF33FF', '#FF1A66', '#FFFF99',
     '#1AB399', '#00B3E6',
@@ -25,10 +25,11 @@ const COLOR_ARRAY = ['#FF6633', '#3366E6', '#1AFF33', '#FFB399', '#FF33FF', '#FF
 interface Props {
     networkFeeDaily: any
     totalTransactionDailyFee: any;
-    terraTransactionStatics: TerraTransactionStatics[]
+    terraTransactionStatics: TerraTransactionStatics[];
+    terraStakingRewardUSD: TerraStakingRewardUSD[];
 }
 const Network = ({
-    networkFeeDaily, totalTransactionDailyFee, terraTransactionStatics
+    networkFeeDaily, totalTransactionDailyFee, terraTransactionStatics, terraStakingRewardUSD
 }: Props) => {
 
     // const ogUrl = `https://ogterradash.vercel.app/api/anchor?totalDeposits=${totalDeposits}&totalBorrowed=${totalBorrowed}&currentAPY=${currentAPY}&yieldReserve=${yieldReserve}`
@@ -74,7 +75,7 @@ const Network = ({
                     spacing={{ base: 2, md: 4, lg: 6 }}
                 >
                     <BarGraph
-                        queryLink="https://app.flipsidecrypto.com/velocity/queries/52915f60-a99b-4b24-95a7-2d98a0499f08"
+                        queryLink="https://app.flipsidecrypto.com/velocity/queries/30b18d71-6174-4a13-8edc-e840c4c13601"
                         modelInfo="Volume of UST bridged out By Each Bridge over the time"
                         values={networkFeeDaily.dailySwapFeeUSD}
                         title="Total Daily Transaction Fees in Terra (USD)"
@@ -91,7 +92,7 @@ const Network = ({
                     />
                     <StackedAreaChart
                         dataPrecision={4}
-                        queryLink="https://app.flipsidecrypto.com/velocity/queries/52915f60-a99b-4b24-95a7-2d98a0499f08"
+                        queryLink="https://app.flipsidecrypto.com/velocity/queries/30b18d71-6174-4a13-8edc-e840c4c13601"
                         modelInfo="Volume of UST bridged out By Each Bridge over the time"
                         values={networkFeeDaily.dailyAVGSwapFeeUSD}
                         title="Average Daily Transaction Fees in Terra (USD)"
@@ -108,7 +109,7 @@ const Network = ({
                     />
 
                     <ChartBox
-                        queryLink="https://app.flipsidecrypto.com/velocity/queries/687c37e7-d15d-48e4-a453-d5bf7e589580"
+                        queryLink="https://app.flipsidecrypto.com/velocity/queries/4b1c3da6-6616-44f4-b76d-4d67b3d4feeb"
                         data={totalTransactionDailyFee}
                         tooltipTitle={"amount"}
                         modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
@@ -118,7 +119,7 @@ const Network = ({
                         xAxisDataKey="day"
                     />
                     <ChartBox
-                        queryLink="https://app.flipsidecrypto.com/velocity/queries/687c37e7-d15d-48e4-a453-d5bf7e589580"
+                        queryLink="https://app.flipsidecrypto.com/velocity/queries/4b1c3da6-6616-44f4-b76d-4d67b3d4feeb"
                         data={totalTransactionDailyFee}
                         tooltipTitle={"amount"}
                         modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
@@ -130,7 +131,7 @@ const Network = ({
                     />
 
                     <ChartBox
-                        queryLink="https://app.flipsidecrypto.com/velocity/queries/687c37e7-d15d-48e4-a453-d5bf7e589580"
+                        queryLink="https://app.flipsidecrypto.com/velocity/queries/1628a1ba-3b50-4c3c-bca8-aee303f1e117"
                         data={terraTransactionStatics}
                         tooltipTitle={"amount"}
                         modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
@@ -141,7 +142,7 @@ const Network = ({
                     />
 
                     <ChartBox
-                        queryLink="https://app.flipsidecrypto.com/velocity/queries/687c37e7-d15d-48e4-a453-d5bf7e589580"
+                        queryLink="https://app.flipsidecrypto.com/velocity/queries/1628a1ba-3b50-4c3c-bca8-aee303f1e117"
                         data={terraTransactionStatics}
                         tooltipTitle={"amount"}
                         modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
@@ -153,7 +154,7 @@ const Network = ({
 
 
                     <ChartBox
-                        queryLink="https://app.flipsidecrypto.com/velocity/queries/687c37e7-d15d-48e4-a453-d5bf7e589580"
+                        queryLink="https://app.flipsidecrypto.com/velocity/queries/1628a1ba-3b50-4c3c-bca8-aee303f1e117"
                         data={terraTransactionStatics}
                         tooltipTitle={"amount"}
                         modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
@@ -161,6 +162,17 @@ const Network = ({
                         baseSpan={3}
                         extraDecimal={5}
                         areaDataKey={"Success Rate"}
+                        xAxisDataKey="day"
+                    />
+
+                    <ChartBox
+                        queryLink="https://app.flipsidecrypto.com/velocity/queries/6c88ff78-811d-41aa-845f-12bc239ff760"
+                        data={terraStakingRewardUSD}
+                        tooltipTitle={"amount"}
+                        modelInfo="see the number of unique users who transaction in this blockchain per day. The increase in users is clearly evident and is a testament to Terra popularity among the cryptocurrency community."
+                        title="Staking Rewards Distributed (USD)"
+                        baseSpan={3}
+                        areaDataKey={"Reward"}
                         xAxisDataKey="day"
                     />
 

@@ -583,3 +583,13 @@ export interface TerraTransactionStatics {
   TPS: number;
   "Success Rate": number;
 }
+
+export interface TerraStakingRewardUSDRes {
+  DATE: string;
+  REWARDS_USD: number;
+}
+
+export interface TerraStakingRewardUSD {
+  day: string;
+  Reward: number;
+}
