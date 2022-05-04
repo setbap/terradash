@@ -27,6 +27,7 @@ import { FilterDayBarBox } from "../basic/FilterDayBar";
 import { AnimatePresence } from "framer-motion";
 import MotionBox from "../motion/Box";
 import LinkToSourceMenuItem from "../basic/LinkToSourceMenuItem";
+import TrendLine from "./TrendLine";
 
 interface Props {
   modelInfo: string;
@@ -44,7 +45,7 @@ interface Props {
   showMonthly?: boolean;
   queryLink?: string;
   additionalDumpTextToAddKeyToKeyBeUnique?: string;
-  customColor?: string
+  customColor?: string;
 }
 
 const ChartBox = ({
@@ -62,7 +63,7 @@ const ChartBox = ({
   additionalDumpTextToAddKeyToKeyBeUnique = "",
   defultSelectedRange = "all",
   showMonthly = false,
-  customColor = "var(--chakra-colors-green-300)"
+  customColor = "var(--chakra-colors-green-300)",
 }: Props) => {
   const [spanItem, setSpanItem] = useState(GRID_ITEM_SIZE[baseSpan - 1]);
   const [defultViewSetting, setDefultViewSetting] = useState(defultDateView);
@@ -148,8 +149,8 @@ const ChartBox = ({
   const bgTooltip = useColorModeValue("gray.300", "gray.700");
   const bgCard = useColorModeValue("white", "#191919");
   const textColor = useColorModeValue("gray.900", "gray.100");
-  const chartColor = customColor
-  const chartUniquKey = `${areaDataKey}-${xAxisDataKey}-${additionalDumpTextToAddKeyToKeyBeUnique}`
+  const chartColor = customColor;
+  const chartUniquKey = `${areaDataKey}-${xAxisDataKey}-${additionalDumpTextToAddKeyToKeyBeUnique}`;
 
   return (
     <GridItem
@@ -178,28 +179,32 @@ const ChartBox = ({
         <ChartHeader
           chartMenu={
             <MenuList>
-              {queryLink &&
+              {queryLink && (
                 <>
                   <LinkToSourceMenuItem queryLink={queryLink} />
                   <MenuDivider />
                 </>
-              }
-              {showMonthly && (<><MenuOptionGroup
-                onChange={(value) => {
-                  if (value === "month") {
-                    changeDataToMonethly();
-                  } else {
-                    changeDataToDaily();
-                  }
-                }}
-                defaultValue={defultViewSetting}
-                title="Chart Date Type"
-                type="radio"
-              >
-                <MenuItemOption value={"month"}>monthly</MenuItemOption>
-                <MenuItemOption value={"day"}>daily</MenuItemOption>
-              </MenuOptionGroup>
-                <MenuDivider /></>)}
+              )}
+              {showMonthly && (
+                <>
+                  <MenuOptionGroup
+                    onChange={(value) => {
+                      if (value === "month") {
+                        changeDataToMonethly();
+                      } else {
+                        changeDataToDaily();
+                      }
+                    }}
+                    defaultValue={defultViewSetting}
+                    title="Chart Date Type"
+                    type="radio"
+                  >
+                    <MenuItemOption value={"month"}>monthly</MenuItemOption>
+                    <MenuItemOption value={"day"}>daily</MenuItemOption>
+                  </MenuOptionGroup>
+                  <MenuDivider />
+                </>
+              )}
               <ChartSpanMenu
                 onChange={(span) =>
                   setSpanItem(GRID_ITEM_SIZE[Number(span) - 1])
@@ -222,7 +227,13 @@ const ChartBox = ({
             className="mt-1 mb-1"
           >
             <defs>
-              <linearGradient id={`color${additionalDumpTextToAddKeyToKeyBeUnique}`} x1="0" y1="0" x2="0" y2="1">
+              <linearGradient
+                id={`color${additionalDumpTextToAddKeyToKeyBeUnique}`}
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
                 <stop
                   offset="0%"
                   style={{ stopColor: chartColor }}
@@ -282,11 +293,17 @@ const ChartBox = ({
                 });
               }}
             />
+            <TrendLine
+              data={chartData}
+              xKey={xAxisDataKey}
+              yKey={areaDataKey}
+            />
             <Area
               dataKey={areaDataKey}
               style={{ stroke: chartColor }}
-              fill={`url(#color${additionalDumpTextToAddKeyToKeyBeUnique})`}
+              // fill={`url(#color${additionalDumpTextToAddKeyToKeyBeUnique})`}
             />
+
             {/* <Legend
               verticalAlign="top"
               fontSize={"8px"}
@@ -322,7 +339,7 @@ const ChartBox = ({
                             0,
                             1
                           ).getTime()) /
-                        (1000 * 60 * 60 * 24)
+                          (1000 * 60 * 60 * 24)
                       ) + 1,
                     name: maxDate!.toDate().getFullYear().toString(),
                   },
